@@ -9,6 +9,9 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+/[Rr]ecordings/
+#added by Rob
+/[Uu]serSettings/
 
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta
