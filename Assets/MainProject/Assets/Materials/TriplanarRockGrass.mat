@@ -56,12 +56,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _DetailNormalStrength: 0.3
-    - _Grass_Height_Blend: 16.51
+    - _Grass_Height_Blend: 17.5
     - _Grass_Threshold: 0.8
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RockNormalStrength: 0.3
-    m_Colors: []
+    m_Colors:
+    - _GrassTiling: {r: 3, g: 3, b: 0, a: 0}
+    - _RockTiling: {r: 5, g: 5, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &6629405107034922447
 MonoBehaviour:
