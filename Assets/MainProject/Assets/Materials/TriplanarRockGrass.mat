@@ -61,6 +61,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RockNormalStrength: 0.3
+    - _Smoothness: 0.4
     m_Colors:
     - _GrassTiling: {r: 3, g: 3, b: 0, a: 0}
     - _RockTiling: {r: 5, g: 5, b: 0, a: 0}
