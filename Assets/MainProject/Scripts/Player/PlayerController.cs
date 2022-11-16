@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpHeight = 1.0f;
     [SerializeField] private float gravityValue = -9.81f;
     public bool Interacting;
+    public bool stateInteract;
 
     private CharacterController controller;
     private Vector3 playerVelocity;
@@ -34,10 +35,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-
+        Debug.Log (cameraTransform.localRotation.eulerAngles.y);
         //Move Player if not interacting
         if (!Interacting){
             Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
             groundedPlayer = controller.isGrounded;
             if (groundedPlayer && playerVelocity.y < 0)
             {
@@ -56,26 +58,35 @@ public class PlayerController : MonoBehaviour
                 playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
             }
 
-            if (inputManager.PlayerInteractThisFrame()) {
+            if (inputManager.PlayerInteractThisFrame() && Interacting == false) {
                 Interacting = true;
+                //Set the interact camera angle
+                Quaternion rot = Quaternion.Euler (0f, cameraTransform.eulerAngles.y, 0f);
+                InteractCam.ForceCameraPosition(cameraTransform.position, rot);
+                //Switch the cameras
                 FirstPersonCam.m_Priority = 0;
                 InteractCam.m_Priority = 10;
+
             }
+
+        
 
             playerVelocity.y += gravityValue * Time.deltaTime;
             controller.Move(playerVelocity * Time.deltaTime);
 
         } else {
-
+            Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
+            if (inputManager.PlayerInteractThisFrame() && Interacting == true) {
+                Interacting = false;
+                //Switch the cameras
+                InteractCam.m_Priority = 0;
+                FirstPersonCam.m_Priority = 10;
 
+            } 
         }
 
-
-
-
-
-
     }
+
 }
