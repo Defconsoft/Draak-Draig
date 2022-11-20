@@ -49,6 +49,10 @@ public class InputManager : MonoBehaviour
         return playerControls.Player.Interact.triggered;
     }
 
+    public bool PlayerClickedThisFrame() {
+        return playerControls.Player.MouseFire.triggered;
+    }
+
 
 
 
