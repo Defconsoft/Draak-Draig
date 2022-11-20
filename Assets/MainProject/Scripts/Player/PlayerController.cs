@@ -11,8 +11,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float playerSpeed = 2.0f;
     [SerializeField] private float jumpHeight = 1.0f;
     [SerializeField] private float gravityValue = -9.81f;
+
+    [Header ("StateInteracting")]
     public bool Interacting;
     public bool stateInteract;
+    public Transform interactingObject;
+
 
     private CharacterController controller;
     private Vector3 playerVelocity;
@@ -35,7 +39,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        Debug.Log (cameraTransform.localRotation.eulerAngles.y);
         //Move Player if not interacting
         if (!Interacting){
             Cursor.visible = false;
@@ -58,14 +61,18 @@ public class PlayerController : MonoBehaviour
                 playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
             }
 
-            if (inputManager.PlayerInteractThisFrame() && Interacting == false) {
+            if (inputManager.PlayerInteractThisFrame() && stateInteract) {
                 Interacting = true;
                 //Set the interact camera angle
-                Quaternion rot = Quaternion.Euler (0f, cameraTransform.eulerAngles.y, 0f);
+                interactingObject.gameObject.GetComponent<Interactable>().itemCanvas.enabled = false;
+                Vector3 lookPos = interactingObject.position - cameraTransform.position;
+                Quaternion rot = Quaternion.LookRotation(lookPos);                
+                //Quaternion rot = Quaternion.Euler (0f, cameraTransform.eulerAngles.y, 0f);
                 InteractCam.ForceCameraPosition(cameraTransform.position, rot);
                 //Switch the cameras
                 FirstPersonCam.m_Priority = 0;
                 InteractCam.m_Priority = 10;
+                interactingObject.GetChild(1).GetComponent<InteractableGameManager>().StartTheGame();
 
             }
 
@@ -74,19 +81,39 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y += gravityValue * Time.deltaTime;
             controller.Move(playerVelocity * Time.deltaTime);
 
-        } else {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+        } 
 
-            if (inputManager.PlayerInteractThisFrame() && Interacting == true) {
-                Interacting = false;
-                //Switch the cameras
-                InteractCam.m_Priority = 0;
-                FirstPersonCam.m_Priority = 10;
 
-            } 
+
+        if (inputManager.PlayerClickedThisFrame()) {
+            if (interactingObject.GetChild(1).GetComponent<InteractableGameManager>().InteractableState == 1){
+                interactingObject.GetChild(1).GetComponent<InteractableGameManager>().KillTheAimTween();
+            } else if (interactingObject.GetChild(1).GetComponent<InteractableGameManager>().InteractableState == 2) {
+                interactingObject.GetChild(1).GetComponent<InteractableGameManager>().KillThePowerTween();
+                Endinteracting();
+            } else {
+                return;
+            }
         }
 
     }
+
+    public void Endinteracting(){
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Interacting = false;
+        //Switch the cameras
+        Quaternion rot = Quaternion.Euler (cameraTransform.eulerAngles.x, cameraTransform.eulerAngles.y, cameraTransform.eulerAngles.z);
+        FirstPersonCam.ForceCameraPosition(cameraTransform.position, rot);
+        InteractCam.m_Priority = 0;
+        FirstPersonCam.m_Priority = 10;
+
+        
+    }
+
+
+
+
 
 }
