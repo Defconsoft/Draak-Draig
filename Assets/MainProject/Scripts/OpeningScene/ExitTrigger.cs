@@ -5,15 +5,17 @@ using UnityEngine;
 public class ExitTrigger : MonoBehaviour
 {
 
+    public OpeningSceneManager OSManager;
+
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Player") {
-            GameObject.Find("OpeningScene").GetComponent<OpeningSceneManager>().FadeInInstruction();
+            OSManager.FadeInInstruction();
         }
     }
 
     private void OnTriggerExit(Collider other) {
         if (other.tag == "Player") {
-            GameObject.Find("OpeningScene").GetComponent<OpeningSceneManager>().FadeOutInstruction();
+            OSManager.FadeOutInstruction();
         }
     }
 
