@@ -56,8 +56,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _DetailNormalStrength: 0.3
-    - _Grass_Height_Blend: 16.06
-    - _Grass_Threshold: 0.694
+    - _Grass_Height_Blend: 79
+    - _Grass_Threshold: 0.59
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RockNormalStrength: 0.3
