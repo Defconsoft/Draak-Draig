@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public bool nextScene;
     public int SceneToLoad;
     public Transform interactingObject;
+    public GameObject exitTrigger;
 
 
     private CharacterController controller;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerVelocity;
     private InputManager inputManager;
     private Transform cameraTransform;
+    
 
     [Header ("Cameras")]
     public CinemachineVirtualCamera FirstPersonCam;
@@ -82,7 +84,9 @@ public class PlayerController : MonoBehaviour
                     InteractCam.m_Priority = 10;
                     interactingObject.GetChild(1).GetComponent<InteractableGameManager>().StartTheGame();
                 } else if (nextScene){
+                    Destroy(exitTrigger);
                     uXManager.LoadScene(SceneToLoad);
+                    
                 }
 
             }

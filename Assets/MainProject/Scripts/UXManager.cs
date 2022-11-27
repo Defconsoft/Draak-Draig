@@ -10,13 +10,11 @@ public class UXManager : MonoBehaviour
     [SerializeField] private Canvas MainMenu;
     [SerializeField] private CanvasGroup BGCanvasGrp;
     [SerializeField] private CanvasGroup MainMenuGrp;
-    [SerializeField] private CanvasGroup OpeningSceneGrp;
+    [SerializeField] private CanvasGroup QuoteTextGrp;
+    [SerializeField] private TMPro.TMP_Text QuoteTextBox;   
 
 
-
-    ///Fade Targets
-    private CanvasGroup FadeIn, Fadeout;
-
+    public string[] TextQuotes;
 
     private void Awake() {
 
@@ -34,20 +32,21 @@ public class UXManager : MonoBehaviour
     }
 
     public IEnumerator LoadYourAsyncScene (int SceneNo) {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneNo);
 
+        var scene = SceneManager.LoadSceneAsync (SceneNo);
+        scene.allowSceneActivation = false;
         // Wait until the asynchronous scene fully loads
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
 
-        SetFadeTargets(SceneNo);
-        FadeOutCanvasGrp(Fadeout, 2f);
+        FadeInCanvasGrp(BGCanvasGrp, 2f);
+        SetQuoteText(SceneNo);
+        if (SceneNo == 1){
+            FadeOutCanvasGrp(MainMenuGrp, 2f);
+        }
         yield return new WaitForSeconds (3f);
-        FadeInCanvasGrp (FadeIn, 3f);
+        scene.allowSceneActivation = true; //Loads the scene in
+        FadeInCanvasGrp (QuoteTextGrp, 3f);
         yield return new WaitForSeconds (3f);
-        FadeOutCanvasGrp(FadeIn, 2f);
+        FadeOutCanvasGrp(QuoteTextGrp, 2f);
         yield return new WaitForSeconds (2f);
         FadeOutCanvasGrp(BGCanvasGrp, 2f);
     }
@@ -58,7 +57,7 @@ public class UXManager : MonoBehaviour
     // USE TO FADE CANVAS GROUPS
     //////////////////////////////////////
 
-    private void SetFadeTargets(int SceneNo) {
+    private void SetQuoteText(int SceneNo) {
         switch (SceneNo)
         {
             
@@ -66,9 +65,18 @@ public class UXManager : MonoBehaviour
                 break;
 
             case 1: //Move to openingscene
-                FadeIn = OpeningSceneGrp;
-                Fadeout = MainMenuGrp;
+                QuoteTextBox.text = TextQuotes[0];
                 break;
+
+            case 2: //Move to resource gathering
+                QuoteTextBox.text = TextQuotes[1];
+                break;
+
+            case 3: //Move to village
+                QuoteTextBox.text = TextQuotes[2];
+                break;
+
+
         }
 
 

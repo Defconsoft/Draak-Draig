@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 507036676}
   - component: {fileID: 507036679}
   m_Layer: 0
-  m_Name: OpeningScene
+  m_Name: QuoteText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -631,7 +631,7 @@ GameObject:
   - component: {fileID: 758017120}
   - component: {fileID: 758017119}
   m_Layer: 0
-  m_Name: OpeningSceneQuote
+  m_Name: QuoteTextBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -677,8 +677,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u201CThe Dragon is always within you, you must embrace it\u2019s will
-    and define your life by it\u201D"
+  m_text: QUOTE TEXT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4514947c2ca3e2243806218bf16f2979, type: 2}
   m_sharedMaterial: {fileID: 2846392083979374921, guid: 4514947c2ca3e2243806218bf16f2979,
@@ -1045,7 +1044,26 @@ MonoBehaviour:
   MainMenu: {fileID: 479058583}
   BGCanvasGrp: {fileID: 673745670}
   MainMenuGrp: {fileID: 479058585}
-  OpeningSceneGrp: {fileID: 507036679}
+  QuoteTextGrp: {fileID: 507036679}
+  QuoteTextBox: {fileID: 758017119}
+  TextQuotes:
+  - "\u201CThe Dragon is always within you, you must embrace it\u2019s will and define
+    your life by it\u201D"
+  - "\u201CWithout labour, a dragon will never prosper. More effort will lead to
+    greater prosperity\u201D"
+  - "\u201CBe fearful when others are greedy and greedy when others are fearful.
+    Cunning is your friend.\u201D"
+  - "\u201CA beast does not know that he is a beast, and the nearer a man gets to
+    being a beast, the less he knows it.\""
+  - "\u201CIn every battle there comes a time when both sides consider themselves
+    beaten, then he who continues the attack wins.\u201D"
+  - "\u201CNoise and hunting don\u2019t go together. Death from above is not your
+    only weapon\u201D"
+  - "\u201CIf you ignore the dragon, it will eat you. If you defy the dragon it will
+    overpower you. But if you ride the dragon, you will take advantage of its strength
+    and power.\u201D"
+  - "\u201CA dominant Dragon is a fearsome adversary but Man will always pursue what
+    it cannot overcome\u201D"
 --- !u!1 &924639095
 GameObject:
   m_ObjectHideFlags: 0

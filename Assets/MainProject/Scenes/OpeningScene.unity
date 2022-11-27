@@ -768,7 +768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 043a8fc664944ae449afa5bde52170a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OpenSceneCanvasGrp: {fileID: 2068794371}
+  SceneCanvasGrp: {fileID: 2068794371}
 --- !u!1 &1777275478
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,6 +828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OSManager: {fileID: 1522376959}
+  MessageCanvas: {fileID: 2068794369}
   SceneToLoad: 2
 --- !u!1 &2068794369
 GameObject:
