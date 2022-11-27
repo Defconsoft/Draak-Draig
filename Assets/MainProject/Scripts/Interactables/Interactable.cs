@@ -1,22 +1,22 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class Interactable : MonoBehaviour
 {
 
-    public enum InteractType { rock, tree, fish};
+    public enum InteractType { rock, tree, fish, NPC};
 
     [Header("Object Attributes")]
     public float radius = 3.0f;
     private SphereCollider areaTrigger;
     public InteractType interactType;
+    public bool isNPC;
 
-    public GameObject Rocks;
-    public GameObject Trees;
-    public GameObject FishSpots;
-
+    public GameObject Objects;
+ 
 
     [Header("UX stuff")]
-    public Canvas itemCanvas;
+    public CanvasGroup itemCanvas;
 
 
 
@@ -31,7 +31,7 @@ public class Interactable : MonoBehaviour
         
         //Setup the item type
         if (interactType == InteractType.rock){
-            GameObject rockClone = Instantiate(Rocks, transform);
+            GameObject rockClone = Instantiate(Objects, transform);
         } 
 
         if (interactType == InteractType.tree){
@@ -40,24 +40,19 @@ public class Interactable : MonoBehaviour
 
         if (interactType == InteractType.fish){
 
-        }             
+        } 
+
+        if (interactType == InteractType.NPC){
+            isNPC = true;
+        }              
 
     }
-
-
-
-
-
-
-
-
-
 
 
     //handles the actual interactivity
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Player") {
-            itemCanvas.enabled = true;
+            itemCanvas.DOFade (1f,1f);
             other.GetComponent<PlayerController>().stateInteract = true;
             other.GetComponent<PlayerController>().interactingObject = this.transform;
         }
@@ -65,7 +60,7 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerExit(Collider other) {
         if (other.tag == "Player") {
-            itemCanvas.enabled = false;
+            itemCanvas.DOFade (0f,1f);
             other.GetComponent<PlayerController>().stateInteract = false;
         }        
     }
