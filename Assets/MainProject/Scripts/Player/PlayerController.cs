@@ -15,10 +15,14 @@ public class PlayerController : MonoBehaviour
     [Header ("StateInteracting")]
     public bool Interacting;
     public bool stateInteract;
+    public bool nextScene;
+    public int SceneToLoad;
     public Transform interactingObject;
 
 
     private CharacterController controller;
+    private GameManager gameManager;
+    private UXManager uXManager;
     private Vector3 playerVelocity;
     private InputManager inputManager;
     private Transform cameraTransform;
@@ -34,6 +38,8 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         inputManager = InputManager.Instance;
         cameraTransform = Camera.main.transform;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        uXManager = GameObject.Find("GameManager").GetComponent<UXManager>();
     }
 
     void Update()
@@ -61,18 +67,23 @@ public class PlayerController : MonoBehaviour
                 playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
             }
 
-            if (inputManager.PlayerInteractThisFrame() && stateInteract) {
-                Interacting = true;
-                //Set the interact camera angle
-                interactingObject.gameObject.GetComponent<Interactable>().itemCanvas.enabled = false;
-                Vector3 lookPos = interactingObject.position - cameraTransform.position;
-                Quaternion rot = Quaternion.LookRotation(lookPos);                
-                //Quaternion rot = Quaternion.Euler (0f, cameraTransform.eulerAngles.y, 0f);
-                InteractCam.ForceCameraPosition(cameraTransform.position, rot);
-                //Switch the cameras
-                FirstPersonCam.m_Priority = 0;
-                InteractCam.m_Priority = 10;
-                interactingObject.GetChild(1).GetComponent<InteractableGameManager>().StartTheGame();
+            if (inputManager.PlayerInteractThisFrame()) {
+
+                if (stateInteract){
+                    Interacting = true;
+                    //Set the interact camera angle
+                    interactingObject.gameObject.GetComponent<Interactable>().itemCanvas.enabled = false;
+                    Vector3 lookPos = interactingObject.position - cameraTransform.position;
+                    Quaternion rot = Quaternion.LookRotation(lookPos);                
+                    //Quaternion rot = Quaternion.Euler (0f, cameraTransform.eulerAngles.y, 0f);
+                    InteractCam.ForceCameraPosition(cameraTransform.position, rot);
+                    //Switch the cameras
+                    FirstPersonCam.m_Priority = 0;
+                    InteractCam.m_Priority = 10;
+                    interactingObject.GetChild(1).GetComponent<InteractableGameManager>().StartTheGame();
+                } else if (nextScene){
+                    uXManager.LoadScene(SceneToLoad);
+                }
 
             }
 
