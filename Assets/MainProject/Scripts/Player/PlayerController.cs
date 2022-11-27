@@ -1,5 +1,6 @@
 using UnityEngine;
 using Cinemachine;
+using DG.Tweening;
 
 
 [RequireComponent(typeof(CharacterController))]
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public int SceneToLoad;
     public Transform interactingObject;
     public GameObject exitTrigger;
+    private bool inNPC;
 
 
     private CharacterController controller;
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+
         controller = GetComponent<CharacterController>();
         inputManager = InputManager.Instance;
         cameraTransform = Camera.main.transform;
@@ -73,8 +76,9 @@ public class PlayerController : MonoBehaviour
 
                 if (stateInteract){
                     Interacting = true;
+
                     //Set the interact camera angle
-                    interactingObject.gameObject.GetComponent<Interactable>().itemCanvas.enabled = false;
+                    interactingObject.gameObject.GetComponent<Interactable>().itemCanvas.DOFade(0,1f);
                     Vector3 lookPos = interactingObject.position - cameraTransform.position;
                     Quaternion rot = Quaternion.LookRotation(lookPos);                
                     //Quaternion rot = Quaternion.Euler (0f, cameraTransform.eulerAngles.y, 0f);
@@ -82,7 +86,16 @@ public class PlayerController : MonoBehaviour
                     //Switch the cameras
                     FirstPersonCam.m_Priority = 0;
                     InteractCam.m_Priority = 10;
-                    interactingObject.GetChild(1).GetComponent<InteractableGameManager>().StartTheGame();
+                    if (interactingObject.gameObject.GetComponent<Interactable>().isNPC) {
+                        Cursor.lockState = CursorLockMode.None;
+                        Cursor.visible = true;
+                        inNPC = true;
+                        interactingObject.gameObject.GetComponent<InteractableNPCManager>().StartConversation();
+                    } else {
+                        inNPC = false;
+                        interactingObject.GetChild(1).GetComponent<InteractableGameManager>().StartTheGame();
+                    }
+
                 } else if (nextScene){
                     Destroy(exitTrigger);
                     uXManager.LoadScene(SceneToLoad);
@@ -101,22 +114,22 @@ public class PlayerController : MonoBehaviour
 
 
         if (inputManager.PlayerClickedThisFrame()) {
-            if (interactingObject.GetChild(1).GetComponent<InteractableGameManager>().InteractableState == 1){
-                interactingObject.GetChild(1).GetComponent<InteractableGameManager>().KillTheAimTween();
-            } else if (interactingObject.GetChild(1).GetComponent<InteractableGameManager>().InteractableState == 2) {
-                interactingObject.GetChild(1).GetComponent<InteractableGameManager>().KillThePowerTween();
-                Endinteracting();
-            } else {
-                return;
-            }
+            if (!inNPC){
+                if (interactingObject.GetChild(1).GetComponent<InteractableGameManager>().InteractableState == 1){
+                    interactingObject.GetChild(1).GetComponent<InteractableGameManager>().KillTheAimTween();
+                } else if (interactingObject.GetChild(1).GetComponent<InteractableGameManager>().InteractableState == 2) {
+                    interactingObject.GetChild(1).GetComponent<InteractableGameManager>().KillThePowerTween();
+                    Endinteracting();
+                } else {
+                    return;
+                }
+            } 
         }
 
     }
 
     public void Endinteracting(){
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
         Interacting = false;
         //Switch the cameras
         Quaternion rot = Quaternion.Euler (cameraTransform.eulerAngles.x, cameraTransform.eulerAngles.y, cameraTransform.eulerAngles.z);

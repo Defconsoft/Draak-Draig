@@ -368,9 +368,14 @@ MonoBehaviour:
   playerSpeed: 4
   jumpHeight: 2
   gravityValue: -39.81
+  ManObject: {fileID: 5866262156395003845, guid: 6e46511cc679eef449937558531affce,
+    type: 3}
   Interacting: 0
   stateInteract: 0
+  nextScene: 0
+  SceneToLoad: 0
   interactingObject: {fileID: 0}
+  exitTrigger: {fileID: 0}
   FirstPersonCam: {fileID: 5824029935641941225}
   InteractCam: {fileID: 724061386781691064}
 --- !u!143 &5824029937429374976
