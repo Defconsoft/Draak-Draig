@@ -44,7 +44,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Depth: 1
-    - _Displacement: 0.2
+    - _Displacement: 0.07
     - _DisplacementScale: 100
     - _NormalOneSpeed: 100
     - _NormalStrength: 0.3
