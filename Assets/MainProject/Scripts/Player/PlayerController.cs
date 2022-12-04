@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     public Transform interactingObject;
     public GameObject exitTrigger;
     private bool inNPC;
+    private Quaternion rot;
+    public GameObject arms;
 
 
     private CharacterController controller;
@@ -77,15 +79,19 @@ public class PlayerController : MonoBehaviour
                 if (stateInteract){
                     Interacting = true;
 
+
                     //Set the interact camera angle
                     interactingObject.gameObject.GetComponent<Interactable>().itemCanvas.DOFade(0,1f);
                     Vector3 lookPos = interactingObject.position - cameraTransform.position;
-                    Quaternion rot = Quaternion.LookRotation(lookPos);                
+                    rot = Quaternion.LookRotation(lookPos);
+    
                     //Quaternion rot = Quaternion.Euler (0f, cameraTransform.eulerAngles.y, 0f);
                     InteractCam.ForceCameraPosition(cameraTransform.position, rot);
                     //Switch the cameras
                     FirstPersonCam.m_Priority = 0;
                     InteractCam.m_Priority = 10;
+                    arms.SetActive(true);
+
                     if (interactingObject.gameObject.GetComponent<Interactable>().isNPC) {
                         Cursor.lockState = CursorLockMode.None;
                         Cursor.visible = true;
@@ -115,13 +121,15 @@ public class PlayerController : MonoBehaviour
 
         if (inputManager.PlayerClickedThisFrame()) {
             if (!inNPC){
-                if (interactingObject.GetChild(1).GetComponent<InteractableGameManager>().InteractableState == 1){
-                    interactingObject.GetChild(1).GetComponent<InteractableGameManager>().KillTheAimTween();
-                } else if (interactingObject.GetChild(1).GetComponent<InteractableGameManager>().InteractableState == 2) {
-                    interactingObject.GetChild(1).GetComponent<InteractableGameManager>().KillThePowerTween();
-                    Endinteracting();
-                } else {
-                    return;
+                if (interactingObject != null){
+                    if (interactingObject.GetChild(1).GetComponent<InteractableGameManager>().InteractableState == 1){
+                        interactingObject.GetChild(1).GetComponent<InteractableGameManager>().KillTheAimTween();
+                    } else if (interactingObject.GetChild(1).GetComponent<InteractableGameManager>().InteractableState == 2) {
+                        interactingObject.GetChild(1).GetComponent<InteractableGameManager>().KillThePowerTween();
+                        //Endinteracting();
+                    } else {
+                        return;
+                    }
                 }
             } 
         }
@@ -136,6 +144,7 @@ public class PlayerController : MonoBehaviour
         FirstPersonCam.ForceCameraPosition(cameraTransform.position, rot);
         InteractCam.m_Priority = 0;
         FirstPersonCam.m_Priority = 10;
+        arms.SetActive(false);
 
         
     }

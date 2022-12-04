@@ -35,7 +35,7 @@ public class Interactable : MonoBehaviour
         } 
 
         if (interactType == InteractType.tree){
-
+            GameObject treeClone = Instantiate(Objects, transform);
         } 
 
         if (interactType == InteractType.fish){
