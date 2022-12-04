@@ -27,8 +27,15 @@ public class InteractableGameManager : MonoBehaviour
     public TMPro.TMP_Text powerReact;
     private Tween powerTween;
 
+    [Header ("Animation related")]
+    public Animator armsAnim;
+    public float animDelay = 4f;
+    private GameObject player;
+
 
     private void Start() {
+
+        player = GameObject.FindWithTag("Player");
 
         if (gameType == GameType.rock){
             //Select a rock
@@ -61,6 +68,9 @@ public class InteractableGameManager : MonoBehaviour
     }
 
     public void StartTheGame() {
+
+        armsAnim = player.GetComponentInChildren<Animator>();
+
         if (gameType == GameType.rock){
             StartCoroutine(RunRockGame());
         }
@@ -70,7 +80,7 @@ public class InteractableGameManager : MonoBehaviour
         }
 
         if (gameType == GameType.fish){
-            
+            // armsAnim.SetBool("isFishing", true);
         }
 
 
@@ -103,7 +113,7 @@ public class InteractableGameManager : MonoBehaviour
         }
 
         if (gameType == GameType.fish){
-            
+            // armsAnim.SetBool("isFishin", false);
         }
     }
 
@@ -158,6 +168,8 @@ public class InteractableGameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         powerCanvas.enabled = false;
         //PLAY THE PICK AXE SWIN ANIM
+        armsAnim.SetTrigger("mine");
+        yield return new WaitForSeconds(animDelay);
 
         RockModels[Choice].GetComponent<FractureGeometry>().Fracture();
 
@@ -219,6 +231,8 @@ public class InteractableGameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         powerCanvas.enabled = false;
         //PLAY THE AXE SWING ANIM
+        armsAnim.SetTrigger("chop");
+        yield return new WaitForSeconds(animDelay);
 
         TreeModels[Choice].GetComponent<FractureGeometry>().Fracture();
 

@@ -687,6 +687,8 @@ MonoBehaviour:
   powerCanvas: {fileID: 7644049186530404423}
   powerSlider: {fileID: 943426444412584779}
   powerReact: {fileID: 6432440978813583717}
+  armsAnim: {fileID: 0}
+  animDelay: 2
 --- !u!1 &4994123011111930659
 GameObject:
   m_ObjectHideFlags: 0
