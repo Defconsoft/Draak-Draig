@@ -18,7 +18,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: handle
-    second: {fileID: 2100000, guid: 60a9ab678f9ac0344958f36ee65bf3f7, type: 2}
+    second: {fileID: 2100000, guid: 86895cf6fdda9b2449c175544c85283e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
