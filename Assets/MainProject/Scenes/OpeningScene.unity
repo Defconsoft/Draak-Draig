@@ -419,6 +419,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 716891101}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &396165229 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5824029937429374979, guid: f700ff167e1bacc408a89fbef389c728,
+    type: 3}
+  m_PrefabInstance: {fileID: 716891101}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9370e27c3f6da63428ff5a82ee8836e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,6 +732,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6146462068704431922, guid: aa77387d5ddc1184a912972bb635517b,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 396165229}
     - target: {fileID: 6146462068704431922, guid: aa77387d5ddc1184a912972bb635517b,
         type: 3}
       propertyPath: dissolveRate

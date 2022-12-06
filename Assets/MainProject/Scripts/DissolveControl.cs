@@ -11,6 +11,7 @@ public class DissolveControl : MonoBehaviour
     public float dissolveRate = 0.02f;
     public float refreshRate = 0.05f;
     public float dieDelay = 0.2f;
+    public PlayerController player;
 
     private Material[] dissolveMaterials; 
     
@@ -48,6 +49,8 @@ public class DissolveControl : MonoBehaviour
 
     IEnumerator Dissolve()
     {
+        player.Interacting = true;
+        
         if (anim != null)
         {
             anim.SetTrigger("wakeUp");
@@ -78,6 +81,8 @@ public class DissolveControl : MonoBehaviour
         }
 
         yield return new WaitForSeconds(2f);
+
+        player.Interacting = false;
 
         Destroy(gameObject, 1);
     }
