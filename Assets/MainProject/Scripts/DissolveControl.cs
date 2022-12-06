@@ -27,6 +27,9 @@ public class DissolveControl : MonoBehaviour
         {
             dissolveMaterials = skinnedMeshRenderer.materials;
         }
+
+        StartCoroutine(Dissolve());
+
     }
 
     // For debugging purposes
@@ -47,24 +50,24 @@ public class DissolveControl : MonoBehaviour
     {
         if (anim != null)
         {
-            anim.SetTrigger("WakeUp");
+            anim.SetTrigger("wakeUp");
         }
 
         yield return new WaitForSeconds(dieDelay);
 
-        if (vfxGraph != null)
-        {
-            vfxGraph.gameObject.SetActive(true);
-            vfxGraph.Play();
-        }
+        // if (vfxGraph != null)
+        // {
+        //     vfxGraph.gameObject.SetActive(true);
+        //     vfxGraph.Play();
+        // }
 
-        float counter = 0;
+        float counter = .9f;
 
         if(dissolveMaterials.Length >0)
         {
-            while(dissolveMaterials[0].GetFloat("DissolveAmount_") < 1)
+            while(dissolveMaterials[0].GetFloat("DissolveAmount_") > 0)
             {
-                counter += dissolveRate;
+                counter -= dissolveRate;
 
                 for(int i=0; i<dissolveMaterials.Length; i++){
                     dissolveMaterials[i].SetFloat("DissolveAmount_", counter);
@@ -73,6 +76,8 @@ public class DissolveControl : MonoBehaviour
                 yield return new WaitForSeconds(refreshRate);
             }
         }
+
+        yield return new WaitForSeconds(2f);
 
         Destroy(gameObject, 1);
     }
