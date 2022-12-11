@@ -9,6 +9,7 @@ public class InteractableNPCManager : MonoBehaviour
     public TMPro.TMP_Text Textbox;
     public int ConversationState;
     public GameObject Yesbutton, Nobutton, Exitbutton;
+    private Animator anim;
     
     
     [TextArea(5,10)]
@@ -19,6 +20,8 @@ public class InteractableNPCManager : MonoBehaviour
         overallCanvas.enabled = true;
         narrativeCanvas.DOFade(1f,1f);
         Textbox.text = Conversation[0];
+        anim = GetComponentInChildren<Animator>();
+        anim.SetTrigger("Talk");
     }
 
     private void Update() {
@@ -29,10 +32,12 @@ public class InteractableNPCManager : MonoBehaviour
 
             case 1: //Are you sure
                 Textbox.text = Conversation[1];
+                anim.SetTrigger("Talk");
                 break;
 
             case 2: //SuccessExit
                 Textbox.text = Conversation[2];
+                anim.SetTrigger("Talk");
                 Yesbutton.SetActive (false);
                 Nobutton.SetActive (false);
                 Exitbutton.SetActive (true);
@@ -40,6 +45,7 @@ public class InteractableNPCManager : MonoBehaviour
 
             case 3: //FailExit
                 Textbox.text = Conversation[3];
+                anim.SetTrigger("Talk");
                 Yesbutton.SetActive (false);
                 Nobutton.SetActive (false);
                 Exitbutton.SetActive (true);

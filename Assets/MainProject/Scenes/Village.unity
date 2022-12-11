@@ -565,17 +565,18 @@ PrefabInstance:
     - target: {fileID: 1663506334114630345, guid: b04135f7bbc118444b1360204e51be2d,
         type: 3}
       propertyPath: Conversation.Array.data[0]
-      value: Alright Mate, you got any ore you don't want?
+      value: Oy, forest fella. Do you have any ore for me today?
       objectReference: {fileID: 0}
     - target: {fileID: 1663506334114630345, guid: b04135f7bbc118444b1360204e51be2d,
         type: 3}
       propertyPath: Conversation.Array.data[1]
-      value: Give em to me then.
+      value: I would gladly take them from you.
       objectReference: {fileID: 0}
     - target: {fileID: 1663506334114630345, guid: b04135f7bbc118444b1360204e51be2d,
         type: 3}
       propertyPath: Conversation.Array.data[2]
-      value: Sweet, I will be sure to let the dogs out tonight for you
+      value: Perfect, I will be sure to let the dogs out tonight for you. What on
+        Earth do you want that for anyway?
       objectReference: {fileID: 0}
     - target: {fileID: 1663506334114630345, guid: b04135f7bbc118444b1360204e51be2d,
         type: 3}

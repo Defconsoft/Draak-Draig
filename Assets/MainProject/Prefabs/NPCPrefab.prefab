@@ -1463,8 +1463,8 @@ MonoBehaviour:
   Conversation:
   - Well hello. Don't suppose you got any fish do you?
   - 'I will take them off your hands if you want. '
-  - Excellent! And for that I will be sure to add some extra oil barrels to the castle
-    delivery tonight.
+  - Excellent! You don't want money in return? Oh.. some extra oil barrels to be
+    delivered to the castle. Hmm strange request but sure I can do that.
   - OK. Well if you do catch any be sure to bring them to me.
 --- !u!1 &6218581440959544377
 GameObject:
@@ -1665,6 +1665,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.7345467, z: 1}
   m_Center: {x: 0, y: 0.8477154, z: 0}
+--- !u!95 &8603995801725761959
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005403534642101234}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dac85250f3e539d43a39595fb9deb0ce, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1663506333834080767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1732,6 +1752,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: male_NPC
       objectReference: {fileID: 0}
+    - target: {fileID: 954315660702650379, guid: b66b79c1dd7d8a040a80f9de0df92e69,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f75c16a479a3b94d9d53302492c25f8, type: 2}
+    - target: {fileID: 1232914663927677858, guid: b66b79c1dd7d8a040a80f9de0df92e69,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1239172829656694b93b2b30fbeac00f, type: 2}
+    - target: {fileID: 4488558890192296813, guid: b66b79c1dd7d8a040a80f9de0df92e69,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ac3bc1ba4a029f54ca2036def4f468c5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b66b79c1dd7d8a040a80f9de0df92e69, type: 3}
 --- !u!4 &1197763226951456276 stripped
@@ -1775,3 +1810,29 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.7345467, z: 1}
   m_Center: {x: 0, y: 0.8477154, z: 0}
+--- !u!1 &8552423994163924160 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7036213049465896255, guid: b66b79c1dd7d8a040a80f9de0df92e69,
+    type: 3}
+  m_PrefabInstance: {fileID: 1663506333834080767}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1671226945800889
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8552423994163924160}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0c09ca36818e11c449f1dca1278eacf4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
