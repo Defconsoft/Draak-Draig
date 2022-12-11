@@ -319,7 +319,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 98103
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -339,7 +339,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -370.5683, y: 73.44199, z: 120.07}
+  m_LocalPosition: {x: -370.5683, y: 72.543, z: 120.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -596,7 +596,7 @@ PrefabInstance:
     - target: {fileID: 5824029936945733201, guid: f700ff167e1bacc408a89fbef389c728,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 72.95
+      value: 72.051
       objectReference: {fileID: 0}
     - target: {fileID: 5824029936945733201, guid: f700ff167e1bacc408a89fbef389c728,
         type: 3}
@@ -642,6 +642,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerSetup
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824029937429374979, guid: f700ff167e1bacc408a89fbef389c728,
+        type: 3}
+      propertyPath: Interacting
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f700ff167e1bacc408a89fbef389c728, type: 3}

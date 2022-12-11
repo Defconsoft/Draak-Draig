@@ -50,7 +50,10 @@ public class DissolveControl : MonoBehaviour
     IEnumerator Dissolve()
     {
         player.Interacting = true;
-        
+        StartCoroutine(player.StopFollow());
+        yield return new WaitForSeconds(4f);
+
+
         if (anim != null)
         {
             anim.SetTrigger("wakeUp");
@@ -83,7 +86,8 @@ public class DissolveControl : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         player.Interacting = false;
-
+        StartCoroutine(player.StartFollow());
+        Debug.Log ("here");
         Destroy(gameObject, 1);
     }
 }

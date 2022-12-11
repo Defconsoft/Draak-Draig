@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
@@ -16,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [Header ("StateInteracting")]
     public bool Interacting;
     public bool stateInteract;
+    public bool stopFollowing;
     public bool nextScene;
     public int SceneToLoad;
     public Transform interactingObject;
@@ -36,6 +39,8 @@ public class PlayerController : MonoBehaviour
     [Header ("Cameras")]
     public CinemachineVirtualCamera FirstPersonCam;
     public CinemachineVirtualCamera InteractCam;
+    public Transform followObject;
+    public Transform stopFollowObject;
     
 
 
@@ -67,6 +72,7 @@ public class PlayerController : MonoBehaviour
             move = cameraTransform.forward * move.z + cameraTransform.right * move.x;
             move.y = 0f;
             controller.Move(move * Time.deltaTime * playerSpeed);
+            
 
             // Changes the height position of the player..
             if (inputManager.PlayerJumpedThisFrame() && groundedPlayer)
@@ -79,6 +85,11 @@ public class PlayerController : MonoBehaviour
                 if (stateInteract){
                     Interacting = true;
 
+                    stopFollowObject.position = followObject.position;
+                    stopFollowObject.rotation = followObject.rotation;
+                    FirstPersonCam.m_Follow = stopFollowObject;
+                    StartCoroutine(StopFollow());
+                    
 
                     //Set the interact camera angle
                     interactingObject.gameObject.GetComponent<Interactable>().itemCanvas.DOFade(0,1f);
@@ -142,15 +153,24 @@ public class PlayerController : MonoBehaviour
         //Switch the cameras
         Quaternion rot = Quaternion.Euler (cameraTransform.eulerAngles.x, cameraTransform.eulerAngles.y, cameraTransform.eulerAngles.z);
         FirstPersonCam.ForceCameraPosition(cameraTransform.position, rot);
-        InteractCam.m_Priority = 0;
         FirstPersonCam.m_Priority = 10;
+        InteractCam.m_Priority = 0;
         arms.SetActive(false);
-
+        StartCoroutine(StartFollow());
         
     }
 
 
+    public IEnumerator StopFollow(){
+        stopFollowing = true;
+        yield return new WaitForEndOfFrame();
+    }
 
+    public IEnumerator StartFollow(){
+        FirstPersonCam.m_Follow = followObject;
+        stopFollowing = false;
+        yield return new WaitForSeconds (cameraTransform.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time);
+    }
 
 
 }
