@@ -246,7 +246,7 @@ public class InteractableGameManager : MonoBehaviour
 
 
 
-
+    //Change objects to single array and make fracture function public.
 
 
 
