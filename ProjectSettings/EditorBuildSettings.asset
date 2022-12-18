@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MainProject/Scenes/VillageAttack.unity
     guid: 5f67512cc290f5445aa20e636e60f1c2
+  - enabled: 1
+    path: Assets/TestArea/AnoukTest.unity
+    guid: 05542da4da8afd949b1f0ee332eb11e3
+  - enabled: 1
+    path: Assets/TestArea/RobTest.unity
+    guid: 48cb7ac9a3551b14389850d1395250ad
   m_configObjects: {}

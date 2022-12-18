@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e5293a28a735e42a8251f9711012cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
+  radius: 5
   interactType: 0
   isNPC: 0
   Objects: {fileID: 4804862052255938376, guid: c228c90dc2aea924798b7e7099cebd41, type: 3}
@@ -118,9 +118,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PRESS E TO INTERACT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4a0a689f3a109934f85d79f950aebe7e, type: 2}
-  m_sharedMaterial: {fileID: 243936834403459757, guid: 4a0a689f3a109934f85d79f950aebe7e,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -144,7 +143,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.1
+  m_fontSize: 26.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
