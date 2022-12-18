@@ -831,8 +831,8 @@ Transform:
   m_GameObject: {fileID: 2327492873202321057}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -17.06, y: 13.46, z: 7.8138995}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 218881286164659430}
   - {fileID: 7350864508477324473}
@@ -892,6 +892,7 @@ MonoBehaviour:
   dissolveRate: 0.05
   refreshRate: 0.05
   dieDelay: 0.2
+  player: {fileID: 0}
 --- !u!1 &2391904189476960399
 GameObject:
   m_ObjectHideFlags: 0

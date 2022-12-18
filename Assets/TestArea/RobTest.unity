@@ -759,17 +759,17 @@ PrefabInstance:
     - target: {fileID: 2251244368052476931, guid: f700ff167e1bacc408a89fbef389c728,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 2251244368052476931, guid: f700ff167e1bacc408a89fbef389c728,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 2251244368052476931, guid: f700ff167e1bacc408a89fbef389c728,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.8
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 2251244368052476931, guid: f700ff167e1bacc408a89fbef389c728,
         type: 3}
@@ -1727,7 +1727,9 @@ MonoBehaviour:
   radius: 3
   interactType: 1
   isNPC: 0
-  Objects: {fileID: 4804862052255938376, guid: 189d241909146df438101b039a95581f, type: 3}
+  RockPrefab: {fileID: 0}
+  TreePrefab: {fileID: 0}
+  FishPrefab: {fileID: 0}
   itemCanvas: {fileID: 617189067}
 --- !u!4 &2071250530
 Transform:
