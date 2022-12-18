@@ -6,23 +6,15 @@ public class ToolManager : MonoBehaviour
 {
     public GameObject[] tools;
 
-    public void EquipPickAxe()
+    public void Equip(int toolIdx)
     {
-        tools[0].SetActive(true);
+        // 0 = pick axe, 1 = wood axe
+        tools[toolIdx].SetActive(true);
     }
 
-    public void EquipAxe()
+    public void UnEquip(int toolIdx)
     {
-        tools[1].SetActive(true);
-    }
-
-    public void UnEquipPickAxe()
-    {
-        tools[0].SetActive(false);
-    }
-
-    public void UnEquipAxe()
-    {
-        tools[1].SetActive(false);
+        // 0 = pick axe, 1 = wood axe
+        tools[toolIdx].SetActive(false);
     }
 }

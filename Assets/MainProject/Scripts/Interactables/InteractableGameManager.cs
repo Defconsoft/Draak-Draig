@@ -108,11 +108,13 @@ public class InteractableGameManager : MonoBehaviour
         if (gameType == GameType.rock){
             Debug.Log ("rock");
             StartCoroutine(RunRockGame());
+            armsAnim.SetTrigger("minePhase1");
         }
 
         if (gameType == GameType.tree){
             Debug.Log ("tree");
             StartCoroutine(RunTreeGame());
+            armsAnim.SetTrigger("chopPhase1");
         }
 
         if (gameType == GameType.fish){
@@ -129,10 +131,12 @@ public class InteractableGameManager : MonoBehaviour
 
         if (gameType == GameType.rock){
             StartCoroutine(SecondPhaseRockGame());
+            armsAnim.SetTrigger("minePhase2");
         }
 
         if (gameType == GameType.tree){
             StartCoroutine(SecondPhaseTreeGame());
+            armsAnim.SetTrigger("chopPhase2");
         }
 
         if (gameType == GameType.fish){
