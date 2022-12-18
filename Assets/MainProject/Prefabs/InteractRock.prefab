@@ -1233,15 +1233,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: f8c4dfd0234dcd1479f34df46631187e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: f8c4dfd0234dcd1479f34df46631187e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: f8c4dfd0234dcd1479f34df46631187e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: f8c4dfd0234dcd1479f34df46631187e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1283,6 +1283,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: f8c4dfd0234dcd1479f34df46631187e, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2158469383125660229, guid: f8c4dfd0234dcd1479f34df46631187e,
         type: 3}
       propertyPath: PiecesParent
@@ -1306,7 +1310,7 @@ PrefabInstance:
     - target: {fileID: 2158469383125660229, guid: f8c4dfd0234dcd1479f34df46631187e,
         type: 3}
       propertyPath: NumFracturePieces
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2158469383125660229, guid: f8c4dfd0234dcd1479f34df46631187e,
         type: 3}

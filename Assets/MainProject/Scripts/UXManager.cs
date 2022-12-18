@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 using DG.Tweening;
+
 
 public class UXManager : MonoBehaviour
 {
 
     [SerializeField] private Canvas MainMenu;
+    [SerializeField] private Canvas DebugMenu;
     [SerializeField] private CanvasGroup BGCanvasGrp;
     [SerializeField] private CanvasGroup MainMenuGrp;
     [SerializeField] private CanvasGroup QuoteTextGrp;
@@ -90,6 +93,35 @@ public class UXManager : MonoBehaviour
     private void FadeInCanvasGrp(CanvasGroup current, float fadeTime){
         current.DOFade (1f, fadeTime);
     }
+
+
+    //////////////////////////////////////
+    // DEBUG MENU
+    //////////////////////////////////////   
+
+    private void Update() {
+        Keyboard kboard = Keyboard.current;
+
+        if (kboard.mKey.wasPressedThisFrame) {
+            if (DebugMenu.isActiveAndEnabled == true) {
+                DebugMenu.enabled = false;
+            } else {
+                DebugMenu.enabled = true;
+            }
+        }
+    }
+
+
+    public void LoadDebugLevel (int debugLevel) {
+
+        DebugMenu.enabled = false;
+        SceneManager.LoadScene (debugLevel);
+        FadeOutCanvasGrp(MainMenuGrp, 2f);
+        FadeOutCanvasGrp(BGCanvasGrp, 2f);
+    }
+
+
+
 
 
 }
