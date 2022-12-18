@@ -48,7 +48,12 @@ MonoBehaviour:
   radius: 5
   interactType: 0
   isNPC: 0
-  Objects: {fileID: 4804862052255938376, guid: c228c90dc2aea924798b7e7099cebd41, type: 3}
+  RockPrefab: {fileID: 4804862052255938376, guid: c228c90dc2aea924798b7e7099cebd41,
+    type: 3}
+  TreePrefab: {fileID: 4804862052255938376, guid: 189d241909146df438101b039a95581f,
+    type: 3}
+  FishPrefab: {fileID: 4804862052255938376, guid: a50ab8d8547874143a02bced6fe80517,
+    type: 3}
   itemCanvas: {fileID: 9121211868166063334}
 --- !u!1 &9121211867988475730
 GameObject:

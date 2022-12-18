@@ -12,7 +12,9 @@ public class Interactable : MonoBehaviour
     public InteractType interactType;
     public bool isNPC;
 
-    public GameObject Objects;
+    public GameObject RockPrefab;
+    public GameObject TreePrefab;
+    public GameObject FishPrefab;
  
 
     [Header("UX stuff")]
@@ -31,15 +33,15 @@ public class Interactable : MonoBehaviour
         
         //Setup the item type
         if (interactType == InteractType.rock){
-            GameObject rockClone = Instantiate(Objects, transform);
+            GameObject rockClone = Instantiate(RockPrefab, transform);
         } 
 
         if (interactType == InteractType.tree){
-            GameObject treeClone = Instantiate(Objects, transform);
+            GameObject treeClone = Instantiate(TreePrefab, transform);
         } 
 
         if (interactType == InteractType.fish){
-
+            GameObject fishClone = Instantiate(FishPrefab, transform);
         } 
 
         if (interactType == InteractType.NPC){

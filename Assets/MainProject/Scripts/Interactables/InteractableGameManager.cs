@@ -13,6 +13,7 @@ public class InteractableGameManager : MonoBehaviour
     public GameType gameType;
     public GameObject [] RockModels;
     public GameObject [] TreeModels;
+    public GameObject FishPool;
     private int Choice;
     public int InteractableState = 0;
 
@@ -63,7 +64,7 @@ public class InteractableGameManager : MonoBehaviour
 
         if (gameType == GameType.fish){
             //Select a fish
-
+            FishPool.SetActive (true);
         }  
     }
 
@@ -72,17 +73,21 @@ public class InteractableGameManager : MonoBehaviour
         armsAnim = player.GetComponentInChildren<Animator>();
 
         if (gameType == GameType.rock){
+            Debug.Log ("rock");
             StartCoroutine(RunRockGame());
             armsAnim.SetTrigger("minePhase1");
         }
 
         if (gameType == GameType.tree){
+            Debug.Log ("tree");
             StartCoroutine(RunTreeGame());
             armsAnim.SetTrigger("chopPhase1");
         }
 
         if (gameType == GameType.fish){
-            // armsAnim.SetBool("isFishing", true);
+            Debug.Log ("fish");
+            armsAnim.SetBool("isFishing", true);
+            StartCoroutine(RunFishGame());
         }
 
 
@@ -102,7 +107,7 @@ public class InteractableGameManager : MonoBehaviour
         }
 
         if (gameType == GameType.fish){
-            
+            StartCoroutine(SecondPhaseFishGame());
         }
     }
 
@@ -117,7 +122,8 @@ public class InteractableGameManager : MonoBehaviour
         }
 
         if (gameType == GameType.fish){
-            // armsAnim.SetBool("isFishin", false);
+            StartCoroutine(EndFishGame());
+            armsAnim.SetBool("isFishing", false);
         }
     }
 
@@ -248,7 +254,67 @@ public class InteractableGameManager : MonoBehaviour
 
     }
 
+    ////////////////////////////////////
+    //TREE GAME
+    ////////////////////////////////////
 
+    public IEnumerator RunFishGame() {
+        yield return new WaitForSeconds(2f);
+        aimCanvas.enabled = true;
+        aimTween = aimSlider.DOValue(1f, slideTime).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
+        InteractableState = 1;
+    }
+
+
+    public IEnumerator SecondPhaseFishGame() {
+        aimTween.Kill();
+        float attempt = aimSlider.value;
+        //check the attempt and animate the text
+        if (attempt >= 0.41f && attempt <=0.59f) {
+            aimReact.text = "Excellent";
+        } else {
+            aimReact.text = "Good";
+        } 
+        aimReact.enabled = true;
+        aimReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (-241, 100), 1f).SetEase (Ease.InOutQuad);
+
+        
+        yield return new WaitForSeconds(1f);
+        aimCanvas.enabled = false;
+        InteractableState = 2;
+        powerCanvas.enabled = true;
+        powerTween = powerSlider.DOValue(1f, slideTime).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
+        yield return new WaitForSeconds(2f);
+    } 
+
+    public IEnumerator EndFishGame() {
+        powerTween.Kill();
+        float attempt = powerSlider.value;
+
+        //check the attempt and animate the text
+        if (attempt >= 0.8f ) {
+            powerReact.text = "Excellent";
+        } else {
+            powerReact.text = "Good";
+        } 
+        powerReact.enabled = true;
+        powerReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (-2.6f, 147.8f), 1f).SetEase (Ease.InOutQuad);
+
+
+        yield return new WaitForSeconds(1f);
+        powerCanvas.enabled = false;
+        
+        yield return new WaitForSeconds(animDelay);
+
+        FishPool.SetActive (false);
+
+        GameObject.Find ("Player").GetComponent<PlayerController>().Endinteracting();
+        yield return new WaitForSeconds(4f);
+        InteractableState = 3;
+        Destroy(this.gameObject.transform.parent.gameObject);
+        yield return new WaitForSeconds(1f);
+
+    }
 
     //Change objects to single array and make fracture function public.
 
