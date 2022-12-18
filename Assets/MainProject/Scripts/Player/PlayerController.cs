@@ -52,6 +52,14 @@ public class PlayerController : MonoBehaviour
         cameraTransform = Camera.main.transform;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         uXManager = GameObject.Find("GameManager").GetComponent<UXManager>();
+
+
+        //Grabs the  variables from the Game Manager
+        playerSpeed = gameManager.playerSpeed;
+        jumpHeight = gameManager.jumpHeight;
+        gravityValue = gameManager.gravityValue;
+
+
     }
 
     void Update()
@@ -88,7 +96,7 @@ public class PlayerController : MonoBehaviour
                     stopFollowObject.position = followObject.position;
                     stopFollowObject.rotation = followObject.rotation;
                     FirstPersonCam.m_Follow = stopFollowObject;
-                    StartCoroutine(StopFollow());
+                    
                     
 
                     //Set the interact camera angle
@@ -102,6 +110,8 @@ public class PlayerController : MonoBehaviour
                     FirstPersonCam.m_Priority = 0;
                     InteractCam.m_Priority = 10;
                     arms.SetActive(true);
+                    StartCoroutine(StopFollow());
+
 
                     if (interactingObject.gameObject.GetComponent<Interactable>().isNPC) {
                         Cursor.lockState = CursorLockMode.None;
@@ -162,6 +172,7 @@ public class PlayerController : MonoBehaviour
 
 
     public IEnumerator StopFollow(){
+        yield return new WaitForSeconds(1f);
         stopFollowing = true;
         yield return new WaitForEndOfFrame();
     }
