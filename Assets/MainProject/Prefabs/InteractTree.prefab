@@ -1274,6 +1274,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 2c0d7c18c7a938147bc5eed51e4f295a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2c0d7c18c7a938147bc5eed51e4f295a,
         type: 3}
       propertyPath: m_Name
@@ -1314,8 +1319,11 @@ MonoBehaviour:
   OptimizeMaterialUsage: 1
   FractureTemplate: {fileID: 100000, guid: 0a8e4d349b72bc44c95ac09a80a5e68a, type: 3}
   PiecesParent: {fileID: 327067308786674038}
-  FractureType: 0
-  SlicePlanes: []
+  FractureType: 1
+  SlicePlanes:
+  - Position: {x: 0, y: 1.5, z: 0}
+    Rotation: {x: 0.37617484, y: 0.052918013, z: -0.021525435, w: 0.9247858}
+    Scale: 1
   NumFracturePieces: 5
   NumIterations: 2
   EvenlySizedPieces: 0
@@ -1324,7 +1332,7 @@ MonoBehaviour:
   FractureSize:
     Space: 0
     Value: 0
-  UVScale: 1
+  UVScale: 0
   DistributeMass: 1
   SeparateDisjointPieces: 0
   RandomSeed: 0
@@ -1333,5 +1341,5 @@ MonoBehaviour:
       m_Calls: []
   _uniqueId: edd91a1c2ef647299c98b921b3190de6
   _meshValidity: 2
-  SkipMeshCleaning: 0
+  SkipMeshCleaning: 1
   Asynchronous: 1

@@ -1289,6 +1289,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2158469383125660229, guid: f8c4dfd0234dcd1479f34df46631187e,
         type: 3}
+      propertyPath: FractureType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158469383125660229, guid: f8c4dfd0234dcd1479f34df46631187e,
+        type: 3}
       propertyPath: PiecesParent
       value: 
       objectReference: {fileID: 327067308786674038}
@@ -1304,8 +1309,13 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5c6131c06f10d2a4289ab90a88d100d5, type: 2}
     - target: {fileID: 2158469383125660229, guid: f8c4dfd0234dcd1479f34df46631187e,
         type: 3}
+      propertyPath: NumGenerations
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158469383125660229, guid: f8c4dfd0234dcd1479f34df46631187e,
+        type: 3}
       propertyPath: EvenlySizedPieces
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2158469383125660229, guid: f8c4dfd0234dcd1479f34df46631187e,
         type: 3}
