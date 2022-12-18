@@ -764,14 +764,27 @@ MonoBehaviour:
   RockModels: []
   TreeModels:
   - {fileID: 2006484146173486215}
+  FishPool: {fileID: 0}
   InteractableState: 0
   slideTime: 2
-  aimCanvas: {fileID: 2324227523874573639}
-  aimSlider: {fileID: 6856332624297349765}
-  aimReact: {fileID: 278606782321584490}
-  powerCanvas: {fileID: 7644049186530404423}
-  powerSlider: {fileID: 943426444412584779}
-  powerReact: {fileID: 6432440978813583717}
+  rockAimCanvas: {fileID: 0}
+  rockAimSlider: {fileID: 0}
+  rockAimReact: {fileID: 0}
+  rockPowerCanvas: {fileID: 0}
+  rockPowerSlider: {fileID: 0}
+  rockPowerReact: {fileID: 0}
+  treeAimCanvas: {fileID: 2324227523874573639}
+  treeAimSlider: {fileID: 6856332624297349765}
+  treeAimReact: {fileID: 278606782321584490}
+  treePowerCanvas: {fileID: 7644049186530404423}
+  treePowerSlider: {fileID: 943426444412584779}
+  treePowerReact: {fileID: 6432440978813583717}
+  fishAimCanvas: {fileID: 0}
+  fishAimSlider: {fileID: 0}
+  fishAimReact: {fileID: 0}
+  fishPowerCanvas: {fileID: 0}
+  fishPowerSlider: {fileID: 0}
+  fishPowerReact: {fileID: 0}
   armsAnim: {fileID: 0}
   animDelay: 2
 --- !u!1 &4994123011111930659

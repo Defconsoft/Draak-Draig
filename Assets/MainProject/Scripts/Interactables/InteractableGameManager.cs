@@ -9,24 +9,57 @@ using DinoFracture;
 public class InteractableGameManager : MonoBehaviour
 {
 
+
+
     public enum GameType { rock, tree, fish};
+
+    [Header ("Interact Type Setup")]
     public GameType gameType;
     public GameObject [] RockModels;
     public GameObject [] TreeModels;
     public GameObject FishPool;
+
+
+    [Header ("Game Tracking")]
     private int Choice;
     public int InteractableState = 0;
-
     public float slideTime = 1f;
-    public Canvas aimCanvas;
-    public Slider aimSlider;
-    public TMPro.TMP_Text aimReact;
-    private Tween aimTween;
 
-    public Canvas powerCanvas;
-    public Slider powerSlider;
-    public TMPro.TMP_Text powerReact;
-    private Tween powerTween;
+
+    [Header ("Rock UX")]
+    public Canvas rockAimCanvas;
+    public CircleSlider rockAimSlider;
+    public TMPro.TMP_Text rockAimReact;
+    private Tween rockAimTween;
+
+    public Canvas rockPowerCanvas;
+    public Slider rockPowerSlider;
+    public TMPro.TMP_Text rockPowerReact;
+    private Tween rockPowerTween;
+
+    [Header ("Tree UX")]
+    public Canvas treeAimCanvas;
+    public Slider treeAimSlider;
+    public TMPro.TMP_Text treeAimReact;
+    private Tween treeAimTween;
+
+    public Canvas treePowerCanvas;
+    public Slider treePowerSlider;
+    public TMPro.TMP_Text treePowerReact;
+    private Tween treePowerTween;
+
+
+    [Header ("Fish UX")]
+    public Canvas fishAimCanvas;
+    public Slider fishAimSlider;
+    public TMPro.TMP_Text fishAimReact;
+    private Tween fishAimTween;
+
+    public Canvas fishPowerCanvas;
+    public Slider fishPowerSlider;
+    public TMPro.TMP_Text fishPowerReact;
+    private Tween fishPowerTween;
+
 
     [Header ("Animation related")]
     public Animator armsAnim;
@@ -130,49 +163,52 @@ public class InteractableGameManager : MonoBehaviour
 
     public IEnumerator RunRockGame() {
         yield return new WaitForSeconds(2f);
-        aimCanvas.enabled = true;
-        aimTween = aimSlider.DOValue(1f, slideTime).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
+        rockAimCanvas.enabled = true;
+        rockAimTween = DOTween.To (     ()=> rockAimSlider.value, 
+                                        x=> rockAimSlider.value = x, 
+                                        1f, 
+                                        slideTime).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart);
         InteractableState = 1;
     }
 
 
     public IEnumerator SecondPhaseRockGame() {
-        aimTween.Kill();
-        float attempt = aimSlider.value;
+        rockAimTween.Kill();
+        float attempt = rockAimSlider.value;
         //check the attempt and animate the text
-        if (attempt >= 0.41f && attempt <=0.59f) {
-            aimReact.text = "Excellent";
+        if (attempt >= 0.45f && attempt <=0.55f) {
+            rockAimReact.text = "Excellent";
         } else {
-            aimReact.text = "Good";
+            rockAimReact.text = "Good";
         } 
-        aimReact.enabled = true;
-        aimReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (-241, 100), 1f).SetEase (Ease.InOutQuad);
+        rockAimReact.enabled = true;
+        rockAimReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (0, 100), 1f).SetEase (Ease.InOutQuad);
 
         
         yield return new WaitForSeconds(1f);
-        aimCanvas.enabled = false;
+        rockAimCanvas.enabled = false;
         InteractableState = 2;
-        powerCanvas.enabled = true;
-        powerTween = powerSlider.DOValue(1f, slideTime).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
+        rockPowerCanvas.enabled = true;
+        rockPowerTween = rockPowerSlider.DOValue(1f, slideTime).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
         yield return new WaitForSeconds(2f);
     } 
 
     public IEnumerator EndRockGame() {
-        powerTween.Kill();
-        float attempt = powerSlider.value;
+        rockPowerTween.Kill();
+        float attempt = rockPowerSlider.value;
 
         //check the attempt and animate the text
         if (attempt >= 0.8f ) {
-            powerReact.text = "Excellent";
+            rockPowerReact.text = "Excellent";
         } else {
-            powerReact.text = "Good";
+            rockPowerReact.text = "Good";
         } 
-        powerReact.enabled = true;
-        powerReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (-2.6f, 147.8f), 1f).SetEase (Ease.InOutQuad);
+        rockPowerReact.enabled = true;
+        rockPowerReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (-2.6f, 147.8f), 1f).SetEase (Ease.InOutQuad);
 
 
         yield return new WaitForSeconds(1f);
-        powerCanvas.enabled = false;
+        rockPowerCanvas.enabled = false;
         //PLAY THE PICK AXE SWIN ANIM
         armsAnim.SetTrigger("mine");
         yield return new WaitForSeconds(animDelay);
@@ -193,49 +229,49 @@ public class InteractableGameManager : MonoBehaviour
 
     public IEnumerator RunTreeGame() {
         yield return new WaitForSeconds(2f);
-        aimCanvas.enabled = true;
-        aimTween = aimSlider.DOValue(1f, slideTime).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
+        treeAimCanvas.enabled = true;
+        treeAimTween = treeAimSlider.DOValue(1f, slideTime).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
         InteractableState = 1;
     }
 
 
     public IEnumerator SecondPhaseTreeGame() {
-        aimTween.Kill();
-        float attempt = aimSlider.value;
+        treeAimTween.Kill();
+        float attempt = treeAimSlider.value;
         //check the attempt and animate the text
         if (attempt >= 0.41f && attempt <=0.59f) {
-            aimReact.text = "Excellent";
+            treeAimReact.text = "Excellent";
         } else {
-            aimReact.text = "Good";
+            treeAimReact.text = "Good";
         } 
-        aimReact.enabled = true;
-        aimReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (-241, 100), 1f).SetEase (Ease.InOutQuad);
+        treeAimReact.enabled = true;
+        treeAimReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (-241, 100), 1f).SetEase (Ease.InOutQuad);
 
         
         yield return new WaitForSeconds(1f);
-        aimCanvas.enabled = false;
+        treeAimCanvas.enabled = false;
         InteractableState = 2;
-        powerCanvas.enabled = true;
-        powerTween = powerSlider.DOValue(1f, slideTime).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
+        treePowerCanvas.enabled = true;
+        treePowerTween = treePowerSlider.DOValue(1f, slideTime).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
         yield return new WaitForSeconds(2f);
     } 
 
     public IEnumerator EndTreeGame() {
-        powerTween.Kill();
-        float attempt = powerSlider.value;
+        treePowerTween.Kill();
+        float attempt = treePowerSlider.value;
 
         //check the attempt and animate the text
         if (attempt >= 0.8f ) {
-            powerReact.text = "Excellent";
+            treePowerReact.text = "Excellent";
         } else {
-            powerReact.text = "Good";
+            treePowerReact.text = "Good";
         } 
-        powerReact.enabled = true;
-        powerReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (-2.6f, 147.8f), 1f).SetEase (Ease.InOutQuad);
+        treePowerReact.enabled = true;
+        treePowerReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (-2.6f, 147.8f), 1f).SetEase (Ease.InOutQuad);
 
 
         yield return new WaitForSeconds(1f);
-        powerCanvas.enabled = false;
+        treePowerCanvas.enabled = false;
         //PLAY THE AXE SWING ANIM
         armsAnim.SetTrigger("chop");
         yield return new WaitForSeconds(animDelay);
@@ -251,55 +287,55 @@ public class InteractableGameManager : MonoBehaviour
     }
 
     ////////////////////////////////////
-    //TREE GAME
+    //FISH GAME
     ////////////////////////////////////
 
     public IEnumerator RunFishGame() {
         yield return new WaitForSeconds(2f);
-        aimCanvas.enabled = true;
-        aimTween = aimSlider.DOValue(1f, slideTime).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
+        fishAimCanvas.enabled = true;
+        fishAimTween = fishAimSlider.DOValue(1f, slideTime).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
         InteractableState = 1;
     }
 
 
     public IEnumerator SecondPhaseFishGame() {
-        aimTween.Kill();
-        float attempt = aimSlider.value;
+        fishAimTween.Kill();
+        float attempt = fishAimSlider.value;
         //check the attempt and animate the text
         if (attempt >= 0.41f && attempt <=0.59f) {
-            aimReact.text = "Excellent";
+            fishAimReact.text = "Excellent";
         } else {
-            aimReact.text = "Good";
+            fishAimReact.text = "Good";
         } 
-        aimReact.enabled = true;
-        aimReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (-241, 100), 1f).SetEase (Ease.InOutQuad);
+        fishAimReact.enabled = true;
+        fishAimReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (-241, 100), 1f).SetEase (Ease.InOutQuad);
 
         
         yield return new WaitForSeconds(1f);
-        aimCanvas.enabled = false;
+        fishAimCanvas.enabled = false;
         InteractableState = 2;
-        powerCanvas.enabled = true;
-        powerTween = powerSlider.DOValue(1f, slideTime).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
+        fishPowerCanvas.enabled = true;
+        fishPowerTween = fishPowerSlider.DOValue(1f, slideTime).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
         yield return new WaitForSeconds(2f);
     } 
 
     public IEnumerator EndFishGame() {
-        powerTween.Kill();
-        float attempt = powerSlider.value;
+        fishPowerTween.Kill();
+        float attempt = fishPowerSlider.value;
 
         //check the attempt and animate the text
         if (attempt >= 0.8f ) {
-            powerReact.text = "Excellent";
+            fishPowerReact.text = "Excellent";
         } else {
-            powerReact.text = "Good";
+            fishPowerReact.text = "Good";
         } 
-        powerReact.enabled = true;
-        powerReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (-2.6f, 147.8f), 1f).SetEase (Ease.InOutQuad);
+        fishPowerReact.enabled = true;
+        fishPowerReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (-2.6f, 147.8f), 1f).SetEase (Ease.InOutQuad);
 
 
         yield return new WaitForSeconds(1f);
-        powerCanvas.enabled = false;
-        
+        fishPowerCanvas.enabled = false;
+
         yield return new WaitForSeconds(animDelay);
 
         FishPool.SetActive (false);
