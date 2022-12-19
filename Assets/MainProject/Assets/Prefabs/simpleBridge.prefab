@@ -46,6 +46,8 @@ GameObject:
   - component: {fileID: 7228132929858197420}
   - component: {fileID: 361711840784019570}
   - component: {fileID: 6255429806986151141}
+  - component: {fileID: 4957496620649886677}
+  - component: {fileID: 9083505390314624765}
   m_Layer: 0
   m_Name: bridgePole
   m_TagString: Untagged
@@ -118,6 +120,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4957496620649886677
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6628619470041939955}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.874352, y: 3.4491918, z: 0.5346954}
+  m_Center: {x: -5.204301, y: 0.8995627, z: 2.4175735}
+--- !u!65 &9083505390314624765
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6628619470041939955}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.874352, y: 3.4491918, z: 0.5128634}
+  m_Center: {x: -5.204301, y: 0.8995627, z: -2.4585276}
 --- !u!1 &8690691097662733186
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,6 +240,7 @@ GameObject:
   - component: {fileID: 7780369757801274917}
   - component: {fileID: 7129453852415186005}
   - component: {fileID: 7314715946755388861}
+  - component: {fileID: 4737551822273970147}
   m_Layer: 0
   m_Name: bridgePlank
   m_TagString: Untagged
@@ -284,6 +313,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4737551822273970147
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8691975393765607352}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2573624857582353386, guid: cdc6a7260c90a454dbd06f762be9f3c4, type: 3}
 --- !u!1 &8957322544054597515
 GameObject:
   m_ObjectHideFlags: 0
