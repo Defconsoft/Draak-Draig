@@ -12,6 +12,14 @@ public class InteractableGameManager : MonoBehaviour
 
 
     public enum GameType { rock, tree, fish};
+    private GameManager gameManager;
+    private int baseAmount;
+    private int addAmount;
+    private float Bonus1, Bonus2;
+
+
+    [Header ("UX Animation Stuff")] 
+    public float moveUp;
 
     [Header ("Interact Type Setup")]
     public GameType gameType;
@@ -35,17 +43,19 @@ public class InteractableGameManager : MonoBehaviour
     public Canvas rockPowerCanvas;
     public Slider rockPowerSlider;
     public TMPro.TMP_Text rockPowerReact;
+    public TMPro.TMP_Text rockAmountReact;
     private Tween rockPowerTween;
 
     [Header ("Tree UX")]
     public Canvas treeAimCanvas;
-    public Slider treeAimSlider;
+    public CircleSlider treeAimSlider;
     public TMPro.TMP_Text treeAimReact;
     private Tween treeAimTween;
 
     public Canvas treePowerCanvas;
     public Slider treePowerSlider;
     public TMPro.TMP_Text treePowerReact;
+    public TMPro.TMP_Text treeAmountReact;
     private Tween treePowerTween;
 
 
@@ -58,6 +68,7 @@ public class InteractableGameManager : MonoBehaviour
     public Canvas fishPowerCanvas;
     public Slider fishPowerSlider;
     public TMPro.TMP_Text fishPowerReact;
+    public TMPro.TMP_Text fishAmountReact;
     private Tween fishPowerTween;
 
 
@@ -65,11 +76,15 @@ public class InteractableGameManager : MonoBehaviour
     public Animator armsAnim;
     public float animDelay = 4f;
     private GameObject player;
+    public GameObject fractureContainer;
+    public GameObject fishBobber;
+    private Tween bobberTween;
 
 
     private void Start() {
 
         player = GameObject.FindWithTag("Player");
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         if (gameType == GameType.rock){
             //Select a rock
@@ -182,18 +197,20 @@ public class InteractableGameManager : MonoBehaviour
         //check the attempt and animate the text
         if (attempt >= 0.45f && attempt <=0.55f) {
             rockAimReact.text = "Excellent";
+            Bonus1 = 0.75f;
         } else {
             rockAimReact.text = "Good";
+            Bonus1 = 0.25f;
         } 
         rockAimReact.enabled = true;
-        rockAimReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (0, 100), 1f).SetEase (Ease.InOutQuad);
+        rockAimReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (rockAimReact.gameObject.GetComponent<RectTransform>().anchoredPosition.x, rockAimReact.gameObject.GetComponent<RectTransform>().anchoredPosition.y + moveUp), 1f).SetEase (Ease.InOutQuad);
 
         
         yield return new WaitForSeconds(1f);
         rockAimCanvas.enabled = false;
         InteractableState = 2;
         rockPowerCanvas.enabled = true;
-        rockPowerTween = rockPowerSlider.DOValue(1f, slideTime).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
+        rockPowerTween = rockPowerSlider.DOValue(1f, slideTime).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
         yield return new WaitForSeconds(2f);
     } 
 
@@ -204,12 +221,21 @@ public class InteractableGameManager : MonoBehaviour
         //check the attempt and animate the text
         if (attempt >= 0.8f ) {
             rockPowerReact.text = "Excellent";
+            Bonus2 = 0.75f;
         } else {
             rockPowerReact.text = "Good";
+            Bonus2 = 0.25f;
         } 
-        rockPowerReact.enabled = true;
-        rockPowerReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (-2.6f, 147.8f), 1f).SetEase (Ease.InOutQuad);
 
+
+        TotalResources(1);
+
+
+        rockPowerReact.enabled = true;
+        rockPowerReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (rockPowerReact.gameObject.GetComponent<RectTransform>().anchoredPosition.x, rockPowerReact.gameObject.GetComponent<RectTransform>().anchoredPosition.y + moveUp), 1f).SetEase (Ease.InOutQuad);
+        rockAmountReact.text = addAmount.ToString() + " Rock";
+        rockAmountReact.enabled = true;
+        rockAmountReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (rockAmountReact.gameObject.GetComponent<RectTransform>().anchoredPosition.x, rockAmountReact.gameObject.GetComponent<RectTransform>().anchoredPosition.y + moveUp), 1f).SetEase (Ease.InOutQuad);
 
         yield return new WaitForSeconds(1f);
         rockPowerCanvas.enabled = false;
@@ -222,6 +248,7 @@ public class InteractableGameManager : MonoBehaviour
         GameObject.Find ("Player").GetComponent<PlayerController>().Endinteracting();
         yield return new WaitForSeconds(4f);
         InteractableState = 3;
+        fractureContainer.transform.parent = null;
         Destroy(this.gameObject.transform.parent.gameObject);
         yield return new WaitForSeconds(1f);
 
@@ -234,7 +261,13 @@ public class InteractableGameManager : MonoBehaviour
     public IEnumerator RunTreeGame() {
         yield return new WaitForSeconds(2f);
         treeAimCanvas.enabled = true;
-        treeAimTween = treeAimSlider.DOValue(1f, slideTime).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
+        //treeAimTween = treeAimSlider.DOValue(1f, slideTime).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
+
+        treeAimCanvas.enabled = true;
+        treeAimTween = DOTween.To (     ()=> treeAimSlider.value, 
+                                        x=> treeAimSlider.value = x, 
+                                        1f, 
+                                        slideTime/2).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
         InteractableState = 1;
     }
 
@@ -243,13 +276,15 @@ public class InteractableGameManager : MonoBehaviour
         treeAimTween.Kill();
         float attempt = treeAimSlider.value;
         //check the attempt and animate the text
-        if (attempt >= 0.41f && attempt <=0.59f) {
+        if (attempt >= 0.71f && attempt <=0.79f) {
             treeAimReact.text = "Excellent";
+            Bonus1 = 0.75f;
         } else {
             treeAimReact.text = "Good";
+            Bonus1 = 0.25f;
         } 
         treeAimReact.enabled = true;
-        treeAimReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (-241, 100), 1f).SetEase (Ease.InOutQuad);
+        treeAimReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (treeAimReact.gameObject.GetComponent<RectTransform>().anchoredPosition.x, treeAimReact.gameObject.GetComponent<RectTransform>().anchoredPosition.y + moveUp), 1f).SetEase (Ease.InOutQuad);
 
         
         yield return new WaitForSeconds(1f);
@@ -267,12 +302,19 @@ public class InteractableGameManager : MonoBehaviour
         //check the attempt and animate the text
         if (attempt >= 0.8f ) {
             treePowerReact.text = "Excellent";
+            Bonus2 = 0.75f;
         } else {
             treePowerReact.text = "Good";
+            Bonus2 = 0.25f;
         } 
-        treePowerReact.enabled = true;
-        treePowerReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (-2.6f, 147.8f), 1f).SetEase (Ease.InOutQuad);
 
+        TotalResources(2);
+
+        treePowerReact.enabled = true;
+        treePowerReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (treePowerReact.gameObject.GetComponent<RectTransform>().anchoredPosition.x, treePowerReact.gameObject.GetComponent<RectTransform>().anchoredPosition.y + moveUp), 1f).SetEase (Ease.InOutQuad);
+        treeAmountReact.text = addAmount.ToString() + " Wood";
+        treeAmountReact.enabled = true;
+        treeAmountReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (treeAmountReact.gameObject.GetComponent<RectTransform>().anchoredPosition.x, treeAmountReact.gameObject.GetComponent<RectTransform>().anchoredPosition.y + moveUp), 1f).SetEase (Ease.InOutQuad);
 
         yield return new WaitForSeconds(1f);
         treePowerCanvas.enabled = false;
@@ -285,6 +327,7 @@ public class InteractableGameManager : MonoBehaviour
         GameObject.Find ("Player").GetComponent<PlayerController>().Endinteracting();
         yield return new WaitForSeconds(4f);
         InteractableState = 3;
+        fractureContainer.transform.parent = null;
         Destroy(this.gameObject.transform.parent.gameObject);
         yield return new WaitForSeconds(1f);
 
@@ -297,7 +340,7 @@ public class InteractableGameManager : MonoBehaviour
     public IEnumerator RunFishGame() {
         yield return new WaitForSeconds(2f);
         fishAimCanvas.enabled = true;
-        fishAimTween = fishAimSlider.DOValue(1f, slideTime).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
+        fishAimTween = fishAimSlider.DOValue(1f, slideTime).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
         InteractableState = 1;
     }
 
@@ -306,18 +349,33 @@ public class InteractableGameManager : MonoBehaviour
         fishAimTween.Kill();
         float attempt = fishAimSlider.value;
         //check the attempt and animate the text
-        if (attempt >= 0.41f && attempt <=0.59f) {
-            fishAimReact.text = "Excellent";
+        if (attempt >= 0.8f) {
+            fishAimReact.text = "Super Cast";
+            Bonus1 = 0.75f;
         } else {
-            fishAimReact.text = "Good";
+            fishAimReact.text = "Good Cast";
+            Bonus1 = 0.25f;
         } 
         fishAimReact.enabled = true;
-        fishAimReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (-241, 100), 1f).SetEase (Ease.InOutQuad);
+        fishAimReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (fishAimReact.gameObject.GetComponent<RectTransform>().anchoredPosition.x, fishAimReact.gameObject.GetComponent<RectTransform>().anchoredPosition.y + moveUp), 1f).SetEase (Ease.InOutQuad);
 
         
         yield return new WaitForSeconds(1f);
         fishAimCanvas.enabled = false;
         InteractableState = 2;
+
+        //Do some fishing here
+        fishBobber.transform.position = player.transform.position;
+        fishBobber.SetActive (true);
+        fishBobber.GetComponent<UpdateLineScript>()._childTransform = player.transform;    
+
+        fishBobber.transform.DOJump (FishPool.transform.position, 2f, 1, 0.4f).SetEase(Ease.InExpo);
+        yield return new WaitForSeconds(0.4f);
+        bobberTween = fishBobber.transform.DOShakePosition(1f, new Vector3 (0,0.2f, 0), 2, 45f).SetLoops (-1, LoopType.Restart);
+        yield return new WaitForSeconds(2f);
+
+
+
         fishPowerCanvas.enabled = true;
         fishPowerTween = fishPowerSlider.DOValue(1f, slideTime).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
         yield return new WaitForSeconds(2f);
@@ -325,16 +383,29 @@ public class InteractableGameManager : MonoBehaviour
 
     public IEnumerator EndFishGame() {
         fishPowerTween.Kill();
+        bobberTween.Kill();
+        fishBobber.transform.DOJump (player.transform.position, 2f, 1, 0.4f).SetEase(Ease.InExpo);
+
         float attempt = fishPowerSlider.value;
 
         //check the attempt and animate the text
         if (attempt >= 0.8f ) {
-            fishPowerReact.text = "Excellent";
+            fishPowerReact.text = "Big Fish";
+            Bonus2 = 0.75f;
         } else {
-            fishPowerReact.text = "Good";
+            fishPowerReact.text = "Menium Fish";
+            Bonus2 = 0.25f;
         } 
+
+
+        TotalResources(3);
+
+
         fishPowerReact.enabled = true;
-        fishPowerReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (-2.6f, 147.8f), 1f).SetEase (Ease.InOutQuad);
+        fishPowerReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (fishPowerReact.gameObject.GetComponent<RectTransform>().anchoredPosition.x, fishPowerReact.gameObject.GetComponent<RectTransform>().anchoredPosition.y + moveUp), 1f).SetEase (Ease.InOutQuad);
+        fishAmountReact.text = addAmount.ToString() + " Wood";
+        fishAmountReact.enabled = true;
+        fishAmountReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (fishAmountReact.gameObject.GetComponent<RectTransform>().anchoredPosition.x, fishAmountReact.gameObject.GetComponent<RectTransform>().anchoredPosition.y + moveUp), 1f).SetEase (Ease.InOutQuad);
 
 
         yield return new WaitForSeconds(1f);
@@ -351,6 +422,37 @@ public class InteractableGameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
     }
+
+    void TotalResources(int type) {
+
+        baseAmount = gameManager.baseResourceAmount;
+
+        addAmount = Mathf.RoundToInt (baseAmount + (baseAmount + (baseAmount * Bonus1 + baseAmount * Bonus2)));
+
+        switch (type)
+        {
+            
+            case 0: //no interactable
+                break;
+
+            case 1: //rock
+                gameManager.totalRock = gameManager.totalRock + addAmount;
+                break;
+
+            case 2: //tree
+                gameManager.totalWood = gameManager.totalWood + addAmount;
+                break;
+
+            case 3: //fish
+                gameManager.totalFish = gameManager.totalFish + addAmount;
+                break;
+
+
+        }
+
+    }
+
+
 
     //Change objects to single array and make fracture function public.
 

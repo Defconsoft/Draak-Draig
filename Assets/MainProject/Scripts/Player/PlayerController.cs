@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [Header ("StateInteracting")]
     public bool Interacting;
     public bool stateInteract;
+    public bool isTree;
     public bool stopFollowing;
     public bool nextScene;
     public int SceneToLoad;
@@ -101,7 +102,13 @@ public class PlayerController : MonoBehaviour
 
                     //Set the interact camera angle
                     interactingObject.gameObject.GetComponent<Interactable>().itemCanvas.DOFade(0,1f);
-                    Vector3 lookPos = interactingObject.position - cameraTransform.position;
+                    Vector3 lookPos;
+                    if (isTree) {
+                        lookPos = new Vector3 (interactingObject.position.x, interactingObject.position.y + 2f, interactingObject.position.z)  - cameraTransform.position;
+                    } else {
+                        lookPos = interactingObject.position - cameraTransform.position;
+                    }
+                    
                     rot = Quaternion.LookRotation(lookPos);
     
                     //Quaternion rot = Quaternion.Euler (0f, cameraTransform.eulerAngles.y, 0f);
@@ -120,7 +127,7 @@ public class PlayerController : MonoBehaviour
                         interactingObject.gameObject.GetComponent<InteractableNPCManager>().StartConversation();
                     } else {
                         inNPC = false;
-                        interactingObject.GetChild(1).GetComponent<InteractableGameManager>().StartTheGame();
+                        interactingObject.GetChild(2).GetComponent<InteractableGameManager>().StartTheGame();
                     }
 
                 } else if (nextScene){
@@ -143,10 +150,10 @@ public class PlayerController : MonoBehaviour
         if (inputManager.PlayerClickedThisFrame()) {
             if (!inNPC){
                 if (interactingObject != null){
-                    if (interactingObject.GetChild(1).GetComponent<InteractableGameManager>().InteractableState == 1){
-                        interactingObject.GetChild(1).GetComponent<InteractableGameManager>().KillTheAimTween();
-                    } else if (interactingObject.GetChild(1).GetComponent<InteractableGameManager>().InteractableState == 2) {
-                        interactingObject.GetChild(1).GetComponent<InteractableGameManager>().KillThePowerTween();
+                    if (interactingObject.GetChild(2).GetComponent<InteractableGameManager>().InteractableState == 1){
+                        interactingObject.GetChild(2).GetComponent<InteractableGameManager>().KillTheAimTween();
+                    } else if (interactingObject.GetChild(2).GetComponent<InteractableGameManager>().InteractableState == 2) {
+                        interactingObject.GetChild(2).GetComponent<InteractableGameManager>().KillThePowerTween();
                         //Endinteracting();
                     } else {
                         return;

@@ -11,6 +11,7 @@ public class Interactable : MonoBehaviour
     private SphereCollider areaTrigger;
     public InteractType interactType;
     public bool isNPC;
+    public Transform treeCameraPoint;
 
     public GameObject RockPrefab;
     public GameObject TreePrefab;
@@ -56,7 +57,13 @@ public class Interactable : MonoBehaviour
         if (other.tag == "Player") {
             itemCanvas.DOFade (1f,1f);
             other.GetComponent<PlayerController>().stateInteract = true;
+            if (interactType == InteractType.tree) {
+                other.GetComponent<PlayerController>().isTree = true;
+            } else {
+                other.GetComponent<PlayerController>().isTree = false;
+            }
             other.GetComponent<PlayerController>().interactingObject = this.transform;
+            
         }
     }
 

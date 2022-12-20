@@ -3754,6 +3754,10 @@ MonoBehaviour:
   playerSpeed: 5
   jumpHeight: 2
   gravityValue: -39.81
+  baseResourceAmount: 5
+  totalWood: 0
+  totalRock: 0
+  totalFish: 0
 --- !u!114 &5866262156395003864
 MonoBehaviour:
   m_ObjectHideFlags: 0
