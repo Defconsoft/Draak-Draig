@@ -79,6 +79,7 @@ public class InteractableGameManager : MonoBehaviour
     public GameObject fractureContainer;
     public GameObject fishBobber;
     private Tween bobberTween;
+    private GameObject fishingLineStart;
 
 
     private void Start() {
@@ -156,6 +157,7 @@ public class InteractableGameManager : MonoBehaviour
 
         if (gameType == GameType.fish){
             StartCoroutine(SecondPhaseFishGame());
+            armsAnim.SetTrigger("rodOut");
         }
     }
 
@@ -359,17 +361,18 @@ public class InteractableGameManager : MonoBehaviour
         fishAimReact.enabled = true;
         fishAimReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (fishAimReact.gameObject.GetComponent<RectTransform>().anchoredPosition.x, fishAimReact.gameObject.GetComponent<RectTransform>().anchoredPosition.y + moveUp), 1f).SetEase (Ease.InOutQuad);
 
-        
+        //Do some fishing here
+        fishingLineStart = GameObject.FindWithTag("fishingLineTip"); // getting it here as otherwise the GO is inactive
+        fishBobber.transform.position = fishingLineStart.transform.position;
+        fishBobber.SetActive (true);
+        fishBobber.GetComponent<UpdateLineScript>()._childTransform = fishingLineStart.transform; // player.transform;    
+
+        fishBobber.transform.DOJump (FishPool.transform.position, 2f, 1, 0.4f).SetEase(Ease.InExpo);
+
         yield return new WaitForSeconds(1f);
         fishAimCanvas.enabled = false;
         InteractableState = 2;
 
-        //Do some fishing here
-        fishBobber.transform.position = player.transform.position;
-        fishBobber.SetActive (true);
-        fishBobber.GetComponent<UpdateLineScript>()._childTransform = player.transform;    
-
-        fishBobber.transform.DOJump (FishPool.transform.position, 2f, 1, 0.4f).SetEase(Ease.InExpo);
         yield return new WaitForSeconds(0.4f);
         bobberTween = fishBobber.transform.DOShakePosition(1f, new Vector3 (0,0.2f, 0), 2, 45f).SetLoops (-1, LoopType.Restart);
         yield return new WaitForSeconds(2f);
@@ -384,7 +387,8 @@ public class InteractableGameManager : MonoBehaviour
     public IEnumerator EndFishGame() {
         fishPowerTween.Kill();
         bobberTween.Kill();
-        fishBobber.transform.DOJump (player.transform.position, 2f, 1, 0.4f).SetEase(Ease.InExpo);
+        fishBobber.transform.DOJump (fishingLineStart.transform.position, 2f, 1, 0.4f).SetEase(Ease.InExpo);
+        fishBobber.SetActive(false);
 
         float attempt = fishPowerSlider.value;
 
@@ -393,7 +397,7 @@ public class InteractableGameManager : MonoBehaviour
             fishPowerReact.text = "Big Fish";
             Bonus2 = 0.75f;
         } else {
-            fishPowerReact.text = "Menium Fish";
+            fishPowerReact.text = "Medium Fish";
             Bonus2 = 0.25f;
         } 
 
@@ -403,7 +407,7 @@ public class InteractableGameManager : MonoBehaviour
 
         fishPowerReact.enabled = true;
         fishPowerReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (fishPowerReact.gameObject.GetComponent<RectTransform>().anchoredPosition.x, fishPowerReact.gameObject.GetComponent<RectTransform>().anchoredPosition.y + moveUp), 1f).SetEase (Ease.InOutQuad);
-        fishAmountReact.text = addAmount.ToString() + " Wood";
+        fishAmountReact.text = addAmount.ToString() + " Fish";
         fishAmountReact.enabled = true;
         fishAmountReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (fishAmountReact.gameObject.GetComponent<RectTransform>().anchoredPosition.x, fishAmountReact.gameObject.GetComponent<RectTransform>().anchoredPosition.y + moveUp), 1f).SetEase (Ease.InOutQuad);
 
