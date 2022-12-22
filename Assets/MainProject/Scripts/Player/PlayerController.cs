@@ -43,6 +43,17 @@ public class PlayerController : MonoBehaviour
     public Transform followObject;
     public Transform stopFollowObject;
     
+    [Header ("footstep Audio")]
+    [Range(0f, 1f)]
+    public float audioClipVolume = 0.1f;
+    //Range of random volume deviation used for footsteps;
+    //Footstep audio clips will be played at different volumes for a more "natural sounding" result;
+    public float relativeRandomizedVolumeRange = 0.2f;
+    public AudioClip[] footStepClips;
+    //Footsteps will be played every time the traveled distance reaches this value 
+    public float footstepDistance = 1f;
+    float currentFootstepDistance = 0f;
+    public AudioSource audioSource;
 
 
     private void Start()
@@ -81,6 +92,21 @@ public class PlayerController : MonoBehaviour
             move = cameraTransform.forward * move.z + cameraTransform.right * move.x;
             move.y = 0f;
             controller.Move(move * Time.deltaTime * playerSpeed);
+            if (move.magnitude > 0)
+            {
+                currentFootstepDistance += Time.deltaTime * playerSpeed;
+
+				//Play foot step audio clip if a certain distance has been traveled;
+				if(currentFootstepDistance > footstepDistance)
+				{
+					//Only play footstep sound if mover is grounded 
+					if(groundedPlayer)
+                    {
+						PlayFootstepSound();
+                    }
+					currentFootstepDistance = 0f;
+				}
+            } 
             
 
             // Changes the height position of the player..
@@ -190,5 +216,9 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds (cameraTransform.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time);
     }
 
-
+    void PlayFootstepSound()
+		{
+			int _footStepClipIndex = Random.Range(0, footStepClips.Length);
+			audioSource.PlayOneShot(footStepClips[_footStepClipIndex], audioClipVolume + audioClipVolume * Random.Range(-relativeRandomizedVolumeRange, relativeRandomizedVolumeRange));
+		}
 }
