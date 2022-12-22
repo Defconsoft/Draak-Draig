@@ -3,27 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using DG.Tweening;
 
 
 public class UXManager : MonoBehaviour
 {
 
+    public GameManager gameManager;
+
+    [Header ("Canvas Stuff")]
     [SerializeField] private Canvas MainMenu;
     [SerializeField] private Canvas DebugMenu;
     [SerializeField] private CanvasGroup BGCanvasGrp;
     [SerializeField] private CanvasGroup MainMenuGrp;
     [SerializeField] private CanvasGroup QuoteTextGrp;
+    [SerializeField] private CanvasGroup DayTimerGrp;
+
+    [Header ("Quote Stuff")]
     [SerializeField] private TMPro.TMP_Text QuoteTextBox;   
-
-
     public string[] TextQuotes;
+
+
+    [Header ("Timer Stuff")]
+    public Slider daytimeSlider;
+    private bool loadResourceLevelOnce;
+    public bool daytimeActive;
+    private bool dayComplete;
 
     private void Awake() {
 
     }
 
-
+    private void Start() {
+        
+    }
 
 
 
@@ -44,6 +58,8 @@ public class UXManager : MonoBehaviour
         SetQuoteText(SceneNo);
         if (SceneNo == 1){
             FadeOutCanvasGrp(MainMenuGrp, 2f);
+        } else if (SceneNo == 2 && !loadResourceLevelOnce) {
+            loadResourceLevelOnce = true;
         }
         yield return new WaitForSeconds (3f);
         scene.allowSceneActivation = true; //Loads the scene in
@@ -52,6 +68,13 @@ public class UXManager : MonoBehaviour
         FadeOutCanvasGrp(QuoteTextGrp, 2f);
         yield return new WaitForSeconds (2f);
         FadeOutCanvasGrp(BGCanvasGrp, 2f);
+        if (loadResourceLevelOnce && !daytimeActive) {
+            FadeInCanvasGrp (DayTimerGrp, 3f);
+            StartDaytime();
+        }
+
+
+
     }
 
 
@@ -109,6 +132,20 @@ public class UXManager : MonoBehaviour
                 DebugMenu.enabled = true;
             }
         }
+
+
+        if (daytimeActive) {
+            daytimeSlider.value += Time.deltaTime;
+        }
+
+        if (daytimeActive == true && daytimeSlider.value >= daytimeSlider.maxValue && !dayComplete) {
+            dayComplete = true;
+            FadeOutCanvasGrp (DayTimerGrp, 1f);
+            StartCoroutine(LoadYourAsyncScene (3));
+        }
+
+
+
     }
 
 
@@ -118,6 +155,13 @@ public class UXManager : MonoBehaviour
         SceneManager.LoadScene (debugLevel);
         FadeOutCanvasGrp(MainMenuGrp, 2f);
         FadeOutCanvasGrp(BGCanvasGrp, 2f);
+    }
+
+
+
+    public void StartDaytime() {
+        daytimeSlider.maxValue = gameManager.DaytimeTimerAmount;
+        daytimeActive = true;
     }
 
 

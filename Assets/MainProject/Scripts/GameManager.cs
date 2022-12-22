@@ -6,6 +6,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+
+    [Header ("Timer Stuff")]
+    public float DaytimeTimerAmount;
+
     [Header ("Movement Stuff")]
     public float playerSpeed = 2.0f;
     public float jumpHeight = 1.0f;

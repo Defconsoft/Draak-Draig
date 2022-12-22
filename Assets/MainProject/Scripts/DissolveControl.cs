@@ -87,7 +87,6 @@ public class DissolveControl : MonoBehaviour
 
         player.Interacting = false;
         StartCoroutine(player.StartFollow());
-        Debug.Log ("here");
         Destroy(gameObject, 1);
     }
 }
