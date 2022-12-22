@@ -2342,7 +2342,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 927997694113221278}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -3504,7 +3504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5866262156200780640
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4146,7 +4146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab8b3a38db176f409e98a0a4b19fb30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DaytimeTimerAmount: 600
+  DaytimeTimerAmount: 300
   playerSpeed: 5
   jumpHeight: 2
   gravityValue: -39.81
@@ -4172,6 +4172,7 @@ MonoBehaviour:
   BGCanvasGrp: {fileID: 5866262156200780652}
   MainMenuGrp: {fileID: 5866262155989316339}
   QuoteTextGrp: {fileID: 5866262155966966893}
+  DayTimerGrp: {fileID: 1927071673401351084}
   QuoteTextBox: {fileID: 5866262156251284533}
   TextQuotes:
   - "\u201CThe Dragon is always within you, you must embrace it\u2019s will and define
