@@ -22,6 +22,8 @@ public class VFXmanagerArms : MonoBehaviour
         VisualEffect vfx = vfxGraphs[idx];
         vfx.gameObject.SetActive(true);
         vfx.Play();
+        // Make sure impact event is triggered so other impact related scripts can run too
+        EventManager.TriggerImpact(idx);
 
         yield return new WaitForSeconds(0.6f);
 
