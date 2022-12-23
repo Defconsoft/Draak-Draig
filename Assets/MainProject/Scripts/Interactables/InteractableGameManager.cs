@@ -106,6 +106,8 @@ public class InteractableGameManager : MonoBehaviour
             {
                 if (i == Choice) {
                     TreeModels[i].SetActive (true);
+                    TreeModels[i].transform.Rotate (Random.Range (0, 360), Random.Range (0, 360), 0);
+                    //TreeModels[i].transform.rotation = new Quaternion (Random.Range (0, 360), Random.Range (0, 360), TreeModels[i].transform.rotation.z, 0);
                 }
             }
         }  

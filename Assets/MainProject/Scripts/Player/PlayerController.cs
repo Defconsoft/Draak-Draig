@@ -129,11 +129,11 @@ public class PlayerController : MonoBehaviour
                     //Set the interact camera angle
                     interactingObject.gameObject.GetComponent<Interactable>().itemCanvas.DOFade(0,1f);
                     Vector3 lookPos;
-                    if (isTree) {
+                    /*if (isTree) {
                         lookPos = new Vector3 (interactingObject.position.x, interactingObject.position.y + 2f, interactingObject.position.z)  - cameraTransform.position;
-                    } else {
+                    } else {*/
                         lookPos = interactingObject.position - cameraTransform.position;
-                    }
+                    //}
                     
                     rot = Quaternion.LookRotation(lookPos);
     
