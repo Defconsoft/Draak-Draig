@@ -150,6 +150,7 @@ public class PlayerController : MonoBehaviour
                         Cursor.lockState = CursorLockMode.None;
                         Cursor.visible = true;
                         inNPC = true;
+                        interactingObject.gameObject.GetComponent<InteractableNPCManager>().TurnToPlayer(transform);
                         interactingObject.gameObject.GetComponent<InteractableNPCManager>().StartConversation();
                     } else {
                         inNPC = false;

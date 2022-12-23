@@ -69,6 +69,14 @@ public class InteractableNPCManager : MonoBehaviour
         overallCanvas.enabled = false;
     }
 
+    public void TurnToPlayer(Transform playerPos)
+    {
+        Vector3 relativePos = playerPos.position - transform.position;
+
+        Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+        transform.rotation = rotation;
+    }
+
 
 
 }
