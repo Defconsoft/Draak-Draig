@@ -19,6 +19,7 @@ public class UXManager : MonoBehaviour
     [SerializeField] private CanvasGroup MainMenuGrp;
     [SerializeField] private CanvasGroup QuoteTextGrp;
     [SerializeField] private CanvasGroup DayTimerGrp;
+    [SerializeField] private CanvasGroup TopBarGrp;
 
     [Header ("Quote Stuff")]
     [SerializeField] private TMPro.TMP_Text QuoteTextBox;   
@@ -68,6 +69,7 @@ public class UXManager : MonoBehaviour
         FadeOutCanvasGrp(QuoteTextGrp, 2f);
         yield return new WaitForSeconds (2f);
         FadeOutCanvasGrp(BGCanvasGrp, 2f);
+        FadeInCanvasGrp(TopBarGrp, 2f);
         if (loadResourceLevelOnce && !daytimeActive) {
             FadeInCanvasGrp (DayTimerGrp, 3f);
             StartDaytime();
@@ -155,6 +157,7 @@ public class UXManager : MonoBehaviour
         SceneManager.LoadScene (debugLevel);
         FadeOutCanvasGrp(MainMenuGrp, 2f);
         FadeOutCanvasGrp(BGCanvasGrp, 2f);
+        FadeInCanvasGrp(TopBarGrp, 2f);
     }
 
 
@@ -164,7 +167,9 @@ public class UXManager : MonoBehaviour
         daytimeActive = true;
     }
 
-
+    public void QuitGame() {
+        Application.Quit();
+    }
 
 
 
