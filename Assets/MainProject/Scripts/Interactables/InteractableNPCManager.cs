@@ -4,19 +4,31 @@ using DG.Tweening;
 public class InteractableNPCManager : MonoBehaviour
 {
 
+    [Header("UX Objects")]
     public Canvas overallCanvas;
     public CanvasGroup narrativeCanvas;
+    public TMPro.TMP_Text NPCName;
     public TMPro.TMP_Text Textbox;
-    public int ConversationState;
+    public TMPro.TMP_Text Outcome;
     public GameObject Yesbutton, Nobutton, Exitbutton;
+
+
+    public int ConversationState;
     private Animator anim;
     
     
+
+    [Header("Speech Stuff")]
+    public string npcName;
+    [TextArea(3,10)]
+    public string outComeText;
     [TextArea(5,10)]
     public string[] Conversation;
 
 
     public void StartConversation() {
+        NPCName.text = npcName;
+        Outcome.text = outComeText;
         overallCanvas.enabled = true;
         narrativeCanvas.DOFade(1f,1f);
         Textbox.text = Conversation[0];
@@ -67,6 +79,7 @@ public class InteractableNPCManager : MonoBehaviour
         narrativeCanvas.DOFade(0,1f);
         GameObject.Find("Player").GetComponent<PlayerController>().Endinteracting();
         overallCanvas.enabled = false;
+        ConversationState = 0;
     }
 
     public void TurnToPlayer(Transform playerPos)

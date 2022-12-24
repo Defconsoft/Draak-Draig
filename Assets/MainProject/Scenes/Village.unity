@@ -564,6 +564,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1663506334114630345, guid: b04135f7bbc118444b1360204e51be2d,
         type: 3}
+      propertyPath: npcName
+      value: Jiena the Blacksmith
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663506334114630345, guid: b04135f7bbc118444b1360204e51be2d,
+        type: 3}
+      propertyPath: outComeText
+      value: Selling rock will create more birds during the Animal Chase section
+        of night time.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663506334114630345, guid: b04135f7bbc118444b1360204e51be2d,
+        type: 3}
       propertyPath: Conversation.Array.data[0]
       value: Oy, forest fella. Do you have any ore for me today?
       objectReference: {fileID: 0}
@@ -691,6 +702,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663506334114630345, guid: b04135f7bbc118444b1360204e51be2d,
+        type: 3}
+      propertyPath: npcName
+      value: Barger the Fishmonger
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663506334114630345, guid: b04135f7bbc118444b1360204e51be2d,
+        type: 3}
+      propertyPath: outComeText
+      value: Selling fish will create more fish oil barrels during the Castle Attack
+        section of night time.
       objectReference: {fileID: 0}
     - target: {fileID: 1663506334114630348, guid: b04135f7bbc118444b1360204e51be2d,
         type: 3}
