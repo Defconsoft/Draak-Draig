@@ -13,6 +13,7 @@ public class InteractableGameManager : MonoBehaviour
 
     public enum GameType { rock, tree, fish};
     private GameManager gameManager;
+    private UXManager uXManager;
     private int baseAmount;
     private int addAmount;
     private float Bonus1, Bonus2;
@@ -86,6 +87,7 @@ public class InteractableGameManager : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        uXManager = GameObject.Find("GameManager").GetComponent<UXManager>();
 
         if (gameType == GameType.rock){
             //Select a rock
@@ -271,7 +273,7 @@ public class InteractableGameManager : MonoBehaviour
         treeAimTween = DOTween.To (     ()=> treeAimSlider.value, 
                                         x=> treeAimSlider.value = x, 
                                         1f, 
-                                        slideTime/2).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+                                        slideTime).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
         InteractableState = 1;
     }
 
@@ -295,7 +297,7 @@ public class InteractableGameManager : MonoBehaviour
         treeAimCanvas.enabled = false;
         InteractableState = 2;
         treePowerCanvas.enabled = true;
-        treePowerTween = treePowerSlider.DOValue(1f, slideTime).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
+        treePowerTween = treePowerSlider.DOValue(1f, slideTime).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
         yield return new WaitForSeconds(2f);
     } 
 
@@ -455,6 +457,8 @@ public class InteractableGameManager : MonoBehaviour
 
 
         }
+
+        uXManager.SetItemAmounts();
 
     }
 

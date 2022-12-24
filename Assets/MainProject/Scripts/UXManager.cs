@@ -20,6 +20,7 @@ public class UXManager : MonoBehaviour
     [SerializeField] private CanvasGroup QuoteTextGrp;
     [SerializeField] private CanvasGroup DayTimerGrp;
     [SerializeField] private CanvasGroup TopBarGrp;
+    [SerializeField] private CanvasGroup InstructionGrp;
 
     [Header ("Quote Stuff")]
     [SerializeField] private TMPro.TMP_Text QuoteTextBox;   
@@ -32,12 +33,25 @@ public class UXManager : MonoBehaviour
     public bool daytimeActive;
     private bool dayComplete;
 
+    [Header ("Item Stuff")]
+    public TMPro.TMP_Text RockCount;
+    public TMPro.TMP_Text FishCount;
+    public TMPro.TMP_Text WoodCount;    
+
+    [Header ("Instruction Stuff")]
+    public TMPro.TMP_Text instructionText;
+    public string[] instructions;
+
+
+
     private void Awake() {
 
     }
 
     private void Start() {
-        
+        RockCount.text = "Rock: " + gameManager.totalRock;
+        FishCount.text = "Fish: " + gameManager.totalFish;
+        WoodCount.text = "Wood: " + gameManager.totalWood;
     }
 
 
@@ -70,12 +84,14 @@ public class UXManager : MonoBehaviour
         yield return new WaitForSeconds (2f);
         FadeOutCanvasGrp(BGCanvasGrp, 2f);
         FadeInCanvasGrp(TopBarGrp, 2f);
+        FadeInCanvasGrp(InstructionGrp, 2f);
         if (loadResourceLevelOnce && !daytimeActive) {
             FadeInCanvasGrp (DayTimerGrp, 3f);
             StartDaytime();
         }
 
-
+        yield return new WaitForSeconds (5f);
+        FadeOutCanvasGrp(InstructionGrp, 5f);
 
     }
 
@@ -94,14 +110,17 @@ public class UXManager : MonoBehaviour
 
             case 1: //Move to openingscene
                 QuoteTextBox.text = TextQuotes[0];
+                instructionText.text = instructions[0];
                 break;
 
             case 2: //Move to resource gathering
                 QuoteTextBox.text = TextQuotes[1];
+                instructionText.text = instructions[1];
                 break;
 
             case 3: //Move to village
                 QuoteTextBox.text = TextQuotes[2];
+                instructionText.text = instructions[2];
                 break;
 
 
@@ -169,6 +188,12 @@ public class UXManager : MonoBehaviour
 
     public void QuitGame() {
         Application.Quit();
+    }
+
+    public void SetItemAmounts() {
+        RockCount.text = "Rock: " + gameManager.totalRock;
+        FishCount.text = "Fish: " + gameManager.totalFish;
+        WoodCount.text = "Wood: " + gameManager.totalWood;
     }
 
 
