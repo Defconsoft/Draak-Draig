@@ -88,6 +88,8 @@ public class UXManager : MonoBehaviour
         if (loadResourceLevelOnce && !daytimeActive) {
             FadeInCanvasGrp (DayTimerGrp, 3f);
             StartDaytime();
+        } else if (loadResourceLevelOnce && daytimeActive) {
+            FadeOutCanvasGrp (DayTimerGrp, 0.1f);
         }
 
         yield return new WaitForSeconds (5f);
