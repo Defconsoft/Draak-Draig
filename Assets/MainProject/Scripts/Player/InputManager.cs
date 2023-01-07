@@ -33,6 +33,8 @@ public class InputManager : MonoBehaviour
         playerControls.Disable();
     }
 
+    //Player controls
+
     public Vector2 GetPlayerMovement(){
         return playerControls.Player.Movement.ReadValue<Vector2>();
     }
@@ -54,6 +56,19 @@ public class InputManager : MonoBehaviour
     }
 
 
+    //Dragon Controls
+
+    public Vector2 GetDragonMovement(){
+        return playerControls.Dragon.Movement.ReadValue<Vector2>();
+    }
+
+    public Vector2 GetDragonMouseDelta(){
+        return playerControls.Dragon.MouseLook.ReadValue<Vector2>();
+    }
+
+    public bool PlayerSwoopedThisFrame() {
+        return playerControls.Dragon.Swoop.triggered;
+    }
 
 
 }

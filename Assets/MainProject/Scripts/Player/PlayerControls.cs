@@ -174,6 +174,118 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Dragon"",
+            ""id"": ""fd232105-5c5e-49a2-90c2-281598507e6c"",
+            ""actions"": [
+                {
+                    ""name"": ""MouseLook"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""82b77e1d-db84-46c1-a8f7-3fccff1b8695"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""f62bc2c5-bc6e-45ea-9ab7-c41522244e95"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Swoop"",
+                    ""type"": ""Button"",
+                    ""id"": ""7b338b22-0c0b-4c4c-9b03-ade02ab3f327"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""577e791a-36fa-4481-a76e-f8cac12d9bb6"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseLook"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""e5151c22-b978-4820-8d69-694c58183b90"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""a950c384-a7af-4233-800d-065dc261dfb9"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""ec0aa6e5-9a79-4b27-9136-8e089516bf09"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""9a780978-2a78-4403-a72e-b9e7e71e16c6"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""1fc6b309-a62f-4d6f-9791-76b8a4307625"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3858a439-c743-493d-9d2c-e0cb85d63331"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swoop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -185,6 +297,11 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_MouseFire = m_Player.FindAction("MouseFire", throwIfNotFound: true);
+        // Dragon
+        m_Dragon = asset.FindActionMap("Dragon", throwIfNotFound: true);
+        m_Dragon_MouseLook = m_Dragon.FindAction("MouseLook", throwIfNotFound: true);
+        m_Dragon_Movement = m_Dragon.FindAction("Movement", throwIfNotFound: true);
+        m_Dragon_Swoop = m_Dragon.FindAction("Swoop", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -305,6 +422,55 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Dragon
+    private readonly InputActionMap m_Dragon;
+    private IDragonActions m_DragonActionsCallbackInterface;
+    private readonly InputAction m_Dragon_MouseLook;
+    private readonly InputAction m_Dragon_Movement;
+    private readonly InputAction m_Dragon_Swoop;
+    public struct DragonActions
+    {
+        private @PlayerControls m_Wrapper;
+        public DragonActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @MouseLook => m_Wrapper.m_Dragon_MouseLook;
+        public InputAction @Movement => m_Wrapper.m_Dragon_Movement;
+        public InputAction @Swoop => m_Wrapper.m_Dragon_Swoop;
+        public InputActionMap Get() { return m_Wrapper.m_Dragon; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DragonActions set) { return set.Get(); }
+        public void SetCallbacks(IDragonActions instance)
+        {
+            if (m_Wrapper.m_DragonActionsCallbackInterface != null)
+            {
+                @MouseLook.started -= m_Wrapper.m_DragonActionsCallbackInterface.OnMouseLook;
+                @MouseLook.performed -= m_Wrapper.m_DragonActionsCallbackInterface.OnMouseLook;
+                @MouseLook.canceled -= m_Wrapper.m_DragonActionsCallbackInterface.OnMouseLook;
+                @Movement.started -= m_Wrapper.m_DragonActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_DragonActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_DragonActionsCallbackInterface.OnMovement;
+                @Swoop.started -= m_Wrapper.m_DragonActionsCallbackInterface.OnSwoop;
+                @Swoop.performed -= m_Wrapper.m_DragonActionsCallbackInterface.OnSwoop;
+                @Swoop.canceled -= m_Wrapper.m_DragonActionsCallbackInterface.OnSwoop;
+            }
+            m_Wrapper.m_DragonActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @MouseLook.started += instance.OnMouseLook;
+                @MouseLook.performed += instance.OnMouseLook;
+                @MouseLook.canceled += instance.OnMouseLook;
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
+                @Swoop.started += instance.OnSwoop;
+                @Swoop.performed += instance.OnSwoop;
+                @Swoop.canceled += instance.OnSwoop;
+            }
+        }
+    }
+    public DragonActions @Dragon => new DragonActions(this);
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -312,5 +478,11 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnMouseFire(InputAction.CallbackContext context);
+    }
+    public interface IDragonActions
+    {
+        void OnMouseLook(InputAction.CallbackContext context);
+        void OnMovement(InputAction.CallbackContext context);
+        void OnSwoop(InputAction.CallbackContext context);
     }
 }
