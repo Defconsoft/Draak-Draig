@@ -4971,7 +4971,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5866262155966966888}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 0.03
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -5566,6 +5566,8 @@ MonoBehaviour:
   playerSpeed: 10
   jumpHeight: 2
   gravityValue: -39.81
+  dragonSpeed: 2
+  dragonRotateSpeed: 2
   baseResourceAmount: 5
   totalWood: 0
   totalRock: 0

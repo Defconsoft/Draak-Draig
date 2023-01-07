@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
     public float playerSpeed = 2.0f;
     public float jumpHeight = 1.0f;
     public float gravityValue = -9.81f;
-
+    public float dragonSpeed = 2.0f;
+    public float dragonRotateSpeed = 2.0f;
 
     [Header ("Resources stuff")]
     public int baseResourceAmount;
