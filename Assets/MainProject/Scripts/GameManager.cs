@@ -24,6 +24,10 @@ public class GameManager : MonoBehaviour
     public int totalFish;
 
 
+    [Header ("Dragon stuff")]
+    public float EagleEyeAmount;
+
+
 
 
 

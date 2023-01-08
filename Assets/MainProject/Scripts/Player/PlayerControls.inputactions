@@ -176,9 +176,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Swoop",
+                    "name": "LeftMouse",
                     "type": "Button",
                     "id": "7b338b22-0c0b-4c4c-9b03-ade02ab3f327",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightMouse",
+                    "type": "Button",
+                    "id": "12373067-b917-421e-862b-f30b95fcea84",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -259,7 +268,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Swoop",
+                    "action": "LeftMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e4afb143-1604-4ff7-9167-29d37e817314",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightMouse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
