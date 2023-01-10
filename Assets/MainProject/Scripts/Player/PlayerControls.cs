@@ -198,9 +198,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Swoop"",
+                    ""name"": ""LeftMouse"",
                     ""type"": ""Button"",
                     ""id"": ""7b338b22-0c0b-4c4c-9b03-ade02ab3f327"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightMouse"",
+                    ""type"": ""Button"",
+                    ""id"": ""12373067-b917-421e-862b-f30b95fcea84"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -281,7 +290,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Swoop"",
+                    ""action"": ""LeftMouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e4afb143-1604-4ff7-9167-29d37e817314"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightMouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -301,7 +321,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Dragon = asset.FindActionMap("Dragon", throwIfNotFound: true);
         m_Dragon_MouseLook = m_Dragon.FindAction("MouseLook", throwIfNotFound: true);
         m_Dragon_Movement = m_Dragon.FindAction("Movement", throwIfNotFound: true);
-        m_Dragon_Swoop = m_Dragon.FindAction("Swoop", throwIfNotFound: true);
+        m_Dragon_LeftMouse = m_Dragon.FindAction("LeftMouse", throwIfNotFound: true);
+        m_Dragon_RightMouse = m_Dragon.FindAction("RightMouse", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -428,14 +449,16 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IDragonActions m_DragonActionsCallbackInterface;
     private readonly InputAction m_Dragon_MouseLook;
     private readonly InputAction m_Dragon_Movement;
-    private readonly InputAction m_Dragon_Swoop;
+    private readonly InputAction m_Dragon_LeftMouse;
+    private readonly InputAction m_Dragon_RightMouse;
     public struct DragonActions
     {
         private @PlayerControls m_Wrapper;
         public DragonActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @MouseLook => m_Wrapper.m_Dragon_MouseLook;
         public InputAction @Movement => m_Wrapper.m_Dragon_Movement;
-        public InputAction @Swoop => m_Wrapper.m_Dragon_Swoop;
+        public InputAction @LeftMouse => m_Wrapper.m_Dragon_LeftMouse;
+        public InputAction @RightMouse => m_Wrapper.m_Dragon_RightMouse;
         public InputActionMap Get() { return m_Wrapper.m_Dragon; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -451,9 +474,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_DragonActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_DragonActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_DragonActionsCallbackInterface.OnMovement;
-                @Swoop.started -= m_Wrapper.m_DragonActionsCallbackInterface.OnSwoop;
-                @Swoop.performed -= m_Wrapper.m_DragonActionsCallbackInterface.OnSwoop;
-                @Swoop.canceled -= m_Wrapper.m_DragonActionsCallbackInterface.OnSwoop;
+                @LeftMouse.started -= m_Wrapper.m_DragonActionsCallbackInterface.OnLeftMouse;
+                @LeftMouse.performed -= m_Wrapper.m_DragonActionsCallbackInterface.OnLeftMouse;
+                @LeftMouse.canceled -= m_Wrapper.m_DragonActionsCallbackInterface.OnLeftMouse;
+                @RightMouse.started -= m_Wrapper.m_DragonActionsCallbackInterface.OnRightMouse;
+                @RightMouse.performed -= m_Wrapper.m_DragonActionsCallbackInterface.OnRightMouse;
+                @RightMouse.canceled -= m_Wrapper.m_DragonActionsCallbackInterface.OnRightMouse;
             }
             m_Wrapper.m_DragonActionsCallbackInterface = instance;
             if (instance != null)
@@ -464,9 +490,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
-                @Swoop.started += instance.OnSwoop;
-                @Swoop.performed += instance.OnSwoop;
-                @Swoop.canceled += instance.OnSwoop;
+                @LeftMouse.started += instance.OnLeftMouse;
+                @LeftMouse.performed += instance.OnLeftMouse;
+                @LeftMouse.canceled += instance.OnLeftMouse;
+                @RightMouse.started += instance.OnRightMouse;
+                @RightMouse.performed += instance.OnRightMouse;
+                @RightMouse.canceled += instance.OnRightMouse;
             }
         }
     }
@@ -483,6 +512,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnMouseLook(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
-        void OnSwoop(InputAction.CallbackContext context);
+        void OnLeftMouse(InputAction.CallbackContext context);
+        void OnRightMouse(InputAction.CallbackContext context);
     }
 }

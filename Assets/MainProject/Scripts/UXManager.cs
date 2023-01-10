@@ -21,6 +21,7 @@ public class UXManager : MonoBehaviour
     [SerializeField] private CanvasGroup DayTimerGrp;
     [SerializeField] private CanvasGroup TopBarGrp;
     [SerializeField] private CanvasGroup InstructionGrp;
+    [SerializeField] private CanvasGroup DragonGrp;
 
     [Header ("Quote Stuff")]
     [SerializeField] private TMPro.TMP_Text QuoteTextBox;   
@@ -41,6 +42,10 @@ public class UXManager : MonoBehaviour
     [Header ("Instruction Stuff")]
     public TMPro.TMP_Text instructionText;
     public string[] instructions;
+
+    [Header ("Dragon Stuff")]
+    public Image eagleEyeFill;
+
 
 
 
@@ -124,6 +129,26 @@ public class UXManager : MonoBehaviour
                 QuoteTextBox.text = TextQuotes[2];
                 instructionText.text = instructions[2];
                 break;
+            case 4: //Move to Animal Chase
+                QuoteTextBox.text = TextQuotes[3];
+                instructionText.text = instructions[3];
+                break;
+            case 5: //Move to Castle Attack
+                QuoteTextBox.text = TextQuotes[4];
+                instructionText.text = instructions[4];
+                break;
+            case 6: //Move to Forest Swoop
+                QuoteTextBox.text = TextQuotes[5];
+                instructionText.text = instructions[5];
+                break;
+            case 7: //Move to Village Attack
+                QuoteTextBox.text = TextQuotes[6];
+                instructionText.text = instructions[6];
+                break;
+            case 8: //Go to customisation
+                QuoteTextBox.text = TextQuotes[7];
+                instructionText.text = instructions[7];
+                break;
 
 
         }
@@ -179,6 +204,11 @@ public class UXManager : MonoBehaviour
         FadeOutCanvasGrp(MainMenuGrp, 2f);
         FadeOutCanvasGrp(BGCanvasGrp, 2f);
         FadeInCanvasGrp(TopBarGrp, 2f);
+
+
+        if (debugLevel == 6) {
+            FadeInCanvasGrp(DragonGrp, 2f);
+        }
     }
 
 
@@ -196,6 +226,11 @@ public class UXManager : MonoBehaviour
         RockCount.text = "Rock: " + gameManager.totalRock;
         FishCount.text = "Fish: " + gameManager.totalFish;
         WoodCount.text = "Wood: " + gameManager.totalWood;
+    }
+
+
+    public void SetEagleEyeAmount(float value){
+        eagleEyeFill.fillAmount = value;
     }
 
 

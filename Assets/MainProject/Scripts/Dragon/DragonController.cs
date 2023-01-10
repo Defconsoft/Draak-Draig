@@ -16,11 +16,35 @@ public class DragonController : MonoBehaviour
     private Vector3 dragonVelocity;
     private bool groundedDragon;
     private float currentVelocity;
+    private PlayerControls controls;
 
+
+    [Header ("Cameras")]
+    public CinemachineVirtualCamera TopDownCam;
+    public CinemachineVirtualCamera EagleEyeCam;
+    private CinemachineBrain mainCamBrain;
+
+
+    private bool EagleActive;
+    private bool canEagle;
 
     [SerializeField] private float dragonSpeed = 2.0f;
     [SerializeField] private float rotateSpeed = 2.0f;
+    [SerializeField] private float eagleBlendTime = 0.3f;
+    [SerializeField] private float eagleAmount = 1f;
 
+    private void Awake() {
+        controls = new PlayerControls();
+    }
+
+
+    private void OnEnable() {
+        controls.Enable();
+    }
+
+    private void OnDisable() {
+        controls.Disable();
+    }
 
 
     // Start is called before the first frame update
@@ -30,10 +54,31 @@ public class DragonController : MonoBehaviour
         inputManager = InputManager.Instance;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         uXManager = GameObject.Find("GameManager").GetComponent<UXManager>();
+        mainCamBrain = Camera.main.GetComponent<CinemachineBrain>();
 
         //Grabs the  variables from the Game Manager
         //dragonSpeed = gameManager.dragonSpeed;
         //rotateSpeed = gameManager.dragonRotateSpeed;
+    }
+
+
+
+    private void Update() {
+        EagleActive = controls.Dragon.RightMouse.ReadValue<float>() > 0;
+
+
+        if (EagleActive && eagleAmount> 0) {
+            DecreaseEagleAmount();
+            canEagle = true;
+        } else if (EagleActive && eagleAmount == 0) {
+            canEagle = false;
+        } else {
+            IncreaseEagleAmount();
+        }
+
+        uXManager.SetEagleEyeAmount(eagleAmount);
+        Debug.Log (eagleAmount);
+
     }
 
     // Update is called once per frame
@@ -52,6 +97,36 @@ public class DragonController : MonoBehaviour
         }     
 
 
+        if (canEagle) {
+            mainCamBrain.m_DefaultBlend.m_Time = 0.3f;
+            TopDownCam.m_Priority = 0;
+            EagleEyeCam.m_Priority = 10;
+        } else {
+            TopDownCam.m_Priority = 10;
+            EagleEyeCam.m_Priority = 0;
+        }
+
+
+
+    }
+
+
+
+
+    private void DecreaseEagleAmount(){
+            eagleAmount = eagleAmount -= Time.deltaTime;
+            eagleAmount = Mathf.Clamp(eagleAmount, 0f, 1f);
+    }
+
+    private void IncreaseEagleAmount(){
+            eagleAmount = eagleAmount += Time.deltaTime;
+            eagleAmount = Mathf.Clamp(eagleAmount, 0f, 1f);
+    }
+
+
+    private IEnumerator BrainReset() {
+        yield return new WaitForSeconds(eagleBlendTime);
+        mainCamBrain.m_DefaultBlend.m_Time = 1f;
     }
 
 
