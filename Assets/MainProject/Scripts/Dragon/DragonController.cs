@@ -72,12 +72,30 @@ public class DragonController : MonoBehaviour
             canEagle = true;
         } else if (EagleActive && eagleAmount == 0) {
             canEagle = false;
+        } else if (!EagleActive && eagleAmount > 0) {
+            IncreaseEagleAmount();
+            canEagle = false;
         } else {
             IncreaseEagleAmount();
         }
 
         uXManager.SetEagleEyeAmount(eagleAmount);
-        Debug.Log (eagleAmount);
+
+
+        if (inputManager.DragonSwoopedThisFrame()) {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Camera.main.transform.position);
+
+            if (Physics.Raycast (ray, out hit)) {
+                if (hit.transform.gameObject.tag == "forestHit") {
+                    Debug.Log ("GOT HIM");
+                } else {
+                    Debug.Log ("MISSED");
+                }
+            }
+
+        }
+
 
     }
 
