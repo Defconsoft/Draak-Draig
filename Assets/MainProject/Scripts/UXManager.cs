@@ -233,6 +233,13 @@ public class UXManager : MonoBehaviour
         eagleEyeFill.fillAmount = value;
     }
 
-
+    public void DragonGroupFade(float endValue) {
+        Debug.Log (endValue);
+        if (endValue == 0) {
+            FadeOutCanvasGrp(DragonGrp, 0.1f);
+        } else {
+            FadeInCanvasGrp(DragonGrp, 0.1f);
+        }
+    }
 
 }

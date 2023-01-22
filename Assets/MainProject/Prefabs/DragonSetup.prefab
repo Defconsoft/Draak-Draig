@@ -83,6 +83,7 @@ GameObject:
   - component: {fileID: 597763559}
   - component: {fileID: 597763558}
   - component: {fileID: 597763557}
+  - component: {fileID: 155340104214057984}
   m_Layer: 0
   m_Name: TopDownCanvas
   m_TagString: Untagged
@@ -172,6 +173,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &155340104214057984
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597763555}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &713618408
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,7 +491,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 98111
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 8bbec6f958c206e46ba53d940e521351, type: 2}
   m_TargetDisplay: 0
@@ -547,8 +560,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8437254949378967832}
-  m_LocalRotation: {x: -0.5354827, y: -0.0000009834765, z: 0.0000006258487, w: -0.8445462}
-  m_LocalPosition: {x: 0, y: 11.639999, z: 0}
+  m_LocalRotation: {x: 0.53548384, y: -0, z: -0, w: 0.84454554}
+  m_LocalPosition: {x: 0, y: 11.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -651,6 +664,7 @@ MonoBehaviour:
   rotateSpeed: 25
   eagleBlendTime: 0.3
   eagleAmount: 1
+  aimReticle: {fileID: 155340104214057984}
 --- !u!54 &8437254949437400394
 Rigidbody:
   m_ObjectHideFlags: 0
