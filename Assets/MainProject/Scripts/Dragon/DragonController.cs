@@ -56,6 +56,7 @@ public class DragonController : MonoBehaviour
 
     private void Awake() {
         controls = new PlayerControls();
+        anim.ResetTrigger("FlapWings");
     }
 
 
@@ -110,6 +111,8 @@ public class DragonController : MonoBehaviour
 
 
             if (inputManager.DragonSwoopedThisFrame()) {
+                tilt = 0f;
+                anim.SetFloat("Tilt", tilt);
                 anim.SetTrigger("Swoop");
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Camera.main.transform.position);
@@ -158,18 +161,14 @@ public class DragonController : MonoBehaviour
                 if (tilt > tiltMin){
                     tilt -= tiltIncrement;
                 }
-                anim.SetFloat("Tilt", tilt);
                 transform.RotateAround(transform.position, -Vector3.up, rotateSpeed * Time.deltaTime);
-                timeSinceFlap = 0f; // no flapping when tilting
             } 
             else if (Input.GetKey(KeyCode.D))
             {
                 if (tilt < tiltMax){
                     tilt += tiltIncrement;
                 }
-                anim.SetFloat("Tilt", tilt);
                 transform.RotateAround(transform.position, Vector3.up, rotateSpeed * Time.deltaTime);
-                timeSinceFlap = 0f; // no flapping when tilting
             }
             else
             {
@@ -177,26 +176,26 @@ public class DragonController : MonoBehaviour
                 if (tilt > 0.01f)
                 {
                     tilt -= tiltIncrement;
-                    anim.SetFloat("Tilt", tilt);
                 }
                 else if (tilt < -0.01f)
                 {
                     tilt += tiltIncrement;
-                    anim.SetFloat("Tilt", tilt);
                 }
                 else
                 {
                     tilt = 0f;
-                    anim.SetFloat("Tilt", tilt);
                 }
-                timeSinceFlap += 1f;
-                if (timeSinceFlap >= 1f/flapFrequency)
-                {
-                    anim.SetTrigger("FlapWings");
-                    Debug.Log("Flapping wings");
-                    timeSinceFlap = 0f;
-                }
-            }     
+            }
+            anim.SetFloat("Tilt", tilt);
+
+            // Flap wings occasionally
+            timeSinceFlap += 1f;
+            if (timeSinceFlap >= 1f/flapFrequency)
+            {
+                anim.SetTrigger("FlapWings");
+                timeSinceFlap = 0f;
+                Debug.Log("Flapping");
+            }  
 
 
             if (canEagle) {
@@ -233,7 +232,7 @@ public class DragonController : MonoBehaviour
         tempAnim.SetTrigger("Swoop");
         tempDragonModel.transform.DOMove (tempPig.transform.position, 1f);
         Vector3 tempPos = new Vector3 (0, 0, tempPig.transform.position.z + 1f);
-        yield return new WaitForSeconds (1f);
+        yield return new WaitForSeconds (1.5f);
         tempPigModel.transform.parent = tempDragonModel.transform;
         tempDragonModel.transform.DOMove (tempEndSpot.transform.position, 2f);
         yield return new WaitForSeconds (1.5f);

@@ -1,0 +1,223 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: tiltMask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: breast_plates
+    m_Weight: 1
+  - m_Path: Dragon-lowpoly
+    m_Weight: 1
+  - m_Path: dragon_webbing
+    m_Weight: 1
+  - m_Path: DragonRig
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.004
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.004/spine.003
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.004/spine.003/spine.002
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.004/spine.003/spine.002/spine.001
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.004/spine.003/spine.002/spine.001/spine
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.004/spine.003/spine.002/spine.001/spine/spine_end
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.006
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.006/pelvis
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.006/pelvis/pelvis_end
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.006/pelvis.L
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.006/pelvis.L/pelvis.L_end
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.006/pelvis.R
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.006/pelvis.R/pelvis.R_end
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.006/spine.007
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/belly
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/belly/belly_end
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/breast.L
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/breast.L/breast.L_end
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/breast.R
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/breast.R/breast.R_end
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/chest
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/chest/chest_end
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/shoulder.L
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/shoulder.L/upper_arm.L
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/shoulder.L/upper_arm.L/forearm.L
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/shoulder.L/upper_arm.L/forearm.L/hand.L
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/shoulder.L/upper_arm.L/forearm.L/hand.L/f_toe.L
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/shoulder.L/upper_arm.L/forearm.L/hand.L/f_toe.L/f_toe.L.001
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/shoulder.L/upper_arm.L/forearm.L/hand.L/f_toe.L/f_toe.L.001/f_toe.L.001_end
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/shoulder.R
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/shoulder.R/upper_arm.R
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/shoulder.R/upper_arm.R/forearm.R
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/shoulder.R/upper_arm.R/forearm.R/hand.R
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/shoulder.R/upper_arm.R/forearm.R/hand.R/f_toe.R
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/shoulder.R/upper_arm.R/forearm.R/hand.R/f_toe.R/f_toe.R.001
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/shoulder.R/upper_arm.R/forearm.R/hand.R/f_toe.R/f_toe.R.001/f_toe.R.001_end
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/spine.010
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/spine.010/spine.011
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/spine.010/spine.011/spine.012
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/spine.010/spine.011/spine.012/spine.014
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/spine.010/spine.011/spine.012/spine.014/spine.015
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/spine.010/spine.011/spine.012/spine.014/spine.015/spine.016
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/spine.010/spine.011/spine.012/spine.014/spine.015/spine.016/jaw
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/spine.010/spine.011/spine.012/spine.014/spine.015/spine.016/jaw/jaw.001
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/spine.010/spine.011/spine.012/spine.014/spine.015/spine.016/jaw/jaw.001/jaw.001_end
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/spine.010/spine.011/spine.012/spine.014/spine.015/spine.016/skull
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/spine.010/spine.011/spine.012/spine.014/spine.015/spine.016/skull/eye.L
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/spine.010/spine.011/spine.012/spine.014/spine.015/spine.016/skull/eye.L/eye.L_end
+    m_Weight: 1
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/spine.010/spine.011/spine.012/spine.014/spine.015/spine.016/skull/eye.R
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/spine.010/spine.011/spine.012/spine.014/spine.015/spine.016/skull/eye.R/eye.R_end
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/spine.010/spine.011/spine.012/spine.014/spine.015/spine.016/skull/nose.L
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/spine.010/spine.011/spine.012/spine.014/spine.015/spine.016/skull/nose.L/nose.L_end
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/spine.010/spine.011/spine.012/spine.014/spine.015/spine.016/skull/nose.R
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/spine.010/spine.011/spine.012/spine.014/spine.015/spine.016/skull/nose.R/nose.R_end
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.L
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.L/wingbone.L.002
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.L/wingbone.L.002/wingbone.L.003
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.L/wingbone.L.002/wingbone.L.003/wingbone.L.004
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.L/wingbone.L.002/wingbone.L.003/wingbone.L.004/wingbone.L.005
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.L/wingbone.L.002/wingbone.L.003/wingbone.L.004/wingbone.L.005/wingbone.L.006
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.L/wingbone.L.002/wingbone.L.003/wingbone.L.004/wingbone.L.005/wingbone.L.006/wingbone.L.007
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.L/wingbone.L.002/wingbone.L.003/wingbone.L.004/wingbone.L.005/wingbone.L.006/wingbone.L.007/wingbone.L.007_end
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.L/wingbone.L.002/wingbone.L.003/wingbone.L.008
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.L/wingbone.L.002/wingbone.L.003/wingbone.L.008/wingbone.L.009
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.L/wingbone.L.002/wingbone.L.003/wingbone.L.008/wingbone.L.009/wingbone.L.010
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.L/wingbone.L.002/wingbone.L.003/wingbone.L.008/wingbone.L.009/wingbone.L.010/wingbone.L.011
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.L/wingbone.L.002/wingbone.L.003/wingbone.L.008/wingbone.L.009/wingbone.L.010/wingbone.L.011/wingbone.L.011_end
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.R
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.R/wingbone.R.002
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.R/wingbone.R.002/wingbone.R.003
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.R/wingbone.R.002/wingbone.R.003/wingbone.R.004
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.R/wingbone.R.002/wingbone.R.003/wingbone.R.004/wingbone.R.005
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.R/wingbone.R.002/wingbone.R.003/wingbone.R.004/wingbone.R.005/wingbone.R.006
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.R/wingbone.R.002/wingbone.R.003/wingbone.R.004/wingbone.R.005/wingbone.R.006/wingbone.R.007
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.R/wingbone.R.002/wingbone.R.003/wingbone.R.004/wingbone.R.005/wingbone.R.006/wingbone.R.007/wingbone.R.007_end
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.R/wingbone.R.002/wingbone.R.003/wingbone.R.008
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.R/wingbone.R.002/wingbone.R.003/wingbone.R.008/wingbone.R.009
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.R/wingbone.R.002/wingbone.R.003/wingbone.R.008/wingbone.R.009/wingbone.R.010
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.R/wingbone.R.002/wingbone.R.003/wingbone.R.008/wingbone.R.009/wingbone.R.010/wingbone.R.011
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/spine.007/spine.008/spine.009/wingbone.R/wingbone.R.002/wingbone.R.003/wingbone.R.008/wingbone.R.009/wingbone.R.010/wingbone.R.011/wingbone.R.011_end
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/thigh.L
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/thigh.L/shin.L
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/thigh.L/shin.L/foot.L
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/thigh.L/shin.L/foot.L/r_toe.L
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/thigh.L/shin.L/foot.L/r_toe.L/r_toe.L.001
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/thigh.L/shin.L/foot.L/r_toe.L/r_toe.L.001/r_toe.L.001_end
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/thigh.R
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/thigh.R/shin.R
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/thigh.R/shin.R/foot.R
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/thigh.R/shin.R/foot.R/r_toe.R
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/thigh.R/shin.R/foot.R/r_toe.R/r_toe.R.001
+    m_Weight: 0
+  - m_Path: DragonRig/spine.005/spine.006/thigh.R/shin.R/foot.R/r_toe.R/r_toe.R.001/r_toe.R.001_end
+    m_Weight: 0
+  - m_Path: EyeL
+    m_Weight: 1
+  - m_Path: EyeR
+    m_Weight: 1
+  - m_Path: Horns-and-claws
+    m_Weight: 1
+  - m_Path: lowerTeeth
+    m_Weight: 1
+  - m_Path: Tail
+    m_Weight: 1
+  - m_Path: UpperTeeth
+    m_Weight: 1
