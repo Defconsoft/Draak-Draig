@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Cinemachine;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class ForestSwoopAI : MonoBehaviour
@@ -11,13 +12,18 @@ public class ForestSwoopAI : MonoBehaviour
     private NavMeshAgent agent;
     private Vector3 currentDestination;
     public bool caught;
-
+    public CinemachineVirtualCamera KillCam;
+    public GameObject dragonModel;
+    public GameObject pigModel;
+    public GameObject endSpot;
+    private Animator pigAnimator;
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         FindNewDestination();
+        pigAnimator = gameObject.transform.GetChild(0).GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -62,7 +68,10 @@ public class ForestSwoopAI : MonoBehaviour
     }
 
 
-
+    public void SetAnim(int AnimNo) {
+        pigAnimator.SetInteger("number", AnimNo);
+        pigAnimator.Play("BaseLayer");
+    }
 
 
 

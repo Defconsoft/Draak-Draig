@@ -64,7 +64,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 98111
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 8bbec6f958c206e46ba53d940e521351, type: 2}
   m_TargetDisplay: 0
@@ -623,6 +623,7 @@ MonoBehaviour:
   impactAudioClips:
   - {fileID: 8300000, guid: a8f2136b3c70de44eb0dfd6235bc3049, type: 3}
   - {fileID: 8300000, guid: 522223fc240f4b64797883986f722b45, type: 3}
+  audioVolume: 0.5
 --- !u!82 &8327386526181191938
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1595,7 +1596,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4213998105019320507, guid: 5d2881e64d198a24ab46ad2c70cf336c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5d2881e64d198a24ab46ad2c70cf336c, type: 3}
 --- !u!1 &1474320296783480505 stripped
 GameObject:
