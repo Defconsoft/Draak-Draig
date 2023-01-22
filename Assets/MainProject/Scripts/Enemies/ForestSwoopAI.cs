@@ -70,7 +70,6 @@ public class ForestSwoopAI : MonoBehaviour
 
     public void SetAnim(int AnimNo) {
         pigAnimator.SetInteger("number", AnimNo);
-        pigAnimator.Play("BaseLayer");
     }
 
 

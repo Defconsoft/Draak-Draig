@@ -26,6 +26,7 @@ public class DragonController : MonoBehaviour
     private CinemachineBrain mainCamBrain;
 
 
+    [Header ("Forest Swoop Stuff")]
     private bool EagleActive;
     private bool canEagle;
     private bool killing;
@@ -33,6 +34,8 @@ public class DragonController : MonoBehaviour
     private GameObject tempDragonModel;
     private GameObject tempPigModel;
     private GameObject tempEndSpot;
+    private bool hpFlip;
+    private bool loadingVillageAttack;
 
     [SerializeField] private float dragonSpeed = 2.0f;
     [SerializeField] private float rotateSpeed = 2.0f;
@@ -64,8 +67,11 @@ public class DragonController : MonoBehaviour
         mainCamBrain = Camera.main.GetComponent<CinemachineBrain>();
 
         //Grabs the  variables from the Game Manager
-        //dragonSpeed = gameManager.dragonSpeed;
-        //rotateSpeed = gameManager.dragonRotateSpeed;
+        dragonSpeed = gameManager.dragonSpeed;
+        rotateSpeed = gameManager.dragonRotateSpeed;
+
+
+
     }
 
 
@@ -152,6 +158,15 @@ public class DragonController : MonoBehaviour
 
         }
 
+
+        if (gameManager.HealthAmount == 1f && gameManager.EnergyAmount == 1f) {
+            if (!loadingVillageAttack){
+            loadingVillageAttack = true;
+            uXManager.DragonGroupFade(0f);
+            StartCoroutine(uXManager.LoadYourAsyncScene(7));
+            }
+        }
+
     }
 
 
@@ -172,6 +187,13 @@ public class DragonController : MonoBehaviour
         Destroy(tempPig);
         mainCamBrain.m_DefaultBlend.m_Time = 1;
         tempKillCam.m_Priority = 0;
+        if (hpFlip){
+            gameManager.PlusHealth(gameManager.ForestSwoopReplenish);
+            hpFlip = false;
+        } else {
+            gameManager.PlusEnergy(gameManager.ForestSwoopReplenish);
+            hpFlip = true;
+        }
         uXManager.DragonGroupFade(1f);
         aimReticle.alpha = 1f;
         killing = false;

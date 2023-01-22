@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
+    public UXManager uxManager;
 
     [Header ("Timer Stuff")]
     public float DaytimeTimerAmount;
@@ -28,7 +28,10 @@ public class GameManager : MonoBehaviour
     public float EagleEyeAmount;
 
 
-
+    [Header ("Health & Energy")]
+    public float HealthAmount;
+    public float EnergyAmount; 
+    public float ForestSwoopReplenish;
 
 
 
@@ -46,9 +49,29 @@ public class GameManager : MonoBehaviour
     }
 
 
+    public void MinusHealth(float amount){
+        HealthAmount = HealthAmount - amount;
+        Mathf.Clamp(HealthAmount, 0f, 1f);
+        uxManager.HealthBar.fillAmount = HealthAmount;
+    }
 
+    public void PlusHealth(float amount){
+        HealthAmount = HealthAmount + amount;
+        Mathf.Clamp(HealthAmount, 0f, 1f);
+        uxManager.HealthBar.fillAmount = HealthAmount;
+    }
 
+    public void MinusEnergy(float amount){
+        EnergyAmount = EnergyAmount - amount;
+        Mathf.Clamp(EnergyAmount, 0f, 1f);
+        uxManager.EnergyBar.fillAmount = EnergyAmount;
+    }
 
+    public void PlusEnergy(float amount){
+        EnergyAmount = EnergyAmount + amount;
+        Mathf.Clamp(EnergyAmount, 0f, 1f);
+        uxManager.EnergyBar.fillAmount = EnergyAmount;
+    }
 
 }
 

@@ -5890,17 +5890,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab8b3a38db176f409e98a0a4b19fb30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uxManager: {fileID: 5866262156395003864}
   DaytimeTimerAmount: 300
   playerSpeed: 10
   jumpHeight: 2
   gravityValue: -39.81
-  dragonSpeed: 2
-  dragonRotateSpeed: 2
+  dragonSpeed: 400
+  dragonRotateSpeed: 25
   baseResourceAmount: 5
   totalWood: 0
   totalRock: 0
   totalFish: 0
   EagleEyeAmount: 0
+  HealthAmount: 1
+  EnergyAmount: 1
+  ForestSwoopReplenish: 0.05
 --- !u!114 &5866262156395003864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5952,7 +5956,14 @@ MonoBehaviour:
   - The day begins again
   - Gather resources before the day ends
   - Use resources to influence the villagers
+  - Use resources to influence the villagers
+  - Use resources to influence the villagers
+  - Use resources to influence the villagers
+  - Use resources to influence the villagers
+  - Use resources to influence the villagers
   eagleEyeFill: {fileID: 3578243261474335243}
+  HealthBar: {fileID: 6733075064066172724}
+  EnergyBar: {fileID: 2192051380807653949}
 --- !u!82 &1913798261
 AudioSource:
   m_ObjectHideFlags: 0

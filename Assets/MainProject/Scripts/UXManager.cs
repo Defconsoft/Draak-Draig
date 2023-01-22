@@ -46,6 +46,10 @@ public class UXManager : MonoBehaviour
     [Header ("Dragon Stuff")]
     public Image eagleEyeFill;
 
+    [Header ("Health Stuff")]
+    public Image HealthBar;
+    public Image EnergyBar;
+
 
 
 
@@ -57,6 +61,8 @@ public class UXManager : MonoBehaviour
         RockCount.text = "Rock: " + gameManager.totalRock;
         FishCount.text = "Fish: " + gameManager.totalFish;
         WoodCount.text = "Wood: " + gameManager.totalWood;
+        HealthBar.fillAmount = gameManager.HealthAmount;
+        EnergyBar.fillAmount = gameManager.EnergyAmount;
     }
 
 
@@ -80,7 +86,8 @@ public class UXManager : MonoBehaviour
             FadeOutCanvasGrp(MainMenuGrp, 2f);
         } else if (SceneNo == 2 && !loadResourceLevelOnce) {
             loadResourceLevelOnce = true;
-        }
+        } 
+        
         yield return new WaitForSeconds (3f);
         scene.allowSceneActivation = true; //Loads the scene in
         FadeInCanvasGrp (QuoteTextGrp, 3f);
