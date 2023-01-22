@@ -43,6 +43,17 @@ public class DragonController : MonoBehaviour
     [SerializeField] private float eagleAmount = 1f;
     [SerializeField] private CanvasGroup aimReticle;
 
+    [Header ("Animation stuff")]
+    public Animator anim;
+    public float flapFrequency = 0.01f;
+    private float timeSinceFlap = 0f;
+    private float tiltMin = -1f;
+    private float tiltMax = 1f;
+    private float tiltIncrement = 0.1f;
+    private float tilt = 0f;
+    private Animator tempAnim;
+
+
     private void Awake() {
         controls = new PlayerControls();
     }
@@ -70,8 +81,8 @@ public class DragonController : MonoBehaviour
         dragonSpeed = gameManager.dragonSpeed;
         rotateSpeed = gameManager.dragonRotateSpeed;
 
-
-
+        // Set anim correctly
+        anim.SetFloat("Tilt", tilt);
     }
 
 
@@ -99,6 +110,7 @@ public class DragonController : MonoBehaviour
 
 
             if (inputManager.DragonSwoopedThisFrame()) {
+                anim.SetTrigger("Swoop");
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Camera.main.transform.position);
 
@@ -115,13 +127,17 @@ public class DragonController : MonoBehaviour
                         tempDragonModel = tempPig.GetComponent<ForestSwoopAI>().dragonModel;
                         tempPigModel = tempPig.GetComponent<ForestSwoopAI>().pigModel;
                         tempEndSpot = tempPig.GetComponent<ForestSwoopAI>().endSpot;
+                        tempAnim = tempDragonModel.GetComponent<Animator>();
 
                         StartCoroutine (KillAnimate());
                     } else {
                         Debug.Log ("MISSED");
                     }
                 }
-
+            }
+            else
+            {
+                anim.ResetTrigger("Swoop");
             }
         }
 
@@ -139,11 +155,47 @@ public class DragonController : MonoBehaviour
     
             if (Input.GetKey(KeyCode.A))
             {
+                if (tilt > tiltMin){
+                    tilt -= tiltIncrement;
+                }
+                anim.SetFloat("Tilt", tilt);
                 transform.RotateAround(transform.position, -Vector3.up, rotateSpeed * Time.deltaTime);
+                timeSinceFlap = 0f; // no flapping when tilting
             } 
             else if (Input.GetKey(KeyCode.D))
             {
+                if (tilt < tiltMax){
+                    tilt += tiltIncrement;
+                }
+                anim.SetFloat("Tilt", tilt);
                 transform.RotateAround(transform.position, Vector3.up, rotateSpeed * Time.deltaTime);
+                timeSinceFlap = 0f; // no flapping when tilting
+            }
+            else
+            {
+                // No input means we can start tilting back to base
+                if (tilt > 0.01f)
+                {
+                    tilt -= tiltIncrement;
+                    anim.SetFloat("Tilt", tilt);
+                }
+                else if (tilt < -0.01f)
+                {
+                    tilt += tiltIncrement;
+                    anim.SetFloat("Tilt", tilt);
+                }
+                else
+                {
+                    tilt = 0f;
+                    anim.SetFloat("Tilt", tilt);
+                }
+                timeSinceFlap += 1f;
+                if (timeSinceFlap >= 1f/flapFrequency)
+                {
+                    anim.SetTrigger("FlapWings");
+                    Debug.Log("Flapping wings");
+                    timeSinceFlap = 0f;
+                }
             }     
 
 
@@ -178,6 +230,7 @@ public class DragonController : MonoBehaviour
         tempKillCam.m_Priority = 40;
         yield return new WaitForSeconds (1f);
         tempDragonModel.SetActive(true);
+        tempAnim.SetTrigger("Swoop");
         tempDragonModel.transform.DOMove (tempPig.transform.position, 1f);
         Vector3 tempPos = new Vector3 (0, 0, tempPig.transform.position.z + 1f);
         yield return new WaitForSeconds (1f);
@@ -197,10 +250,7 @@ public class DragonController : MonoBehaviour
         uXManager.DragonGroupFade(1f);
         aimReticle.alpha = 1f;
         killing = false;
-
     }
-
-
 
 
     private void DecreaseEagleAmount(){
