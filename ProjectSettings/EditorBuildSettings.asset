@@ -20,22 +20,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MainProject/Scenes/Village.unity
     guid: 9e774cf9eb39a8d4f93718c80a81a02e
-  - enabled: 1
+  - enabled: 0
     path: Assets/MainProject/Scenes/AnimalChase.unity
     guid: a164858c334c659409e43f8f28cb46d1
-  - enabled: 1
+  - enabled: 0
     path: Assets/MainProject/Scenes/CastleBattle.unity
     guid: 66903fcc90f97b84eb5a1226450139c2
   - enabled: 1
     path: Assets/MainProject/Scenes/ForestSwoop.unity
     guid: 4ec50ef48c1889444bba9e27bcb41dbf
-  - enabled: 1
+  - enabled: 0
     path: Assets/MainProject/Scenes/VillageAttack.unity
     guid: 5f67512cc290f5445aa20e636e60f1c2
-  - enabled: 1
+  - enabled: 0
     path: Assets/TestArea/AnoukTest.unity
     guid: 05542da4da8afd949b1f0ee332eb11e3
-  - enabled: 1
+  - enabled: 0
     path: Assets/TestArea/RobTest.unity
     guid: 48cb7ac9a3551b14389850d1395250ad
   m_configObjects: {}
