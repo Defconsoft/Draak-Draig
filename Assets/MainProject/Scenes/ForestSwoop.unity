@@ -130,6 +130,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1031676184821561858, guid: 4f8800ce7179f4d4babc37dcfd0d619b,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1099053525562472894, guid: 4f8800ce7179f4d4babc37dcfd0d619b,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3322823439636898148, guid: 4f8800ce7179f4d4babc37dcfd0d619b,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3563877087666104916, guid: 4f8800ce7179f4d4babc37dcfd0d619b,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787636348796883082, guid: 4f8800ce7179f4d4babc37dcfd0d619b,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228973208206686301, guid: 4f8800ce7179f4d4babc37dcfd0d619b,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8132054055132800015, guid: 4f8800ce7179f4d4babc37dcfd0d619b,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8188956017973621559, guid: 4f8800ce7179f4d4babc37dcfd0d619b,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8437254949378967833, guid: 4f8800ce7179f4d4babc37dcfd0d619b,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -157,14 +197,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8437254949437400392, guid: 4f8800ce7179f4d4babc37dcfd0d619b,
         type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 23843190}
+    - target: {fileID: 8437254949437400392, guid: 4f8800ce7179f4d4babc37dcfd0d619b,
+        type: 3}
       propertyPath: TopDownCam
       value: 
       objectReference: {fileID: 1404674226}
     - target: {fileID: 8437254949437400392, guid: 4f8800ce7179f4d4babc37dcfd0d619b,
         type: 3}
+      propertyPath: rotateSpeed
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437254949437400392, guid: 4f8800ce7179f4d4babc37dcfd0d619b,
+        type: 3}
       propertyPath: targetCursor
       value: 
       objectReference: {fileID: 828219626}
+    - target: {fileID: 8437254949437400392, guid: 4f8800ce7179f4d4babc37dcfd0d619b,
+        type: 3}
+      propertyPath: flapFrequency
+      value: 0.005
+      objectReference: {fileID: 0}
     - target: {fileID: 8437254950288703230, guid: 4f8800ce7179f4d4babc37dcfd0d619b,
         type: 3}
       propertyPath: m_Name
@@ -225,9 +280,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8942937902051152402, guid: 4f8800ce7179f4d4babc37dcfd0d619b,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8437254951171758064, guid: 4f8800ce7179f4d4babc37dcfd0d619b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4f8800ce7179f4d4babc37dcfd0d619b, type: 3}
+--- !u!1 &23843189 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8779291922498394120, guid: 4f8800ce7179f4d4babc37dcfd0d619b,
+    type: 3}
+  m_PrefabInstance: {fileID: 23843188}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &23843190
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23843189}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b8459c8a9bb91e04da0a88e7d93e6849, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &60305818
 GameObject:
   m_ObjectHideFlags: 0

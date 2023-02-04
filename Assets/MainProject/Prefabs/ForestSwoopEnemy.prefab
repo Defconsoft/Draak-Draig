@@ -499,6 +499,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -8571313198046185653, guid: 6985dd7f0df1b8e42b1c1a93eea3a7c1,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -8565945914472612044, guid: 6985dd7f0df1b8e42b1c1a93eea3a7c1,
         type: 3}
       propertyPath: m_Layer
@@ -629,6 +634,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -4790090844818006780, guid: 6985dd7f0df1b8e42b1c1a93eea3a7c1,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4698063429540555340, guid: 6985dd7f0df1b8e42b1c1a93eea3a7c1,
         type: 3}
       propertyPath: m_Layer
@@ -648,6 +658,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -4295789760786870515, guid: 6985dd7f0df1b8e42b1c1a93eea3a7c1,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4073916955683808061, guid: 6985dd7f0df1b8e42b1c1a93eea3a7c1,
         type: 3}
@@ -769,6 +784,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 338371062446773870, guid: 6985dd7f0df1b8e42b1c1a93eea3a7c1,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 418266039290364246, guid: 6985dd7f0df1b8e42b1c1a93eea3a7c1,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 527473507210261654, guid: 6985dd7f0df1b8e42b1c1a93eea3a7c1,
         type: 3}
       propertyPath: m_Layer
@@ -884,6 +909,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4721819278214526419, guid: 6985dd7f0df1b8e42b1c1a93eea3a7c1,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4785700389179831466, guid: 6985dd7f0df1b8e42b1c1a93eea3a7c1,
         type: 3}
       propertyPath: m_Layer
@@ -964,6 +994,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6560105272173528125, guid: 6985dd7f0df1b8e42b1c1a93eea3a7c1,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6630668333336187512, guid: 6985dd7f0df1b8e42b1c1a93eea3a7c1,
         type: 3}
       propertyPath: m_Layer
@@ -1009,10 +1044,20 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 8815719266171919591, guid: 6985dd7f0df1b8e42b1c1a93eea3a7c1,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8825146158552554558, guid: 6985dd7f0df1b8e42b1c1a93eea3a7c1,
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882900199130849115, guid: 6985dd7f0df1b8e42b1c1a93eea3a7c1,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6985dd7f0df1b8e42b1c1a93eea3a7c1, type: 3}
@@ -1028,3 +1073,23 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8227362192897077471}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &6482476755569469813
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9145719591154404750}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b8459c8a9bb91e04da0a88e7d93e6849, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
