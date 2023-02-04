@@ -11,6 +11,7 @@ public class ForestSwoopManager : MonoBehaviour
     public int currentNumberEnemies;
     public GameObject enemyPrefab;
     private Vector3 spawnPosition;
+    private Vector3 randomPosition;
     private bool initialSpawn;
 
     public Vector3 centre;
@@ -43,14 +44,16 @@ public class ForestSwoopManager : MonoBehaviour
    
     private void SpawnEnemies(){
 
-        spawnPosition = (transform.localPosition + centre) + new Vector3 (Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
+        randomPosition = (transform.localPosition + centre) + new Vector3 (Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
 
         RaycastHit hit;
-        Ray ray = new Ray (spawnPosition, Vector3.down);
+        Ray ray = new Ray (randomPosition, Vector3.down);
         Physics.Raycast (ray, out hit);
 
         if (hit.collider.tag =="forestGround") {
             spawnPosition = hit.point;
+        } else {
+            return;
         }
 
         GameObject clone = Instantiate (enemyPrefab, spawnPosition, Quaternion.identity);
