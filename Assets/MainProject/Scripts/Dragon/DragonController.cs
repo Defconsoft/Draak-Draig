@@ -106,36 +106,24 @@ public class DragonController : MonoBehaviour
                 IncreaseEagleAmount();
             }
 
-            uXManager.SetEagleEyeAmount(eagleAmount);
+        
+
+        
+
+        if (inputManager.DragonSwoopedThisFrame()) {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Camera.main.transform.position);
 
 
+            
 
-            if (inputManager.DragonSwoopedThisFrame()) {
-                tilt = 0f;
-                anim.SetFloat("Tilt", tilt);
-                anim.SetTrigger("Swoop");
-                RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(Camera.main.transform.position);
 
-                if (Physics.Raycast (Camera.main.transform.position, Camera.main.transform.forward * 100f, out hit)) {
-                    Debug.DrawRay (Camera.main.transform.position, Camera.main.transform.forward * 100f, Color.red);
-                    if (hit.collider.gameObject.tag == "forestHit") {
-                        hit.collider.gameObject.transform.parent.gameObject.GetComponent<ForestSwoopAI>().caught = true;
-                        hit.collider.gameObject.transform.parent.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-
-                        //grab the stuff I need
-                        tempPig = hit.collider.gameObject.transform.parent.gameObject;
-                        tempPig.GetComponent<ForestSwoopAI>().SetAnim(1);
-                        tempKillCam = tempPig.GetComponent<ForestSwoopAI>().KillCam;
-                        tempDragonModel = tempPig.GetComponent<ForestSwoopAI>().dragonModel;
-                        tempPigModel = tempPig.GetComponent<ForestSwoopAI>().pigModel;
-                        tempEndSpot = tempPig.GetComponent<ForestSwoopAI>().endSpot;
-                        tempAnim = tempDragonModel.GetComponent<Animator>();
-
-                        StartCoroutine (KillAnimate());
-                    } else {
-                        Debug.Log ("MISSED");
-                    }
+            if (Physics.Raycast (Camera.main.transform.position, Camera.main.transform.forward * 100f, out hit)) {
+                Debug.DrawRay (Camera.main.transform.position, Camera.main.transform.forward * 100f, Color.red);
+                if (hit.collider.gameObject.tag == "forestHit") {
+                    Debug.Log ("GOT HIM");
+                } else {
+                    Debug.Log ("MISSED");
                 }
             }
             else
