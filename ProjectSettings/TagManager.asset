@@ -8,6 +8,7 @@ TagManager:
   - fishingLineTip
   - forestGround
   - forestHit
+  - forestStorm
   layers:
   - Default
   - TransparentFX

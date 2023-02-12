@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(Rigidbody))]
 public class DragonController : MonoBehaviour
@@ -36,6 +38,12 @@ public class DragonController : MonoBehaviour
     private GameObject tempEndSpot;
     private bool hpFlip;
     private bool loadingVillageAttack;
+    private bool stormDamageActive;
+    public Volume volume;
+    Vignette vignette;
+    PaniniProjection paniniProjection;
+    bool takingDamage;
+    public float stormDelay;
 
     [SerializeField] private float dragonSpeed = 2.0f;
     [SerializeField] private float rotateSpeed = 2.0f;
@@ -77,7 +85,8 @@ public class DragonController : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         uXManager = GameObject.Find("GameManager").GetComponent<UXManager>();
         mainCamBrain = Camera.main.GetComponent<CinemachineBrain>();
-
+        volume.profile.TryGet<Vignette>(out vignette);
+        volume.profile.TryGet<PaniniProjection>(out paniniProjection);
         //Grabs the  variables from the Game Manager
         dragonSpeed = gameManager.dragonSpeed;
         rotateSpeed = gameManager.dragonRotateSpeed;
@@ -143,6 +152,26 @@ public class DragonController : MonoBehaviour
                 anim.ResetTrigger("Swoop");
             }
         }
+
+
+        if (stormDamageActive) {
+            vignette.intensity.value = Mathf.PingPong (Time.time * 2, 0.5f);
+            paniniProjection.distance.value = Mathf.PingPong (Time.time * 2, 1);
+            if (!takingDamage){
+                StartCoroutine(TakeStormDamage());
+            }
+
+
+
+        } else {
+            vignette.intensity.value = Mathf.MoveTowards (vignette.intensity.value , 0f, 0.2f * Time.deltaTime);
+            paniniProjection.distance.value = Mathf.MoveTowards (paniniProjection.distance.value , 0.1f, 0.2f * Time.deltaTime);
+        }
+
+        if (gameManager.HealthAmount == 0) {
+            //DO SOME END GAME STUFF
+        }
+
 
 
     }
@@ -267,6 +296,30 @@ public class DragonController : MonoBehaviour
         yield return new WaitForSeconds(eagleBlendTime);
         mainCamBrain.m_DefaultBlend.m_Time = 1f;
     }
+
+
+    private void OnTriggerExit(Collider other) {
+        if (other.gameObject.tag == "forestStorm") {
+            stormDamageActive = true;
+        }
+    }
+
+        private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == "forestStorm") {
+            stormDamageActive = false;
+        }
+    }
+
+
+    IEnumerator TakeStormDamage(){
+        takingDamage = true;
+        gameManager.MinusHealth(gameManager.ForestSwoopReplenish);
+        yield return new WaitForSeconds (stormDelay);
+        takingDamage = false;
+    }
+
+
+
 
 
 }
