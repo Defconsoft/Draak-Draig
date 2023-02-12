@@ -243,7 +243,7 @@ public class DragonController : MonoBehaviour
             if (!loadingVillageAttack){
             loadingVillageAttack = true;
             uXManager.DragonGroupFade(0f);
-            StartCoroutine(uXManager.LoadYourAsyncScene(7));
+            uXManager.LoadScene(7);
             }
         }
 
