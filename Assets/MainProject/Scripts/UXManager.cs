@@ -73,6 +73,16 @@ public class UXManager : MonoBehaviour
         //Set the quote and instructions text;
         DebugMenu.enabled = false;
         SetQuoteText(SceneNo);
+
+        //Sorts main menu interaction
+        if (SceneNo > 0) {
+            MainMenuGrp.blocksRaycasts = false;
+        } else {
+            MainMenuGrp.blocksRaycasts = true;
+        }        
+
+
+
         StartCoroutine(LoadYourAsyncScene(SceneNo));
     }
 
@@ -93,7 +103,6 @@ public class UXManager : MonoBehaviour
         while (!sceneDone.isDone)
         {
             yield return null;
-            Debug.Log ("HERE");
         }
         
         //wait 3 seconds then fade out the quote
@@ -101,6 +110,9 @@ public class UXManager : MonoBehaviour
         FadeOutCanvasGrp(QuoteTextGrp, 2f);
 
         //This is the level specific 
+
+
+
 
         //if Main menu fade out the Top Bar Group
         if (SceneNo > 0 && SceneNo < 8) {
@@ -132,7 +144,7 @@ public class UXManager : MonoBehaviour
         //castle attack scene
         if (SceneNo == 5) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
-            StartCoroutine (TempSceneWait(SceneNo + 1)); //REMOVE ME WHEN DONE
+            //StartCoroutine (TempSceneWait(SceneNo + 1)); //REMOVE ME WHEN DONE
         }
 
         //forest swoop scene
