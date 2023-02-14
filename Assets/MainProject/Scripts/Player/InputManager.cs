@@ -66,11 +66,11 @@ public class InputManager : MonoBehaviour
         return playerControls.Dragon.MouseLook.ReadValue<Vector2>();
     }
 
-    public bool DragonSwoopedThisFrame() {
+    public bool DragonLeftClickThisFrame() {
         return playerControls.Dragon.LeftMouse.triggered;
     }
 
-    public bool DragonEagleThisFrame() {
+    public bool DragonRightClickThisFrame() {
         return playerControls.Dragon.RightMouse.triggered;
     }
 

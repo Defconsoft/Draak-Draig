@@ -13,10 +13,10 @@ public class ShootProjectile : MonoBehaviour
 
     void Start()
     {
-        if (direction == new Vector3(0,0,0))
+/*         if (direction == new Vector3(0,0,0))
         {
             direction = throwpoint.forward;
-        }
+        } */
     }
 
     void OnEnable()

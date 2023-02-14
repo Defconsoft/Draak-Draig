@@ -119,7 +119,7 @@ public class DragonController : MonoBehaviour
 
 
 
-            if (inputManager.DragonSwoopedThisFrame()) {
+            if (inputManager.DragonLeftClickThisFrame()) {
                 tilt = 0f;
                 anim.SetFloat("Tilt", tilt);
                 anim.SetTrigger("Swoop");

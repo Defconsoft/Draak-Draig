@@ -17,7 +17,7 @@ TagManager:
   - Water
   - UI
   - NotMiniMap
-  - 
+  - CastleTarget
   - Reflection_Probes
   - Lighting
   - Props
@@ -45,4 +45,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Target
+    uniqueID: 3450321685
     locked: 0
