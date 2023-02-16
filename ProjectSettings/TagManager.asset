@@ -9,6 +9,7 @@ TagManager:
   - forestGround
   - forestHit
   - forestStorm
+  - CastleEnemy
   layers:
   - Default
   - TransparentFX

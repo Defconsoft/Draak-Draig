@@ -9,16 +9,26 @@ public class Fireball : MonoBehaviour
     public GameObject projectile;
     public VisualEffect fireTrail;
     private Rigidbody rb;
+    private bool oneHit;
 
     void Start()
     {
         explosion = GetComponent<VisualEffect>();
         rb = GetComponent<Rigidbody>();
     }
+
+    private void OnTriggerEnter(Collider other) {
+
+        if (other.tag == "CastleEnemy" && !oneHit){
+            oneHit = true;
+            other.gameObject.GetComponent<CastleAttackAI>().Dead = true;
+        }        
+    }
     
     void OnCollisionEnter(Collision collision)
     {
         Explode();
+
     }
 
     private void Explode()
