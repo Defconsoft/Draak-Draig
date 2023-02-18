@@ -10,11 +10,13 @@ public class Fireball : MonoBehaviour
     public VisualEffect fireTrail;
     private Rigidbody rb;
     private bool oneHit;
+    private CastleBattleController castleController;
 
     void Start()
     {
         explosion = GetComponent<VisualEffect>();
         rb = GetComponent<Rigidbody>();
+        castleController = GameObject.Find("CastleManager").GetComponent<CastleBattleController>();
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -22,11 +24,21 @@ public class Fireball : MonoBehaviour
         if (other.tag == "CastleEnemy" && !oneHit){
             oneHit = true;
             other.gameObject.GetComponent<CastleAttackAI>().Dead = true;
-        }        
+        } 
+       
+        Explode();       
     }
     
     void OnCollisionEnter(Collision collision)
     {
+
+        if (collision.gameObject.tag == "Barrel") {
+            castleController.barrelExplosionPoint = collision.gameObject.transform;    
+            StartCoroutine (castleController.BarrelNuke());
+            Destroy(collision.gameObject);
+
+        }
+
         Explode();
 
     }

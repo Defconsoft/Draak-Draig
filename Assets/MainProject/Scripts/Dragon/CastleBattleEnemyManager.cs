@@ -11,12 +11,16 @@ public class CastleBattleEnemyManager : MonoBehaviour
     public GameObject EnemySpawnpoint;
 
     public GameObject enemyObject;
-
+    private GameObject EnemyContainer;
+    
     public float maxSpawnTimeWait;
 
     public bool hasEnemy;
 
 
+    private void Start() {
+        EnemyContainer = GameObject.Find("EnemyContainer");
+    }
 
 
     private void Update() {
@@ -39,6 +43,7 @@ public class CastleBattleEnemyManager : MonoBehaviour
         GameObject enemy = Instantiate (enemyObject, EnemySpawnpoint.transform.position, Quaternion.identity);
         enemy.GetComponent<CastleAttackAI>().destination = transform;
         enemy.GetComponent<CastleAttackAI>().enemyManager = this;
+        enemy.transform.parent = EnemyContainer.transform;
         if (maxSpawnTimeWait > 0) {maxSpawnTimeWait--;} //reduce the timer
 
 

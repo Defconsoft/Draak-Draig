@@ -12,8 +12,13 @@ public class CastleAttackAI : MonoBehaviour
     private Transform dragonPos;
     private float rotationSpeed = 10f;
     public CastleBattleEnemyManager enemyManager;
+    public GameObject firePoint;
+    public GameObject projectile;
+    public float fireDelay;
+    private GameObject Trashcan;
 
     bool Shootable;
+    bool canShoot;
 
     public bool Dead;
 
@@ -25,6 +30,7 @@ public class CastleAttackAI : MonoBehaviour
         dragonPos = GameObject.Find("dragonPerched").transform;
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination (destination.position);
+        Trashcan = GameObject.Find("Trashcan");
     }
 
     // Update is called once per frame
@@ -32,7 +38,7 @@ public class CastleAttackAI : MonoBehaviour
     {
         
 
-
+        //Walking
         if (!agent.pathPending)
         {
             if (agent.remainingDistance <= agent.stoppingDistance)
@@ -42,13 +48,24 @@ public class CastleAttackAI : MonoBehaviour
                 {
                     agent.isStopped = true;
                     Shootable = true;
+        
                 }
             }
         }
 
+        //Dieing
         if (Dead) {
             StartCoroutine(Death());
-        }        
+        } 
+
+
+        //Shooting
+
+        if (Shootable && canShoot == false) {
+            StartCoroutine(ShootArrow());
+        }
+
+
 
     }
 
@@ -64,6 +81,16 @@ public class CastleAttackAI : MonoBehaviour
         enemyManager.hasEnemy = false;
         yield return new WaitForSeconds (1f);
         Destroy(gameObject);
+    }
+
+
+    IEnumerator ShootArrow(){
+        canShoot = true;
+        yield return new WaitForSeconds (Random.Range (2f, 6f));
+        GameObject arrow = Instantiate (projectile, firePoint.transform.position, Quaternion.identity);
+        arrow.transform.parent = Trashcan.transform;
+        yield return new WaitForSeconds (fireDelay);
+        canShoot = false;
     }
 
 }

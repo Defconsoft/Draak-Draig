@@ -9,10 +9,23 @@ public class CastleBattleController : MonoBehaviour
     private Camera mainCamera;
     [SerializeField] private GameObject Dragon;
     private InputManager inputManager;
-
+    private GameManager gameManager;
+    private UXManager uxManager;
 
     public GameObject FireballEvent;
     public GameObject FlameThrowerEvent;
+    public GameObject EnemyManager;
+    public float enemyStartDelay;
+    private GameObject Trashcan;
+    private GameObject EnemyContainer;
+
+    public GameObject BarrelSpawner;
+    public GameObject BarrelAI;
+    public bool BarrelLive;
+    public Transform barrelExplosionPoint;
+    public GameObject explosionEffect;
+
+    bool EndGame;
 
 
     // Start is called before the first frame update
@@ -21,7 +34,10 @@ public class CastleBattleController : MonoBehaviour
         mainCamera = Camera.main;
         Cursor.visible = false;
         inputManager = InputManager.Instance;
-
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        uxManager = GameObject.Find("GameManager").GetComponent<UXManager>();
+        Trashcan = GameObject.Find("Trashcan");
+        StartCoroutine (StartEnemies());
 
 
     }
@@ -47,10 +63,53 @@ public class CastleBattleController : MonoBehaviour
            //This will be the flame thrower
         }
 
+        if (gameManager.HealthAmount <= 0.25f && EndGame == false) {
+            EndGame = true;
+            foreach (Transform child in Trashcan.transform) {
+                Destroy(child.gameObject);
+            }
+            uxManager.LoadScene(6);
+        }
+
+
+        if (!BarrelLive) {
+            BarrelLive = true;
+            StartCoroutine (SpawnBarrel());
+        }
+
     }
 
     private void LateUpdate() {
         transform.LookAt(mainCamera.transform);
         transform.Rotate(0, 180, 0);
     }
+
+
+    IEnumerator StartEnemies() {
+        yield return new WaitForSeconds (enemyStartDelay);
+        EnemyManager.SetActive (true);
+    }
+
+
+    IEnumerator SpawnBarrel() {
+        yield return new WaitForSeconds (10f);
+        GameObject BarrelPig = Instantiate (BarrelAI, BarrelSpawner.transform.position, Quaternion.identity);
+        
+    }
+
+    public IEnumerator BarrelNuke() {
+        GameObject explosion = Instantiate (explosionEffect, barrelExplosionPoint.position, Quaternion.identity);
+        EnemyContainer = GameObject.Find("EnemyContainer");
+        yield return new WaitForSeconds (0.5f);
+        foreach (Transform child in EnemyContainer.transform) {
+            child.gameObject.GetComponent<CastleAttackAI>().Dead = true;
+        }
+        BarrelLive = false;
+        
+        
+    }
+
+
+
+
 }

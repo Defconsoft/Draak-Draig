@@ -33,6 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8514812215419876156}
+  - {fileID: 8671991208088168496}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -88,6 +89,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destination: {fileID: 0}
   enemyManager: {fileID: 0}
+  firePoint: {fileID: 5912140522279489803}
+  projectile: {fileID: 2400862406322126474, guid: 2da4af69dabee0846a54cc1d9acf7bb3,
+    type: 3}
+  fireDelay: 10
   Dead: 0
 --- !u!136 &2734749589933089557
 CapsuleCollider:
@@ -103,6 +108,37 @@ CapsuleCollider:
   m_Height: 2.8595266
   m_Direction: 1
   m_Center: {x: 0, y: 1.464988, z: 0}
+--- !u!1 &5912140522279489803
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8671991208088168496}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8671991208088168496
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5912140522279489803}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.2069, y: 2.278, z: 0.8056}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8190216240174129462}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5837342206467279479
 PrefabInstance:
   m_ObjectHideFlags: 0

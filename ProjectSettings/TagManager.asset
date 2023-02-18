@@ -10,6 +10,9 @@ TagManager:
   - forestHit
   - forestStorm
   - CastleEnemy
+  - Dragon
+  - BarrelTrigger
+  - Barrel
   layers:
   - Default
   - TransparentFX
