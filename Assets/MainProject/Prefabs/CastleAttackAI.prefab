@@ -47,7 +47,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 6.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -92,7 +92,7 @@ MonoBehaviour:
   firePoint: {fileID: 5912140522279489803}
   projectile: {fileID: 2400862406322126474, guid: 2da4af69dabee0846a54cc1d9acf7bb3,
     type: 3}
-  fireDelay: 10
+  fireDelay: 4
   Dead: 0
 --- !u!136 &2734749589933089557
 CapsuleCollider:
