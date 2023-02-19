@@ -22,6 +22,9 @@ public class CastleAttackAI : MonoBehaviour
 
     public bool Dead;
 
+    [Header ("Animation stuff")]
+    private Animator anim;
+
 
 
     // Start is called before the first frame update
@@ -31,6 +34,8 @@ public class CastleAttackAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination (destination.position);
         Trashcan = GameObject.Find("Trashcan");
+        anim = GetComponentInChildren<Animator>();
+        anim.SetBool("IsSprinting", true);
     }
 
     // Update is called once per frame
@@ -49,6 +54,7 @@ public class CastleAttackAI : MonoBehaviour
                 //ANIMATION//////////////////////////////////////
                 //Need to stop walking and stand in idle.
                 /////////////////////////////////////////////////
+                anim.SetBool("IsSprinting", false);
 
                 RotateTowards(dragonPos);
                 if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
@@ -89,7 +95,8 @@ public class CastleAttackAI : MonoBehaviour
         //ANIMATION//////////////////////////////////////
         //Play death anim. Alter the delay below to the length.
         /////////////////////////////////////////////////   
-        yield return new WaitForSeconds (1f);
+        anim.SetTrigger("Dead");
+        yield return new WaitForSeconds (1.6f);
         Destroy(gameObject);
     }
 
@@ -101,8 +108,10 @@ public class CastleAttackAI : MonoBehaviour
         arrow.transform.parent = Trashcan.transform;
         //ANIMATION//////////////////////////////////////
         //Can play the fire arrow animation here. Alter the fireDelay to be the length of the animation.
-        /////////////////////////////////////////////////        
+        /////////////////////////////////////////////////
+        anim.SetBool("IsShooting", true);        
         yield return new WaitForSeconds (fireDelay);
+        anim.SetBool("IsShooting", false);
         canShoot = false;
     }
 
