@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "com.antonysze.custom-play-button": "file:D:/WebStuff/GameAssets/ToolbarExtender/unity-custom-play-button-main",
+    "com.marijnzwemmer.unity-toolbar-extender": "file:D:/WebStuff/GameAssets/ToolbarExtender/unity-toolbar-extender-master",
     "com.unity.ai.navigation": "1.0.0-exp.4",
     "com.unity.burst": "1.6.6",
     "com.unity.cinemachine": "2.9.2",

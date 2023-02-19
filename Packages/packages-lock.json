@@ -1,5 +1,17 @@
 {
   "dependencies": {
+    "com.antonysze.custom-play-button": {
+      "version": "file:D:/WebStuff/GameAssets/ToolbarExtender/unity-custom-play-button-main",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
+    "com.marijnzwemmer.unity-toolbar-extender": {
+      "version": "file:D:/WebStuff/GameAssets/ToolbarExtender/unity-toolbar-extender-master",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.ai.navigation": {
       "version": "1.0.0-exp.4",
       "depth": 0,
