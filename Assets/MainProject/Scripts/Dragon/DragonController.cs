@@ -44,6 +44,7 @@ public class DragonController : MonoBehaviour
     PaniniProjection paniniProjection;
     bool takingDamage;
     public float stormDelay;
+    public Canvas StormWarning;
 
     [SerializeField] private float dragonSpeed = 2.0f;
     [SerializeField] private float rotateSpeed = 2.0f;
@@ -156,16 +157,15 @@ public class DragonController : MonoBehaviour
 
         if (stormDamageActive) {
             vignette.intensity.value = Mathf.PingPong (Time.time * 2, 0.5f);
-            paniniProjection.distance.value = Mathf.PingPong (Time.time * 2, 1);
+            //paniniProjection.distance.value = Mathf.PingPong (Time.time * 2, 1);
+            StormWarning.enabled = true;            
             if (!takingDamage){
                 StartCoroutine(TakeStormDamage());
             }
-
-
-
         } else {
             vignette.intensity.value = Mathf.MoveTowards (vignette.intensity.value , 0f, 0.2f * Time.deltaTime);
-            paniniProjection.distance.value = Mathf.MoveTowards (paniniProjection.distance.value , 0.1f, 0.2f * Time.deltaTime);
+            //paniniProjection.distance.value = Mathf.MoveTowards (paniniProjection.distance.value , 0.1f, 0.2f * Time.deltaTime);
+            StormWarning.enabled = false;
         }
 
         if (gameManager.HealthAmount == 0) {
