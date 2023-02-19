@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class CastleBattleController : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class CastleBattleController : MonoBehaviour
     public bool BarrelLive;
     public Transform barrelExplosionPoint;
     public GameObject explosionEffect;
-
+    
     bool EndGame;
 
 
