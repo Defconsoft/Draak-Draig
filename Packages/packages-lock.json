@@ -1,5 +1,18 @@
 {
   "dependencies": {
+    "com.antonysze.custom-play-button": {
+      "version": "file:C:/Users/aadut/Documents/Unity Projects/custom toolbar/unity-custom-play-button-main",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
+    "com.marijnzwemmer.unity-toolbar-extender": {
+      "version": "https://github.com/marijnz/unity-toolbar-extender.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "dbd76ed996483d219c39d240f785b1790aa039ed"
+    },
     "com.unity.ai.navigation": {
       "version": "1.0.0-exp.4",
       "depth": 0,
