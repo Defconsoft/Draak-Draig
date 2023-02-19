@@ -36,6 +36,9 @@ public class CastleAttackAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //ANIMATION//////////////////////////////////////
+        //Needs to be walking/running by default
+        /////////////////////////////////////////////////
         
 
         //Walking
@@ -43,6 +46,10 @@ public class CastleAttackAI : MonoBehaviour
         {
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
+                //ANIMATION//////////////////////////////////////
+                //Need to stop walking and stand in idle.
+                /////////////////////////////////////////////////
+
                 RotateTowards(dragonPos);
                 if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
                 {
@@ -79,6 +86,9 @@ public class CastleAttackAI : MonoBehaviour
     IEnumerator Death() {
         Dead = false;
         enemyManager.hasEnemy = false;
+        //ANIMATION//////////////////////////////////////
+        //Play death anim. Alter the delay below to the length.
+        /////////////////////////////////////////////////   
         yield return new WaitForSeconds (1f);
         Destroy(gameObject);
     }
@@ -89,6 +99,9 @@ public class CastleAttackAI : MonoBehaviour
         yield return new WaitForSeconds (Random.Range (2f, 6f));
         GameObject arrow = Instantiate (projectile, firePoint.transform.position, Quaternion.identity);
         arrow.transform.parent = Trashcan.transform;
+        //ANIMATION//////////////////////////////////////
+        //Can play the fire arrow animation here. Alter the fireDelay to be the length of the animation.
+        /////////////////////////////////////////////////        
         yield return new WaitForSeconds (fireDelay);
         canShoot = false;
     }
