@@ -95,8 +95,8 @@ public class CastleAttackAI : MonoBehaviour
         //ANIMATION//////////////////////////////////////
         //Play death anim. Alter the delay below to the length.
         /////////////////////////////////////////////////   
-        anim.SetBool("IsDead", true);
-        yield return new WaitForSeconds (3f);
+        anim.SetTrigger("Dead");
+        yield return new WaitForSeconds (1.6f);
         Destroy(gameObject);
     }
 
@@ -109,9 +109,9 @@ public class CastleAttackAI : MonoBehaviour
         //ANIMATION//////////////////////////////////////
         //Can play the fire arrow animation here. Alter the fireDelay to be the length of the animation.
         /////////////////////////////////////////////////
-        anim.SetTrigger("Shoot");        
+        anim.SetBool("IsShooting", true);        
         yield return new WaitForSeconds (fireDelay);
-        anim.ResetTrigger("Shoot");
+        anim.SetBool("IsShooting", false);
         canShoot = false;
     }
 
