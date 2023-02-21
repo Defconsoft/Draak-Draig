@@ -50,6 +50,7 @@ Material:
     - _HueChange: 0
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Saturation: 1
     - _detailNormalStrength: 0
     - _detailScale: 20
     - _mainNormalStrength: 0
