@@ -11,6 +11,11 @@ public class DialogManager : MonoBehaviour
     public Color normalColour;
     public Color selectedColour;
 
+    public void Start(){
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     public void OpenCustomizationDialog(int idx)
     {
         foreach (GameObject go in dialogList)

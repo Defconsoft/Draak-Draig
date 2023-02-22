@@ -14,6 +14,7 @@ public class ExitTrigger : MonoBehaviour
             other.gameObject.GetComponent<PlayerController>().nextScene = true;
             other.gameObject.GetComponent<PlayerController>().SceneToLoad = SceneToLoad;
             other.gameObject.GetComponent<PlayerController>().exitTrigger = MessageCanvas;
+            OSManager.SceneCanvasGrp = MessageCanvas.GetComponent<CanvasGroup>();
             OSManager.FadeInInstruction();
         }
     }
