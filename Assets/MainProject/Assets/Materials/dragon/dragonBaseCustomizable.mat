@@ -60,10 +60,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _HueChange: 0.4036003
+    - _HueChange: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Saturation: 2.0887108
+    - _Saturation: 1
     - _Value: -0.33
     - _detailNormalStrength: 0.25
     - _detailScale: 20
