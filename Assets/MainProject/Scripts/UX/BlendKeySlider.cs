@@ -10,7 +10,27 @@ public class BlendKeySlider : MonoBehaviour
 
     public int sizeKeyIdx = 1;
     public int squeezeKeyIdx = 0;
-    public int curveKeyIdx = 2;
+    public int curveKeyIdx = -1;
+    public Slider sizeSlider;
+    public Slider squeezeSlider;
+    public Slider curveSlider;
+    private float startSize;
+    private float startSqueeze;
+    private float startCurve;
+
+    void Awake()
+    {
+        startSize = skinnedMeshRenderer.GetBlendShapeWeight(sizeKeyIdx);
+        startSqueeze = skinnedMeshRenderer.GetBlendShapeWeight(squeezeKeyIdx);
+        if (curveKeyIdx != -1)
+        {
+            startCurve = skinnedMeshRenderer.GetBlendShapeWeight(curveKeyIdx);
+        }
+        else
+        {
+            startCurve = -1;
+        }        
+    }
 
     
     public void ApplySliderValueToBlendShapeSize(System.Single val)
@@ -27,5 +47,18 @@ public class BlendKeySlider : MonoBehaviour
     public void ApplySliderValueToBlendShapeCurve(System.Single val)
     {
         skinnedMeshRenderer.SetBlendShapeWeight(curveKeyIdx, val * 100f);
+    }
+
+    public void ResetShapes()
+    {
+        skinnedMeshRenderer.SetBlendShapeWeight(sizeKeyIdx, startSize);
+        sizeSlider.value = startSize / 100f;
+        skinnedMeshRenderer.SetBlendShapeWeight(squeezeKeyIdx, startSqueeze);
+        squeezeSlider.value = startSqueeze / 100f;
+        if (curveSlider != null)
+        {
+            skinnedMeshRenderer.SetBlendShapeWeight(curveKeyIdx,startCurve);
+            curveSlider.value = startCurve / 100f;
+        }
     }
 }

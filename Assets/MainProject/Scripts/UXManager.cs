@@ -263,7 +263,7 @@ public class UXManager : MonoBehaviour
                 break;
             case 8: //Go to customisation
                 QuoteTextBox.text = TextQuotes[8];
-                instructionText.text = instructions[8];
+                // instructionText.text = instructions[8];
                 break;
 
 

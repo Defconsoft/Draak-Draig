@@ -4,16 +4,21 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class DialogManager : MonoBehaviour
+public class CustomizationUIManager : MonoBehaviour
 {
     public GameObject[] dialogList;
     public GameObject[] buttonList;
     public Color normalColour;
     public Color selectedColour;
+    public ShaderCustomization[] shaderControls;
+    public ApplyColor[] colorControls;
+    public BlendKeySlider[] shapeControls;
+    private GameObject gameManager;
 
     public void Start(){
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        gameManager = GameObject.Find("GameManager");
     }
 
     public void OpenCustomizationDialog(int idx)
@@ -57,5 +62,29 @@ public class DialogManager : MonoBehaviour
     public void ChangeIconColour(Image img, Color col)
     {
         img.color = col;
+    }
+
+    public void SaveButton()
+    {
+        // TODO send values to game manager
+        gameManager.GetComponent<UXManager>().LoadScene(1);
+    }
+
+    public void CancelButton()
+    {
+        foreach (ShaderCustomization shader in shaderControls)
+        {
+            shader.ResetValues();
+        }
+        foreach (ApplyColor color in colorControls)
+        {
+            color.ResetColor();
+        }
+        foreach (BlendKeySlider shape in shapeControls)
+        {
+            shape.ResetShapes();
+        }
+        gameManager.GetComponent<UXManager>().LoadScene(1);
+        
     }
 }

@@ -607,6 +607,61 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5866262156395003866, guid: 6e46511cc679eef449937558531affce,
+        type: 3}
+      propertyPath: baseMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 5b29f65f7a87ace429ccfe04f9a0376b, type: 2}
+    - target: {fileID: 5866262156395003866, guid: 6e46511cc679eef449937558531affce,
+        type: 3}
+      propertyPath: eyesMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 878a14c62a5d1224cba98e1dd7e02d9c, type: 2}
+    - target: {fileID: 5866262156395003866, guid: 6e46511cc679eef449937558531affce,
+        type: 3}
+      propertyPath: platesMat
+      value: 
+      objectReference: {fileID: 2100000, guid: b10e3f5c73ac8c6459d36aef3726039f, type: 2}
+    - target: {fileID: 5866262156395003866, guid: 6e46511cc679eef449937558531affce,
+        type: 3}
+      propertyPath: webbingMat
+      value: 
+      objectReference: {fileID: 2100000, guid: a49780706261930478675da8e1171206, type: 2}
+    - target: {fileID: 5866262156395003866, guid: 6e46511cc679eef449937558531affce,
+        type: 3}
+      propertyPath: platesCol.b
+      value: 0.6431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866262156395003866, guid: 6e46511cc679eef449937558531affce,
+        type: 3}
+      propertyPath: platesCol.g
+      value: 0.8862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866262156395003866, guid: 6e46511cc679eef449937558531affce,
+        type: 3}
+      propertyPath: platesCol.r
+      value: 0.9607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866262156395003866, guid: 6e46511cc679eef449937558531affce,
+        type: 3}
+      propertyPath: webbingCol.b
+      value: 0.1254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866262156395003866, guid: 6e46511cc679eef449937558531affce,
+        type: 3}
+      propertyPath: webbingCol.g
+      value: 0.12941177
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866262156395003866, guid: 6e46511cc679eef449937558531affce,
+        type: 3}
+      propertyPath: webbingCol.r
+      value: 0.23137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866262156395003866, guid: 6e46511cc679eef449937558531affce,
+        type: 3}
+      propertyPath: startingTexEyes
+      value: 
+      objectReference: {fileID: 2800000, guid: 3f9d5e2b693ee154295286b593b458fb, type: 3}
     - target: {fileID: 5866262156395003867, guid: 6e46511cc679eef449937558531affce,
         type: 3}
       propertyPath: m_RootOrder

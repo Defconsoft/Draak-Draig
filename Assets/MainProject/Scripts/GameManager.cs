@@ -28,6 +28,23 @@ public class GameManager : MonoBehaviour
 
     [Header ("Dragon stuff")]
     public float EagleEyeAmount;
+    public Material eyesMat;
+    public Material baseMat;
+    public Material webbingMat;
+    public Material platesMat;
+    public Color webbingCol;
+    public Color platesCol;
+    public float startingHueEyes = 0f;
+    public float startingSatEyes = 1f;
+    public Texture startingTexEyes;
+    public float startingHueBase = 0f;
+    public float startingSatBase = 1f;
+    public float hornSize = 0f;
+    public float hornSqueeze = 0f;
+    public float hornCurve = 0f;
+    public float tailSize = 0f;
+    public float tailSqueeze = 0f;
+    public bool tailSpikeEnabled = true;
 
 
     [Header ("Health & Energy")]
@@ -48,6 +65,14 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
+
+        eyesMat.SetFloat("_HueChange", startingHueEyes);
+        eyesMat.SetFloat("_Saturation", startingSatEyes);
+        eyesMat.SetTexture("_baseTexture", startingTexEyes);
+        baseMat.SetFloat("_HueChange", startingHueBase);
+        baseMat.SetFloat("_Saturation", startingSatBase);
+        webbingMat.color = webbingCol;
+        platesMat.color = platesCol;
     }
 
 
