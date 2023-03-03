@@ -44,8 +44,8 @@ public class CastleBattleController : MonoBehaviour
         Trashcan = GameObject.Find("Trashcan");
         StartCoroutine (StartEnemies());
         // Grab values from game manager for dragon appearance
-        horns.SetBlendShapeWeight(0, gameManager.hornSqueeze);
-        horns.SetBlendShapeWeight(1, gameManager.hornSize);
+        horns.SetBlendShapeWeight(1, gameManager.hornSqueeze);
+        horns.SetBlendShapeWeight(0, gameManager.hornSize);
         horns.SetBlendShapeWeight(2, gameManager.hornCurve);
         tail.gameObject.SetActive(gameManager.tailSpikeEnabled);
         tail.SetBlendShapeWeight(0, gameManager.tailSqueeze);
