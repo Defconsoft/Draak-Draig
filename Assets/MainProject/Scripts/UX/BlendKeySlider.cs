@@ -61,4 +61,32 @@ public class BlendKeySlider : MonoBehaviour
             curveSlider.value = startCurve / 100f;
         }
     }
+
+    public List<float> GetShapes()
+    {
+        List<float> shapes = new List<float>();
+        // size is first number
+        shapes.Add(skinnedMeshRenderer.GetBlendShapeWeight(sizeKeyIdx));
+        // squeeze is second number
+        shapes.Add(skinnedMeshRenderer.GetBlendShapeWeight(squeezeKeyIdx));
+        // curve is third number if it exists
+        if (curveSlider != null)
+        {
+            shapes.Add(skinnedMeshRenderer.GetBlendShapeWeight(curveKeyIdx));
+        }
+        return shapes;        
+    }
+
+    public void SetShapes(float size, float squeeze, float curve = -1)
+    {
+        skinnedMeshRenderer.SetBlendShapeWeight(sizeKeyIdx, size);
+        sizeSlider.value = size / 100f;
+        skinnedMeshRenderer.SetBlendShapeWeight(squeezeKeyIdx, squeeze);
+        squeezeSlider.value = squeeze / 100f;
+        if (curve > -1)
+        {
+            skinnedMeshRenderer.SetBlendShapeWeight(curveKeyIdx, curve);
+            curveSlider.value = curve / 100f;
+        }
+    }
 }

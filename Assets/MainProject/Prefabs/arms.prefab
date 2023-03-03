@@ -2154,7 +2154,6 @@ GameObject:
   - component: {fileID: 9100548259960607522}
   - component: {fileID: 8773325510813592614}
   - component: {fileID: 7017489188511098903}
-  - component: {fileID: 4213998105019320507}
   m_Layer: 0
   m_Name: arms
   m_TagString: Untagged
@@ -2215,21 +2214,6 @@ MonoBehaviour:
   - {fileID: 9211906505168885237}
   - {fileID: 8253685759753762496}
   - {fileID: 8918998844894941847}
---- !u!114 &4213998105019320507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8430866872080009624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e95c54c6c44ac934f9f095419fcb40d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vfxGraphs:
-  - {fileID: 2581694865545467557}
-  - {fileID: 3531193420422246980}
 --- !u!1 &8505087571846211881
 GameObject:
   m_ObjectHideFlags: 0

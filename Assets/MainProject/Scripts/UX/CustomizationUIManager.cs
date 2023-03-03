@@ -13,12 +13,28 @@ public class CustomizationUIManager : MonoBehaviour
     public ShaderCustomization[] shaderControls;
     public ApplyColor[] colorControls;
     public BlendKeySlider[] shapeControls;
-    private GameObject gameManager;
+    public bool tailEnabled = true;
+    public Toggle tailToggle;
+    private GameManager gameManager = null;
 
     public void Start(){
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        gameManager = GameObject.Find("GameManager");
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        // Set starting values correctly
+        shapeControls[0].SetShapes(
+            gameManager.hornSize,
+            gameManager.hornSqueeze,
+            gameManager.hornCurve
+        );
+        shapeControls[1].SetShapes(
+            gameManager.tailSize,
+            gameManager.tailSqueeze
+        );
+        tailToggle.isOn = gameManager.tailSpikeEnabled;
+        tailEnabled = gameManager.tailSpikeEnabled;
+
     }
 
     public void OpenCustomizationDialog(int idx)
@@ -67,6 +83,14 @@ public class CustomizationUIManager : MonoBehaviour
     public void SaveButton()
     {
         // TODO send values to game manager
+        List<float> hornValues = shapeControls[0].GetShapes();
+        List<float> tailValues = shapeControls[1].GetShapes();
+        gameManager.hornSize = hornValues[0];
+        gameManager.hornSqueeze = hornValues[1];
+        gameManager.hornCurve = hornValues[2];
+        gameManager.tailSize = tailValues[0];
+        gameManager.tailSqueeze = tailValues[1];
+        gameManager.tailSpikeEnabled = tailEnabled; 
         gameManager.GetComponent<UXManager>().LoadScene(1);
     }
 
@@ -86,5 +110,10 @@ public class CustomizationUIManager : MonoBehaviour
         }
         gameManager.GetComponent<UXManager>().LoadScene(1);
         
+    }
+
+    public void SetTailActive(System.Boolean isActive)
+    {
+        tailEnabled = isActive;
     }
 }

@@ -660,11 +660,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TopDownCam: {fileID: 8437254949378967834}
   EagleEyeCam: {fileID: 362834718}
+  volume: {fileID: 0}
+  stormDelay: 2
+  StormWarning: {fileID: 0}
   dragonSpeed: 400
-  rotateSpeed: 25
+  rotateSpeed: 28
   eagleBlendTime: 0.3
   eagleAmount: 1
   aimReticle: {fileID: 155340104214057984}
+  anim: {fileID: 0}
+  flapFrequency: 0.005
+  horns: {fileID: 5228973208206686301}
+  tail: {fileID: 8942937902051152402}
 --- !u!54 &8437254949437400394
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -961,9 +968,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6985dd7f0df1b8e42b1c1a93eea3a7c1, type: 3}
+--- !u!137 &5228973208206686301 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4790090844818006780, guid: 6985dd7f0df1b8e42b1c1a93eea3a7c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8437254950432810329}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8258933014772925106 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6985dd7f0df1b8e42b1c1a93eea3a7c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8437254950432810329}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &8942937902051152402 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -8571313198046185653, guid: 6985dd7f0df1b8e42b1c1a93eea3a7c1,
     type: 3}
   m_PrefabInstance: {fileID: 8437254950432810329}
   m_PrefabAsset: {fileID: 0}

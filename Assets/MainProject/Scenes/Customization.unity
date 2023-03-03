@@ -6289,7 +6289,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 725836648}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1347158118}
+        m_TargetAssemblyTypeName: CustomizationUIManager, Assembly-CSharp
+        m_MethodName: SaveButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &725836648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7040,6 +7052,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1881860819}
         m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
         m_MethodName: set_interactable
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1347158118}
+        m_TargetAssemblyTypeName: CustomizationUIManager, Assembly-CSharp
+        m_MethodName: SetTailActive
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10872,6 +10896,8 @@ MonoBehaviour:
   shapeControls:
   - {fileID: 1859986713}
   - {fileID: 2062517238}
+  tailEnabled: 1
+  tailToggle: {fileID: 774979614}
 --- !u!1 &1388954009
 GameObject:
   m_ObjectHideFlags: 0

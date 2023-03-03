@@ -28,6 +28,10 @@ public class CastleBattleController : MonoBehaviour
     
     bool EndGame;
 
+    [Header ("Customization related")]
+    public SkinnedMeshRenderer horns;
+    public SkinnedMeshRenderer tail;
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,8 +43,13 @@ public class CastleBattleController : MonoBehaviour
         uxManager = GameObject.Find("GameManager").GetComponent<UXManager>();
         Trashcan = GameObject.Find("Trashcan");
         StartCoroutine (StartEnemies());
-
-
+        // Grab values from game manager for dragon appearance
+        horns.SetBlendShapeWeight(0, gameManager.hornSqueeze);
+        horns.SetBlendShapeWeight(1, gameManager.hornSize);
+        horns.SetBlendShapeWeight(2, gameManager.hornCurve);
+        tail.gameObject.SetActive(gameManager.tailSpikeEnabled);
+        tail.SetBlendShapeWeight(0, gameManager.tailSqueeze);
+        tail.SetBlendShapeWeight(1, gameManager.tailSize);
     }
 
     // Update is called once per frame

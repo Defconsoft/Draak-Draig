@@ -62,6 +62,10 @@ public class DragonController : MonoBehaviour
     private float tilt = 0f;
     private Animator tempAnim;
 
+    [Header ("Customization related")]
+    public SkinnedMeshRenderer horns;
+    public SkinnedMeshRenderer tail;
+
 
     private void Awake() {
         controls = new PlayerControls();
@@ -91,6 +95,12 @@ public class DragonController : MonoBehaviour
         //Grabs the  variables from the Game Manager
         dragonSpeed = gameManager.dragonSpeed;
         rotateSpeed = gameManager.dragonRotateSpeed;
+        horns.SetBlendShapeWeight(0, gameManager.hornSqueeze);
+        horns.SetBlendShapeWeight(1, gameManager.hornSize);
+        horns.SetBlendShapeWeight(2, gameManager.hornCurve);
+        tail.gameObject.SetActive(gameManager.tailSpikeEnabled);
+        tail.SetBlendShapeWeight(0, gameManager.tailSqueeze);
+        tail.SetBlendShapeWeight(1, gameManager.tailSize);
 
         // Set anim correctly
         anim.SetFloat("Tilt", tilt);
