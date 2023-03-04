@@ -138,13 +138,11 @@ public class UXManager : MonoBehaviour
         //animal chase scene
         if (SceneNo == 4) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
-            StartCoroutine (TempSceneWait(SceneNo + 1)); //REMOVE ME WHEN DONE
         }
 
         //castle attack scene
         if (SceneNo == 5) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
-            //StartCoroutine (TempSceneWait(SceneNo + 1)); //REMOVE ME WHEN DONE
         }
 
         //forest swoop scene
