@@ -6,9 +6,15 @@ using System;
 public class EventManager : MonoBehaviour
 {
     public static event Action<int> MinigameImpact;
+    public static event Action ShakeCam;
 
     public static void TriggerImpact(int id)
     {
         MinigameImpact?.Invoke(id);
+    }
+
+    public static void CameraShake()
+    {
+        ShakeCam?.Invoke();
     }
 }

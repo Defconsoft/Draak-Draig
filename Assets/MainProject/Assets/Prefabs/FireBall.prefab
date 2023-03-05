@@ -295,6 +295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 8076630128546683566}
   fireTrail: {fileID: 3956987628303833717}
+  fire: {fileID: 1421549184574092699, guid: fb1f7bfe282f396458a4087e7fa9ad7b, type: 3}
 --- !u!2083052967 &3581609133416989736
 VisualEffect:
   m_ObjectHideFlags: 0

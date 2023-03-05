@@ -11,6 +11,7 @@ public class Fireball : MonoBehaviour
     private Rigidbody rb;
     private bool oneHit;
     private CastleBattleController castleController;
+    public GameObject fire;
 
     void Start()
     {
@@ -38,7 +39,9 @@ public class Fireball : MonoBehaviour
             Destroy(collision.gameObject);
 
         }
-
+        
+        GameObject fireClone = Instantiate(fire, transform.position, Quaternion.identity);
+        EventManager.CameraShake();
         Explode();
 
     }
