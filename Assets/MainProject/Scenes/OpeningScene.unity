@@ -1056,6 +1056,11 @@ PrefabInstance:
       objectReference: {fileID: 396165229}
     - target: {fileID: 6146462068704431922, guid: aa77387d5ddc1184a912972bb635517b,
         type: 3}
+      propertyPath: dragonMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 5b29f65f7a87ace429ccfe04f9a0376b, type: 2}
+    - target: {fileID: 6146462068704431922, guid: aa77387d5ddc1184a912972bb635517b,
+        type: 3}
       propertyPath: dissolveRate
       value: 0.03
       objectReference: {fileID: 0}

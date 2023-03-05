@@ -12,8 +12,10 @@ public class DissolveControl : MonoBehaviour
     public float refreshRate = 0.05f;
     public float dieDelay = 0.2f;
     public PlayerController player;
+    private GameManager gameManager;
 
     private Material[] dissolveMaterials; 
+    public Material dragonMat;
     
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,12 @@ public class DissolveControl : MonoBehaviour
         if (skinnedMeshRenderer != null)
         {
             dissolveMaterials = skinnedMeshRenderer.materials;
+        }
+
+        foreach (Material mat in dissolveMaterials)
+        {
+            // Make sure color of transform effect is same as dragon
+            mat.SetFloat("_HueChange", dragonMat.GetFloat("_HueChange"));
         }
 
         StartCoroutine(Dissolve());
@@ -86,7 +94,8 @@ public class DissolveControl : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         player.Interacting = false;
+        yield return new WaitForSeconds(1f);
         StartCoroutine(player.StartFollow());
-        Destroy(gameObject, 1);
+        gameObject.SetActive(false);
     }
 }

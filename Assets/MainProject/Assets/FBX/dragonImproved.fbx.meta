@@ -105,6 +105,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: statue.001
+    second: {fileID: 2100000, guid: 5b29f65f7a87ace429ccfe04f9a0376b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: webbing
     second: {fileID: 2100000, guid: a49780706261930478675da8e1171206, type: 2}
   materials:

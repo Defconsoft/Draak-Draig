@@ -63,7 +63,7 @@ Material:
     - _HueChange: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Saturation: 1
+    - _Saturation: 1.1929283
     - _Value: -0.33
     - _detailNormalStrength: 0.25
     - _detailScale: 20
