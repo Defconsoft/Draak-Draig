@@ -138,6 +138,11 @@ public class UXManager : MonoBehaviour
         }
 
 
+        //Main menu scene
+        if (SceneNo == 1) {
+            FadeInCanvasGrp(MainMenuGrp, 1f);
+        } 
+
         //customisation scene
         if (SceneNo == 2) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);

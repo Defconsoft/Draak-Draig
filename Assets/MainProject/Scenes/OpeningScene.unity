@@ -1338,7 +1338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OSManager: {fileID: 1522376959}
   MessageCanvas: {fileID: 86843096}
-  SceneToLoad: 8
+  SceneToLoad: 2
 --- !u!65 &1497812040
 BoxCollider:
   m_ObjectHideFlags: 0
