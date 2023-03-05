@@ -38,6 +38,7 @@ public class DragonController : MonoBehaviour
     private GameObject tempEndSpot;
     private bool hpFlip;
     private bool loadingVillageAttack;
+    private bool loadingOpeningScene;
     private bool stormDamageActive;
     public Volume volume;
     Vignette vignette;
@@ -253,8 +254,20 @@ public class DragonController : MonoBehaviour
             if (!loadingVillageAttack){
             loadingVillageAttack = true;
             uXManager.DragonGroupFade(0f);
-            uXManager.LoadScene(7);
+            uXManager.LoadScene(9);
             }
+        }
+
+        if (gameManager.HealthAmount <= 0) {
+            if (!loadingOpeningScene){
+            loadingOpeningScene = true;    
+            uXManager.DragonGroupFade(0f);
+            gameManager.HealthAmount = 1f;
+            gameManager.EnergyAmount = 1f;
+            uXManager.LoadScene(3);
+            
+            }
+            
         }
 
     }

@@ -91,7 +91,7 @@ public class CustomizationUIManager : MonoBehaviour
         gameManager.tailSize = tailValues[0];
         gameManager.tailSqueeze = tailValues[1];
         gameManager.tailSpikeEnabled = tailEnabled; 
-        gameManager.GetComponent<UXManager>().LoadScene(1);
+        gameManager.GetComponent<UXManager>().LoadScene(3);
     }
 
     public void CancelButton()

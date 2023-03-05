@@ -38,6 +38,7 @@ public class CastleBattleController : MonoBehaviour
     {
         mainCamera = Camera.main;
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.None;
         inputManager = InputManager.Instance;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         uxManager = GameObject.Find("GameManager").GetComponent<UXManager>();
@@ -78,7 +79,7 @@ public class CastleBattleController : MonoBehaviour
             foreach (Transform child in Trashcan.transform) {
                 Destroy(child.gameObject);
             }
-            uxManager.LoadScene(6);
+            uxManager.LoadScene(8);
         }
 
 

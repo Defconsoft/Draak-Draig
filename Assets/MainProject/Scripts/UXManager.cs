@@ -70,15 +70,32 @@ public class UXManager : MonoBehaviour
     // USE TO LOAD SCENES
     //////////////////////////////////////
     public void LoadScene(int SceneNo){
+
+        /////////////////////////////////////////
+        //SO I CAN REMEMBER
+        //
+        // 0 - Intro
+        // 1 - Main Menu
+        // 2 - Customisation
+        // 3 - Opening Scene
+        // 4 - Resource Gathering
+        // 5 - Village Daytime
+        // 6 - Animal Chase
+        // 7 - Castle Battle
+        // 8 - Forest Swoop 
+        // 9 - Village Attack
+        // 10 - Anouk Test
+        //////////////////////////////////////////
+
         //Set the quote and instructions text;
         DebugMenu.enabled = false;
         SetQuoteText(SceneNo);
-
+        Debug.Log (SceneNo);
         //Sorts main menu interaction
-        if (SceneNo > 0) {
-            MainMenuGrp.blocksRaycasts = false;
-        } else {
+        if (SceneNo == 1) {
             MainMenuGrp.blocksRaycasts = true;
+        } else {
+            MainMenuGrp.blocksRaycasts = false;
         }        
 
 
@@ -89,14 +106,14 @@ public class UXManager : MonoBehaviour
     public IEnumerator LoadYourAsyncScene (int SceneNo) {
 
         //Fade in the background canvas
-        FadeInCanvasGrp(BGCanvasGrp, 2f);
+        FadeInCanvasGrp(BGCanvasGrp, 1f);
 
         //Fade out the main menu canvas
-        FadeOutCanvasGrp(MainMenuGrp, 2f);
+        FadeOutCanvasGrp(MainMenuGrp, 1f);
 
         //Wait for 3 seconds then fade in the quote
-        yield return new WaitForSeconds (3f);
-        FadeInCanvasGrp (QuoteTextGrp, 3f);
+        yield return new WaitForSeconds (1.5f);
+        FadeInCanvasGrp (QuoteTextGrp, 1.5f);
 
         AsyncOperation sceneDone = SceneManager.LoadSceneAsync (SceneNo);
         // Wait until the asynchronous scene fully loads
@@ -107,76 +124,87 @@ public class UXManager : MonoBehaviour
         
         //wait 3 seconds then fade out the quote
         yield return new WaitForSeconds (3f);
-        FadeOutCanvasGrp(QuoteTextGrp, 2f);
+        FadeOutCanvasGrp(QuoteTextGrp, 1f);
 
         //This is the level specific 
 
 
 
-
         //if Main menu fade out the Top Bar Group
-        if (SceneNo > 0 && SceneNo < 8) {
-            FadeInCanvasGrp(TopBarGrp, 2f);
+        if (SceneNo > 2 && SceneNo < 10) {
+            FadeInCanvasGrp(TopBarGrp, 1f);
         } else {
             FadeOutCanvasGrp(TopBarGrp, 0.1f);
         }
 
-        //loads the daytime timer into the resource scene
+
+        //customisation scene
         if (SceneNo == 2) {
-            FadeInCanvasGrp (DayTimerGrp, 3f);
-            FadeInCanvasGrp (ResourceGrp, 3f);
+            FadeOutCanvasGrp (ResourceGrp, 0.1f);
+        }  
+
+        if (SceneNo == 3) {
+            StartCoroutine(SetInstructions());
+        }       
+
+
+        //loads the daytime timer into the resource scene
+        if (SceneNo == 4) {
+            FadeInCanvasGrp (DayTimerGrp, 1.5f);
+            FadeInCanvasGrp (ResourceGrp, 1.5f);
             StartDaytime();
+            StartCoroutine(SetInstructions());
         }
 
         //Village scene
-        if (SceneNo == 3) {
-            FadeInCanvasGrp (ResourceGrp, 3f);
+        if (SceneNo == 5) {
+            FadeInCanvasGrp (ResourceGrp, 1.5f);
             FadeOutCanvasGrp (DayTimerGrp, 0.1f);
             StopDaytime();
+            StartCoroutine(SetInstructions());
         }
 
         //animal chase scene
-        if (SceneNo == 4) {
+        if (SceneNo == 6) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
+            StartCoroutine(SetInstructions());
+            StartCoroutine (TempSceneWait(SceneNo + 1)); //REMOVE ME WHEN DONE
         }
 
         //castle attack scene
-        if (SceneNo == 5) {
+        if (SceneNo == 7) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
+            StartCoroutine(SetInstructions());
         }
 
         //forest swoop scene
-        if (SceneNo == 6) {
+        if (SceneNo == 8) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
-            FadeInCanvasGrp(DragonGrp, 2f);
+            FadeInCanvasGrp(DragonGrp, 1f);
+            StartCoroutine(SetInstructions());
         }
 
         //city battle scene
-        if (SceneNo == 7) {
+        if (SceneNo == 9) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
-            StartCoroutine (TempSceneWait(SceneNo + 1)); //REMOVE ME WHEN DONE
+            StartCoroutine (TempSceneWait(3)); //REMOVE ME WHEN DONE
         }   
 
-        //customisation scene
-        if (SceneNo == 8) {
-            FadeOutCanvasGrp (ResourceGrp, 0.1f);
-        }             
-
-
-
         //wait for 2 seconds and fade out the BG
-        yield return new WaitForSeconds (2f);
-        FadeOutCanvasGrp(BGCanvasGrp, 2f);
+        yield return new WaitForSeconds (1f);
+        FadeOutCanvasGrp(BGCanvasGrp, 1.5f);
+    }
 
+
+    IEnumerator SetInstructions() {
         //Fades in the instruction bar at the top
-        FadeInCanvasGrp(InstructionGrp, 2f);
+        FadeInCanvasGrp(InstructionGrp, 1f);
 
 
         //Fades out the instruction bar after 5 seconds
         yield return new WaitForSeconds (5f);
         FadeOutCanvasGrp(InstructionGrp, 5f);
-
-    }
+    }   
 
 
     private void Update() {
@@ -201,7 +229,8 @@ public class UXManager : MonoBehaviour
 
 
         if (daytimeActive == true && daytimeSlider.value >= daytimeSlider.maxValue && !dayComplete) {
-            StartCoroutine(LoadYourAsyncScene (3));
+            FadeOutCanvasGrp (DayTimerGrp, 0.1f);
+            StartCoroutine(LoadYourAsyncScene (5));
         }   
     
     }
@@ -212,7 +241,7 @@ public class UXManager : MonoBehaviour
 
     private IEnumerator TempSceneWait(int sceneNo) {
         yield return new WaitForSeconds (10f);
-        StartCoroutine(LoadYourAsyncScene(sceneNo));
+        LoadScene(sceneNo);
     }
 
 
