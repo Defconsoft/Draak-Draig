@@ -1117,7 +1117,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1836333972
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1211,7 +1211,7 @@ PrefabInstance:
     - target: {fileID: 111966958800890242, guid: 1aec0354366ee944b97203f02694e9ea,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 776336536820527928, guid: 1aec0354366ee944b97203f02694e9ea,
         type: 3}
@@ -4962,6 +4962,51 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 41ffd3edb69f01f49b8eca8dba0066ab, type: 2}
+    - target: {fileID: 8819680069057473515, guid: 8aacd29ce9ff81e48ab009f2408aaf38,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819680069057473516, guid: 8aacd29ce9ff81e48ab009f2408aaf38,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819680069057473516, guid: 8aacd29ce9ff81e48ab009f2408aaf38,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Name
+      value: Speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819680069057473516, guid: 8aacd29ce9ff81e48ab009f2408aaf38,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[2].m_Name
+      value: amount of particles
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819680069057473516, guid: 8aacd29ce9ff81e48ab009f2408aaf38,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Value
+      value: 1.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819680069057473516, guid: 8aacd29ce9ff81e48ab009f2408aaf38,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[2].m_Value
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819680069057473516, guid: 8aacd29ce9ff81e48ab009f2408aaf38,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Overridden
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819680069057473516, guid: 8aacd29ce9ff81e48ab009f2408aaf38,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[2].m_Overridden
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819680069057473517, guid: 8aacd29ce9ff81e48ab009f2408aaf38,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8850673139082226704, guid: 8aacd29ce9ff81e48ab009f2408aaf38,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
