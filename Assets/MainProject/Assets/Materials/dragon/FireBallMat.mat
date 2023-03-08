@@ -57,7 +57,7 @@ Material:
     - _displacementScale: 30
     - _displacementSpeed: 0.1
     - _displacementStrength: 0.05
-    - _fresnelPower: 4
+    - _fresnelPower: 4.5
     - _metallic: 0.5
     - _noiseDissolve: 2.5
     - _noiseScale: 30
