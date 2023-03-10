@@ -18,7 +18,7 @@ public class VFXControllerDragon : MonoBehaviour
 
     public void StartVFX(int idx)
     {
-        // 0 = firebreath, 1=fireball
+        // 0 = firebreath, 1=fireball, 2=firebomb
         GameObject fx = effects[idx];
         fx.SetActive(true);
     }

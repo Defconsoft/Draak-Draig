@@ -43,7 +43,7 @@ Material:
     - _DistortionScale: 50
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RotationAmount: -3
+    - _RotationAmount: -6
     - _TwirlStrength: 30
     m_Colors:
     - _Color: {r: 2, g: 0.2039216, b: 0, a: 0}
