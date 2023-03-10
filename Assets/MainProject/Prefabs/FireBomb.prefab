@@ -240,7 +240,6 @@ GameObject:
   - component: {fileID: 7342429848969400723}
   - component: {fileID: 7342429848969400720}
   - component: {fileID: 7342429848969400721}
-  - component: {fileID: 7342429848969400722}
   m_Layer: 0
   m_Name: Orb (1)
   m_TagString: Untagged
@@ -313,19 +312,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7342429848969400722
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7342429848969400724}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7342429849393767167
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,6 +444,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7342429849406982865}
   - component: {fileID: 7342429849406982864}
+  - component: {fileID: 2387046947325171826}
+  - component: {fileID: 2931078553308481595}
   m_Layer: 0
   m_Name: FireBomb
   m_TagString: Untagged
@@ -472,9 +460,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7342429849406982866}
-  m_LocalRotation: {x: -0, y: 0.8800881, z: -0, w: 0.47481042}
+  m_LocalRotation: {x: 0, y: 0.88008815, z: 0, w: 0.47481042}
   m_LocalPosition: {x: -20.68, y: 13.337, z: 5.18}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7342429848645508182}
@@ -495,9 +483,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: {fileID: 7342429848645508182}
-  orb: {fileID: 0}
+  orb: {fileID: 7342429848969400723}
   explosion: {fileID: 7342429848675576069}
   fire: {fileID: 1421549184574092699, guid: fb1f7bfe282f396458a4087e7fa9ad7b, type: 3}
+  anim: {fileID: 7342429848645508181}
+--- !u!54 &2387046947325171826
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7342429849406982866}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &2931078553308481595
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7342429849406982866}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.94
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7342429849420727810
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,7 +527,6 @@ GameObject:
   - component: {fileID: 7342429849420727822}
   - component: {fileID: 7342429849420727823}
   - component: {fileID: 7342429849420727808}
-  - component: {fileID: 7342429849420727809}
   m_Layer: 0
   m_Name: DistortionPlane
   m_TagString: Untagged
@@ -582,20 +599,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7342429849420727809
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7342429849420727810}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &7342429850057616409
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,7 +626,7 @@ Transform:
   m_GameObject: {fileID: 7342429850057616409}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5999999, y: 1.5999999, z: 1.5999999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7342429848645508182}

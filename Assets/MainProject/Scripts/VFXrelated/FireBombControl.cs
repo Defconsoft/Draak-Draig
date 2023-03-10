@@ -10,11 +10,13 @@ public class FireBombControl : MonoBehaviour
     public VisualEffect explosion;
     private Rigidbody rb;
     public GameObject fire;
+    public Animator anim;
     
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        anim.Rebind();
     }
 
     // IEnumerator Charge()
