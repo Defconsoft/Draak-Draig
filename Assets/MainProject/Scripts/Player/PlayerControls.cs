@@ -214,6 +214,33 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FireBall"",
+                    ""type"": ""Button"",
+                    ""id"": ""979be57d-65f6-41d2-8f45-83760c02b05f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FireBreath"",
+                    ""type"": ""Button"",
+                    ""id"": ""a315755f-b58f-4c6d-80fe-8c7c1da4637d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FireBomb"",
+                    ""type"": ""Button"",
+                    ""id"": ""5e45a3a5-92e5-4abd-b29d-b28aba69824c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -304,6 +331,72 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""RightMouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ed4c6138-8f4c-4b0d-bed2-683e8603e935"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FireBall"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""49cc8f08-17b9-4edb-8e78-0db412965286"",
+                    ""path"": ""<Keyboard>/numpad1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FireBall"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d177c889-87d4-4a9f-9155-2f6d47ccde6a"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FireBreath"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""53e7d492-280e-4565-a332-148b9aa6dd66"",
+                    ""path"": ""<Keyboard>/numpad2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FireBreath"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""67641a93-c30f-45f5-b13d-ea3fc8c224e1"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FireBomb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a31b2cd5-bced-495a-9e0f-da5e9ae5cb5c"",
+                    ""path"": ""<Keyboard>/numpad3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FireBomb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -323,6 +416,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Dragon_Movement = m_Dragon.FindAction("Movement", throwIfNotFound: true);
         m_Dragon_LeftMouse = m_Dragon.FindAction("LeftMouse", throwIfNotFound: true);
         m_Dragon_RightMouse = m_Dragon.FindAction("RightMouse", throwIfNotFound: true);
+        m_Dragon_FireBall = m_Dragon.FindAction("FireBall", throwIfNotFound: true);
+        m_Dragon_FireBreath = m_Dragon.FindAction("FireBreath", throwIfNotFound: true);
+        m_Dragon_FireBomb = m_Dragon.FindAction("FireBomb", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -451,6 +547,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Dragon_Movement;
     private readonly InputAction m_Dragon_LeftMouse;
     private readonly InputAction m_Dragon_RightMouse;
+    private readonly InputAction m_Dragon_FireBall;
+    private readonly InputAction m_Dragon_FireBreath;
+    private readonly InputAction m_Dragon_FireBomb;
     public struct DragonActions
     {
         private @PlayerControls m_Wrapper;
@@ -459,6 +558,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Dragon_Movement;
         public InputAction @LeftMouse => m_Wrapper.m_Dragon_LeftMouse;
         public InputAction @RightMouse => m_Wrapper.m_Dragon_RightMouse;
+        public InputAction @FireBall => m_Wrapper.m_Dragon_FireBall;
+        public InputAction @FireBreath => m_Wrapper.m_Dragon_FireBreath;
+        public InputAction @FireBomb => m_Wrapper.m_Dragon_FireBomb;
         public InputActionMap Get() { return m_Wrapper.m_Dragon; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -480,6 +582,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @RightMouse.started -= m_Wrapper.m_DragonActionsCallbackInterface.OnRightMouse;
                 @RightMouse.performed -= m_Wrapper.m_DragonActionsCallbackInterface.OnRightMouse;
                 @RightMouse.canceled -= m_Wrapper.m_DragonActionsCallbackInterface.OnRightMouse;
+                @FireBall.started -= m_Wrapper.m_DragonActionsCallbackInterface.OnFireBall;
+                @FireBall.performed -= m_Wrapper.m_DragonActionsCallbackInterface.OnFireBall;
+                @FireBall.canceled -= m_Wrapper.m_DragonActionsCallbackInterface.OnFireBall;
+                @FireBreath.started -= m_Wrapper.m_DragonActionsCallbackInterface.OnFireBreath;
+                @FireBreath.performed -= m_Wrapper.m_DragonActionsCallbackInterface.OnFireBreath;
+                @FireBreath.canceled -= m_Wrapper.m_DragonActionsCallbackInterface.OnFireBreath;
+                @FireBomb.started -= m_Wrapper.m_DragonActionsCallbackInterface.OnFireBomb;
+                @FireBomb.performed -= m_Wrapper.m_DragonActionsCallbackInterface.OnFireBomb;
+                @FireBomb.canceled -= m_Wrapper.m_DragonActionsCallbackInterface.OnFireBomb;
             }
             m_Wrapper.m_DragonActionsCallbackInterface = instance;
             if (instance != null)
@@ -496,6 +607,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @RightMouse.started += instance.OnRightMouse;
                 @RightMouse.performed += instance.OnRightMouse;
                 @RightMouse.canceled += instance.OnRightMouse;
+                @FireBall.started += instance.OnFireBall;
+                @FireBall.performed += instance.OnFireBall;
+                @FireBall.canceled += instance.OnFireBall;
+                @FireBreath.started += instance.OnFireBreath;
+                @FireBreath.performed += instance.OnFireBreath;
+                @FireBreath.canceled += instance.OnFireBreath;
+                @FireBomb.started += instance.OnFireBomb;
+                @FireBomb.performed += instance.OnFireBomb;
+                @FireBomb.canceled += instance.OnFireBomb;
             }
         }
     }
@@ -514,5 +634,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnLeftMouse(InputAction.CallbackContext context);
         void OnRightMouse(InputAction.CallbackContext context);
+        void OnFireBall(InputAction.CallbackContext context);
+        void OnFireBreath(InputAction.CallbackContext context);
+        void OnFireBomb(InputAction.CallbackContext context);
     }
 }

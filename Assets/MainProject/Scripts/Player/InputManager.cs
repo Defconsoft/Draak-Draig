@@ -74,5 +74,17 @@ public class InputManager : MonoBehaviour
         return playerControls.Dragon.RightMouse.triggered;
     }
 
+    public bool DragonSwitchToFireball() {
+        return playerControls.Dragon.FireBall.triggered;
+    }
+
+    public bool DragonSwitchToFirebreath() {
+        return playerControls.Dragon.FireBreath.triggered;
+    }
+
+    public bool DragonSwitchToFirebomb() {
+        return playerControls.Dragon.FireBomb.triggered;
+    }
+
 
 }

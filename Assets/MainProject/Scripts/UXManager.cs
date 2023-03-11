@@ -23,6 +23,7 @@ public class UXManager : MonoBehaviour
     [SerializeField] private CanvasGroup ResourceGrp;
     [SerializeField] private CanvasGroup InstructionGrp;
     [SerializeField] private CanvasGroup DragonGrp;
+    [SerializeField] private CanvasGroup VillageAttackGrp;
 
     [Header ("Quote Stuff")]
     [SerializeField] private TMPro.TMP_Text QuoteTextBox;   
@@ -46,6 +47,7 @@ public class UXManager : MonoBehaviour
 
     [Header ("Dragon Stuff")]
     public Image eagleEyeFill;
+    public GameObject[] selectionBorders;
 
     [Header ("Health Stuff")]
     public Image HealthBar;
@@ -192,7 +194,8 @@ public class UXManager : MonoBehaviour
         //city battle scene
         if (SceneNo == 9) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
-            StartCoroutine (TempSceneWait(3)); //REMOVE ME WHEN DONE
+            FadeInCanvasGrp(VillageAttackGrp, 1f);
+            // StartCoroutine (TempSceneWait(3)); //REMOVE ME WHEN DONE
         }   
 
         //wait for 2 seconds and fade out the BG
@@ -349,6 +352,21 @@ public class UXManager : MonoBehaviour
             FadeOutCanvasGrp(DragonGrp, 0.1f);
         } else {
             FadeInCanvasGrp(DragonGrp, 0.1f);
+        }
+    }
+
+    public void SetAttackType(int idx)
+    {
+        for (int i = 0; i < selectionBorders.Length; i++)
+        {
+            if (i == idx)
+            {
+                selectionBorders[i].SetActive(true);
+            }
+            else
+            {
+                selectionBorders[i].SetActive(false);
+            }
         }
     }
 
