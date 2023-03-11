@@ -45,14 +45,14 @@ public class GameManager : MonoBehaviour
     public float tailSize = 0f;
     public float tailSqueeze = 0f;
     public bool tailSpikeEnabled = true;
-    public float acEnergyReductionAmount;
+
 
 
     [Header ("Health & Energy")]
     public float HealthAmount;
     public float EnergyAmount; 
     public float ForestSwoopReplenish;
-
+    public float acEnergyReductionAmount;
 
 
     void Awake()
