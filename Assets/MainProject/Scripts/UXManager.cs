@@ -48,6 +48,7 @@ public class UXManager : MonoBehaviour
     [Header ("Dragon Stuff")]
     public Image eagleEyeFill;
     public GameObject[] selectionBorders;
+    public Image[] attackCharges;
 
     [Header ("Health Stuff")]
     public Image HealthBar;
@@ -368,6 +369,11 @@ public class UXManager : MonoBehaviour
                 selectionBorders[i].SetActive(false);
             }
         }
+    }
+
+    public void SetAttackCharge(int attack, float fill)
+    {
+        attackCharges[attack].fillAmount = fill;
     }
 
 }

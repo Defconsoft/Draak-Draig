@@ -14,6 +14,15 @@ public class VillageAttackController : MonoBehaviour
     private Attack currentAttackType;
     public Camera mainCamera;
     public Transform cursorTarget;
+    public float rechargeSpeedFireBall = 3f;
+    public float rechargeSpeedFireBreath = 2f;
+    public float rechargeSpeedFireBomb = 1f;
+    private float fireBallCharge = 1f;
+    private float fireBreathCharge = 1f;
+    private float fireBombCharge = 1f;
+    private bool canFireBall = true;
+    private bool canFireBreath = true;
+    private bool canFireBomb = true;
 
 
     [Header ("Customization related")]
@@ -72,21 +81,85 @@ public class VillageAttackController : MonoBehaviour
 
             if (currentAttackType == Attack.FIREBALL)
             {
-                anim.SetTrigger("FireBall");
-                Vector3 dir = (raycastHit.point - fireballControl.throwpoint.transform.position).normalized;
-                fireballControl.direction = dir;
+                if (canFireBall)
+                {
+                    anim.SetTrigger("FireBall");
+                    Vector3 dir = (raycastHit.point - fireballControl.throwpoint.transform.position).normalized;
+                    fireballControl.direction = dir;
+                    fireBallCharge = 0f;
+                    canFireBall = false;
+                    uxManager.SetAttackCharge((int) currentAttackType, 1f - fireBallCharge);
+                    StartCoroutine(ReChargeFireBall());
+                }
+                
             }
             else if (currentAttackType == Attack.FIREBREATH)
             {
-                anim.SetTrigger("Firebreath");
+                if (canFireBreath)
+                {
+                    anim.SetTrigger("Firebreath");
+                    fireBreathCharge = 0f;
+                    canFireBreath = false;
+                    uxManager.SetAttackCharge((int) currentAttackType, 1f - fireBreathCharge);
+                    StartCoroutine(ReChargeFireBreath());
+                }
+                
                 // Direction setting TBD
             }
             else if (currentAttackType == Attack.FIREBOMB)
             {
-                anim.SetTrigger("FireBomb");
-                Vector3 dir = (raycastHit.point - firebombControl.throwpoint.transform.position).normalized;
-                firebombControl.direction = dir;
+                if (canFireBomb)
+                {
+                    anim.SetTrigger("FireBomb");
+                    Vector3 dir = (raycastHit.point - firebombControl.throwpoint.transform.position).normalized;
+                    firebombControl.direction = dir;
+                    fireBombCharge = 0f;
+                    canFireBomb = false;
+                    uxManager.SetAttackCharge((int) currentAttackType, 1f - fireBombCharge);
+                    StartCoroutine(ReChargeFireBomb());
+                }
+                
             }
         }
     }
+
+    IEnumerator ReChargeFireBall()
+    {
+        while (fireBallCharge < 1f)
+        {
+            fireBallCharge += rechargeSpeedFireBall * 0.01f;
+            uxManager.SetAttackCharge((int) Attack.FIREBALL, 1f - fireBallCharge);
+            yield return new WaitForSeconds(0.1f);
+        }
+        Mathf.Clamp(fireBallCharge, 0f, 1f);
+        uxManager.SetAttackCharge((int) Attack.FIREBALL, 0f);
+        canFireBall = true;
+    }
+
+    IEnumerator ReChargeFireBreath()
+    {
+        while (fireBreathCharge < 1f)
+        {
+            fireBreathCharge += rechargeSpeedFireBreath * 0.01f;
+            uxManager.SetAttackCharge((int) Attack.FIREBREATH, 1f - fireBreathCharge);
+            yield return new WaitForSeconds(0.1f);
+        }
+        Mathf.Clamp(fireBreathCharge, 0f, 1f);
+        uxManager.SetAttackCharge((int) Attack.FIREBREATH, 1f - fireBreathCharge);
+        canFireBreath = true;
+    }
+
+    IEnumerator ReChargeFireBomb()
+    {
+        while (fireBombCharge < 1f)
+        {
+            fireBombCharge += rechargeSpeedFireBomb * 0.01f;
+            uxManager.SetAttackCharge((int) Attack.FIREBOMB, 1f - fireBombCharge);
+            yield return new WaitForSeconds(0.1f);
+        }
+        Mathf.Clamp(fireBombCharge, 0f, 1f);
+        uxManager.SetAttackCharge((int) Attack.FIREBOMB, 0f);
+        canFireBomb = true;
+    }
+
 }
