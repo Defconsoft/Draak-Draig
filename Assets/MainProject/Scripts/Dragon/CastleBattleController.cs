@@ -115,6 +115,10 @@ public class CastleBattleController : MonoBehaviour
         foreach (Transform child in EnemyContainer.transform) {
             child.gameObject.GetComponent<CastleAttackAI>().Dead = true;
         }
+
+        foreach (Transform child in Trashcan.transform) {
+            Destroy (child.gameObject);
+        }
         BarrelLive = false;
         
         

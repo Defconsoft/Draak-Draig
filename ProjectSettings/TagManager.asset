@@ -13,6 +13,7 @@ TagManager:
   - Dragon
   - BarrelTrigger
   - Barrel
+  - arrow
   layers:
   - Default
   - TransparentFX

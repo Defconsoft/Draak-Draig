@@ -91,6 +91,8 @@ public class CastleAttackAI : MonoBehaviour
 
     IEnumerator Death() {
         Dead = false;
+        StopCoroutine(ShootArrow());
+        canShoot = true;
         enemyManager.hasEnemy = false;
         //ANIMATION//////////////////////////////////////
         //Play death anim. Alter the delay below to the length.

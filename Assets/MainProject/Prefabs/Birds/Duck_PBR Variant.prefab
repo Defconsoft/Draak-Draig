@@ -119,3 +119,38 @@ MonoBehaviour:
   randomBaseOffset: 0
   delayStart: 0
   originScript: {fileID: 0}
+  bloodParticle: {fileID: 524512725243353953, guid: ab591c5b4a92d0648a13e531e7d572e3,
+    type: 3}
+--- !u!135 &4077382145170254749
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8374503678731162369}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.17
+  m_Center: {x: 0, y: 0.12, z: 0}
+--- !u!1 &8374503678731165437 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 123826, guid: 02dbfc3aff8af6043900ffbe96fd719e,
+    type: 3}
+  m_PrefabInstance: {fileID: 8374503678731156815}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &8051992965402480182
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8374503678731165437}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
