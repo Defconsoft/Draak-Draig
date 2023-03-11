@@ -173,7 +173,7 @@ public class UXManager : MonoBehaviour
         if (SceneNo == 6) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
             StartCoroutine(SetInstructions());
-            StartCoroutine (TempSceneWait(SceneNo + 1)); //REMOVE ME WHEN DONE
+            //StartCoroutine (TempSceneWait(SceneNo + 1)); //REMOVE ME WHEN DONE
         }
 
         //castle attack scene
