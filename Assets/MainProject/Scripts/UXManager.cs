@@ -259,45 +259,48 @@ public class UXManager : MonoBehaviour
         switch (SceneNo)
         {
             
-            case 0: //Main
+            case 0: //Intro
                 QuoteTextBox.text = TextQuotes[0];
                 break;
 
-            case 1: //Move to openingscene
+            case 1: //Move to Main Menu
                 QuoteTextBox.text = TextQuotes[1];
                 instructionText.text = instructions[1];
                 break;
 
-            case 2: //Move to resource gathering
+            case 2: //Move to Customisation
                 QuoteTextBox.text = TextQuotes[2];
                 instructionText.text = instructions[2];
                 break;
 
-            case 3: //Move to village
+            case 3: //Move to Opening Scene
                 QuoteTextBox.text = TextQuotes[3];
                 instructionText.text = instructions[3];
                 break;
-            case 4: //Move to Animal Chase
+            case 4: //Move to Resource Gathering
                 QuoteTextBox.text = TextQuotes[4];
                 instructionText.text = instructions[4];
                 break;
-            case 5: //Move to Castle Attack
+            case 5: //Move to Village Day
                 QuoteTextBox.text = TextQuotes[5];
                 instructionText.text = instructions[5];
                 break;
-            case 6: //Move to Forest Swoop
+            case 6: //Move to Animal Chase
                 QuoteTextBox.text = TextQuotes[6];
                 instructionText.text = instructions[6];
                 break;
-            case 7: //Move to Village Attack
+            case 7: //Move to Castle Battle
                 QuoteTextBox.text = TextQuotes[7];
                 instructionText.text = instructions[7];
                 break;
-            case 8: //Go to customisation
+            case 8: //Move to Forest Swoop
                 QuoteTextBox.text = TextQuotes[8];
-                // instructionText.text = instructions[8];
+                instructionText.text = instructions[8];
                 break;
-
+            case 9: //Move to Village Attack
+                QuoteTextBox.text = TextQuotes[9];
+                instructionText.text = instructions[9];
+                break;
 
         }
 

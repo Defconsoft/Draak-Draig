@@ -291,16 +291,27 @@ public class DragonController : MonoBehaviour
         Destroy(tempPig);
         mainCamBrain.m_DefaultBlend.m_Time = 1;
         tempKillCam.m_Priority = 0;
-        if (hpFlip){
-            gameManager.PlusHealth(gameManager.ForestSwoopReplenish);
-            hpFlip = false;
-        } else {
-            gameManager.PlusEnergy(gameManager.ForestSwoopReplenish);
-            hpFlip = true;
-        }
+        ManageAttributes();
         uXManager.DragonGroupFade(1f);
         aimReticle.alpha = 1f;
         killing = false;
+    }
+
+    void ManageAttributes(){
+        if (gameManager.HealthAmount != 1f && gameManager.EnergyAmount != 1f){
+            if (hpFlip){
+                gameManager.PlusHealth(gameManager.ForestSwoopReplenish);
+                hpFlip = false;
+            } else {
+                gameManager.PlusEnergy(gameManager.ForestSwoopReplenish);
+                hpFlip = true;
+            }
+        } else if (gameManager.HealthAmount == 1f && gameManager.EnergyAmount != 1f) {
+                gameManager.PlusEnergy(gameManager.ForestSwoopReplenish);
+        } else if (gameManager.HealthAmount != 1f && gameManager.EnergyAmount == 1f) {
+                gameManager.PlusHealth(gameManager.ForestSwoopReplenish);
+        }
+
     }
 
 

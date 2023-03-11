@@ -514,7 +514,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 7
+          m_IntArgument: 9
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -884,7 +884,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1288,7 +1288,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1557,7 +1557,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1826,7 +1826,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 6
+          m_IntArgument: 8
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1960,7 +1960,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2095,7 +2095,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 9
+          m_IntArgument: 10
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2229,7 +2229,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3005,7 +3005,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_TargetDisplay: 0
 --- !u!114 &2453445380495948865
 MonoBehaviour:
@@ -4110,7 +4110,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 8
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5185,7 +5185,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6326,9 +6326,26 @@ MonoBehaviour:
   totalRock: 0
   totalFish: 0
   EagleEyeAmount: 0
-  HealthAmount: 0.95
-  EnergyAmount: 0.95
-  ForestSwoopReplenish: 0.05
+  eyesMat: {fileID: 2100000, guid: 878a14c62a5d1224cba98e1dd7e02d9c, type: 2}
+  baseMat: {fileID: 2100000, guid: 5b29f65f7a87ace429ccfe04f9a0376b, type: 2}
+  webbingMat: {fileID: 2100000, guid: a49780706261930478675da8e1171206, type: 2}
+  platesMat: {fileID: 2100000, guid: b10e3f5c73ac8c6459d36aef3726039f, type: 2}
+  webbingCol: {r: 0.23137255, g: 0.12941177, b: 0.1254902, a: 0}
+  platesCol: {r: 0.9607843, g: 0.8862745, b: 0.6431373, a: 0}
+  startingHueEyes: 0
+  startingSatEyes: 1
+  startingTexEyes: {fileID: 2800000, guid: 3f9d5e2b693ee154295286b593b458fb, type: 3}
+  startingHueBase: 0
+  startingSatBase: 1
+  hornSize: 0
+  hornSqueeze: 0
+  hornCurve: 0
+  tailSize: 0
+  tailSqueeze: 0
+  tailSpikeEnabled: 1
+  HealthAmount: 1
+  EnergyAmount: 1
+  ForestSwoopReplenish: 0.1
 --- !u!114 &5866262156395003864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6354,7 +6371,10 @@ MonoBehaviour:
   DragonGrp: {fileID: 4805057640538624187}
   QuoteTextBox: {fileID: 5866262156251284533}
   TextQuotes:
-  - '"THIS IS THE START QUOTE WE NEED TO CHANGE THIS'
+  - INTRO SCENE DO NOT NEED
+  - '"The strong dragon will always come back to fight another day"'
+  - '"Without yourself you know not what you are. The image you portray can strike
+    fear into others"'
   - "\u201CThe Dragon is always within you, you must embrace it\u2019s will and define
     your life by it\u201D"
   - "\u201CWithout labour, a dragon will never prosper. More effort will lead to
@@ -6370,8 +6390,6 @@ MonoBehaviour:
   - "\u201CIf you ignore the dragon, it will eat you. If you defy the dragon it will
     overpower you. But if you ride the dragon, you will take advantage of its strength
     and power.\u201D"
-  - "\u201CA dominant Dragon is a fearsome adversary but Man will always pursue what
-    it cannot overcome\u201D"
   daytimeSlider: {fileID: 5359430175007594880}
   daytimeActive: 0
   RockCount: {fileID: 6695649353350065994}
@@ -6379,15 +6397,16 @@ MonoBehaviour:
   WoodCount: {fileID: 8113207431462688358}
   instructionText: {fileID: 5054933565331556834}
   instructions:
-  - LEAVE BLANK
+  - Intro
+  - Main Menu
+  - Customisation
   - The day begins again
-  - Gather resources before the day ends
-  - Use resources to influence the villagers
-  - CHANGE THIS
-  - CHANGE THIS
-  - CHANGE THIS
-  - CHANGE THIS
-  - CHANGE THIS
+  - Gather resources
+  - Talk to villagers
+  - Eat birds
+  - Shoot archers
+  - Eat pigs
+  - Kill Village
   eagleEyeFill: {fileID: 3578243261474335243}
   HealthBar: {fileID: 6733075064066172724}
   EnergyBar: {fileID: 2192051380807653949}
@@ -7614,7 +7633,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
