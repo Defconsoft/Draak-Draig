@@ -26,7 +26,11 @@ public class Fireball : MonoBehaviour
             oneHit = true;
             other.gameObject.GetComponent<CastleAttackAI>().Dead = true;
         } 
-       
+
+        if (other.tag =="arrow") {
+            return;
+        }
+        
         Explode();       
     }
     

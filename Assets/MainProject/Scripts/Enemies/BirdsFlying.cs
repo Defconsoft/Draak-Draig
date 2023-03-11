@@ -20,6 +20,8 @@ public class BirdsFlying : MonoBehaviour
     private Quaternion lookRotation;
     [System.NonSerialized] public float distanceFromBase, distanceFromTarget;
     public BirdTower originScript;
+    private GameManager gameManager;
+    public GameObject bloodParticle;
 
 
     void Start()
@@ -28,6 +30,7 @@ public class BirdsFlying : MonoBehaviour
         animator = GetComponent<Animator>();
         body = GetComponent<Rigidbody>();
         turnSpeedBackup = turnSpeed;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         direction = Quaternion.Euler(transform.eulerAngles) * (Vector3.forward);
         if (delayStart < 0f) body.velocity = idleSpeed * direction;
     }
@@ -162,4 +165,17 @@ public class BirdsFlying : MonoBehaviour
         }
         return newDir.normalized;
     }
+
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.tag == "Dragon") {
+            Debug.Log ("TRIGGER");
+            gameManager.PlusEnergy(0.1f);
+            GameObject clone = Instantiate (bloodParticle, transform);
+            clone.transform.parent = null;
+            Destroy(this.gameObject);
+
+        }
+    }
+
 }
