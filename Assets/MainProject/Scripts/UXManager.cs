@@ -49,7 +49,7 @@ public class UXManager : MonoBehaviour
     public GameObject[] selectionBorders;
     public Image eagleEyeFill, firebreathFill;
     public Image[] attackCharges;
-    public GameObject DragonEyeBar, SpeedBoostBar, FireBreathBar;
+    public GameObject DragonEyeBar, FireBreathBar;
     public Image destructionBar;
 
     [Header ("Health Stuff")]
