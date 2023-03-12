@@ -49,6 +49,7 @@ public class UXManager : MonoBehaviour
     public Image eagleEyeFill;
     public GameObject[] selectionBorders;
     public Image[] attackCharges;
+    public GameObject DragonEyeBar, SpeedBoostBar, FireBreathBar;
 
     [Header ("Health Stuff")]
     public Image HealthBar;
@@ -175,6 +176,10 @@ public class UXManager : MonoBehaviour
         //animal chase scene
         if (SceneNo == 6) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
+            FadeInCanvasGrp(DragonGrp, 1f);
+            SpeedBoostBar.SetActive (true);
+            DragonEyeBar.SetActive (false);
+            FireBreathBar.SetActive (false);
             StartCoroutine(SetInstructions());
             //StartCoroutine (TempSceneWait(SceneNo + 1)); //REMOVE ME WHEN DONE
         }
@@ -182,6 +187,10 @@ public class UXManager : MonoBehaviour
         //castle attack scene
         if (SceneNo == 7) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
+            FadeInCanvasGrp(DragonGrp, 1f);
+            SpeedBoostBar.SetActive (false);
+            DragonEyeBar.SetActive (false);
+            FireBreathBar.SetActive (true);
             StartCoroutine(SetInstructions());
         }
 
@@ -189,6 +198,9 @@ public class UXManager : MonoBehaviour
         if (SceneNo == 8) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
             FadeInCanvasGrp(DragonGrp, 1f);
+            SpeedBoostBar.SetActive (false);
+            DragonEyeBar.SetActive (true);
+            FireBreathBar.SetActive (false);
             StartCoroutine(SetInstructions());
         }
 
