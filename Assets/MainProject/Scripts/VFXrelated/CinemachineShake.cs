@@ -9,13 +9,13 @@ public class CinemachineShake : MonoBehaviour
 {
     public float amplitudeGain;
     public float frequencyGain;
-    public CinemachineFreeLook cmFreeCam;
+    public CinemachineVirtualCamera cam;
     public float shakeDuration;
 
-    // void Start()
-    // {
-    //     EventManager.BrokeObject += DoShake;
-    // }
+    void Start()
+    {
+        EventManager.TargetHit += DoShake;
+    }
 
     // public void Update()
     // {
@@ -25,9 +25,10 @@ public class CinemachineShake : MonoBehaviour
     //     }
     // }
 
-    public void DoShake()
+    public void DoShake(float value)
     {
         StartCoroutine(Shake());
+        Debug.Log("Shaking");
     }
 
     public IEnumerator Shake()
@@ -39,12 +40,8 @@ public class CinemachineShake : MonoBehaviour
 
     void Noise(float amplitude,float frequency)
     {
-        cmFreeCam.GetRig(0).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = amplitude;
-        cmFreeCam.GetRig(1).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = amplitude;
-        cmFreeCam.GetRig(2).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = amplitude;
-        cmFreeCam.GetRig(0).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = frequency;
-        cmFreeCam.GetRig(1).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = frequency;
-        cmFreeCam.GetRig(2).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = frequency;
+        cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = amplitude;
+        cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = frequency;
     }
     
 }

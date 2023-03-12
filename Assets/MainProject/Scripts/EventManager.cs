@@ -7,6 +7,7 @@ public class EventManager : MonoBehaviour
 {
     public static event Action<int> MinigameImpact;
     public static event Action ShakeCam;
+    public static event Action<float> TargetHit;
 
     public static void TriggerImpact(int id)
     {
@@ -16,5 +17,10 @@ public class EventManager : MonoBehaviour
     public static void CameraShake()
     {
         ShakeCam?.Invoke();
+    }
+
+    public static void HitTarget(float targetValue)
+    {
+        TargetHit?.Invoke(targetValue);
     }
 }

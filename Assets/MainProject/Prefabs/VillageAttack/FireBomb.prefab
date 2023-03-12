@@ -253,7 +253,7 @@ Transform:
   m_GameObject: {fileID: 7342429848941144086}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7342429848675576071}
@@ -515,7 +515,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particles: {fileID: 7342429848645508182}
   orb: {fileID: 7342429848969400723}
-  explosion: {fileID: 7342429848675576069}
+  explosion: {fileID: 7342429848941144086}
   fire: {fileID: 1421549184574092699, guid: fb1f7bfe282f396458a4087e7fa9ad7b, type: 3}
   anim: {fileID: 7342429848645508181}
 --- !u!54 &2387046947325171826

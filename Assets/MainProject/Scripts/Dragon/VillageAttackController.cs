@@ -24,6 +24,10 @@ public class VillageAttackController : MonoBehaviour
     private bool canFireBreath = true;
     private bool canFireBomb = true;
 
+    [Header ("Destruction score handling")]
+    public float destructionGoal = 100f;
+    private float destructionAmount = 0f;
+
 
     [Header ("Customization related")]
     public SkinnedMeshRenderer horns;
@@ -51,6 +55,9 @@ public class VillageAttackController : MonoBehaviour
         tail.SetBlendShapeWeight(1, gameManager.tailSize);
 
         currentAttackType = Attack.FIREBALL;
+
+        // Subscribe to target hit event to keep track of score
+        EventManager.TargetHit += IncreaseDestructionScore;
     }
 
     // Update is called once per frame
@@ -160,6 +167,18 @@ public class VillageAttackController : MonoBehaviour
         Mathf.Clamp(fireBombCharge, 0f, 1f);
         uxManager.SetAttackCharge((int) Attack.FIREBOMB, 0f);
         canFireBomb = true;
+    }
+
+    private void IncreaseDestructionScore(float targetValue)
+    {
+        destructionAmount += targetValue;
+        if (destructionAmount >= destructionGoal)
+        {
+            Debug.Log("Destruction goal reached");
+            destructionAmount = destructionGoal;
+            // Trigger win message
+        }
+        uxManager.SetDestructionAmount(destructionAmount/destructionGoal);
     }
 
 }

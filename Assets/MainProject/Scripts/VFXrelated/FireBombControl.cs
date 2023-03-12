@@ -7,7 +7,7 @@ public class FireBombControl : MonoBehaviour
 {
     public Transform particles;
     public Transform orb;
-    public VisualEffect explosion;
+    public GameObject explosion;
     private Rigidbody rb;
     public GameObject fire;
     public Animator anim;
@@ -41,7 +41,7 @@ public class FireBombControl : MonoBehaviour
     private void Explode()
     {
         rb.isKinematic = true; // to ensure the explosion is in one place
-        explosion.enabled = true;
+        explosion.SetActive(true);
         orb.gameObject.SetActive(false);
         particles.gameObject.SetActive(false);
         Destroy(gameObject, 1f);

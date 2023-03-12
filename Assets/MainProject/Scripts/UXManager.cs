@@ -50,6 +50,7 @@ public class UXManager : MonoBehaviour
     public GameObject[] selectionBorders;
     public Image[] attackCharges;
     public GameObject DragonEyeBar, SpeedBoostBar, FireBreathBar;
+    public Image destructionBar;
 
     [Header ("Health Stuff")]
     public Image HealthBar;
@@ -207,6 +208,7 @@ public class UXManager : MonoBehaviour
         //city battle scene
         if (SceneNo == 9) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
+            FadeOutCanvasGrp(TopBarGrp, 0.1f);
             FadeInCanvasGrp(VillageAttackGrp, 1f);
             // StartCoroutine (TempSceneWait(3)); //REMOVE ME WHEN DONE
         }   
@@ -386,6 +388,11 @@ public class UXManager : MonoBehaviour
     public void SetAttackCharge(int attack, float fill)
     {
         attackCharges[attack].fillAmount = fill;
+    }
+
+    public void SetDestructionAmount(float amount)
+    {
+        destructionBar.fillAmount = amount;
     }
 
 }
