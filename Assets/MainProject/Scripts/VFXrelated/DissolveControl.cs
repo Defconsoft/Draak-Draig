@@ -93,8 +93,9 @@ public class DissolveControl : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        player.Interacting = false;
+
         yield return new WaitForSeconds(1f);
+        player.Interacting = false;
         StartCoroutine(player.StartFollow());
         gameObject.SetActive(false);
     }

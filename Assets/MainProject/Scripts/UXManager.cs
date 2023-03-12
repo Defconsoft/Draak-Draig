@@ -46,8 +46,8 @@ public class UXManager : MonoBehaviour
     public string[] instructions;
 
     [Header ("Dragon Stuff")]
-    public Image eagleEyeFill;
     public GameObject[] selectionBorders;
+    public Image eagleEyeFill, firebreathFill;
     public Image[] attackCharges;
     public GameObject DragonEyeBar, SpeedBoostBar, FireBreathBar;
     public Image destructionBar;
@@ -177,10 +177,6 @@ public class UXManager : MonoBehaviour
         //animal chase scene
         if (SceneNo == 6) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
-            FadeInCanvasGrp(DragonGrp, 1f);
-            SpeedBoostBar.SetActive (true);
-            DragonEyeBar.SetActive (false);
-            FireBreathBar.SetActive (false);
             StartCoroutine(SetInstructions());
             //StartCoroutine (TempSceneWait(SceneNo + 1)); //REMOVE ME WHEN DONE
         }
@@ -189,7 +185,6 @@ public class UXManager : MonoBehaviour
         if (SceneNo == 7) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
             FadeInCanvasGrp(DragonGrp, 1f);
-            SpeedBoostBar.SetActive (false);
             DragonEyeBar.SetActive (false);
             FireBreathBar.SetActive (true);
             StartCoroutine(SetInstructions());
@@ -199,7 +194,6 @@ public class UXManager : MonoBehaviour
         if (SceneNo == 8) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
             FadeInCanvasGrp(DragonGrp, 1f);
-            SpeedBoostBar.SetActive (false);
             DragonEyeBar.SetActive (true);
             FireBreathBar.SetActive (false);
             StartCoroutine(SetInstructions());
@@ -359,6 +353,10 @@ public class UXManager : MonoBehaviour
 
     public void SetEagleEyeAmount(float value){
         eagleEyeFill.fillAmount = value;
+    }
+
+    public void SetFireBreathAmount(float value){
+        firebreathFill.fillAmount = value;
     }
 
     public void DragonGroupFade(float endValue) {

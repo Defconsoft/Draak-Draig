@@ -7,9 +7,14 @@ public class FlyingController : MonoBehaviour
 
     public FlyingCameraController mainCamera;
     public Transform dragonMesh;
+    private InputManager inputManager;
+    private GameManager gameManager;
+    private UXManager uXManager;
+    private PlayerControls controls;
     private Camera cam;
     //Movement variables
     public float dragonThrust = 10000f;
+    private float tempThrust;
     public float pitchSpeed = 30f;
     public float rollSpeed = 45f;
     public float yawSpeed = 25f;
@@ -29,17 +34,30 @@ public class FlyingController : MonoBehaviour
 
     private void Awake() {
         //GRAB THE RB
+        controls = new PlayerControls();
         rb = GetComponent<Rigidbody>();
         cam = Camera.main;
 
+    }
+
+
+    private void OnEnable() {
+        controls.Enable();
+    }
+
+    private void OnDisable() {
+        controls.Disable();
     }
 
     private void Start() {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         thrust = startingSpeed;
+        inputManager = InputManager.Instance;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        uXManager = GameObject.Find("GameManager").GetComponent<UXManager>();
         //rb.AddForce(transform.forward * 500f, ForceMode.VelocityChange);
-    
+        tempThrust = dragonThrust;
     }
 
     // Update is called once per frame
@@ -68,6 +86,8 @@ public class FlyingController : MonoBehaviour
 
 
     }
+
+
 
     void UpdateThrottle(){
 
@@ -131,7 +151,7 @@ public class FlyingController : MonoBehaviour
         rb.velocity = Vector3.Lerp (rb.velocity, transform.forward * localSpeed, aeroFactor * localSpeed * aeroDynamicEffect * Time.fixedDeltaTime);
 
         rb.AddForce ((thrust * dragonThrust) * transform.forward);
-
+        
     }
 
     void LateUpdate() {
