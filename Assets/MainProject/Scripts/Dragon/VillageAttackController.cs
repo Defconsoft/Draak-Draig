@@ -10,6 +10,7 @@ public class VillageAttackController : MonoBehaviour
     private UXManager uxManager;
     public ShootProjectile fireballControl;
     public ShootProjectile firebombControl;
+    public Transform fireBreathPoint;
     enum Attack {FIREBALL, FIREBREATH, FIREBOMB};
     private Attack currentAttackType;
     public Camera mainCamera;
@@ -105,6 +106,7 @@ public class VillageAttackController : MonoBehaviour
                 if (canFireBreath)
                 {
                     anim.SetTrigger("Firebreath");
+                    fireBreathPoint.LookAt(raycastHit.point);
                     fireBreathCharge = 0f;
                     canFireBreath = false;
                     uxManager.SetAttackCharge((int) currentAttackType, 1f - fireBreathCharge);
