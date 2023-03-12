@@ -9913,43 +9913,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 273113088}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &273776999
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: WaterDepthMap
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 5
-  m_Width: 1024
-  m_Height: 1024
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1001 &274382649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35511,17 +35474,52 @@ PrefabInstance:
     - target: {fileID: 1624809037285465572, guid: 02c9d4c90d63cff48b53dabeddc728bb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.0001799972
       objectReference: {fileID: 0}
     - target: {fileID: 1624809037285465572, guid: 02c9d4c90d63cff48b53dabeddc728bb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00559
+      value: 0.007190059
       objectReference: {fileID: 0}
     - target: {fileID: 1624809037285465572, guid: 02c9d4c90d63cff48b53dabeddc728bb,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.00122
+      value: -0.00009000023
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624809037285465572, guid: 02c9d4c90d63cff48b53dabeddc728bb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6633606
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624809037285465572, guid: 02c9d4c90d63cff48b53dabeddc728bb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.74822664
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624809037285465572, guid: 02c9d4c90d63cff48b53dabeddc728bb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.006943427
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624809037285465572, guid: 02c9d4c90d63cff48b53dabeddc728bb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.007843766
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624809037285465572, guid: 02c9d4c90d63cff48b53dabeddc728bb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -96.984
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624809037285465572, guid: 02c9d4c90d63cff48b53dabeddc728bb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 9.921005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624809037285465572, guid: 02c9d4c90d63cff48b53dabeddc728bb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -9.848022
       objectReference: {fileID: 0}
     - target: {fileID: 1624809037285465574, guid: 02c9d4c90d63cff48b53dabeddc728bb,
         type: 3}
@@ -71201,6 +71199,43 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1765812224}
   m_PrefabAsset: {fileID: 0}
+--- !u!84 &1766272127
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WaterDepthMap
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 5
+  m_Width: 1024
+  m_Height: 1024
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 94
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1001 &1772831767
 PrefabInstance:
   m_ObjectHideFlags: 0
