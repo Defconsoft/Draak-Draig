@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using PathCreation.Examples;
 using UnityEngine;
 
 public class VillageAttackController : MonoBehaviour
@@ -33,6 +34,9 @@ public class VillageAttackController : MonoBehaviour
     [Header ("Customization related")]
     public SkinnedMeshRenderer horns;
     public SkinnedMeshRenderer tail;
+
+    public float flapFrequency = 0.01f;
+    private float timeSinceFlap = 0f;
     
     // Start is called before the first frame update
     void Start()
@@ -64,6 +68,14 @@ public class VillageAttackController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Flap wings occasionally
+        timeSinceFlap += 1f;
+        if (timeSinceFlap >= 1f/flapFrequency)
+        {
+            anim.SetTrigger("FlapWings");
+            timeSinceFlap = 0f;
+        } 
+        
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit raycastHit)) {
             cursorTarget.position = raycastHit.point;

@@ -234,7 +234,6 @@ public class DragonController : MonoBehaviour
             {
                 anim.SetTrigger("FlapWings");
                 timeSinceFlap = 0f;
-                Debug.Log("Flapping");
             }  
 
 

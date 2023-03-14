@@ -8,22 +8,34 @@ public class ExitTrigger : MonoBehaviour
     public LevelSceneManager OSManager;
     public GameObject MessageCanvas;
     public int SceneToLoad;
+    public bool isNight = false;
 
     private void OnTriggerEnter(Collider other) {
+        Debug.Log("entered trigger");
         if (other.tag == "Player") {
-            other.gameObject.GetComponent<PlayerController>().nextScene = true;
-            other.gameObject.GetComponent<PlayerController>().SceneToLoad = SceneToLoad;
-            other.gameObject.GetComponent<PlayerController>().exitTrigger = MessageCanvas;
-            OSManager.SceneCanvasGrp = MessageCanvas.GetComponent<CanvasGroup>();
-            OSManager.FadeInInstruction();
+            if (isNight)
+            {
+                GameObject.Find("GameManager").GetComponent<UXManager>().LoadScene(SceneToLoad);
+            }
+            else
+            {
+                other.gameObject.GetComponent<PlayerController>().nextScene = true;
+                other.gameObject.GetComponent<PlayerController>().SceneToLoad = SceneToLoad;
+                other.gameObject.GetComponent<PlayerController>().exitTrigger = MessageCanvas;
+                OSManager.SceneCanvasGrp = MessageCanvas.GetComponent<CanvasGroup>();
+                OSManager.FadeInInstruction();
+            }
         }
     }
 
     private void OnTriggerExit(Collider other) {
         if (other.tag == "Player") {
-            other.gameObject.GetComponent<PlayerController>().nextScene = false;
-            other.gameObject.GetComponent<PlayerController>().exitTrigger = null;
-            OSManager.FadeOutInstruction();
+            if (!isNight)
+            {
+                other.gameObject.GetComponent<PlayerController>().nextScene = false;
+                other.gameObject.GetComponent<PlayerController>().exitTrigger = null;
+                OSManager.FadeOutInstruction();
+            }
         }
     }
 

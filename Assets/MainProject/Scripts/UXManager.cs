@@ -155,6 +155,7 @@ public class UXManager : MonoBehaviour
 
         if (SceneNo == 3) {
             StartCoroutine(SetInstructions());
+            FadeOutCanvasGrp(VillageAttackGrp, 0.1f);
         }       
 
 

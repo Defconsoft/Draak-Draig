@@ -712,13 +712,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfafe1265713f948af3d551be7282ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 13
+  speed: 20
   obj: {fileID: 7342429849406982866, guid: 976f8007a09377f4f9c179136437784a, type: 3}
   throwpoint: {fileID: 2478936294171279802}
   direction: {x: 0, y: 0, z: 1}
   throwDelay: 0.6
-  dragonIsMoving: 0
-  parent: {fileID: 0}
+  dragonIsMoving: 1
+  parent: {fileID: 1895191789140883236}
 --- !u!1 &1624809036129799598
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,13 +763,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfafe1265713f948af3d551be7282ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 13
+  speed: 16
   obj: {fileID: 8458476437712926617, guid: 4a888115d0316c3479df7f5180ec48c2, type: 3}
   throwpoint: {fileID: 1624809036236943201}
   direction: {x: 0, y: 0, z: 1}
   throwDelay: 0.4
-  dragonIsMoving: 0
-  parent: {fileID: 0}
+  dragonIsMoving: 1
+  parent: {fileID: 1895191789140883236}
 --- !u!1 &1624809036236943200
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,14 +826,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1624809037285465569}
-  m_LocalRotation: {x: 0.052443206, y: -0.00000008613239, z: -0.000000027171023, w: 0.99862397}
-  m_LocalPosition: {x: -0, y: 1.088, z: 1.509}
+  m_LocalRotation: {x: -0.029877912, y: 0.000951704, z: 0.010432166, w: 0.99949867}
+  m_LocalPosition: {x: -0.01999855, y: 1.1210022, z: 1.6110001}
   m_LocalScale: {x: 0.8, y: 0.80000013, z: 0.8000002}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1226881565251530142}
   m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -3.425, y: 0.073, z: 1.194}
 --- !u!2083052967 &1624809037285465574
 VisualEffect:
   m_ObjectHideFlags: 0
@@ -854,10 +854,10 @@ VisualEffect:
       - m_Value: 0.56
         m_Name: SoftParticleFactor
         m_Overridden: 1
-      - m_Value: 1.02
+      - m_Value: 1.35
         m_Name: Speed
         m_Overridden: 1
-      - m_Value: 200
+      - m_Value: 350
         m_Name: amount of particles
         m_Overridden: 1
     m_Vector2f:
@@ -3136,7 +3136,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6171561323106276005}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.18, z: 2.23}
+  m_LocalPosition: {x: 0, y: 1.18, z: 2.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
