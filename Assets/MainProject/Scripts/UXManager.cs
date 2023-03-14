@@ -95,7 +95,6 @@ public class UXManager : MonoBehaviour
         //Set the quote and instructions text;
         DebugMenu.enabled = false;
         SetQuoteText(SceneNo);
-        Debug.Log (SceneNo);
         //Sorts main menu interaction
         if (SceneNo == 1) {
             MainMenuGrp.blocksRaycasts = true;
