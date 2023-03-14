@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 
 [RequireComponent(typeof(CharacterController))]
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private bool inNPC;
     private Quaternion rot;
     public GameObject arms;
+    public GameObject transformableArms;
 
 
     private CharacterController controller;
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
     [Header ("Cameras")]
     public CinemachineVirtualCamera FirstPersonCam;
     public CinemachineVirtualCamera InteractCam;
+    public CinemachineInputProvider cmInput;
     public Transform followObject;
     public Transform stopFollowObject;
     
@@ -70,6 +73,16 @@ public class PlayerController : MonoBehaviour
         playerSpeed = gameManager.playerSpeed;
         jumpHeight = gameManager.jumpHeight;
         gravityValue = gameManager.gravityValue;
+
+        //Check which scene we are in to turn on the transformable arms.
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        if (currentScene.buildIndex == 3) {
+            transformableArms.SetActive (true);
+        } else {
+            transformableArms.SetActive (false);
+            cmInput.enabled = true;
+        }
 
 
     }
@@ -208,12 +221,14 @@ public class PlayerController : MonoBehaviour
     public IEnumerator StopFollow(){
         yield return new WaitForSeconds(1f);
         stopFollowing = true;
+        cmInput.enabled = false;
         yield return new WaitForEndOfFrame();
     }
 
     public IEnumerator StartFollow(){
         FirstPersonCam.m_Follow = followObject;
         stopFollowing = false;
+        cmInput.enabled = true;
         yield return new WaitForSeconds (cameraTransform.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time);
     }
 

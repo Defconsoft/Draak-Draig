@@ -14,6 +14,7 @@ public class CinemachinePOVExtension : CinemachineExtension
     protected override void Awake() {
         inputManager = InputManager.Instance;
         base.Awake();
+        
     }
 
 

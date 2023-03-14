@@ -71,6 +71,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseLook"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""897cb877-61b8-4bf0-a42c-25b8912058d1"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -170,6 +179,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""MouseFire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e454e37d-77e2-4eaa-96c1-21345bf93038"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseLook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -410,6 +430,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_MouseFire = m_Player.FindAction("MouseFire", throwIfNotFound: true);
+        m_Player_MouseLook = m_Player.FindAction("MouseLook", throwIfNotFound: true);
         // Dragon
         m_Dragon = asset.FindActionMap("Dragon", throwIfNotFound: true);
         m_Dragon_MouseLook = m_Dragon.FindAction("MouseLook", throwIfNotFound: true);
@@ -483,6 +504,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_MouseFire;
+    private readonly InputAction m_Player_MouseLook;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -492,6 +514,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @MouseFire => m_Wrapper.m_Player_MouseFire;
+        public InputAction @MouseLook => m_Wrapper.m_Player_MouseLook;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -516,6 +539,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @MouseFire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseFire;
                 @MouseFire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseFire;
                 @MouseFire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseFire;
+                @MouseLook.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseLook;
+                @MouseLook.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseLook;
+                @MouseLook.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseLook;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -535,6 +561,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @MouseFire.started += instance.OnMouseFire;
                 @MouseFire.performed += instance.OnMouseFire;
                 @MouseFire.canceled += instance.OnMouseFire;
+                @MouseLook.started += instance.OnMouseLook;
+                @MouseLook.performed += instance.OnMouseLook;
+                @MouseLook.canceled += instance.OnMouseLook;
             }
         }
     }
@@ -627,6 +656,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnMouseFire(InputAction.CallbackContext context);
+        void OnMouseLook(InputAction.CallbackContext context);
     }
     public interface IDragonActions
     {
