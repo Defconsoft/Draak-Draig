@@ -14,7 +14,7 @@ public class EventManager : MonoBehaviour
         MinigameImpact?.Invoke(id);
     }
 
-    public static void CameraShake()
+    public static void ExplosionHappened()
     {
         ShakeCam?.Invoke();
     }

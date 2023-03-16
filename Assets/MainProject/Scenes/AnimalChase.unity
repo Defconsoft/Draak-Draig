@@ -14674,6 +14674,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec827e47f1c5bc4eb64daa4af4a0f43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1492310056 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 589101370613578294, guid: f8720b51b18602a44b662bbf2ff61f9d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4698772237232412195}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1528615802
 GameObject:
   m_ObjectHideFlags: 0
@@ -17843,6 +17849,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.27999252
       objectReference: {fileID: 0}
+    - target: {fileID: 589101370613578294, guid: f8720b51b18602a44b662bbf2ff61f9d,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b8459c8a9bb91e04da0a88e7d93e6849, type: 2}
     - target: {fileID: 1180654877204743286, guid: f8720b51b18602a44b662bbf2ff61f9d,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -17868,6 +17879,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.4451388
       objectReference: {fileID: 0}
+    - target: {fileID: 4698772237014994049, guid: f8720b51b18602a44b662bbf2ff61f9d,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1492310056}
     - target: {fileID: 4698772237014994049, guid: f8720b51b18602a44b662bbf2ff61f9d,
         type: 3}
       propertyPath: yawSpeed

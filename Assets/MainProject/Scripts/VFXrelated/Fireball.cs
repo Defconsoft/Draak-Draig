@@ -45,8 +45,8 @@ public class Fireball : MonoBehaviour
         }
         
         GameObject fireClone = Instantiate(fire, transform.position, Quaternion.identity);
-        EventManager.CameraShake();
         Explode();
+        EventManager.ExplosionHappened();
 
     }
 

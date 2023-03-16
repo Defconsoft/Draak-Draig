@@ -21,6 +21,8 @@ public class FlyingController : MonoBehaviour
     public float autoTurnAngle = 60f;
     public float startingSpeed = 100f;
     public RectTransform crosshairs;
+    public Animator anim;
+    private bool isFlappingWings = false;
 
 
     private Rigidbody rb;
@@ -115,6 +117,10 @@ public class FlyingController : MonoBehaviour
 
         var rollAngle = FindAngle(dragonMesh.transform.localEulerAngles.z);
         var newAngle = targetRollAngle - rollAngle;
+        if (Mathf.Abs(newAngle) > 45f)
+        {
+            anim.SetTrigger("FlapWings");
+        }
 
         pitch = -Mathf.Clamp(localTarget.y, -1f, 1f);
         roll = Mathf.Clamp (newAngle, -1f, 1f);
