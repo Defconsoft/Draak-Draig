@@ -21,11 +21,19 @@ public class VFXControllerDragon : MonoBehaviour
         // 0 = firebreath, 1=fireball, 2=firebomb
         GameObject fx = effects[idx];
         fx.SetActive(true);
+        if(idx == 0)
+        {
+            fx.GetComponent<ParticleSystem>().Play();
+        }
     }
 
     public void StopVFX(int idx)
     {
         GameObject fx = effects[idx];
+        if (idx == 0)
+        {
+            fx.GetComponent<ParticleSystem>().Stop();
+        }
         fx.SetActive(false);
     }
 }
