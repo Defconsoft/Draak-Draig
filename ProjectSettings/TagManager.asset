@@ -15,6 +15,7 @@ TagManager:
   - Barrel
   - arrow
   - target
+  - shrine
   layers:
   - Default
   - TransparentFX

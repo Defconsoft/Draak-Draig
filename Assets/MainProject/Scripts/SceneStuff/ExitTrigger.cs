@@ -19,9 +19,10 @@ public class ExitTrigger : MonoBehaviour
             }
             else
             {
-                other.gameObject.GetComponent<PlayerController>().nextScene = true;
-                other.gameObject.GetComponent<PlayerController>().SceneToLoad = SceneToLoad;
-                other.gameObject.GetComponent<PlayerController>().exitTrigger = MessageCanvas;
+                PlayerController playerCtrl = other.gameObject.GetComponent<PlayerController>();
+                playerCtrl.nextScene = true;
+                playerCtrl.SceneToLoad = SceneToLoad;
+                playerCtrl.exitTrigger = MessageCanvas;
                 OSManager.SceneCanvasGrp = MessageCanvas.GetComponent<CanvasGroup>();
                 OSManager.FadeInInstruction();
             }

@@ -171,6 +171,10 @@ public class PlayerController : MonoBehaviour
                     }
 
                 } else if (nextScene){
+                    if (SceneToLoad == 6)
+                    {
+                        StartCoroutine(PlayPrayAnim());
+                    }
                     Destroy(exitTrigger);
                     uXManager.LoadScene(SceneToLoad);
                     
@@ -233,8 +237,18 @@ public class PlayerController : MonoBehaviour
     }
 
     void PlayFootstepSound()
-		{
-			int _footStepClipIndex = Random.Range(0, footStepClips.Length);
-			audioSource.PlayOneShot(footStepClips[_footStepClipIndex], audioClipVolume + audioClipVolume * Random.Range(-relativeRandomizedVolumeRange, relativeRandomizedVolumeRange));
-		}
+    {
+        int _footStepClipIndex = Random.Range(0, footStepClips.Length);
+        audioSource.PlayOneShot(footStepClips[_footStepClipIndex], audioClipVolume + audioClipVolume * Random.Range(-relativeRandomizedVolumeRange, relativeRandomizedVolumeRange));
+    }
+
+    IEnumerator PlayPrayAnim()
+    {
+        // TODO @ ROB: Make sure arms show up with the right rotation
+        Interacting = true;
+        StartCoroutine(StopFollow());
+        transformableArms.SetActive(true);
+        transformableArms.GetComponent<Animator>().SetTrigger("Pray");
+        yield return new WaitForSeconds(1.5f);
+    }
 }

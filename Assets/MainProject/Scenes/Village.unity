@@ -997,7 +997,7 @@ GameObject:
   - component: {fileID: 656412933}
   m_Layer: 0
   m_Name: PrayTrigger
-  m_TagString: Untagged
+  m_TagString: shrine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1032,6 +1032,7 @@ MonoBehaviour:
   OSManager: {fileID: 1456948620}
   MessageCanvas: {fileID: 562941906}
   SceneToLoad: 6
+  isNight: 0
 --- !u!135 &656412934
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1066,6 +1067,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2327492873636482186, guid: f700ff167e1bacc408a89fbef389c728,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5824029935641941224, guid: f700ff167e1bacc408a89fbef389c728,
         type: 3}
@@ -1142,6 +1148,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerSetup
       objectReference: {fileID: 0}
+    - target: {fileID: 6146462069075674393, guid: f700ff167e1bacc408a89fbef389c728,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9068515676310001539, guid: f700ff167e1bacc408a89fbef389c728,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a06dae8a96ea560479850e9edab19597, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f700ff167e1bacc408a89fbef389c728, type: 3}
 --- !u!1 &792598946
@@ -1535,6 +1551,7 @@ MonoBehaviour:
   OSManager: {fileID: 1456948620}
   MessageCanvas: {fileID: 562941906}
   SceneToLoad: 4
+  isNight: 0
 --- !u!65 &1355705207
 BoxCollider:
   m_ObjectHideFlags: 0
