@@ -16,6 +16,7 @@ TagManager:
   - arrow
   - target
   - shrine
+  - Firebreath
   layers:
   - Default
   - TransparentFX
