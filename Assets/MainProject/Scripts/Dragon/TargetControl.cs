@@ -12,6 +12,7 @@ public class TargetControl : MonoBehaviour
     [SerializeField]
     private float targetValue = 10f;
     public GameObject associatedObject = null;
+    private bool activeTarget = true;
 
 
     // Update is called once per frame
@@ -27,8 +28,17 @@ public class TargetControl : MonoBehaviour
         transform.localScale = scaleVec;
     }
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other)
+    {
+        if (activeTarget)
+        {
+            activeTarget = false;
+            TargetHit();
+        }
+    }
 
+    public void TargetHit()
+    {
         // send target hit event
         Debug.Log("Target hit");
         EventManager.HitTarget(targetValue);

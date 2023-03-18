@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4484617356595607219}
   m_Layer: 0
   m_Name: Target
-  m_TagString: Untagged
+  m_TagString: target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,3 +112,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pulseSpeed: 1
+  scaleOffset: 0
+  targetValue: 10
+  associatedObject: {fileID: 0}
