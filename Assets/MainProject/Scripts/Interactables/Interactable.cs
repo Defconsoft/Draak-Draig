@@ -16,6 +16,7 @@ public class Interactable : MonoBehaviour
     public GameObject RockPrefab;
     public GameObject TreePrefab;
     public GameObject FishPrefab;
+    private PlayerController player;
  
 
     [Header("UX stuff")]
@@ -29,6 +30,7 @@ public class Interactable : MonoBehaviour
         areaTrigger.radius = radius;
         areaTrigger.isTrigger = true;
         CanvasHack.SetActive (true);
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
 
@@ -59,10 +61,10 @@ public class Interactable : MonoBehaviour
         if (other.tag == "Player") {
             itemCanvas.DOFade (1f,1f);
             other.GetComponent<PlayerController>().stateInteract = true;
-            if (interactType == InteractType.tree) {
-                other.GetComponent<PlayerController>().isTree = true;
+            if (interactType == InteractType.NPC) {
+                other.GetComponent<PlayerController>().isNPC = true;
             } else {
-                other.GetComponent<PlayerController>().isTree = false;
+                other.GetComponent<PlayerController>().isNPC = false;
             }
             other.GetComponent<PlayerController>().interactingObject = this.transform;
             
