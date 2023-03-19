@@ -420,6 +420,11 @@ PrefabInstance:
       propertyPath: radius
       value: 150.38
       objectReference: {fileID: 0}
+    - target: {fileID: 4719031464608749611, guid: 27f81ed6f62c1dd4e8837466aad5dda5,
+        type: 3}
+      propertyPath: birds.Array.data[2]
+      value: 
+      objectReference: {fileID: 152858, guid: d65793fa8ef8f894a9682bc68d2bf679, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27f81ed6f62c1dd4e8837466aad5dda5, type: 3}
 --- !u!1001 &118704716
@@ -13872,6 +13877,11 @@ PrefabInstance:
       propertyPath: radius
       value: 121.6
       objectReference: {fileID: 0}
+    - target: {fileID: 4719031464608749611, guid: 27f81ed6f62c1dd4e8837466aad5dda5,
+        type: 3}
+      propertyPath: birds.Array.data[2]
+      value: 
+      objectReference: {fileID: 152858, guid: d65793fa8ef8f894a9682bc68d2bf679, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27f81ed6f62c1dd4e8837466aad5dda5, type: 3}
 --- !u!1001 &1800918154
@@ -13946,6 +13956,11 @@ PrefabInstance:
       propertyPath: radius
       value: 150.38
       objectReference: {fileID: 0}
+    - target: {fileID: 4719031464608749611, guid: 27f81ed6f62c1dd4e8837466aad5dda5,
+        type: 3}
+      propertyPath: birds.Array.data[2]
+      value: 
+      objectReference: {fileID: 152858, guid: d65793fa8ef8f894a9682bc68d2bf679, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27f81ed6f62c1dd4e8837466aad5dda5, type: 3}
 --- !u!1001 &1801261426
@@ -14471,6 +14486,11 @@ PrefabInstance:
       propertyPath: radius
       value: 121.6
       objectReference: {fileID: 0}
+    - target: {fileID: 4719031464608749611, guid: 27f81ed6f62c1dd4e8837466aad5dda5,
+        type: 3}
+      propertyPath: birds.Array.data[2]
+      value: 
+      objectReference: {fileID: 152858, guid: d65793fa8ef8f894a9682bc68d2bf679, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27f81ed6f62c1dd4e8837466aad5dda5, type: 3}
 --- !u!1001 &2065312542
@@ -15064,5 +15084,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BirdTower
       objectReference: {fileID: 0}
+    - target: {fileID: 4719031464608749611, guid: 27f81ed6f62c1dd4e8837466aad5dda5,
+        type: 3}
+      propertyPath: birds.Array.data[2]
+      value: 
+      objectReference: {fileID: 152858, guid: d65793fa8ef8f894a9682bc68d2bf679, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27f81ed6f62c1dd4e8837466aad5dda5, type: 3}
