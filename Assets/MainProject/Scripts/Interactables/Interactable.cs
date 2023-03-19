@@ -19,6 +19,7 @@ public class Interactable : MonoBehaviour
  
 
     [Header("UX stuff")]
+    public GameObject CanvasHack;
     public CanvasGroup itemCanvas;
 
 
@@ -27,6 +28,7 @@ public class Interactable : MonoBehaviour
         areaTrigger = gameObject.AddComponent<SphereCollider>();
         areaTrigger.radius = radius;
         areaTrigger.isTrigger = true;
+        CanvasHack.SetActive (true);
     }
 
 
