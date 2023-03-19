@@ -30,26 +30,26 @@ public class TargetControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (activeTarget)
-        {
-            activeTarget = false;
-            TargetHit();
-        }
+        TargetHit();
     }
 
     public void TargetHit()
     {
-        // send target hit event
-        Debug.Log("Target hit");
-        EventManager.HitTarget(targetValue);
-        // Turn on the fire
-        if (associatedObject != null)
+        if (activeTarget)
         {
-            Debug.Log("Starting fire effect");
-            GameObject vfxObject = associatedObject.GetComponentInChildren<VisualEffect>(true).gameObject;
-            vfxObject.SetActive(true);
+            activeTarget = false;
+            // send target hit event
+            Debug.Log("Target hit");
+            EventManager.HitTarget(targetValue);
+            // Turn on the fire
+            if (associatedObject != null)
+            {
+                Debug.Log("Starting fire effect");
+                GameObject vfxObject = associatedObject.GetComponentInChildren<VisualEffect>(true).gameObject;
+                vfxObject.SetActive(true);
+            }
+            // Destroy target
+            gameObject.SetActive(false); //Destroy didn't seem to react fast enough
         }
-        // Destroy target
-        gameObject.SetActive(false); //Destroy didn't seem to react fast enough
     }
 }

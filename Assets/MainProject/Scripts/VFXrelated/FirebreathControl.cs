@@ -10,7 +10,6 @@ public class FirebreathControl : MonoBehaviour
         // This gets triggered when the firebreath interacts with the target
         if (other.tag == "target")
         {
-            Debug.Log("Firebreath hit target");
             other.GetComponent<TargetControl>().TargetHit();
         }
     }

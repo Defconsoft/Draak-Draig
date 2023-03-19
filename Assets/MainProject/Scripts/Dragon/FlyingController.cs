@@ -22,7 +22,6 @@ public class FlyingController : MonoBehaviour
     public float startingSpeed = 100f;
     public RectTransform crosshairs;
     public Animator anim;
-    private bool isFlappingWings = false;
 
 
     private Rigidbody rb;
