@@ -44,7 +44,7 @@ GameObject:
   m_Layer: 0
   m_Name: Interactable
   m_TagString: Interactable
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -87,6 +87,7 @@ MonoBehaviour:
     type: 3}
   FishPrefab: {fileID: 4804862052255938376, guid: a50ab8d8547874143a02bced6fe80517,
     type: 3}
+  CanvasHack: {fileID: 9121211868166063339}
   itemCanvas: {fileID: 9121211868166063334}
 --- !u!1 &9121211867988475730
 GameObject:
@@ -319,7 +320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9121211868166063335
 RectTransform:
   m_ObjectHideFlags: 0

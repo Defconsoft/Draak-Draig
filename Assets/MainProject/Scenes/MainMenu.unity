@@ -2766,6 +2766,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866262156395003864, guid: 6e46511cc679eef449937558531affce,
         type: 3}
+      propertyPath: Human
+      value: 
+      objectReference: {fileID: 21300000, guid: 8156c08ebbe26f54697582316e08c934,
+        type: 3}
+    - target: {fileID: 5866262156395003864, guid: 6e46511cc679eef449937558531affce,
+        type: 3}
+      propertyPath: Dragon
+      value: 
+      objectReference: {fileID: 21300000, guid: d51ff2c261411c343a843b28253606fd,
+        type: 3}
+    - target: {fileID: 5866262156395003864, guid: 6e46511cc679eef449937558531affce,
+        type: 3}
+      propertyPath: IconHolder
+      value: 
+      objectReference: {fileID: 5866262155527104622}
+    - target: {fileID: 5866262156395003864, guid: 6e46511cc679eef449937558531affce,
+        type: 3}
       propertyPath: DragonEyeBar
       value: 
       objectReference: {fileID: 5866262155527104621}
@@ -2944,3 +2961,15 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5866262155527104618}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5866262155527104622 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3344933977104555036, guid: 6e46511cc679eef449937558531affce,
+    type: 3}
+  m_PrefabInstance: {fileID: 5866262155527104618}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -55,6 +55,8 @@ public class UXManager : MonoBehaviour
     [Header ("Health Stuff")]
     public Image HealthBar;
     public Image EnergyBar;
+    public Sprite Human, Dragon;
+    public Image IconHolder;
 
 
 
@@ -152,9 +154,10 @@ public class UXManager : MonoBehaviour
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
         }  
 
-        if (SceneNo == 3) {
+        if (SceneNo == 3) { //Opening Scene
             StartCoroutine(SetInstructions());
             FadeOutCanvasGrp(VillageAttackGrp, 0.1f);
+            IconHolder.sprite = Human;
         }       
 
 
@@ -164,6 +167,7 @@ public class UXManager : MonoBehaviour
             FadeInCanvasGrp (ResourceGrp, 1.5f);
             StartDaytime();
             StartCoroutine(SetInstructions());
+            IconHolder.sprite = Human;
         }
 
         //Village scene
@@ -172,6 +176,7 @@ public class UXManager : MonoBehaviour
             FadeOutCanvasGrp (DayTimerGrp, 0.1f);
             StopDaytime();
             StartCoroutine(SetInstructions());
+            IconHolder.sprite = Human;
         }
 
         //animal chase scene
@@ -179,6 +184,7 @@ public class UXManager : MonoBehaviour
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
             StartCoroutine(SetInstructions());
             //StartCoroutine (TempSceneWait(SceneNo + 1)); //REMOVE ME WHEN DONE
+            IconHolder.sprite = Dragon;
         }
 
         //castle attack scene
@@ -188,6 +194,7 @@ public class UXManager : MonoBehaviour
             DragonEyeBar.SetActive (false);
             FireBreathBar.SetActive (true);
             StartCoroutine(SetInstructions());
+            IconHolder.sprite = Dragon;
         }
 
         //forest swoop scene
@@ -197,6 +204,7 @@ public class UXManager : MonoBehaviour
             DragonEyeBar.SetActive (true);
             FireBreathBar.SetActive (false);
             StartCoroutine(SetInstructions());
+            IconHolder.sprite = Dragon;
         }
 
         //city battle scene
@@ -205,6 +213,7 @@ public class UXManager : MonoBehaviour
             FadeOutCanvasGrp(TopBarGrp, 0.1f);
             FadeInCanvasGrp(VillageAttackGrp, 1f);
             // StartCoroutine (TempSceneWait(3)); //REMOVE ME WHEN DONE
+            IconHolder.sprite = Dragon;
         }   
 
         //wait for 2 seconds and fade out the BG
@@ -248,7 +257,11 @@ public class UXManager : MonoBehaviour
         if (daytimeActive == true && daytimeSlider.value >= daytimeSlider.maxValue && !dayComplete) {
             FadeOutCanvasGrp (DayTimerGrp, 0.1f);
             StartCoroutine(LoadYourAsyncScene (5));
-        }   
+        } 
+
+
+  
+
     
     }
 

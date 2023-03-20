@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     [Header ("StateInteracting")]
     public bool Interacting;
     public bool stateInteract;
-    public bool isTree;
+    public bool isNPC;
     public bool stopFollowing;
     public bool nextScene;
     public int SceneToLoad;
@@ -142,11 +142,11 @@ public class PlayerController : MonoBehaviour
                     //Set the interact camera angle
                     interactingObject.gameObject.GetComponent<Interactable>().itemCanvas.DOFade(0,1f);
                     Vector3 lookPos;
-                    /*if (isTree) {
-                        lookPos = new Vector3 (interactingObject.position.x, interactingObject.position.y + 2f, interactingObject.position.z)  - cameraTransform.position;
-                    } else {*/
+                    if (isNPC) {
+                        lookPos = new Vector3 (interactingObject.position.x, interactingObject.position.y + 1f, interactingObject.position.z)  - cameraTransform.position;
+                    } else {
                         lookPos = interactingObject.position - cameraTransform.position;
-                    //}
+                    }
                     
                     rot = Quaternion.LookRotation(lookPos);
     

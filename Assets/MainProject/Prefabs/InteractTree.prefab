@@ -1931,17 +1931,17 @@ PrefabInstance:
     - target: {fileID: 6354182666414601636, guid: 0a2673a72e242f9489357cdf7ef7edbe,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5
+      value: 0.46
       objectReference: {fileID: 0}
     - target: {fileID: 6354182666414601636, guid: 0a2673a72e242f9489357cdf7ef7edbe,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6354182666414601636, guid: 0a2673a72e242f9489357cdf7ef7edbe,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6354182666414601636, guid: 0a2673a72e242f9489357cdf7ef7edbe,
         type: 3}
@@ -1996,7 +1996,7 @@ PrefabInstance:
     - target: {fileID: 6354182666414601636, guid: 0a2673a72e242f9489357cdf7ef7edbe,
         type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a2673a72e242f9489357cdf7ef7edbe, type: 3}
@@ -2018,7 +2018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16e941d03cfc53b4c925e03193f9a54b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InsideMaterial: {fileID: 2100000, guid: 62c2fafaf2efe574a95ab40a1b085710, type: 2}
+  InsideMaterial: {fileID: 2100000, guid: 51a65af54ae46d84cb5469a0a15ba599, type: 2}
   OptimizeMaterialUsage: 1
   FractureTemplate: {fileID: 100000, guid: 0a8e4d349b72bc44c95ac09a80a5e68a, type: 3}
   PiecesParent: {fileID: 3816955891833885250}
