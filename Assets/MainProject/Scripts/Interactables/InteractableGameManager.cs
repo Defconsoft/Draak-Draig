@@ -75,7 +75,9 @@ public class InteractableGameManager : MonoBehaviour
 
     [Header ("Animation related")]
     public Animator armsAnim;
-    public float animDelay = 4f;
+    public float animDelayTree = 1f;
+    public float animDelayRock = 1f;
+    public float animDelayFish = 1f;
     private GameObject player;
     public GameObject fractureContainer;
     public GameObject fishBobber;
@@ -247,12 +249,12 @@ public class InteractableGameManager : MonoBehaviour
         rockPowerCanvas.enabled = false;
         //PLAY THE PICK AXE SWIN ANIM
         armsAnim.SetTrigger("mine");
-        yield return new WaitForSeconds(animDelay);
+        yield return new WaitForSeconds(animDelayRock);
 
         RockModels[Choice].GetComponent<FractureGeometry>().Fracture();
 
         GameObject.Find ("Player").GetComponent<PlayerController>().Endinteracting();
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
         InteractableState = 3;
         fractureContainer.transform.parent = null;
         Destroy(this.gameObject.transform.parent.gameObject);
@@ -326,7 +328,7 @@ public class InteractableGameManager : MonoBehaviour
         treePowerCanvas.enabled = false;
         //PLAY THE AXE SWING ANIM
         armsAnim.SetTrigger("chop");
-        yield return new WaitForSeconds(animDelay);
+        yield return new WaitForSeconds(animDelayTree);
 
         TreeModels[Choice].GetComponent<FractureGeometry>().Fracture();
 
@@ -419,7 +421,7 @@ public class InteractableGameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         fishPowerCanvas.enabled = false;
 
-        yield return new WaitForSeconds(animDelay);
+        yield return new WaitForSeconds(animDelayFish);
 
         FishPool.SetActive (false);
 
