@@ -8076,6 +8076,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1663506334114630351, guid: b04135f7bbc118444b1360204e51be2d,
         type: 3}
+      propertyPath: radius
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663506334114630351, guid: b04135f7bbc118444b1360204e51be2d,
+        type: 3}
       propertyPath: CanvasHack
       value: 
       objectReference: {fileID: 430084945}
@@ -8548,6 +8553,11 @@ PrefabInstance:
         type: 3}
       propertyPath: isNPC
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663506334114630351, guid: b04135f7bbc118444b1360204e51be2d,
+        type: 3}
+      propertyPath: radius
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1663506334114630351, guid: b04135f7bbc118444b1360204e51be2d,
         type: 3}

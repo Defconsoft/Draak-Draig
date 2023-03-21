@@ -211,6 +211,7 @@ public class UXManager : MonoBehaviour
         if (SceneNo == 9) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
             FadeOutCanvasGrp(TopBarGrp, 0.1f);
+            DragonEyeBar.SetActive (false);
             FadeInCanvasGrp(VillageAttackGrp, 1f);
             // StartCoroutine (TempSceneWait(3)); //REMOVE ME WHEN DONE
             IconHolder.sprite = Dragon;
