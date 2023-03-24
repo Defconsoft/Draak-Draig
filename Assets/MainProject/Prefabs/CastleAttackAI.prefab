@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1326176290340046305}
   - component: {fileID: 5884100136227414322}
   - component: {fileID: 2734749589933089557}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: CastleAttackAI
   m_TagString: CastleEnemy
   m_Icon: {fileID: 0}

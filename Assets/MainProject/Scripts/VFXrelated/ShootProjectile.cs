@@ -40,6 +40,7 @@ public class ShootProjectile : MonoBehaviour
         GameObject objClone = Instantiate(obj, throwpoint.position, Quaternion.identity);
         rb = objClone.GetComponent<Rigidbody>();
         yield return new WaitForSeconds(waitTime);
+        direction = (target - objClone.transform.position).normalized;
         rb.AddForce(direction * speed, ForceMode.Impulse);
     }
 

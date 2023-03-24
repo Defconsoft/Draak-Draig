@@ -14,7 +14,7 @@ public class CastleBattleController : MonoBehaviour
     private UXManager uxManager;
 
     public GameObject FireballEvent;
-    public GameObject FlameThrowerEvent;
+    public FirebreathControl fireBreath;
     public GameObject EnemyManager;
     public float enemyStartDelay;
     private GameObject Trashcan;
@@ -64,14 +64,14 @@ public class CastleBattleController : MonoBehaviour
 
         if (inputManager.DragonLeftClickThisFrame()) {
             Dragon.GetComponent<Animator>().SetTrigger("FireBall");
-            Vector3 dir = (raycastHit.point - FireballEvent.GetComponent<ShootProjectile>().throwpoint.transform.position).normalized;
-            FireballEvent.GetComponent<ShootProjectile>().direction = dir;
-
-
+            FireballEvent.GetComponent<ShootProjectile>().target = raycastHit.point;
         }
 
         if (inputManager.DragonRightClickThisFrame()) {
            //This will be the flame thrower
+           Dragon.GetComponent<Animator>().SetTrigger("Firebreath");
+           // fireBreathPoint.LookAt(raycastHit.point);
+           fireBreath.target = raycastHit.point;
         }
 
         if (gameManager.HealthAmount <= 0.25f && EndGame == false) {

@@ -16888,7 +16888,7 @@ MonoBehaviour:
   mainCamera: {fileID: 475024216}
   fireballControl: {fileID: 243532893}
   firebombControl: {fileID: 115315621}
-  fireBreathPoint: {fileID: 2082223268}
+  fireBreath: {fileID: 2082223269}
   rechargeSpeedFireBall: 6
   rechargeSpeedFireBreath: 2
   rechargeSpeedFireBomb: 1
@@ -36355,17 +36355,22 @@ PrefabInstance:
     - target: {fileID: 5418704496587316698, guid: 02c9d4c90d63cff48b53dabeddc728bb,
         type: 3}
       propertyPath: InitialModule.startSpeed.minScalar
-      value: 30
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 5418704497542254080, guid: 02c9d4c90d63cff48b53dabeddc728bb,
         type: 3}
       propertyPath: InitialModule.startSpeed.scalar
-      value: 40
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 5418704497542254080, guid: 02c9d4c90d63cff48b53dabeddc728bb,
+        type: 3}
+      propertyPath: CollisionModule.collisionMessages
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5418704497542254080, guid: 02c9d4c90d63cff48b53dabeddc728bb,
         type: 3}
       propertyPath: InitialModule.startSpeed.minScalar
-      value: 30
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 5418704497542254080, guid: 02c9d4c90d63cff48b53dabeddc728bb,
         type: 3}
@@ -77937,6 +77942,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d24e0548d81ee874e8b082f1fa9743d4, type: 3}
+--- !u!84 &1930945551
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WaterDepthMap
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 5
+  m_Width: 1024
+  m_Height: 1024
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 94
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1001 &1932368738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79761,43 +79803,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1975578468}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &1977271570
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: WaterDepthMap
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 5
-  m_Width: 1024
-  m_Height: 1024
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!4 &1978057370 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4298252310013862, guid: 10828e5ac37bd8d4da40f0e24eedc4e6,
@@ -83635,12 +83640,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b4cdb55dada4b84290580ec632b39b0, type: 3}
---- !u!4 &2082223268 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5418704497542254081, guid: 02c9d4c90d63cff48b53dabeddc728bb,
+--- !u!114 &2082223269 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6439547552845111098, guid: 02c9d4c90d63cff48b53dabeddc728bb,
     type: 3}
   m_PrefabInstance: {fileID: 887345119}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcbdd3ece9ecd8b42af811e952743d70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2083479646 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: a5c7299f41b189149aaf8fb6f10a66f0,
