@@ -12,6 +12,7 @@ public class ShootProjectile : MonoBehaviour
     public float throwDelay = 0.4f;
     public bool dragonIsMoving = false;
     public GameObject parent = null;
+    public Vector3 target;
 
     void Start()
     {
@@ -50,6 +51,8 @@ public class ShootProjectile : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         // unparent so object can be shot off properly
         objClone.transform.parent = null;
+        // Setting direction when actually shooting to help aim
+        direction = (target - objClone.transform.position).normalized;
         rb.AddForce(direction * speed, ForceMode.Impulse);
     }
 }

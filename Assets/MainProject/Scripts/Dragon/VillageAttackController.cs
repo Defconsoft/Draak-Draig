@@ -9,16 +9,20 @@ public class VillageAttackController : MonoBehaviour
     private InputManager inputManager;
     private GameManager gameManager;
     private UXManager uxManager;
+    public Camera mainCamera;
+
+    [Header("Attack logic")]
     public ShootProjectile fireballControl;
     public ShootProjectile firebombControl;
     public Transform fireBreathPoint;
     enum Attack {FIREBALL, FIREBREATH, FIREBOMB};
     private Attack currentAttackType;
-    public Camera mainCamera;
-    public Transform cursorTarget;
     public float rechargeSpeedFireBall = 3f;
     public float rechargeSpeedFireBreath = 2f;
     public float rechargeSpeedFireBomb = 1f;
+    public Texture2D cursorTexture;
+    private Vector2 hotSpot;
+    public Transform aimControl;
     private float fireBallCharge = 1f;
     private float fireBreathCharge = 1f;
     private float fireBombCharge = 1f;
@@ -63,6 +67,12 @@ public class VillageAttackController : MonoBehaviour
 
         // Subscribe to target hit event to keep track of score
         EventManager.TargetHit += IncreaseDestructionScore;
+
+        // Setting the aiming cursor
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        hotSpot = new Vector2 (cursorTexture.width / 2, cursorTexture.height / 2);
+        Cursor.SetCursor(cursorTexture, hotSpot, CursorMode.Auto);
     }
 
     // Update is called once per frame
@@ -78,7 +88,7 @@ public class VillageAttackController : MonoBehaviour
         
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit raycastHit)) {
-            cursorTarget.position = raycastHit.point;
+            aimControl.position = raycastHit.point;
         }
         
         if (inputManager.DragonSwitchToFireball())
@@ -104,8 +114,9 @@ public class VillageAttackController : MonoBehaviour
                 if (canFireBall)
                 {
                     anim.SetTrigger("FireBall");
-                    Vector3 dir = (raycastHit.point - fireballControl.throwpoint.transform.position).normalized;
-                    fireballControl.direction = dir;
+                    // Vector3 dir = (raycastHit.point - fireballControl.throwpoint.transform.position).normalized;
+                    // fireballControl.direction = dir;
+                    fireballControl.target = raycastHit.point;
                     fireBallCharge = 0f;
                     canFireBall = false;
                     uxManager.SetAttackCharge((int) currentAttackType, 1f - fireBallCharge);
@@ -124,16 +135,15 @@ public class VillageAttackController : MonoBehaviour
                     uxManager.SetAttackCharge((int) currentAttackType, 1f - fireBreathCharge);
                     StartCoroutine(ReChargeFireBreath());
                 }
-                
-                // Direction setting TBD
             }
             else if (currentAttackType == Attack.FIREBOMB)
             {
                 if (canFireBomb)
                 {
                     anim.SetTrigger("FireBomb");
-                    Vector3 dir = (raycastHit.point - firebombControl.throwpoint.transform.position).normalized;
-                    firebombControl.direction = dir;
+                    // Vector3 dir = (raycastHit.point - firebombControl.throwpoint.transform.position).normalized;
+                    // firebombControl.direction = dir;
+                    firebombControl.target = raycastHit.point;
                     fireBombCharge = 0f;
                     canFireBomb = false;
                     uxManager.SetAttackCharge((int) currentAttackType, 1f - fireBombCharge);

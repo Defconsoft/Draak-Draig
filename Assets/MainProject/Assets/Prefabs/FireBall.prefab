@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 229809828135631150}
   - component: {fileID: 3956987628303833717}
   - component: {fileID: 8164015947373097492}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FireBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 8076630128546683563}
   - component: {fileID: 8076630128546683564}
   - component: {fileID: 8076630128546683561}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FireBallProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 4965000233508615905}
   - component: {fileID: 3581609133416989736}
   - component: {fileID: 2651505321389691980}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FireBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
