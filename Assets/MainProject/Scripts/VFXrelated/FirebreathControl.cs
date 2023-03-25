@@ -5,7 +5,8 @@ using UnityEngine;
 public class FirebreathControl : MonoBehaviour
 {
     public Vector3 target;
-    
+
+  
     void Update()
     {
         transform.LookAt(target);
@@ -13,8 +14,8 @@ public class FirebreathControl : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        Debug.Log("Firebreath collided with: " + other.name);
-        Debug.Log("The tag is: " + other.tag);
+        //Debug.Log("Firebreath collided with: " + other.name);
+        //Debug.Log("The tag is: " + other.tag);
         // This gets triggered when the firebreath interacts with the target
         if (other.tag == "target")
         {
@@ -22,6 +23,11 @@ public class FirebreathControl : MonoBehaviour
         }
         else if (other.tag == "CastleEnemy"){
             other.gameObject.GetComponent<CastleAttackAI>().Dead = true;
+            Debug.Log ("FIRE");
         }
+        
     }
+
+
+
 }

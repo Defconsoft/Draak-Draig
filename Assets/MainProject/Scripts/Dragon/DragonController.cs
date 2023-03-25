@@ -134,28 +134,35 @@ public class DragonController : MonoBehaviour
             if (inputManager.DragonLeftClickThisFrame()) {
                 tilt = 0f;
                 anim.SetFloat("Tilt", tilt);
-                anim.SetTrigger("Swoop");
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Camera.main.transform.position);
 
                 if (Physics.Raycast (Camera.main.transform.position, Camera.main.transform.forward * 100f, out hit)) {
-                    Debug.DrawRay (Camera.main.transform.position, Camera.main.transform.forward * 100f, Color.red);
-                    if (hit.collider.gameObject.tag == "forestHit") {
+                    if (hit.collider.gameObject.tag == "forestHit" || hit.collider.gameObject.tag == "forestOuter") {
                         hit.collider.gameObject.transform.parent.gameObject.GetComponent<ForestSwoopAI>().caught = true;
                         hit.collider.gameObject.transform.parent.gameObject.GetComponent<Rigidbody>().isKinematic = true;
 
-                        //grab the stuff I need
-                        tempPig = hit.collider.gameObject.transform.parent.gameObject;
-                        tempPig.GetComponent<ForestSwoopAI>().SetAnim(1);
-                        tempKillCam = tempPig.GetComponent<ForestSwoopAI>().KillCam;
-                        tempDragonModel = tempPig.GetComponent<ForestSwoopAI>().dragonModel;
-                        tempPigModel = tempPig.GetComponent<ForestSwoopAI>().pigModel;
-                        tempEndSpot = tempPig.GetComponent<ForestSwoopAI>().endSpot;
-                        tempAnim = tempDragonModel.GetComponent<Animator>();
+                        if (hit.collider.gameObject.tag == "forestHit"){
+                            Debug.Log ("Inner");
+                            //grab the stuff I need
+                            tempPig = hit.collider.gameObject.transform.parent.gameObject;
+                            tempPig.GetComponent<ForestSwoopAI>().SetAnim(1);
+                            tempKillCam = tempPig.GetComponent<ForestSwoopAI>().KillCam;
+                            tempDragonModel = tempPig.GetComponent<ForestSwoopAI>().dragonModel;
+                            tempPigModel = tempPig.GetComponent<ForestSwoopAI>().pigModel;
+                            tempEndSpot = tempPig.GetComponent<ForestSwoopAI>().endSpot;
+                            tempAnim = tempDragonModel.GetComponent<Animator>();
 
-                        StartCoroutine (KillAnimate());
+                            StartCoroutine (KillAnimate());
+                        } else if (hit.collider.gameObject.tag == "forestOuter") {
+                            Debug.Log ("Outer");
+                            StartCoroutine (KillNonAnimate());
+                        }
+
+                        
                     } else {
-                        Debug.Log ("MISSED");
+                        Debug.Log ("Missed");
+                        anim.SetTrigger("Swoop");
                     }
                 }
             }
@@ -179,8 +186,25 @@ public class DragonController : MonoBehaviour
             StormWarning.enabled = false;
         }
 
-        if (gameManager.HealthAmount == 0) {
-            //DO SOME END GAME STUFF
+        if (gameManager.HealthAmount >= 1f && gameManager.EnergyAmount >= 1f) {
+            Debug.Log ("FIRE");
+            if (!loadingVillageAttack){
+            loadingVillageAttack = true;
+            uXManager.DragonGroupFade(0f);
+            uXManager.LoadScene(9);
+            }
+        }
+
+        if (gameManager.HealthAmount <= 0) {
+            if (!loadingOpeningScene){
+            loadingOpeningScene = true;    
+            uXManager.DragonGroupFade(0f);
+            gameManager.HealthAmount = 1f;
+            gameManager.EnergyAmount = 1f;
+            uXManager.LoadScene(3);
+            
+            }
+            
         }
 
 
@@ -249,25 +273,7 @@ public class DragonController : MonoBehaviour
         }
 
 
-        if (gameManager.HealthAmount == 1f && gameManager.EnergyAmount == 1f) {
-            if (!loadingVillageAttack){
-            loadingVillageAttack = true;
-            uXManager.DragonGroupFade(0f);
-            uXManager.LoadScene(9);
-            }
-        }
 
-        if (gameManager.HealthAmount <= 0) {
-            if (!loadingOpeningScene){
-            loadingOpeningScene = true;    
-            uXManager.DragonGroupFade(0f);
-            gameManager.HealthAmount = 1f;
-            gameManager.EnergyAmount = 1f;
-            uXManager.LoadScene(3);
-            
-            }
-            
-        }
 
     }
 
@@ -293,6 +299,19 @@ public class DragonController : MonoBehaviour
         ManageAttributes();
         uXManager.DragonGroupFade(1f);
         aimReticle.alpha = 1f;
+        killing = false;
+    }
+
+    IEnumerator KillNonAnimate() {
+        killing = true;
+        yield return new WaitForSeconds(0.1f);
+        
+        ///////////////////////////
+        //FIRE THE FIREBALL HERE
+        ////////////////////////////
+
+        Destroy(tempPig);
+        ManageAttributes();
         killing = false;
     }
 

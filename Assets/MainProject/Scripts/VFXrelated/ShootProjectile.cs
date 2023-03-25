@@ -24,7 +24,6 @@ public class ShootProjectile : MonoBehaviour
 
     void OnEnable()
     {
-        Debug.Log("enabled");
         if (dragonIsMoving)
         {
             StartCoroutine(ThrowAfterWaitWhileMoving(throwDelay));

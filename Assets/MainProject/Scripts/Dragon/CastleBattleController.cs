@@ -12,6 +12,7 @@ public class CastleBattleController : MonoBehaviour
     private InputManager inputManager;
     private GameManager gameManager;
     private UXManager uxManager;
+    private PlayerControls controls;
 
     public GameObject FireballEvent;
     public FirebreathControl fireBreath;
@@ -25,12 +26,30 @@ public class CastleBattleController : MonoBehaviour
     public bool BarrelLive;
     public Transform barrelExplosionPoint;
     public GameObject explosionEffect;
+
+    [SerializeField] private float fireBreathAmount;
+    private bool BreathActive;
+    bool canFirebreath = true;
     
     bool EndGame;
 
     [Header ("Customization related")]
     public SkinnedMeshRenderer horns;
     public SkinnedMeshRenderer tail;
+
+
+    private void Awake() {
+        controls = new PlayerControls();
+    }
+
+
+    private void OnEnable() {
+        controls.Enable();
+    }
+
+    private void OnDisable() {
+        controls.Disable();
+    }
 
 
     // Start is called before the first frame update
@@ -56,6 +75,20 @@ public class CastleBattleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        BreathActive = controls.Dragon.RightMouse.ReadValue<float>() > 0;
+
+        if (BreathActive && fireBreathAmount <= 0.24f) {
+            canFirebreath = false;
+        } else {
+            IncreaseFirebreathAmount();
+        }
+
+        uxManager.SetFireBreathAmount(fireBreathAmount);
+
+
+
+
+
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit raycastHit)) {
             transform.position = raycastHit.point;
@@ -67,11 +100,16 @@ public class CastleBattleController : MonoBehaviour
             FireballEvent.GetComponent<ShootProjectile>().target = raycastHit.point;
         }
 
-        if (inputManager.DragonRightClickThisFrame()) {
+        if (inputManager.DragonRightClickThisFrame() && canFirebreath) {
+           canFirebreath = false;
+           StartCoroutine (breathDelay());
+           DecreaseFirebreathAmount();
            //This will be the flame thrower
            Dragon.GetComponent<Animator>().SetTrigger("Firebreath");
            // fireBreathPoint.LookAt(raycastHit.point);
            fireBreath.target = raycastHit.point;
+        
+        
         }
 
         if (gameManager.HealthAmount <= 0.25f && EndGame == false) {
@@ -124,7 +162,21 @@ public class CastleBattleController : MonoBehaviour
         
     }
 
+    private void DecreaseFirebreathAmount(){
+            fireBreathAmount = fireBreathAmount - 0.25f;
+            fireBreathAmount = Mathf.Clamp(fireBreathAmount, 0f, 1f);
+            
+;    }
 
+    private void IncreaseFirebreathAmount(){
+            fireBreathAmount = fireBreathAmount += Time.deltaTime * 0.02f;
+            fireBreathAmount = Mathf.Clamp(fireBreathAmount, 0f, 1f);
+    }
+
+    IEnumerator breathDelay() {
+        yield return new WaitForSeconds (3f);
+        canFirebreath = true;
+    }
 
 
 }

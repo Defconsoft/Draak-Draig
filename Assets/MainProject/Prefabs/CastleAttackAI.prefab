@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1326176290340046305}
   - component: {fileID: 5884100136227414322}
   - component: {fileID: 2734749589933089557}
+  - component: {fileID: 4247908559076989079}
   m_Layer: 15
   m_Name: CastleAttackAI
   m_TagString: CastleEnemy
@@ -105,6 +106,20 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
+  m_Height: 2.8595266
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.464988, z: 0}
+--- !u!136 &4247908559076989079
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096640717225413612}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.45
   m_Height: 2.8595266
   m_Direction: 1
   m_Center: {x: 0, y: 1.464988, z: 0}

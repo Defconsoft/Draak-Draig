@@ -10,6 +10,7 @@ public class FlyingController : MonoBehaviour
     private InputManager inputManager;
     private GameManager gameManager;
     private UXManager uXManager;
+    private GameObject Dragon;
     private PlayerControls controls;
     private Camera cam;
     //Movement variables
@@ -54,6 +55,7 @@ public class FlyingController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         thrust = startingSpeed;
+        Dragon = GameObject.Find("dragonImproved");
         inputManager = InputManager.Instance;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         uXManager = GameObject.Find("GameManager").GetComponent<UXManager>();
@@ -84,7 +86,6 @@ public class FlyingController : MonoBehaviour
         CheckMouseControls();
 
         crosshairs.position = crosshairPosition;
-
 
     }
 
@@ -145,7 +146,6 @@ public class FlyingController : MonoBehaviour
         if (Mathf.Abs (pitch) > 0.1f) {
             transform.RotateAround (transform.position, transform.forward, rotateSpeed);  
         }
-
 
 
         var localVelocity = transform.InverseTransformDirection (rb.velocity);

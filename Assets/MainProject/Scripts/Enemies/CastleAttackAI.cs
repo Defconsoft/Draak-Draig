@@ -21,6 +21,7 @@ public class CastleAttackAI : MonoBehaviour
     bool canShoot;
 
     public bool Dead;
+    public bool deadOnce;
 
     [Header ("Animation stuff")]
     private Animator anim;
@@ -67,7 +68,9 @@ public class CastleAttackAI : MonoBehaviour
         }
 
         //Dieing
-        if (Dead) {
+        if (Dead && !deadOnce) {
+            deadOnce = true;
+            Debug.Log ("DEAD");
             StartCoroutine(Death());
         } 
 

@@ -79,26 +79,35 @@ public class GameManager : MonoBehaviour
 
     public void MinusHealth(float amount){
         HealthAmount = HealthAmount - amount;
+        NumberClean();
         Mathf.Clamp(HealthAmount, 0f, 1f);
         uxManager.HealthBar.fillAmount = HealthAmount;
     }
 
     public void PlusHealth(float amount){
         HealthAmount = HealthAmount + amount;
+        NumberClean();
         Mathf.Clamp(HealthAmount, 0f, 1f);
         uxManager.HealthBar.fillAmount = HealthAmount;
     }
 
     public void MinusEnergy(float amount){
         EnergyAmount = EnergyAmount - amount;
+        NumberClean();
         Mathf.Clamp(EnergyAmount, 0f, 1f);
         uxManager.EnergyBar.fillAmount = EnergyAmount;
     }
 
     public void PlusEnergy(float amount){
         EnergyAmount = EnergyAmount + amount;
+        NumberClean();
         Mathf.Clamp(EnergyAmount, 0f, 1f);
         uxManager.EnergyBar.fillAmount = EnergyAmount;
+    }
+
+    public void NumberClean(){
+        HealthAmount = Mathf.Round(HealthAmount *1000f) /1000f;
+        EnergyAmount = Mathf.Round(EnergyAmount *1000f) /1000f;
     }
 
 

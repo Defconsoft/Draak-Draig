@@ -17,6 +17,7 @@ TagManager:
   - target
   - shrine
   - Firebreath
+  - forestOuter
   layers:
   - Default
   - TransparentFX
