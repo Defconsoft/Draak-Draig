@@ -23,6 +23,8 @@ public class FlyingController : MonoBehaviour
     public float startingSpeed = 100f;
     public RectTransform crosshairs;
     public Animator anim;
+    public Transform target;
+    public FirebreathControl fireBreath;
 
 
     private Rigidbody rb;
@@ -86,6 +88,13 @@ public class FlyingController : MonoBehaviour
         CheckMouseControls();
 
         crosshairs.position = crosshairPosition;
+
+        // Firebreath
+        if (inputManager.DragonLeftClickThisFrame())
+        {
+            anim.SetTrigger("Firebreath");
+            fireBreath.target = target.position;
+        }
 
     }
 

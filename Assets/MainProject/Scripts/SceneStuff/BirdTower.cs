@@ -10,6 +10,7 @@ public class BirdTower : MonoBehaviour
     public GameObject[] birds;
     public GameObject releasePoint;
     public int totalBirds;
+    public GameObject burnEffect;
 
 
 
@@ -33,5 +34,10 @@ public class BirdTower : MonoBehaviour
         // Draw a yellow sphere at the transform's position
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, radius);
+    }
+
+    public void Burn()
+    {
+        burnEffect.SetActive(true);
     }
 }

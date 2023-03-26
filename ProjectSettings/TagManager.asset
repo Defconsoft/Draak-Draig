@@ -18,6 +18,7 @@ TagManager:
   - shrine
   - Firebreath
   - forestOuter
+  - bird
   layers:
   - Default
   - TransparentFX

@@ -22,6 +22,7 @@ public class BirdsFlying : MonoBehaviour
     public BirdTower originScript;
     private GameManager gameManager;
     public GameObject bloodParticle;
+    private bool isDead = false;
 
 
     void Start()
@@ -171,11 +172,19 @@ public class BirdsFlying : MonoBehaviour
         if (other.tag == "Dragon") {
             Debug.Log ("TRIGGER");
             other.GetComponentInChildren<Animator>().SetTrigger("EatAnimal");
+            KillBird();
+        }
+    }
+
+    public void KillBird()
+    {
+        if (!isDead)
+        {
+            isDead = true;
             gameManager.PlusEnergy(0.1f);
             GameObject clone = Instantiate (bloodParticle, transform);
             clone.transform.parent = null;
             Destroy(this.gameObject);
-
         }
     }
 
