@@ -75,55 +75,57 @@ public class CastleBattleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BreathActive = controls.Dragon.RightMouse.ReadValue<float>() > 0;
+        if (uxManager.isPaused == false){
+            BreathActive = controls.Dragon.RightMouse.ReadValue<float>() > 0;
 
-        if (BreathActive && fireBreathAmount <= 0.24f) {
-            canFirebreath = false;
-        } else {
-            IncreaseFirebreathAmount();
-        }
-
-        uxManager.SetFireBreathAmount(fireBreathAmount);
-
-
-
-
-
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit raycastHit)) {
-            transform.position = raycastHit.point;
-        }
-        
-
-        if (inputManager.DragonLeftClickThisFrame()) {
-            Dragon.GetComponent<Animator>().SetTrigger("FireBall");
-            FireballEvent.GetComponent<ShootProjectile>().target = raycastHit.point;
-        }
-
-        if (inputManager.DragonRightClickThisFrame() && canFirebreath) {
-           canFirebreath = false;
-           StartCoroutine (breathDelay());
-           DecreaseFirebreathAmount();
-           //This will be the flame thrower
-           Dragon.GetComponent<Animator>().SetTrigger("Firebreath");
-           // fireBreathPoint.LookAt(raycastHit.point);
-           fireBreath.target = raycastHit.point;
-        
-        
-        }
-
-        if (gameManager.HealthAmount <= 0.25f && EndGame == false) {
-            EndGame = true;
-            foreach (Transform child in Trashcan.transform) {
-                Destroy(child.gameObject);
+            if (BreathActive && fireBreathAmount <= 0.24f) {
+                canFirebreath = false;
+            } else {
+                IncreaseFirebreathAmount();
             }
-            uxManager.LoadScene(8);
-        }
+
+            uxManager.SetFireBreathAmount(fireBreathAmount);
 
 
-        if (!BarrelLive) {
-            BarrelLive = true;
-            StartCoroutine (SpawnBarrel());
+
+
+
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit raycastHit)) {
+                transform.position = raycastHit.point;
+            }
+            
+
+            if (inputManager.DragonLeftClickThisFrame()) {
+                Dragon.GetComponent<Animator>().SetTrigger("FireBall");
+                FireballEvent.GetComponent<ShootProjectile>().target = raycastHit.point;
+            }
+
+            if (inputManager.DragonRightClickThisFrame() && canFirebreath) {
+            canFirebreath = false;
+            StartCoroutine (breathDelay());
+            DecreaseFirebreathAmount();
+            //This will be the flame thrower
+            Dragon.GetComponent<Animator>().SetTrigger("Firebreath");
+            // fireBreathPoint.LookAt(raycastHit.point);
+            fireBreath.target = raycastHit.point;
+            
+            
+            }
+
+            if (gameManager.HealthAmount <= 0.25f && EndGame == false) {
+                EndGame = true;
+                foreach (Transform child in Trashcan.transform) {
+                    Destroy(child.gameObject);
+                }
+                uxManager.LoadScene(8);
+            }
+
+
+            if (!BarrelLive) {
+                BarrelLive = true;
+                StartCoroutine (SpawnBarrel());
+            }
         }
 
     }

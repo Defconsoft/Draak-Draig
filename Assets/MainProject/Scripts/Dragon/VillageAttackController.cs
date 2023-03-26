@@ -69,15 +69,30 @@ public class VillageAttackController : MonoBehaviour
         EventManager.TargetHit += IncreaseDestructionScore;
 
         // Setting the aiming cursor
-        Cursor.visible = true;
+        Cursor.visible = false;
+        StartCoroutine (unhideCursor());
         Cursor.lockState = CursorLockMode.None;
         hotSpot = new Vector2 (cursorTexture.width / 2, cursorTexture.height / 2);
         Cursor.SetCursor(cursorTexture, hotSpot, CursorMode.Auto);
     }
 
+    IEnumerator unhideCursor() {
+        yield return new WaitForSeconds (4f);
+        Cursor.visible = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
+
+        if (uxManager.isPaused){
+            Cursor.SetCursor(null, hotSpot, CursorMode.Auto);
+            
+        } else {
+            Cursor.SetCursor(cursorTexture, hotSpot, CursorMode.Auto);
+        }
+
+
         // Flap wings occasionally
         timeSinceFlap += 1f;
         if (timeSinceFlap >= 1f/flapFrequency)
@@ -107,49 +122,51 @@ public class VillageAttackController : MonoBehaviour
             uxManager.SetAttackType((int) Attack.FIREBOMB);
         }
         
-        if (inputManager.DragonLeftClickThisFrame()) {
+        if (uxManager.isPaused == false){
+            if (inputManager.DragonLeftClickThisFrame()) {
 
-            if (currentAttackType == Attack.FIREBALL)
-            {
-                if (canFireBall)
+                if (currentAttackType == Attack.FIREBALL)
                 {
-                    anim.SetTrigger("FireBall");
-                    // Vector3 dir = (raycastHit.point - fireballControl.throwpoint.transform.position).normalized;
-                    // fireballControl.direction = dir;
-                    fireballControl.target = raycastHit.point;
-                    fireBallCharge = 0f;
-                    canFireBall = false;
-                    uxManager.SetAttackCharge((int) currentAttackType, 1f - fireBallCharge);
-                    StartCoroutine(ReChargeFireBall());
+                    if (canFireBall)
+                    {
+                        anim.SetTrigger("FireBall");
+                        // Vector3 dir = (raycastHit.point - fireballControl.throwpoint.transform.position).normalized;
+                        // fireballControl.direction = dir;
+                        fireballControl.target = raycastHit.point;
+                        fireBallCharge = 0f;
+                        canFireBall = false;
+                        uxManager.SetAttackCharge((int) currentAttackType, 1f - fireBallCharge);
+                        StartCoroutine(ReChargeFireBall());
+                    }
+                    
                 }
-                
-            }
-            else if (currentAttackType == Attack.FIREBREATH)
-            {
-                if (canFireBreath)
+                else if (currentAttackType == Attack.FIREBREATH)
                 {
-                    anim.SetTrigger("Firebreath");
-                    fireBreath.target = raycastHit.point;
-                    fireBreathCharge = 0f;
-                    canFireBreath = false;
-                    uxManager.SetAttackCharge((int) currentAttackType, 1f - fireBreathCharge);
-                    StartCoroutine(ReChargeFireBreath());
+                    if (canFireBreath)
+                    {
+                        anim.SetTrigger("Firebreath");
+                        fireBreath.target = raycastHit.point;
+                        fireBreathCharge = 0f;
+                        canFireBreath = false;
+                        uxManager.SetAttackCharge((int) currentAttackType, 1f - fireBreathCharge);
+                        StartCoroutine(ReChargeFireBreath());
+                    }
                 }
-            }
-            else if (currentAttackType == Attack.FIREBOMB)
-            {
-                if (canFireBomb)
+                else if (currentAttackType == Attack.FIREBOMB)
                 {
-                    anim.SetTrigger("FireBomb");
-                    // Vector3 dir = (raycastHit.point - firebombControl.throwpoint.transform.position).normalized;
-                    // firebombControl.direction = dir;
-                    firebombControl.target = raycastHit.point;
-                    fireBombCharge = 0f;
-                    canFireBomb = false;
-                    uxManager.SetAttackCharge((int) currentAttackType, 1f - fireBombCharge);
-                    StartCoroutine(ReChargeFireBomb());
+                    if (canFireBomb)
+                    {
+                        anim.SetTrigger("FireBomb");
+                        // Vector3 dir = (raycastHit.point - firebombControl.throwpoint.transform.position).normalized;
+                        // firebombControl.direction = dir;
+                        firebombControl.target = raycastHit.point;
+                        fireBombCharge = 0f;
+                        canFireBomb = false;
+                        uxManager.SetAttackCharge((int) currentAttackType, 1f - fireBombCharge);
+                        StartCoroutine(ReChargeFireBomb());
+                    }
+                    
                 }
-                
             }
         }
     }

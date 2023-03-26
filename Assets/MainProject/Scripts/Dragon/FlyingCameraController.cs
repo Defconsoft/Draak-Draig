@@ -16,9 +16,13 @@ public class FlyingCameraController : MonoBehaviour
 
     internal Vector3 rawPosition;
 
+    private UXManager uXManager;
+
     private void Start() {
         if (sensitivity == Vector2.zero) sensitivity = new Vector2 (1.5f, 1f);
         if (smoothing == Vector2.zero) smoothing = Vector2.one * 3f;
+
+        uXManager = GameObject.Find("GameManager").GetComponent<UXManager>();
     }
 
 
@@ -41,14 +45,16 @@ public class FlyingCameraController : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        var newRotation = Quaternion.Euler(position.x, position.y, 0);
-        var newPosition = newRotation * new Vector3(0,heightOffset, -distance) + target.position;
-        var newDirection = target.position - newPosition;
+        if (uXManager.isPaused == false){
+            var newRotation = Quaternion.Euler(position.x, position.y, 0);
+            var newPosition = newRotation * new Vector3(0,heightOffset, -distance) + target.position;
+            var newDirection = target.position - newPosition;
 
-        transform.rotation = Quaternion.LookRotation (newDirection, Vector3.up);
-        transform.position = newPosition + new Vector3(0, heightOffset, 0);
+            transform.rotation = Quaternion.LookRotation (newDirection, Vector3.up);
+            transform.position = newPosition + new Vector3(0, heightOffset, 0);
 
-        rawPosition = newPosition;
+            rawPosition = newPosition;
+        }
 
     }
 }
