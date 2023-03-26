@@ -8,6 +8,7 @@ public class Fireball : MonoBehaviour
     private VisualEffect explosion;
     public GameObject projectile;
     public VisualEffect fireTrail;
+    private UXManager uxManager;
     private Rigidbody rb;
     private bool oneHit;
     private CastleBattleController castleController;
@@ -17,7 +18,11 @@ public class Fireball : MonoBehaviour
     {
         explosion = GetComponent<VisualEffect>();
         rb = GetComponent<Rigidbody>();
-        castleController = GameObject.Find("CastleManager").GetComponent<CastleBattleController>();
+        uxManager = GameObject.Find("GameManager").GetComponent<UXManager>();
+
+        if (uxManager.currentScene == 7) {
+            castleController = GameObject.Find("CastleManager").GetComponent<CastleBattleController>();
+        }
     }
 
     private void OnTriggerEnter(Collider other) {
