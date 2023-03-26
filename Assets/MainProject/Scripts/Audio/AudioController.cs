@@ -22,4 +22,9 @@ public class AudioController : MonoBehaviour
     {
         audioSource.PlayOneShot(audio, audioVolume);
     }
+
+    private void OnDisable()
+    {
+        EventManager.MinigameImpact -= PlayImpactAudio;
+    }
 }

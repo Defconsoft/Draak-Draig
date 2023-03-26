@@ -26,7 +26,7 @@ public class CameraShake : MonoBehaviour
         
     // }
 
-    public void DoShake()
+    private void DoShake()
     {
         StartCoroutine(Shake());
     }
@@ -46,5 +46,10 @@ public class CameraShake : MonoBehaviour
             yield return 0;
         }
         transform.localPosition = orignalPosition;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.ShakeCam -= DoShake;
     }
 }

@@ -25,7 +25,7 @@ public class CinemachineShake : MonoBehaviour
     //     }
     // }
 
-    public void DoShake(float value)
+    private void DoShake(float value)
     {
         StartCoroutine(Shake());
         Debug.Log("Shaking");
@@ -42,6 +42,11 @@ public class CinemachineShake : MonoBehaviour
     {
         cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = amplitude;
         cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = frequency;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.TargetHit -= DoShake;
     }
     
 }

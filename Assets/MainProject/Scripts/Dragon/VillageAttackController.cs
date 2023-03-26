@@ -222,4 +222,9 @@ public class VillageAttackController : MonoBehaviour
         uxManager.SetDestructionAmount(destructionAmount/destructionGoal);
     }
 
+    private void OnDisable()
+    {
+        EventManager.TargetHit -= IncreaseDestructionScore;
+    }
+
 }
