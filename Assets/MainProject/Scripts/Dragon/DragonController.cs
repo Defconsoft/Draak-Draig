@@ -46,6 +46,7 @@ public class DragonController : MonoBehaviour
     bool takingDamage;
     public float stormDelay;
     public Canvas StormWarning;
+    public ShootProjectile fireballControl;
 
     [SerializeField] private float dragonSpeed = 2.0f;
     [SerializeField] private float rotateSpeed = 2.0f;
@@ -156,6 +157,8 @@ public class DragonController : MonoBehaviour
                             StartCoroutine (KillAnimate());
                         } else if (hit.collider.gameObject.tag == "forestOuter") {
                             Debug.Log ("Outer");
+                            dragonSpeed = 0f;
+                            tempPig = hit.collider.gameObject.transform.parent.gameObject;
                             StartCoroutine (KillNonAnimate());
                         }
 
@@ -304,15 +307,19 @@ public class DragonController : MonoBehaviour
 
     IEnumerator KillNonAnimate() {
         killing = true;
-        yield return new WaitForSeconds(0.1f);
+        tempPig.GetComponent<ForestSwoopAI>().SetAnim(1);
         
         ///////////////////////////
         //FIRE THE FIREBALL HERE
         ////////////////////////////
+        anim.SetTrigger("FireBall");
+        fireballControl.target = tempPig.transform.position;
+        yield return new WaitForSeconds(0.9f);
 
         Destroy(tempPig);
         ManageAttributes();
         killing = false;
+        dragonSpeed = 400f;
     }
 
     void ManageAttributes(){

@@ -30,18 +30,25 @@ public class Fireball : MonoBehaviour
         if (other.tag =="arrow") {
             return;
         }
+        else if (other.tag == "forestStorm")
+        {
+            return;
+        }
         
         Explode();       
     }
     
     void OnCollisionEnter(Collision collision)
     {
-
+        
         if (collision.gameObject.tag == "Barrel") {
             castleController.barrelExplosionPoint = collision.gameObject.transform;    
             StartCoroutine (castleController.BarrelNuke());
             Destroy(collision.gameObject);
-
+        }
+        if (collision.gameObject.tag == "Player")
+        {
+            return;
         }
         
         GameObject fireClone = Instantiate(fire, transform.position, Quaternion.identity);
