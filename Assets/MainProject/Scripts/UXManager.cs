@@ -11,6 +11,9 @@ public class UXManager : MonoBehaviour
 {
 
     public GameManager gameManager;
+    public int currentScene;
+    public bool isPaused;
+    public Button resumeBtn;
 
     [Header ("Canvas Stuff")]
     [SerializeField] private Canvas MainMenu;
@@ -24,6 +27,7 @@ public class UXManager : MonoBehaviour
     [SerializeField] private CanvasGroup InstructionGrp;
     [SerializeField] private CanvasGroup DragonGrp;
     [SerializeField] private CanvasGroup VillageAttackGrp;
+    [SerializeField] private CanvasGroup PauseMenuGrp;
 
     [Header ("Quote Stuff")]
     [SerializeField] private TMPro.TMP_Text QuoteTextBox;   
@@ -96,6 +100,7 @@ public class UXManager : MonoBehaviour
 
         //Set the quote and instructions text;
         DebugMenu.enabled = false;
+        currentScene = SceneNo;
         SetQuoteText(SceneNo);
         //Sorts main menu interaction
         if (SceneNo == 1) {
@@ -260,7 +265,18 @@ public class UXManager : MonoBehaviour
             StartCoroutine(LoadYourAsyncScene (5));
         } 
 
+        //Pause Menu Stuff
 
+        
+        if (Input.GetKeyDown(KeyCode.Escape) && currentScene >=3) {
+            isPaused = true;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            PauseMenuGrp.blocksRaycasts = true;
+            PauseMenuGrp.interactable = true;
+            PauseMenuGrp.alpha = 1f;
+            Time.timeScale = 0f;
+        }
   
 
     
@@ -405,5 +421,93 @@ public class UXManager : MonoBehaviour
     {
         destructionBar.fillAmount = amount;
     }
+
+
+
+    public void PauseResume() {
+        resumeBtn.interactable = false;
+        resumeBtn.interactable = true;
+        isPaused = false;
+        PauseMenuGrp.alpha = 0f;
+        Time.timeScale = 1f;
+        PauseMenuGrp.interactable = false;
+        PauseMenuGrp.blocksRaycasts = false;
+        //Sort out the cursor
+
+        switch (currentScene) 
+        {
+            case 0:
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                break;
+
+            case 1:
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                break;
+
+            case 2: 
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                break;
+
+            case 3: 
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                break;  
+
+            case 4: 
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                break;
+
+            case 5: 
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                break;
+
+            case 6: 
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                break;
+
+            case 7: 
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.None;
+                break;
+
+            case 8: 
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                break;
+
+            case 9: 
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                break;
+
+
+        }        
+
+
+
+
+
+    }
+
+    public void PauseMainMenu() {
+        isPaused = false;
+        Time.timeScale = 1f;
+        LoadScene(1);
+        PauseMenuGrp.interactable = false;
+        PauseMenuGrp.blocksRaycasts = false;
+        FadeOutCanvasGrp(PauseMenuGrp, 0.5f);
+        LoadScene(2);
+    }
+
+    public void PauseExitGame() {
+        Application.Quit();
+    }
+
 
 }

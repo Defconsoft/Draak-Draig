@@ -466,7 +466,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 8
   m_TargetDisplay: 0
 --- !u!114 &1663506332544735469
 MonoBehaviour:
@@ -1042,6 +1042,7 @@ MonoBehaviour:
   RockPrefab: {fileID: 0}
   TreePrefab: {fileID: 0}
   FishPrefab: {fileID: 0}
+  CanvasHack: {fileID: 0}
   itemCanvas: {fileID: 1663506332843257556}
 --- !u!114 &1663506334114630345
 MonoBehaviour:

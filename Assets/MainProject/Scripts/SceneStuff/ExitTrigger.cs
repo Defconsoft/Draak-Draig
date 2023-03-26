@@ -11,7 +11,6 @@ public class ExitTrigger : MonoBehaviour
     public bool isNight = false;
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("entered trigger");
         if (other.tag == "Player") {
             if (isNight)
             {
