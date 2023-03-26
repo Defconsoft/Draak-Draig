@@ -131,47 +131,45 @@ public class DragonController : MonoBehaviour
             uXManager.SetEagleEyeAmount(eagleAmount);
 
 
+            if (uXManager.isPaused == false){
+                if (inputManager.DragonLeftClickThisFrame()) {
+                    tilt = 0f;
+                    anim.SetFloat("Tilt", tilt);
+                    RaycastHit hit;
+                    Ray ray = Camera.main.ScreenPointToRay(Camera.main.transform.position);
 
-            if (inputManager.DragonLeftClickThisFrame()) {
-                tilt = 0f;
-                anim.SetFloat("Tilt", tilt);
-                RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(Camera.main.transform.position);
+                    if (Physics.Raycast (Camera.main.transform.position, Camera.main.transform.forward * 100f, out hit)) {
+                        if (hit.collider.gameObject.tag == "forestHit" || hit.collider.gameObject.tag == "forestOuter") {
+                            hit.collider.gameObject.transform.parent.gameObject.GetComponent<ForestSwoopAI>().caught = true;
+                            hit.collider.gameObject.transform.parent.gameObject.GetComponent<Rigidbody>().isKinematic = true;
 
-                if (Physics.Raycast (Camera.main.transform.position, Camera.main.transform.forward * 100f, out hit)) {
-                    if (hit.collider.gameObject.tag == "forestHit" || hit.collider.gameObject.tag == "forestOuter") {
-                        hit.collider.gameObject.transform.parent.gameObject.GetComponent<ForestSwoopAI>().caught = true;
-                        hit.collider.gameObject.transform.parent.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                            if (hit.collider.gameObject.tag == "forestHit"){
+                                //grab the stuff I need
+                                tempPig = hit.collider.gameObject.transform.parent.gameObject;
+                                tempPig.GetComponent<ForestSwoopAI>().SetAnim(1);
+                                tempKillCam = tempPig.GetComponent<ForestSwoopAI>().KillCam;
+                                tempDragonModel = tempPig.GetComponent<ForestSwoopAI>().dragonModel;
+                                tempPigModel = tempPig.GetComponent<ForestSwoopAI>().pigModel;
+                                tempEndSpot = tempPig.GetComponent<ForestSwoopAI>().endSpot;
+                                tempAnim = tempDragonModel.GetComponent<Animator>();
 
-                        if (hit.collider.gameObject.tag == "forestHit"){
-                            Debug.Log ("Inner");
-                            //grab the stuff I need
-                            tempPig = hit.collider.gameObject.transform.parent.gameObject;
-                            tempPig.GetComponent<ForestSwoopAI>().SetAnim(1);
-                            tempKillCam = tempPig.GetComponent<ForestSwoopAI>().KillCam;
-                            tempDragonModel = tempPig.GetComponent<ForestSwoopAI>().dragonModel;
-                            tempPigModel = tempPig.GetComponent<ForestSwoopAI>().pigModel;
-                            tempEndSpot = tempPig.GetComponent<ForestSwoopAI>().endSpot;
-                            tempAnim = tempDragonModel.GetComponent<Animator>();
+                                StartCoroutine (KillAnimate());
+                            } else if (hit.collider.gameObject.tag == "forestOuter") {
+                                //dragonSpeed = 0f;
+                                tempPig = hit.collider.gameObject.transform.parent.gameObject;
+                                StartCoroutine (KillNonAnimate());
+                            }
 
-                            StartCoroutine (KillAnimate());
-                        } else if (hit.collider.gameObject.tag == "forestOuter") {
-                            Debug.Log ("Outer");
-                            dragonSpeed = 0f;
-                            tempPig = hit.collider.gameObject.transform.parent.gameObject;
-                            StartCoroutine (KillNonAnimate());
+                            
+                        } else {
+                            anim.SetTrigger("Swoop");
                         }
-
-                        
-                    } else {
-                        Debug.Log ("Missed");
-                        anim.SetTrigger("Swoop");
                     }
                 }
-            }
-            else
-            {
-                anim.ResetTrigger("Swoop");
+                else
+                {
+                    anim.ResetTrigger("Swoop");
+                }
             }
         }
 
@@ -314,7 +312,7 @@ public class DragonController : MonoBehaviour
         ////////////////////////////
         anim.SetTrigger("FireBall");
         fireballControl.target = tempPig.transform.position;
-        yield return new WaitForSeconds(0.9f);
+        yield return new WaitForSeconds(1.2f);
 
         Destroy(tempPig);
         ManageAttributes();
