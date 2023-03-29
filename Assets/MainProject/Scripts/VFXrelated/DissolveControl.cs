@@ -24,6 +24,7 @@ public class DissolveControl : MonoBehaviour
         {
             vfxGraph.Stop();
             vfxGraph.gameObject.SetActive(false);
+            vfxGraph.SetFloat("hue", dragonMat.GetFloat("_HueChange"));
         }
         
         if (skinnedMeshRenderer != null)
@@ -69,11 +70,11 @@ public class DissolveControl : MonoBehaviour
 
         yield return new WaitForSeconds(dieDelay);
 
-        // if (vfxGraph != null)
-        // {
-        //     vfxGraph.gameObject.SetActive(true);
-        //     vfxGraph.Play();
-        // }
+        if (vfxGraph != null)
+        {
+            vfxGraph.gameObject.SetActive(true);
+            vfxGraph.Play();
+        }
 
         float counter = .9f;
 
@@ -98,5 +99,11 @@ public class DissolveControl : MonoBehaviour
         player.Interacting = false;
         StartCoroutine(player.StartFollow());
         gameObject.SetActive(false);
+    }
+
+    void OnDisable()
+    {
+        vfxGraph.Stop();
+        vfxGraph.gameObject.SetActive(false);
     }
 }

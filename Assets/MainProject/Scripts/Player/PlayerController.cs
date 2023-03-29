@@ -187,8 +187,11 @@ public class PlayerController : MonoBehaviour
                         {
                             StartCoroutine(PlayPrayAnim());
                         }
-                        Destroy(exitTrigger);
-                        uXManager.LoadScene(SceneToLoad);
+                        else
+                        {
+                            Destroy(exitTrigger);
+                            uXManager.LoadScene(SceneToLoad);
+                        }
                         
                     }
 
@@ -262,7 +265,9 @@ public class PlayerController : MonoBehaviour
         Interacting = true;
         StartCoroutine(StopFollow());
         transformableArms.SetActive(true);
-        transformableArms.GetComponent<Animator>().SetTrigger("Pray");
+        transformableArms.GetComponentInChildren<Animator>().SetTrigger("Pray");
         yield return new WaitForSeconds(1.5f);
+        Destroy(exitTrigger);
+        uXManager.LoadScene(SceneToLoad);
     }
 }
