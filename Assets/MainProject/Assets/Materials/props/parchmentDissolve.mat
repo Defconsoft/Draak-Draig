@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1685608694779265371
+--- !u!114 &-2048395835250311934
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: dragonBaseCustomizable
-  m_Shader: {fileID: -6465566751694194690, guid: 04c232a8237f47745ae3f8b2cd1a6157,
+  m_Name: parchmentDissolve
+  m_Shader: {fileID: -6465566751694194690, guid: a8ed8c73bbd627d4084d234f812f12e4,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -34,16 +34,24 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _baseTexture:
-        m_Texture: {fileID: 2800000, guid: 57ab78040dcb60c4599b576a822d6732, type: 3}
+    - Texture2D_6ce3934334fd44ea9158a9e39fb10a6a:
+        m_Texture: {fileID: 2800000, guid: e2fc9178c62dfb842802319528842129, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _detailNormalMap:
-        m_Texture: {fileID: 2800000, guid: 9e07eb77e6d464e4b9c05caca4b78c20, type: 3}
+    - Texture2D_7cbad0c41e854fe8adeabe33ad2c08ee:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _normalMap:
-        m_Texture: {fileID: 2800000, guid: f33a34888c9385b4184d72d5345495bd, type: 3}
+    - Texture2D_f233601a5ef94231808d5d0adcba099b:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseAlbedo:
+        m_Texture: {fileID: 2800000, guid: e2fc9178c62dfb842802319528842129, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseNormal:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -60,14 +68,21 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - DissolveAmount_: 0.71999985
+    - Vector1_0cfb375b5aa54ef682294de44dcd2bd2: 0.5
+    - Vector1_119fa1dff29748aea519a4bdcc851f9d: 0.2
+    - Vector1_2fc6ce9d12924826bc78b7e74b968606: 0
+    - Vector1_8f04cfd714c945f0a18a308f39d8e9e9: 0.0259
+    - Vector1_bb867e1e46d1464893168221bc42fb59: 50
+    - Vector1_eeabe299e50941889f8aa316c127a619: 1
     - _HueChange: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Saturation: 1
-    - _Value: -0.33
-    - _detailNormalStrength: 0.25
-    - _detailScale: 20
-    - _mainNormalStrength: 1
-    - _smoothness: 0.36
-    m_Colors: []
+    - _Tiling: 1
+    m_Colors:
+    - Color_60cf009387d4436cb25a173954e2709b: {r: 3.564869, g: 2.5756645, b: 0.709241,
+        a: 1}
+    - Color_e0d3c71c76ca432698fe1a9c61fa82ca: {r: 18.04524, g: 0.2916438, b: 0.10214354,
+        a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 0.8196079}
   m_BuildTextureStacks: []
