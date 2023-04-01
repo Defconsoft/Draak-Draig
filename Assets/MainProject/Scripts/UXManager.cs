@@ -70,10 +70,13 @@ public class UXManager : MonoBehaviour
     public string[] hints;
     public TMPro.TMP_Text hintTextArea;
     public float showHintTime = 20f;
+    private float prayHintTime;
     private float hintTimer;
-    private bool HintShow;
+    private float prayerTimer;
+    private bool hasPrayed;
+    private bool HintShow, PrayShow;
     public bool interacted, spoken, birddead, archerdead, pigdead, targetdone;
-
+    public int spokeTo;
 
 
 
@@ -89,6 +92,7 @@ public class UXManager : MonoBehaviour
         WoodCount.text = "Wood: " + gameManager.totalWood;
         HealthBar.fillAmount = gameManager.HealthAmount;
         EnergyBar.fillAmount = gameManager.EnergyAmount;
+        prayHintTime = showHintTime;
     }
 
     //////////////////////////////////////
@@ -299,6 +303,10 @@ public class UXManager : MonoBehaviour
         if (currentScene >=3) {
             hintTimer += Time.deltaTime;
             CheckToDisplayHints();
+        }
+
+        if (spokeTo >= 2){
+            prayerTimer += Time.deltaTime;
         }
 
 
@@ -547,6 +555,19 @@ public class UXManager : MonoBehaviour
     void CheckToDisplayHints(){
         //Yes I know this is a very bad bunch of if statements but whatever.
 
+        if (!PrayShow){
+            if (currentScene == 5 && prayerTimer>= prayHintTime) {
+                if (spokeTo >= 2 && !hasPrayed){
+                    hasPrayed = true;
+                    PrayShow = true;
+                    ShowHint (3);
+                }
+            } 
+        }
+
+
+
+
         if (!HintShow){
             if (currentScene == 3 && hintTimer >= showHintTime) {
                 HintShow = true;
@@ -554,27 +575,22 @@ public class UXManager : MonoBehaviour
             } 
             
             if (currentScene == 4 && hintTimer >= showHintTime) {
-                if (!interacted){///////////////////////////////////
+                if (!interacted){
                     HintShow = true;
                     ShowHint (1);
                 }
             } 
             
             if (currentScene == 5 && hintTimer >= showHintTime) {
-                if (!spoken){/////////////////////////////////////
+                if (!spoken){
                     HintShow = true;
                     ShowHint (2);
                 }
             } 
-            
-            if (currentScene == 5 && hintTimer >= showHintTime * 3) {
-                //CHECK TO SEE IF INTERACTED WITH VILLAGERS
-                HintShow = true;
-                ShowHint (3);
-            } 
-            
+ 
+                     
             if (currentScene == 6 && hintTimer >= showHintTime){
-                if (!birddead){//////////////////////////////////////
+                if (!birddead){
                     HintShow = true;
                     ShowHint (4);
                 }
