@@ -59,7 +59,6 @@ public class CustomizationUIManager : MonoBehaviour
         {
             TextMeshProUGUI text = go.GetComponentInChildren<TextMeshProUGUI>();
             Image image = go.GetComponentsInChildren<Image>()[1];
-            Debug.Log(image.gameObject.name);
 
             if (go == buttonList[idx])
             {

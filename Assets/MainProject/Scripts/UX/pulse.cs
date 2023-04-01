@@ -13,7 +13,6 @@ public class pulse : MonoBehaviour
     void Start()
     {
         tmp = GetComponent<TMPro.TextMeshProUGUI>();
-        Debug.Log (tmp);
         tmp.DOFade(0.25f, 0.5f).SetLoops(-1, LoopType.Yoyo);
     }
 }

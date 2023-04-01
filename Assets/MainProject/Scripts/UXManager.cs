@@ -28,6 +28,7 @@ public class UXManager : MonoBehaviour
     [SerializeField] private CanvasGroup DragonGrp;
     [SerializeField] private CanvasGroup VillageAttackGrp;
     [SerializeField] private CanvasGroup PauseMenuGrp;
+    [SerializeField] private CanvasGroup HintMenuGrp;
 
     [Header ("Quote Stuff")]
     [SerializeField] private TMPro.TMP_Text QuoteTextBox;   
@@ -61,6 +62,19 @@ public class UXManager : MonoBehaviour
     public Image EnergyBar;
     public Sprite Human, Dragon;
     public Image IconHolder;
+
+
+    [Header ("Hint Stuff")]
+    public float hintTime;
+    public float hintFadeTime;
+    public string[] hints;
+    public TMPro.TMP_Text hintTextArea;
+    public float showHintTime = 20f;
+    private float hintTimer;
+    private bool HintShow;
+    public bool interacted, spoken, birddead, archerdead, pigdead, targetdone;
+
+
 
 
 
@@ -101,6 +115,8 @@ public class UXManager : MonoBehaviour
         //Set the quote and instructions text;
         DebugMenu.enabled = false;
         currentScene = SceneNo;
+        
+        HintMenuGrp.DOFade (0, 0);
         SetQuoteText(SceneNo);
         //Sorts main menu interaction
         if (SceneNo == 1) {
@@ -132,7 +148,8 @@ public class UXManager : MonoBehaviour
         {
             yield return null;
         }
-        
+        hintTimer = 0;
+        HintShow = false;
         //wait 3 seconds then fade out the quote
         yield return new WaitForSeconds (3f);
         FadeOutCanvasGrp(QuoteTextGrp, 1f);
@@ -279,6 +296,11 @@ public class UXManager : MonoBehaviour
             Time.timeScale = 0f;
         }
   
+        if (currentScene >=3) {
+            hintTimer += Time.deltaTime;
+            CheckToDisplayHints();
+        }
+
 
     
     }
@@ -508,6 +530,79 @@ public class UXManager : MonoBehaviour
 
     public void PauseExitGame() {
         Application.Quit();
+    }
+
+
+    public void ShowHint(int hintNo) {
+        hintTextArea.text = hints[hintNo];
+        StartCoroutine(AnimateHint());
+    }
+
+    IEnumerator AnimateHint() {
+        HintMenuGrp.DOFade (1, hintFadeTime);
+        yield return new WaitForSeconds (hintTime);
+        HintMenuGrp.DOFade (0, hintFadeTime);
+    }
+
+    void CheckToDisplayHints(){
+        //Yes I know this is a very bad bunch of if statements but whatever.
+
+        if (!HintShow){
+            if (currentScene == 3 && hintTimer >= showHintTime) {
+                HintShow = true;
+                ShowHint (0);
+            } 
+            
+            if (currentScene == 4 && hintTimer >= showHintTime) {
+                if (!interacted){///////////////////////////////////
+                    HintShow = true;
+                    ShowHint (1);
+                }
+            } 
+            
+            if (currentScene == 5 && hintTimer >= showHintTime) {
+                if (!spoken){/////////////////////////////////////
+                    HintShow = true;
+                    ShowHint (2);
+                }
+            } 
+            
+            if (currentScene == 5 && hintTimer >= showHintTime * 3) {
+                //CHECK TO SEE IF INTERACTED WITH VILLAGERS
+                HintShow = true;
+                ShowHint (3);
+            } 
+            
+            if (currentScene == 6 && hintTimer >= showHintTime){
+                if (!birddead){//////////////////////////////////////
+                    HintShow = true;
+                    ShowHint (4);
+                }
+            } 
+            
+            if (currentScene == 7 && hintTimer >= showHintTime){
+                if (!archerdead){
+                    HintShow = true;
+                    ShowHint (5);
+                }
+            } 
+            
+            if (currentScene == 8 && hintTimer >= showHintTime){
+                if (!pigdead){
+                    HintShow = true;
+                    ShowHint (6);
+                }
+            }
+
+            if (currentScene == 9 && hintTimer >= showHintTime){
+                if (!targetdone){
+                    HintShow = true;
+                    ShowHint (7);
+                }
+            }
+
+        }
+
     }
 
 
