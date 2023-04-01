@@ -17,10 +17,14 @@ public class CustomizationUIManager : MonoBehaviour
     public Toggle tailToggle;
     private GameManager gameManager = null;
 
+
+
     public void Start(){
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
 
         // Set starting values correctly
         shapeControls[0].SetShapes(

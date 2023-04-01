@@ -1380,7 +1380,9 @@ MonoBehaviour:
   fishPowerReact: {fileID: 0}
   fishAmountReact: {fileID: 0}
   armsAnim: {fileID: 0}
-  animDelay: 2
+  animDelayTree: 1
+  animDelayRock: 1
+  animDelayFish: 1
   fractureContainer: {fileID: 2072757356722963577}
   fishBobber: {fileID: 0}
 --- !u!1 &4984815622332651819
