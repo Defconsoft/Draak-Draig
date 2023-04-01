@@ -178,6 +178,7 @@ public class BirdsFlying : MonoBehaviour
 
     public void KillBird()
     {
+        GameObject.Find("GameManager").GetComponent<UXManager>().birddead = true;
         if (!isDead)
         {
             isDead = true;

@@ -94,6 +94,7 @@ public class CastleAttackAI : MonoBehaviour
 
     IEnumerator Death() {
         Dead = false;
+        GameObject.Find("GameManager").GetComponent<UXManager>().archerdead = true;
         StopCoroutine(ShootArrow());
         canShoot = true;
         enemyManager.hasEnemy = false;
