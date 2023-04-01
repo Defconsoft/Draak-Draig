@@ -60,7 +60,7 @@ public class DissolveControl : MonoBehaviour
     {
         player.Interacting = true;
         StartCoroutine(player.StopFollow());
-        yield return new WaitForSeconds(4f);
+        // yield return new WaitForSeconds(4f);
 
 
         if (anim != null)
