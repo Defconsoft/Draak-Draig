@@ -78,6 +78,12 @@ ModelImporter:
   - first:
       74: 9022062180499502688
     second: DragonRig|wingsUp
+  - first:
+      74: 1482626165230713620
+    second: DragonRig|Fall
+  - first:
+      74: 795114107322642054
+    second: DragonRig|StartFlying
   externalObjects: {}
   materials:
     materialImportMode: 2

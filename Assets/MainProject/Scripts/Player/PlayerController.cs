@@ -4,6 +4,7 @@ using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using UnityEngine.Playables;
 
 
 [RequireComponent(typeof(CharacterController))]
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private Quaternion rot;
     public GameObject arms;
     public GameObject transformableArms;
+    public PlayableDirector director;
 
 
     private CharacterController controller;
@@ -268,6 +270,29 @@ public class PlayerController : MonoBehaviour
         transformableArms.GetComponentInChildren<Animator>().SetTrigger("Pray");
         yield return new WaitForSeconds(1.5f);
         Destroy(exitTrigger);
-        uXManager.LoadScene(SceneToLoad);
+        // Play cutscene instead and dissolve
+        FirstPersonCam.gameObject.SetActive(false);
+        InteractCam.gameObject.SetActive(false);
+        director.Play();
+        // uXManager.LoadScene(SceneToLoad);
+    }
+
+    private void OnCutSceneOver(PlayableDirector aDirector)
+    {
+        Debug.Log("Cutscene over");
+        if (director == aDirector)
+        {
+            uXManager.LoadScene(SceneToLoad);
+        }
+    }
+
+    void OnEnable()
+    {
+        director.stopped += OnCutSceneOver;
+    }
+    
+    void OnDisable()
+    {
+        director.stopped -= OnCutSceneOver;
     }
 }

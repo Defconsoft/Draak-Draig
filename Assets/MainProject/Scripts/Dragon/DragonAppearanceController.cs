@@ -11,6 +11,7 @@ public class DragonAppearanceController : MonoBehaviour
     public Material dragonMat;
     public float glowRate = 1f;
     public float refreshRate = 0.05f;
+    public float startGlow = 200f;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,12 +23,17 @@ public class DragonAppearanceController : MonoBehaviour
         tail.SetBlendShapeWeight(0, gameManager.tailSqueeze);
         tail.SetBlendShapeWeight(1, gameManager.tailSize);
         glowMat.SetFloat("_HueChange", dragonMat.GetFloat("_HueChange"));
-        glowMat.SetFloat("_GlowPower", 200f);
+        glowMat.SetFloat("_GlowPower", startGlow);
     }
 
     public void Glow()
     {
         StartCoroutine(StartGlow());
+    }
+
+    public void DiminishGlow()
+    {
+        StartCoroutine(DiminishGlowOverTime());
     }
 
     private IEnumerator StartGlow()
@@ -51,5 +57,17 @@ public class DragonAppearanceController : MonoBehaviour
     private void OnDisable()
     {
         glowMat.SetFloat("_GlowPower", 200f);
+    }
+
+    private IEnumerator DiminishGlowOverTime()
+    {
+        glowMat.SetFloat("_GlowPower", 1f);
+        float counter = 1f;
+        while(counter < 70f)
+        {
+            counter += glowRate;
+            glowMat.SetFloat("_GlowPower", counter);            
+            yield return new WaitForSeconds(refreshRate);
+        }
     }
 }
