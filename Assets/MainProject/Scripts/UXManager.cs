@@ -261,6 +261,7 @@ public class UXManager : MonoBehaviour
 
 
         if (daytimeActive == true && daytimeSlider.value >= daytimeSlider.maxValue && !dayComplete) {
+            dayComplete = true;
             FadeOutCanvasGrp (DayTimerGrp, 0.1f);
             StartCoroutine(LoadYourAsyncScene (5));
         } 
