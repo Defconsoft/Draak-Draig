@@ -13,6 +13,9 @@ public class Fireball : MonoBehaviour
     private bool oneHit;
     private CastleBattleController castleController;
     public GameObject fire;
+    public AudioClip explosionSound;
+    public float explosionVolume = 0.5f;
+    private bool hasPlayedSound = false;
 
     void Start()
     {
@@ -66,8 +69,13 @@ public class Fireball : MonoBehaviour
     {
         rb.isKinematic = true; // to ensure the explosion is in one place
         explosion.enabled = true;
+        if(!hasPlayedSound)
+        {
+            hasPlayedSound = true;
+            GetComponent<AudioSource>().PlayOneShot(explosionSound, explosionVolume);
+        }
         fireTrail.enabled = false; // stop firetrail effect
         projectile.SetActive(false);
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 1.5f);
     }
 }

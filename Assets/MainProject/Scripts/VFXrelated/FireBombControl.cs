@@ -11,6 +11,8 @@ public class FireBombControl : MonoBehaviour
     private Rigidbody rb;
     public GameObject fire;
     public Animator anim;
+    public AudioClip explosionSound;
+    public float explosionVolume = 0.5f;
     
     // Start is called before the first frame update
     void Start()
@@ -42,8 +44,9 @@ public class FireBombControl : MonoBehaviour
     {
         rb.isKinematic = true; // to ensure the explosion is in one place
         explosion.SetActive(true);
+        GetComponent<AudioSource>().PlayOneShot(explosionSound, explosionVolume);
         orb.gameObject.SetActive(false);
         particles.gameObject.SetActive(false);
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 2.5f);
     }
 }

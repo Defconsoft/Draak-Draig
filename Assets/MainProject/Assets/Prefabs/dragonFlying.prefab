@@ -909,6 +909,7 @@ GameObject:
   - component: {fileID: 1624809037314361961}
   - component: {fileID: 1624809037314361960}
   - component: {fileID: 7803719509010549514}
+  - component: {fileID: 3223626278359114825}
   m_Layer: 0
   m_Name: dragonFlying
   m_TagString: Untagged
@@ -994,6 +995,28 @@ MonoBehaviour:
   - m_Rig: {fileID: 6622902233191190327}
     m_Active: 1
   m_Effectors: []
+--- !u!114 &3223626278359114825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895191789140883236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d52d256da0cb44aba33b6c5607f633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  attackAudioClips:
+  - {fileID: 8300000, guid: 32b7b58356d36314c843cec9482a7881, type: 3}
+  - {fileID: 8300000, guid: ea12e6272422a3640b73387f61cdc217, type: 3}
+  - {fileID: 8300000, guid: 8a1ff0d54b4002e49b9b4ea68b66365a, type: 3}
+  wingflapClips:
+  - {fileID: 8300000, guid: 7b0fbe6063efbdd42bffcec017da0109, type: 3}
+  - {fileID: 8300000, guid: 89fb5f995024f524694ab3c78e590a7b, type: 3}
+  - {fileID: 8300000, guid: 2d23fef129ae0db468792487d04b2888, type: 3}
+  audioVolume: 0.4
 --- !u!1 &2060600042464913766
 GameObject:
   m_ObjectHideFlags: 0
@@ -5248,3 +5271,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcbdd3ece9ecd8b42af811e952743d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {x: 0, y: 0, z: 0}
+  aimAtTarget: 1
