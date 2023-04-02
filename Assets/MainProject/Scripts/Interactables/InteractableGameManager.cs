@@ -125,22 +125,21 @@ public class InteractableGameManager : MonoBehaviour
 
     public void StartTheGame() {
         uXManager.interacted = true;
+
+
         armsAnim = player.GetComponentInChildren<Animator>();
 
         if (gameType == GameType.rock){
-            Debug.Log ("rock");
             StartCoroutine(RunRockGame());
             armsAnim.SetTrigger("minePhase1");
         }
 
         if (gameType == GameType.tree){
-            Debug.Log ("tree");
             StartCoroutine(RunTreeGame());
             armsAnim.SetTrigger("chopPhase1");
         }
 
         if (gameType == GameType.fish){
-            Debug.Log ("fish");
             armsAnim.SetBool("isFishing", true);
             StartCoroutine(RunFishGame());
         }
@@ -196,6 +195,11 @@ public class InteractableGameManager : MonoBehaviour
                                         1f, 
                                         slideTime).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart);
         InteractableState = 1;
+
+        if (!uXManager.firstInteracted) {
+            uXManager.firstInteracted = true;
+            uXManager.ShowTutorial();
+        }
     }
 
 
@@ -277,6 +281,11 @@ public class InteractableGameManager : MonoBehaviour
                                         1f, 
                                         slideTime).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
         InteractableState = 1;
+
+        if (!uXManager.firstInteracted) {
+            uXManager.firstInteracted = true;
+            uXManager.ShowTutorial();
+        }
     }
 
 
@@ -350,6 +359,11 @@ public class InteractableGameManager : MonoBehaviour
         fishAimCanvas.enabled = true;
         fishAimTween = fishAimSlider.DOValue(1f, slideTime).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
         InteractableState = 1;
+
+        if (!uXManager.firstInteracted) {
+            uXManager.firstInteracted = true;
+            uXManager.ShowTutorial();
+        }
     }
 
 

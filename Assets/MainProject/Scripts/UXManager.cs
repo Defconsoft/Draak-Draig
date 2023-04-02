@@ -29,6 +29,7 @@ public class UXManager : MonoBehaviour
     [SerializeField] private CanvasGroup VillageAttackGrp;
     [SerializeField] private CanvasGroup PauseMenuGrp;
     [SerializeField] private CanvasGroup HintMenuGrp;
+    [SerializeField] private CanvasGroup TutorialGrp;
 
     [Header ("Quote Stuff")]
     [SerializeField] private TMPro.TMP_Text QuoteTextBox;   
@@ -79,7 +80,10 @@ public class UXManager : MonoBehaviour
     public int spokeTo;
 
 
-
+    [Header ("Tutorial Stuff")]
+    public TMPro.TMP_Text Directions;
+    public TMPro.TMP_Text Instructions; 
+    public bool firstInteracted; 
 
 
     private void Awake() {
@@ -309,8 +313,7 @@ public class UXManager : MonoBehaviour
             prayerTimer += Time.deltaTime;
         }
 
-
-    
+   
     }
 
     //////////////////////////////////////
@@ -619,6 +622,25 @@ public class UXManager : MonoBehaviour
 
         }
 
+    }
+
+
+    public void ShowTutorial() {
+        TutorialGrp.alpha = 1f;
+        Time.timeScale = 0f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        isPaused = true;
+
+
+    }
+
+    public void ExitTutorial() {
+        TutorialGrp.alpha = 0f;
+        Time.timeScale = 1f;
+        isPaused = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 
