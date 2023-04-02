@@ -209,10 +209,10 @@ public class InteractableGameManager : MonoBehaviour
         //check the attempt and animate the text
         if (attempt >= 0.45f && attempt <=0.55f) {
             rockAimReact.text = "Excellent";
-            Bonus1 = 0.75f;
+            Bonus1 = Random.Range (1f, 2f);
         } else {
             rockAimReact.text = "Good";
-            Bonus1 = 0.25f;
+            Bonus1 = Random.Range (0.25f, 1f);
         } 
         rockAimReact.enabled = true;
         rockAimReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (rockAimReact.gameObject.GetComponent<RectTransform>().anchoredPosition.x, rockAimReact.gameObject.GetComponent<RectTransform>().anchoredPosition.y + moveUp), 1f).SetEase (Ease.InOutQuad);
@@ -233,10 +233,10 @@ public class InteractableGameManager : MonoBehaviour
         //check the attempt and animate the text
         if (attempt >= 0.8f ) {
             rockPowerReact.text = "Excellent";
-            Bonus2 = 0.75f;
+            Bonus2 = Random.Range (1f, 2f);
         } else {
             rockPowerReact.text = "Good";
-            Bonus2 = 0.25f;
+            Bonus2 = Random.Range (0.25f, 1f);
         } 
 
 
@@ -295,10 +295,10 @@ public class InteractableGameManager : MonoBehaviour
         //check the attempt and animate the text
         if (attempt >= 0.71f && attempt <=0.79f) {
             treeAimReact.text = "Excellent";
-            Bonus1 = 0.75f;
+            Bonus1 = Random.Range (1f, 2f);
         } else {
             treeAimReact.text = "Good";
-            Bonus1 = 0.25f;
+            Bonus1 = Random.Range (0.25f, 1f);
         } 
         treeAimReact.enabled = true;
         treeAimReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (treeAimReact.gameObject.GetComponent<RectTransform>().anchoredPosition.x, treeAimReact.gameObject.GetComponent<RectTransform>().anchoredPosition.y + moveUp), 1f).SetEase (Ease.InOutQuad);
@@ -319,10 +319,10 @@ public class InteractableGameManager : MonoBehaviour
         //check the attempt and animate the text
         if (attempt >= 0.8f ) {
             treePowerReact.text = "Excellent";
-            Bonus2 = 0.75f;
+            Bonus2 = Random.Range (1f, 2f);
         } else {
             treePowerReact.text = "Good";
-            Bonus2 = 0.25f;
+            Bonus2 = Random.Range (0.25f, 1f);
         } 
 
         TotalResources(2);
@@ -373,10 +373,10 @@ public class InteractableGameManager : MonoBehaviour
         //check the attempt and animate the text
         if (attempt >= 0.8f) {
             fishAimReact.text = "Super Cast";
-            Bonus1 = 0.75f;
+            Bonus1 = Random.Range (1f, 2f);
         } else {
             fishAimReact.text = "Good Cast";
-            Bonus1 = 0.25f;
+            Bonus1 = Random.Range (0.25f, 1f);
         } 
         fishAimReact.enabled = true;
         fishAimReact.gameObject.GetComponent<RectTransform>().DOAnchorPos (new Vector2 (fishAimReact.gameObject.GetComponent<RectTransform>().anchoredPosition.x, fishAimReact.gameObject.GetComponent<RectTransform>().anchoredPosition.y + moveUp), 1f).SetEase (Ease.InOutQuad);
@@ -415,10 +415,10 @@ public class InteractableGameManager : MonoBehaviour
         //check the attempt and animate the text
         if (attempt >= 0.8f ) {
             fishPowerReact.text = "Big Fish";
-            Bonus2 = 0.75f;
+            Bonus2 = Random.Range (1f, 2f);
         } else {
             fishPowerReact.text = "Medium Fish";
-            Bonus2 = 0.25f;
+            Bonus2 = Random.Range (0.25f, 1f);
         } 
 
 

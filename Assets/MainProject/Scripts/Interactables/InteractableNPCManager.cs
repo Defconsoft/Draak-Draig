@@ -16,7 +16,7 @@ public class InteractableNPCManager : MonoBehaviour
     public int ConversationState;
     private Animator anim;
     
-    
+    public bool FishVendor, RockVendor;
 
     [Header("Speech Stuff")]
     public string npcName;
@@ -35,6 +35,17 @@ public class InteractableNPCManager : MonoBehaviour
         Textbox.text = Conversation[0];
         anim = GetComponentInChildren<Animator>();
         anim.SetTrigger("Talk");
+
+        //check to see if you have resources
+        if (RockVendor && GameObject.Find("GameManager").GetComponent<GameManager>().totalRock == 0){
+            ConversationState = 4;
+        }
+
+        if (FishVendor && GameObject.Find("GameManager").GetComponent<GameManager>().totalFish == 0){
+            ConversationState = 4;
+        }
+
+
     }
 
     private void Update() {
@@ -54,10 +65,30 @@ public class InteractableNPCManager : MonoBehaviour
                 Yesbutton.SetActive (false);
                 Nobutton.SetActive (false);
                 Exitbutton.SetActive (true);
+
+                if (RockVendor) {
+                    GameObject.Find("GameManager").GetComponent<GameManager>().totalRock = 0;
+                    GameObject.Find("GameManager").GetComponent<UXManager>().SetItemAmounts();
+                }
+
+                if (FishVendor) {
+                    GameObject.Find("GameManager").GetComponent<GameManager>().totalFish = 0;
+                    GameObject.Find("GameManager").GetComponent<UXManager>().SetItemAmounts();
+                }
+
+
                 break;
 
             case 3: //FailExit
                 Textbox.text = Conversation[3];
+                anim.SetTrigger("Talk");
+                Yesbutton.SetActive (false);
+                Nobutton.SetActive (false);
+                Exitbutton.SetActive (true);
+                break;
+
+            case 4: //No resources
+                Textbox.text = Conversation[4];
                 anim.SetTrigger("Talk");
                 Yesbutton.SetActive (false);
                 Nobutton.SetActive (false);

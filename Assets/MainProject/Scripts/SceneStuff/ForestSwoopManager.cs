@@ -9,6 +9,7 @@ public class ForestSwoopManager : MonoBehaviour
 
     public int totalNumberEnemies;
     public int currentNumberEnemies;
+    private GameManager gameManager;
     public GameObject enemyPrefab;
     private Vector3 spawnPosition;
     private Vector3 randomPosition;
@@ -21,6 +22,20 @@ public class ForestSwoopManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+
+        if (gameManager.totalWood <= 100) {
+            totalNumberEnemies = 25;
+        } else if (gameManager.totalWood >= 101 && gameManager.totalWood <= 250) {
+            totalNumberEnemies = 60;
+        } else if (gameManager.totalWood >= 251 ) {
+            totalNumberEnemies = 100;
+        }
+
+        gameManager.totalWood = 0;
+
         for (int i = 0; i < totalNumberEnemies; i++)
         {
             SpawnEnemies();
