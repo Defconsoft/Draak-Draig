@@ -43,13 +43,13 @@ public class DissolveControl : MonoBehaviour
     }
 
     // For debugging purposes
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.X))
-        {
-            StartCoroutine(Dissolve());
-        }
-    }
+    // void Update()
+    // {
+    //     if(Input.GetKeyDown(KeyCode.X))
+    //     {
+    //         StartCoroutine(Dissolve());
+    //     }
+    // }
 
     public void StartDissolving()
     {

@@ -268,7 +268,7 @@ MonoBehaviour:
   m_VerticalAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 150
+    m_MaxSpeed: 100
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: 
@@ -586,7 +586,7 @@ MonoBehaviour:
   gravityValue: -39.81
   Interacting: 0
   stateInteract: 0
-  isTree: 0
+  isNPC: 0
   stopFollowing: 0
   nextScene: 0
   SceneToLoad: 0
@@ -594,6 +594,7 @@ MonoBehaviour:
   exitTrigger: {fileID: 0}
   arms: {fileID: 1474320296783480505}
   transformableArms: {fileID: 2327492873636482186}
+  director: {fileID: 0}
   FirstPersonCam: {fileID: 5824029935641941225}
   InteractCam: {fileID: 724061386781691064}
   cmInput: {fileID: 856510699}
