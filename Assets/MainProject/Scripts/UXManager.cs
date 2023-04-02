@@ -41,6 +41,9 @@ public class UXManager : MonoBehaviour
     private bool loadResourceLevelOnce;
     public bool daytimeActive;
     private bool dayComplete;
+    private Quaternion _targetRotation;
+    float angleToRotate = 160f;
+    float stepAngle;
 
     [Header ("Item Stuff")]
     public TMPro.TMP_Text RockCount;
@@ -97,6 +100,10 @@ public class UXManager : MonoBehaviour
         HealthBar.fillAmount = gameManager.HealthAmount;
         EnergyBar.fillAmount = gameManager.EnergyAmount;
         prayHintTime = showHintTime;
+
+
+        _targetRotation = Quaternion.Euler(186f, -30f, 0);
+        stepAngle = angleToRotate / gameManager.DaytimeTimerAmount;
     }
 
     //////////////////////////////////////
@@ -280,6 +287,7 @@ public class UXManager : MonoBehaviour
 
         if (daytimeActive) {
             daytimeSlider.value += Time.deltaTime;
+            GameObject.Find("SunDirectional").transform.rotation = Quaternion.RotateTowards(GameObject.Find("SunDirectional").transform.rotation, _targetRotation, stepAngle * Time.deltaTime);
         }
 
         //NEED TO PUT IN A DAYTIME ENDING SOON TIMER AND MAKE THE SUN MOVE

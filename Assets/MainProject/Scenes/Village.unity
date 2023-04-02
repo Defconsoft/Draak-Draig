@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.2594428, g: 0.36527908, b: 0.5170539, a: 1}
+  m_IndirectSpecularColor: {r: 0.7091989, g: 0.5608349, b: 0.5919429, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6656,7 +6656,7 @@ PrefabInstance:
     - target: {fileID: 6987812787601137680, guid: fa9ed71da3965cb45a736862d8147b6b,
         type: 3}
       propertyPath: m_Shadows.m_Strength
-      value: 0.012180209
+      value: 0.5451416
       objectReference: {fileID: 0}
     - target: {fileID: 6987812787601137687, guid: fa9ed71da3965cb45a736862d8147b6b,
         type: 3}
@@ -6681,27 +6681,27 @@ PrefabInstance:
     - target: {fileID: 6987812787601137687, guid: fa9ed71da3965cb45a736862d8147b6b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0505526
+      value: -0.084186025
       objectReference: {fileID: 0}
     - target: {fileID: 6987812787601137687, guid: fa9ed71da3965cb45a736862d8147b6b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.9646021
+      value: 0.9622502
       objectReference: {fileID: 0}
     - target: {fileID: 6987812787601137687, guid: fa9ed71da3965cb45a736862d8147b6b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.013545526
+      value: 0.022557573
       objectReference: {fileID: 0}
     - target: {fileID: 6987812787601137687, guid: fa9ed71da3965cb45a736862d8147b6b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.25846434
+      value: 0.25783414
       objectReference: {fileID: 0}
     - target: {fileID: 6987812787601137687, guid: fa9ed71da3965cb45a736862d8147b6b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 186
+      value: 190
       objectReference: {fileID: 0}
     - target: {fileID: 6987812787601137687, guid: fa9ed71da3965cb45a736862d8147b6b,
         type: 3}
@@ -6721,12 +6721,12 @@ PrefabInstance:
     - target: {fileID: 6987812788749991719, guid: fa9ed71da3965cb45a736862d8147b6b,
         type: 3}
       propertyPath: m_Intensity
-      value: 0.3962611
+      value: 0.63428557
       objectReference: {fileID: 0}
     - target: {fileID: 6987812788749991719, guid: fa9ed71da3965cb45a736862d8147b6b,
         type: 3}
       propertyPath: m_Shadows.m_Strength
-      value: 0.19813055
+      value: 0.31714278
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa9ed71da3965cb45a736862d8147b6b, type: 3}
