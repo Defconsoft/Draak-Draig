@@ -171,4 +171,13 @@ public class FlyingController : MonoBehaviour
     void LateUpdate() {
         crosshairPosition = cam.WorldToScreenPoint (transform.position + (transform.forward * 500f));
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        // Ignore colliding into birds as that logic is taken care of in the bird and firebreath scripts
+        if (collision.gameObject.tag != "bird")
+        {
+            anim.SetTrigger("HitWorld");
+        }
+    }
 }

@@ -84,6 +84,9 @@ ModelImporter:
   - first:
       74: 795114107322642054
     second: DragonRig|StartFlying
+  - first:
+      74: 2267154824879784663
+    second: DragonRig|BumpWorld
   externalObjects: {}
   materials:
     materialImportMode: 2
