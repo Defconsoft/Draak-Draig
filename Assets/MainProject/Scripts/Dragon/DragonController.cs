@@ -148,6 +148,7 @@ public class DragonController : MonoBehaviour
                             if (hit.collider.gameObject.tag == "forestHit"){
                                 //grab the stuff I need
                                 tempPig = hit.collider.gameObject.transform.parent.gameObject;
+                                tempPig.GetComponent<ForestSwoopAI>().PlayPigSound();
                                 tempPig.GetComponent<ForestSwoopAI>().SetAnim(1);
                                 tempKillCam = tempPig.GetComponent<ForestSwoopAI>().KillCam;
                                 tempDragonModel = tempPig.GetComponent<ForestSwoopAI>().dragonModel;
@@ -159,6 +160,7 @@ public class DragonController : MonoBehaviour
                             } else if (hit.collider.gameObject.tag == "forestOuter") {
                                 //dragonSpeed = 0f;
                                 tempPig = hit.collider.gameObject.transform.parent.gameObject;
+                                tempPig.GetComponent<ForestSwoopAI>().PlayPigSound();
                                 StartCoroutine (KillNonAnimate());
                             }
 

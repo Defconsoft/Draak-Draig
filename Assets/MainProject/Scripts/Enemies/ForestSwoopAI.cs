@@ -17,6 +17,9 @@ public class ForestSwoopAI : MonoBehaviour
     public GameObject pigModel;
     public GameObject endSpot;
     private Animator pigAnimator;
+    public AudioSource audioSource;
+    public AudioClip[] pigSounds;
+    public float audioVolume = 0.15f;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +27,12 @@ public class ForestSwoopAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         FindNewDestination();
         pigAnimator = gameObject.transform.GetChild(0).GetComponent<Animator>();
+        float startTimeSound = Random.Range(4f, 15f);
+        // Only turn on sound for a random group of pigs
+        if (Random.Range(0,10) > 8)
+        {
+            InvokeRepeating("PlayPigSound", startTimeSound, Random.Range(10f, 25f));
+        }
     }
 
     // Update is called once per frame
@@ -50,7 +59,6 @@ public class ForestSwoopAI : MonoBehaviour
             agent.isStopped = true;
         }
 
-
     }
     
     
@@ -72,6 +80,10 @@ public class ForestSwoopAI : MonoBehaviour
         pigAnimator.SetInteger("number", AnimNo);
     }
 
-
+    public void PlayPigSound()
+    {
+        int randomIdx = Random.Range(0, pigSounds.Length);
+        audioSource.PlayOneShot(pigSounds[randomIdx], audioVolume);
+    }
 
 }
