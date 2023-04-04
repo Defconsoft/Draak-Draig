@@ -48,7 +48,9 @@ public class UXManager : MonoBehaviour
     [Header ("Item Stuff")]
     public TMPro.TMP_Text RockCount;
     public TMPro.TMP_Text FishCount;
-    public TMPro.TMP_Text WoodCount;    
+    public TMPro.TMP_Text WoodCount; 
+    public GameObject MinimapContainer;
+
 
     [Header ("Instruction Stuff")]
     public TMPro.TMP_Text instructionText;
@@ -60,6 +62,7 @@ public class UXManager : MonoBehaviour
     public Image[] attackCharges;
     public GameObject DragonEyeBar, FireBreathBar;
     public Image destructionBar;
+    public GameObject powerText;
 
     [Header ("Health Stuff")]
     public Image HealthBar;
@@ -174,12 +177,19 @@ public class UXManager : MonoBehaviour
 
 
         //if Main menu fade out the Top Bar Group
-        if (SceneNo > 2 && SceneNo < 10) {
+        if (SceneNo > 2 && SceneNo < 9) {
             FadeInCanvasGrp(TopBarGrp, 1f);
         } else {
             FadeOutCanvasGrp(TopBarGrp, 0.1f);
         }
 
+
+        //if Main menu fade out the Top Bar Group
+        if (SceneNo > 2 && SceneNo < 6) {
+            MinimapContainer.SetActive (true);
+        } else {
+            MinimapContainer.SetActive (false);
+        }
 
         //Main menu scene
         if (SceneNo == 1) {
@@ -219,8 +229,10 @@ public class UXManager : MonoBehaviour
         //animal chase scene
         if (SceneNo == 6) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
+            FadeInCanvasGrp(DragonGrp, 1f);
+            DragonEyeBar.SetActive (false);
+            FireBreathBar.SetActive (true);
             StartCoroutine(SetInstructions());
-            //StartCoroutine (TempSceneWait(SceneNo + 1)); //REMOVE ME WHEN DONE
             IconHolder.sprite = Dragon;
         }
 

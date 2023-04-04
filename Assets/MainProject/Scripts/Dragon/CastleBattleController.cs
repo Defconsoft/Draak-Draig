@@ -16,6 +16,7 @@ public class CastleBattleController : MonoBehaviour
 
     public GameObject FireballEvent;
     public FirebreathControl fireBreath;
+    bool firing;
     public GameObject EnemyManager;
     public float enemyStartDelay;
     private GameObject Trashcan;
@@ -76,12 +77,24 @@ public class CastleBattleController : MonoBehaviour
     void Update()
     {
         if (uxManager.isPaused == false){
-            BreathActive = controls.Dragon.RightMouse.ReadValue<float>() > 0;
+        BreathActive = controls.Dragon.RightMouse.ReadValue<float>() > 0;
 
             if (BreathActive && fireBreathAmount <= 0.24f) {
                 canFirebreath = false;
+                IncreaseFirebreathAmount();
+            } else if (BreathActive && fireBreathAmount > 0.24f) {
+                if (!firing){
+                    canFirebreath = true;
+                }
+            IncreaseFirebreathAmount();
             } else {
                 IncreaseFirebreathAmount();
+            }
+
+            if (fireBreathAmount <= 0.24f) {
+                uxManager.powerText.SetActive (true);
+            } else {
+                uxManager.powerText.SetActive (false);
             }
 
             uxManager.SetFireBreathAmount(fireBreathAmount);
@@ -176,8 +189,10 @@ public class CastleBattleController : MonoBehaviour
     }
 
     IEnumerator breathDelay() {
-        yield return new WaitForSeconds (3f);
+        firing = true;
+        yield return new WaitForSeconds (2f);
         canFirebreath = true;
+        firing = false;
     }
 
 

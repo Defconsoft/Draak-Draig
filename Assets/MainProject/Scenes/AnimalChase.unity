@@ -15994,6 +15994,11 @@ PrefabInstance:
       propertyPath: autoTurnAngle
       value: 45
       objectReference: {fileID: 0}
+    - target: {fileID: 4698772237014994049, guid: f8720b51b18602a44b662bbf2ff61f9d,
+        type: 3}
+      propertyPath: fireBreathAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4698772237014994050, guid: f8720b51b18602a44b662bbf2ff61f9d,
         type: 3}
       propertyPath: m_RootOrder

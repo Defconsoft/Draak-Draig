@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class FlyingController : MonoBehaviour
 {
@@ -25,6 +26,11 @@ public class FlyingController : MonoBehaviour
     public Animator anim;
     public Transform target;
     public FirebreathControl fireBreath;
+    bool firing;
+
+    [SerializeField] private float fireBreathAmount;
+    private bool BreathActive;
+    bool canFirebreath = true;
 
 
     private Rigidbody rb;
@@ -68,6 +74,31 @@ public class FlyingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+        BreathActive = controls.Dragon.RightMouse.ReadValue<float>() > 0;
+
+            if (BreathActive && fireBreathAmount <= 0.24f) {
+                canFirebreath = false;
+                IncreaseFirebreathAmount();
+            } else if (BreathActive && fireBreathAmount > 0.24f) {
+                if (!firing){
+                    canFirebreath = true;
+                }
+            IncreaseFirebreathAmount();
+            } else {
+                IncreaseFirebreathAmount();
+            }
+
+            if (fireBreathAmount <= 0.24f) {
+                uXManager.powerText.SetActive (true);
+            } else {
+                uXManager.powerText.SetActive (false);
+            }
+
+            uXManager.SetFireBreathAmount(fireBreathAmount);
+
+
         //Clear out old values
         pitch = 0f;
         roll = 0f;
@@ -90,10 +121,14 @@ public class FlyingController : MonoBehaviour
         crosshairs.position = crosshairPosition;
 
         // Firebreath
-        if (inputManager.DragonLeftClickThisFrame())
+        if (inputManager.DragonRightClickThisFrame() && canFirebreath)
         {
+            
             anim.SetTrigger("Firebreath");
             fireBreath.target = target.position;
+            canFirebreath = false;
+            DecreaseFirebreathAmount();
+            StartCoroutine (breathDelay());
         }
 
     }
@@ -180,4 +215,24 @@ public class FlyingController : MonoBehaviour
             anim.SetTrigger("HitWorld");
         }
     }
+
+    private void DecreaseFirebreathAmount(){
+            fireBreathAmount = fireBreathAmount - 0.25f;
+            fireBreathAmount = Mathf.Clamp(fireBreathAmount, 0f, 1f);
+            
+;    }
+
+    private void IncreaseFirebreathAmount(){
+            fireBreathAmount = fireBreathAmount += Time.deltaTime * 0.02f;
+            fireBreathAmount = Mathf.Clamp(fireBreathAmount, 0f, 1f);
+    }
+
+    IEnumerator breathDelay() {
+        firing = true;
+        yield return new WaitForSeconds (2f);
+        canFirebreath = true;
+        firing = false;
+    }
+
+
 }
