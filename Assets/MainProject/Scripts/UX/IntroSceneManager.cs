@@ -76,6 +76,7 @@ public class IntroSceneManager : MonoBehaviour
 
     IEnumerator DissolveAndLoad()
     {
+        // GetComponent<AudioSource>().Play();
         float counter = 0f;
         while(mat.GetFloat("DissolveAmount_") < 0.7f)
         {

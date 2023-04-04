@@ -19,15 +19,24 @@ public class VFXmanagerArms : MonoBehaviour
 
     public IEnumerator Impact(int idx)
     {
-        VisualEffect vfx = vfxGraphs[idx];
-        vfx.gameObject.SetActive(true);
-        vfx.Play();
-        // Make sure impact event is triggered so other impact related scripts can run too
-        EventManager.TriggerImpact(idx);
+        if (idx == 2)
+        {
+            EventManager.TriggerImpact(idx);
+            yield return new WaitForSeconds(0.5f);
+        }
+        else
+        {
+            VisualEffect vfx = vfxGraphs[idx];
+            vfx.gameObject.SetActive(true);
+            vfx.Play();
+            // Make sure impact event is triggered so other impact related scripts can run too
+            EventManager.TriggerImpact(idx);
 
-        yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(0.6f);
 
-        vfx.Stop();
-        vfx.gameObject.SetActive(false);
+            vfx.Stop();
+            vfx.gameObject.SetActive(false);
+        }
+        
     }
 }
