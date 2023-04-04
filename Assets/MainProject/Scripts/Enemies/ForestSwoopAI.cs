@@ -27,12 +27,13 @@ public class ForestSwoopAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         FindNewDestination();
         pigAnimator = gameObject.transform.GetChild(0).GetComponent<Animator>();
-        float startTimeSound = Random.Range(4f, 15f);
-        // Only turn on sound for a random group of pigs
-        if (Random.Range(0,10) > 8)
-        {
-            InvokeRepeating("PlayPigSound", startTimeSound, Random.Range(10f, 25f));
-        }
+        // Wasn't really working
+        // float startTimeSound = Random.Range(4f, 15f);
+        // // Only turn on sound for a random group of pigs
+        // if (Random.Range(0,10) > 8)
+        // {
+        //     InvokeRepeating("PlayPigSound", startTimeSound, Random.Range(10f, 25f));
+        // }
     }
 
     // Update is called once per frame
