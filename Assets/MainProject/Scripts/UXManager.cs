@@ -177,7 +177,7 @@ public class UXManager : MonoBehaviour
 
 
         //if Main menu fade out the Top Bar Group
-        if (SceneNo > 2 && SceneNo < 9) {
+        if (SceneNo > 3 && SceneNo < 9) {
             FadeInCanvasGrp(TopBarGrp, 1f);
         } else {
             FadeOutCanvasGrp(TopBarGrp, 0.1f);
@@ -202,7 +202,7 @@ public class UXManager : MonoBehaviour
         }  
 
         if (SceneNo == 3) { //Opening Scene
-            StartCoroutine(SetInstructions());
+            StartCoroutine(StartGameFade());
             FadeOutCanvasGrp(VillageAttackGrp, 0.1f);
             IconHolder.sprite = Human;
         }       
@@ -269,6 +269,12 @@ public class UXManager : MonoBehaviour
         //wait for 2 seconds and fade out the BG
         yield return new WaitForSeconds (1f);
         FadeOutCanvasGrp(BGCanvasGrp, 1.5f);
+    }
+
+    IEnumerator StartGameFade() {
+        yield return new WaitForSeconds(12f);
+        StartCoroutine(SetInstructions());
+        FadeInCanvasGrp(TopBarGrp, 1f);
     }
 
 
