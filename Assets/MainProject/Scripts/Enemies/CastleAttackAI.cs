@@ -23,8 +23,12 @@ public class CastleAttackAI : MonoBehaviour
     public bool Dead;
     public bool deadOnce;
 
-    [Header ("Animation stuff")]
+    [Header ("Animation & audio stuff")]
+    public AudioClip dieSound;
+    public AudioClip walksound;
+    public AudioClip arrowSound;
     private Animator anim;
+    private AudioSource audioSource;
 
 
 
@@ -37,6 +41,8 @@ public class CastleAttackAI : MonoBehaviour
         Trashcan = GameObject.Find("Trashcan");
         anim = GetComponentInChildren<Animator>();
         anim.SetBool("IsSprinting", true);
+        audioSource = GetComponent<AudioSource>();
+        StartCoroutine(PlaySoundAfterDelay());
     }
 
     // Update is called once per frame
@@ -56,6 +62,7 @@ public class CastleAttackAI : MonoBehaviour
                 //Need to stop walking and stand in idle.
                 /////////////////////////////////////////////////
                 anim.SetBool("IsSprinting", false);
+                audioSource.Stop();
 
                 RotateTowards(dragonPos);
                 if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
@@ -94,6 +101,7 @@ public class CastleAttackAI : MonoBehaviour
 
     IEnumerator Death() {
         Dead = false;
+        audioSource.PlayOneShot(dieSound, 0.4f);
         GameObject.Find("GameManager").GetComponent<UXManager>().archerdead = true;
         StopCoroutine(ShootArrow());
         canShoot = true;
@@ -115,10 +123,19 @@ public class CastleAttackAI : MonoBehaviour
         //ANIMATION//////////////////////////////////////
         //Can play the fire arrow animation here. Alter the fireDelay to be the length of the animation.
         /////////////////////////////////////////////////
-        anim.SetBool("IsShooting", true);        
+        anim.SetBool("IsShooting", true);
+        audioSource.PlayOneShot(arrowSound, 1.2f);        
         yield return new WaitForSeconds (fireDelay);
         anim.SetBool("IsShooting", false);
         canShoot = false;
+    }
+
+    private IEnumerator PlaySoundAfterDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        audioSource.clip = walksound;
+        audioSource.pitch = Random.Range(0.7f, 1.4f); // for some variation
+        audioSource.Play();
     }
 
 }
