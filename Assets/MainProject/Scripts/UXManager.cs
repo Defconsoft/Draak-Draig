@@ -203,6 +203,9 @@ public class UXManager : MonoBehaviour
 
         if (SceneNo == 3) { //Opening Scene
             StartCoroutine(StartGameFade());
+            gameManager.HealthAmount = 1f;
+            gameManager.EnergyAmount = 1f;
+            gameManager.UpdateBars();
             FadeOutCanvasGrp(VillageAttackGrp, 0.1f);
             IconHolder.sprite = Human;
         }       
@@ -653,6 +656,7 @@ public class UXManager : MonoBehaviour
 
     public void ShowTutorial() {
         TutorialGrp.alpha = 1f;
+        TutorialGrp.blocksRaycasts = true;
         Time.timeScale = 0f;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -663,6 +667,7 @@ public class UXManager : MonoBehaviour
 
     public void ExitTutorial() {
         TutorialGrp.alpha = 0f;
+        TutorialGrp.blocksRaycasts = false;
         Time.timeScale = 1f;
         isPaused = false;
         Cursor.visible = false;

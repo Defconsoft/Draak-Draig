@@ -105,6 +105,11 @@ public class GameManager : MonoBehaviour
         uxManager.EnergyBar.fillAmount = EnergyAmount;
     }
 
+    public void UpdateBars(){
+        uxManager.HealthBar.fillAmount = HealthAmount;
+        uxManager.EnergyBar.fillAmount = EnergyAmount;
+    }
+
     public void NumberClean(){
         HealthAmount = Mathf.Round(HealthAmount *1000f) /1000f;
         EnergyAmount = Mathf.Round(EnergyAmount *1000f) /1000f;

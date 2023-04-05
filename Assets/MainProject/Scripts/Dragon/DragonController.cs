@@ -68,6 +68,9 @@ public class DragonController : MonoBehaviour
     public SkinnedMeshRenderer horns;
     public SkinnedMeshRenderer tail;
 
+    [Header ("Death")]
+    public CanvasGroup DeathUI;
+
 
     private void Awake() {
         controls = new PlayerControls();
@@ -201,20 +204,24 @@ public class DragonController : MonoBehaviour
         }
 
         if (gameManager.HealthAmount <= 0) {
-            if (!loadingOpeningScene){
-            loadingOpeningScene = true;    
-            uXManager.DragonGroupFade(0f);
-            gameManager.HealthAmount = 1f;
-            gameManager.EnergyAmount = 1f;
-            uXManager.LoadScene(3);
-            
-            }
-            
+
+            DeathUI.DOFade (1, 0.5f);
+
         }
 
-
-
     }
+
+    public void DeathBtn() {
+        DeathUI.DOFade (0, 0.5f);
+        if (!loadingOpeningScene){
+            loadingOpeningScene = true;    
+            uXManager.DragonGroupFade(0f);
+            uXManager.LoadScene(3);
+            
+        }
+    }
+
+
 
     // Update is called once per frame
     void FixedUpdate()
