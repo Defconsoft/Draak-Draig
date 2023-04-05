@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using PathCreation.Examples;
 using UnityEngine;
+using DG.Tweening;
+using UnityEngine.UI;
 
 public class VillageAttackController : MonoBehaviour
 {
@@ -38,6 +40,18 @@ public class VillageAttackController : MonoBehaviour
     [Header ("Customization related")]
     public SkinnedMeshRenderer horns;
     public SkinnedMeshRenderer tail;
+
+    [Header ("EndGame")]
+    public CanvasGroup EndGameCanvas;
+    public bool GameEnded;
+    bool EndOnce;
+    public TMPro.TMP_Text Title, Message, Villagers, Building, Crops, BtmMessage;
+    public Image barFill;
+    public Button MainMenuBtn, RestartBtn;
+
+
+
+
 
     public float flapFrequency = 0.01f;
     private float timeSinceFlap = 0f;
@@ -85,7 +99,7 @@ public class VillageAttackController : MonoBehaviour
     void Update()
     {
 
-        if (uxManager.isPaused){
+        if (uxManager.isPaused || GameEnded){
             Cursor.SetCursor(null, hotSpot, CursorMode.Auto);
             
         } else {
@@ -122,53 +136,104 @@ public class VillageAttackController : MonoBehaviour
             uxManager.SetAttackType((int) Attack.FIREBOMB);
         }
         
-        if (uxManager.isPaused == false){
-            if (inputManager.DragonLeftClickThisFrame()) {
+        if (uxManager.isPaused == false)
+        {
+            if (!GameEnded)  
+            {
+                if (inputManager.DragonLeftClickThisFrame())
+                {
 
-                if (currentAttackType == Attack.FIREBALL)
-                {
-                    if (canFireBall)
+                    if (currentAttackType == Attack.FIREBALL)
                     {
-                        anim.SetTrigger("FireBall");
-                        // Vector3 dir = (raycastHit.point - fireballControl.throwpoint.transform.position).normalized;
-                        // fireballControl.direction = dir;
-                        fireballControl.target = raycastHit.point;
-                        fireBallCharge = 0f;
-                        canFireBall = false;
-                        uxManager.SetAttackCharge((int) currentAttackType, 1f - fireBallCharge);
-                        StartCoroutine(ReChargeFireBall());
+                        if (canFireBall)
+                        {
+                            anim.SetTrigger("FireBall");
+                            // Vector3 dir = (raycastHit.point - fireballControl.throwpoint.transform.position).normalized;
+                            // fireballControl.direction = dir;
+                            fireballControl.target = raycastHit.point;
+                            fireBallCharge = 0f;
+                            canFireBall = false;
+                            uxManager.SetAttackCharge((int) currentAttackType, 1f - fireBallCharge);
+                            StartCoroutine(ReChargeFireBall());
+                        }
+                        
                     }
-                    
-                }
-                else if (currentAttackType == Attack.FIREBREATH)
-                {
-                    if (canFireBreath)
+                    else if (currentAttackType == Attack.FIREBREATH)
                     {
-                        anim.SetTrigger("Firebreath");
-                        fireBreath.target = raycastHit.point;
-                        fireBreathCharge = 0f;
-                        canFireBreath = false;
-                        uxManager.SetAttackCharge((int) currentAttackType, 1f - fireBreathCharge);
-                        StartCoroutine(ReChargeFireBreath());
+                        if (canFireBreath)
+                        {
+                            anim.SetTrigger("Firebreath");
+                            fireBreath.target = raycastHit.point;
+                            fireBreathCharge = 0f;
+                            canFireBreath = false;
+                            uxManager.SetAttackCharge((int) currentAttackType, 1f - fireBreathCharge);
+                            StartCoroutine(ReChargeFireBreath());
+                        }
                     }
-                }
-                else if (currentAttackType == Attack.FIREBOMB)
-                {
-                    if (canFireBomb)
+                    else if (currentAttackType == Attack.FIREBOMB)
                     {
-                        anim.SetTrigger("FireBomb");
-                        // Vector3 dir = (raycastHit.point - firebombControl.throwpoint.transform.position).normalized;
-                        // firebombControl.direction = dir;
-                        firebombControl.target = raycastHit.point;
-                        fireBombCharge = 0f;
-                        canFireBomb = false;
-                        uxManager.SetAttackCharge((int) currentAttackType, 1f - fireBombCharge);
-                        StartCoroutine(ReChargeFireBomb());
+                        if (canFireBomb)
+                        {
+                            anim.SetTrigger("FireBomb");
+                            // Vector3 dir = (raycastHit.point - firebombControl.throwpoint.transform.position).normalized;
+                            // firebombControl.direction = dir;
+                            firebombControl.target = raycastHit.point;
+                            fireBombCharge = 0f;
+                            canFireBomb = false;
+                            uxManager.SetAttackCharge((int) currentAttackType, 1f - fireBombCharge);
+                            StartCoroutine(ReChargeFireBomb());
+                        }
+                        
                     }
-                    
                 }
             }
         }
+
+
+        if (GameEnded && !EndOnce) {
+            EndOnce = true;
+            StartCoroutine(EndGameCheck());
+            EndGameCanvas.DOFade(1, 1f);
+        }
+
+    }
+
+    IEnumerator EndGameCheck(){
+        yield return new WaitForEndOfFrame();
+        uxManager.FadeVillageAttack();
+        if (destructionAmount >= destructionGoal) {
+            //WIN
+            //Set the parameters
+            Title.text = "SUCCESS";
+            Message.text = "You have defeated the enemy town.";
+            barFill.fillAmount = destructionAmount/destructionGoal;
+            Villagers.text = "100";
+            Building.text = "50";
+            Crops.text = "100";
+
+            BtmMessage.text = "Your story does not finish here. There are greater lands that need cleansing.";
+            MainMenuBtn.gameObject.SetActive (true);
+
+        } else {
+            //LOSS
+            //Set the parameters
+            Title.text = "FAILURE";
+            Message.text = "You have not destoryed the enemy town.";
+            barFill.fillAmount = destructionAmount/destructionGoal;
+            Villagers.text = ((destructionAmount/destructionGoal) * 100).ToString();
+            Building.text = ((destructionAmount/destructionGoal) * 50).ToString();
+            Crops.text = ((destructionAmount/destructionGoal) * 100).ToString();
+
+            BtmMessage.text = "You need to train more. Try working through another day to develop your skills";
+            RestartBtn.gameObject.SetActive (true);
+        }
+
+    }
+
+
+    public void EndButton(int Scene){
+            EndGameCanvas.DOFade(0, 1f);
+            uxManager.LoadScene(Scene);
     }
 
     IEnumerator ReChargeFireBall()

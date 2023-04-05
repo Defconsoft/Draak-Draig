@@ -291,6 +291,10 @@ public class UXManager : MonoBehaviour
         FadeOutCanvasGrp(InstructionGrp, 5f);
     }   
 
+    public void FadeVillageAttack() {
+        FadeOutCanvasGrp(VillageAttackGrp, 1f);
+    }
+
 
     private void Update() {
         
