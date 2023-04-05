@@ -15,6 +15,7 @@ public class IntroSceneManager : MonoBehaviour
     private Vector3 scaleTo;
     public float dissolveRate = 0.02f;
     public float refreshRate = 0.05f;
+    public float waitBetweenParagraphs = 5f;
     public Image storyBackground;
     private Material mat;
     
@@ -47,12 +48,13 @@ public class IntroSceneManager : MonoBehaviour
                 txt.color = new Color(txt.color.r, txt.color.g, txt.color.b, txt.color.a + (Time.deltaTime / t));
                 yield return null;
             }
+            yield return new WaitForSeconds(waitBetweenParagraphs);
         }
     }
 
     public IEnumerator FadeInContinueText(TextMeshProUGUI txt, float t)
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(8f);
         txt.color = new Color(txt.color.r, txt.color.g, txt.color.b, 0);
         while (txt.color.a < 1.0f)
         {

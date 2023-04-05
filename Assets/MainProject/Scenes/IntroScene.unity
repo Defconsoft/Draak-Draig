@@ -1594,6 +1594,7 @@ MonoBehaviour:
   fadeSpeed: 2
   dissolveRate: 0.02
   refreshRate: 0.05
+  waitBetweenParagraphs: 9
   storyBackground: {fileID: 1414069645}
 --- !u!114 &1852017813
 MonoBehaviour:

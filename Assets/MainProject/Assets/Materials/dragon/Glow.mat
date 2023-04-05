@@ -45,7 +45,7 @@ Material:
     - _Cull: 2
     - _DstBlend: 10
     - _GlowPower: 200
-    - _HueChange: 0
+    - _HueChange: 0.60666746
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
