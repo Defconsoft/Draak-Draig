@@ -218,7 +218,7 @@ public class VillageAttackController : MonoBehaviour
             //LOSS
             //Set the parameters
             Title.text = "FAILURE";
-            Message.text = "You have not destoryed the enemy town.";
+            Message.text = "You have not destroyed the enemy town.";
             barFill.fillAmount = destructionAmount/destructionGoal;
             Villagers.text = ((destructionAmount/destructionGoal) * 100).ToString();
             Building.text = ((destructionAmount/destructionGoal) * 50).ToString();

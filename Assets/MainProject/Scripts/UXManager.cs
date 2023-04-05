@@ -91,6 +91,10 @@ public class UXManager : MonoBehaviour
     public TMPro.TMP_Text Instructions; 
     public bool firstInteracted; 
 
+    [Header ("MusicStuff")]    
+    public AudioSource MenuMusic;
+    public AudioSource DayTimeMusic;    
+    public AudioSource NightTimeMusic;
 
     private void Awake() {
 
@@ -193,12 +197,19 @@ public class UXManager : MonoBehaviour
 
         //Main menu scene
         if (SceneNo == 1) {
-            FadeInCanvasGrp(MainMenuGrp, 1f);
+            FadeInCanvasGrp(MainMenuGrp, 1f); 
+            MenuMusic.Play();
+            DayTimeMusic.Stop();
+            NightTimeMusic.Stop();
+            
         } 
 
         //customisation scene
         if (SceneNo == 2) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
+            MenuMusic.Stop();
+            DayTimeMusic.Play();
+            NightTimeMusic.Stop();
         }  
 
         if (SceneNo == 3) { //Opening Scene
@@ -208,6 +219,7 @@ public class UXManager : MonoBehaviour
             gameManager.UpdateBars();
             FadeOutCanvasGrp(VillageAttackGrp, 0.1f);
             IconHolder.sprite = Human;
+
         }       
 
 
@@ -237,6 +249,9 @@ public class UXManager : MonoBehaviour
             FireBreathBar.SetActive (true);
             StartCoroutine(SetInstructions());
             IconHolder.sprite = Dragon;
+            MenuMusic.Stop();
+            DayTimeMusic.Stop();
+            NightTimeMusic.Play();
         }
 
         //castle attack scene
