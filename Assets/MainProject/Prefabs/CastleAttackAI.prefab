@@ -75,7 +75,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 14
   m_CollisionDetection: 0
 --- !u!114 &5884100136227414322
 MonoBehaviour:
@@ -124,10 +124,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.45
-  m_Height: 2.8595266
+  m_Radius: 0.4
+  m_Height: 1.91
   m_Direction: 1
-  m_Center: {x: 0, y: 1.464988, z: 0}
+  m_Center: {x: 0, y: 1.95, z: 0}
 --- !u!82 &3972846012727313706
 AudioSource:
   m_ObjectHideFlags: 0

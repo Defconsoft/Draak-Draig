@@ -11,7 +11,8 @@ public class CastleProjectile : MonoBehaviour
     Vector3 direction;
     public float damage;
     private GameManager gameManager;
-
+    public CastleAttackAI origEnemy;
+    bool fired;
 
 
 
@@ -34,11 +35,21 @@ public class CastleProjectile : MonoBehaviour
         arrowRB.velocity = direction * speed;
     }
 
+    private void Update() {
+        if (!fired) {
+            if (origEnemy.deadOnce) {
+                Destroy(this.gameObject);
+            }
+        }
+    }
+
+
 
     private void OnTriggerEnter(Collider other) {
         
         if (other.tag == "Dragon") {
             gameManager.MinusHealth (damage);
+            //WE NEED TO INSTANTITE A HIT EXPLOSION HERE.
             Destroy(gameObject);
         }
 

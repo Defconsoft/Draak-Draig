@@ -22,6 +22,7 @@ public class CastleAttackAI : MonoBehaviour
 
     public bool Dead;
     public bool deadOnce;
+    bool rotateDone;
 
     [Header ("Animation & audio stuff")]
     public AudioClip dieSound;
@@ -52,19 +53,19 @@ public class CastleAttackAI : MonoBehaviour
         //Needs to be walking/running by default
         /////////////////////////////////////////////////
         
-
         //Walking
         if (!agent.pathPending)
         {
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
-                //ANIMATION//////////////////////////////////////
-                //Need to stop walking and stand in idle.
-                /////////////////////////////////////////////////
+                Debug.Log ("here");
                 anim.SetBool("IsSprinting", false);
                 audioSource.Stop();
 
-                RotateTowards(dragonPos);
+                if (!rotateDone){
+                    RotateTowards(dragonPos);
+                }
+                
                 if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
                 {
                     agent.isStopped = true;
@@ -77,7 +78,6 @@ public class CastleAttackAI : MonoBehaviour
         //Dieing
         if (Dead && !deadOnce) {
             deadOnce = true;
-            Debug.Log ("DEAD");
             StartCoroutine(Death());
         } 
 
@@ -94,9 +94,14 @@ public class CastleAttackAI : MonoBehaviour
 
 
     private void RotateTowards (Transform target) {
+
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+
+        if (Quaternion.Angle(transform.rotation, lookRotation) <= 10f) {
+            rotateDone = true;
+        }
     }
 
     IEnumerator Death() {
@@ -118,7 +123,11 @@ public class CastleAttackAI : MonoBehaviour
     IEnumerator ShootArrow(){
         canShoot = true;
         yield return new WaitForSeconds (Random.Range (2f, 6f));
-        GameObject arrow = Instantiate (projectile, firePoint.transform.position, Quaternion.identity);
+        GameObject arrow = Instantiate (projectile, firePoint.transform.position, firePoint.transform.rotation);
+        arrow.GetComponent<CastleProjectile>().origEnemy = this;
+        Vector3 direction = dragonPos.position - arrow.transform.position;
+        Quaternion toRotation = Quaternion.FromToRotation(transform.up, direction);
+        arrow.transform.rotation = toRotation;
         arrow.transform.parent = Trashcan.transform;
         //ANIMATION//////////////////////////////////////
         //Can play the fire arrow animation here. Alter the fireDelay to be the length of the animation.
