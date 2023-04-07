@@ -14,6 +14,11 @@ public class ApplyColor : MonoBehaviour
         startingColor = material.color;
         fcp.color = startingColor;
     }
+
+    void OnDisable()
+    {
+        fcp.bufferedColor = new FlexibleColorPicker.BufferedColor(material.color);
+    }
     
     // Update is called once per frame
     public void UpdateColor(Color col)
@@ -24,5 +29,10 @@ public class ApplyColor : MonoBehaviour
     public void ResetColor()
     {
         fcp.color = startingColor;
+    }
+
+    void OnEnable()
+    {
+        material.color = fcp.color;
     }
 }

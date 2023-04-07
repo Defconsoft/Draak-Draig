@@ -82,7 +82,7 @@ public class FlexibleColorPicker : MonoBehaviour {
     }
 
     //private state
-    private BufferedColor bufferedColor;
+    public BufferedColor bufferedColor;
     private Picker focusedPicker;
     private PickerType focusedPickerType;
     private MainPickingMode lastUpdatedMode;
@@ -1066,7 +1066,7 @@ public class FlexibleColorPicker : MonoBehaviour {
     /// behaviour when moving sliders towards such colors.
     /// </summary>
     [Serializable]
-    private class BufferedColor {
+    public class BufferedColor {
         public Color color;
         private float bufferedHue;
         private float bufferedSaturation;
