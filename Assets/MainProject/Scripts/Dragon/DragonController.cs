@@ -206,6 +206,8 @@ public class DragonController : MonoBehaviour
         if (gameManager.HealthAmount <= 0) {
 
             DeathUI.DOFade (1, 0.5f);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
 
         }
 
