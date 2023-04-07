@@ -347,6 +347,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.5
   damage: 0.05
+  origEnemy: {fileID: 0}
+  explosionFx: {fileID: 6285154189237830448, guid: 4f4094e39c5bd9e4b8a8b6873a3f8e33,
+    type: 3}
 --- !u!54 &4438112875545276341
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class CastleProjectile : MonoBehaviour
     private GameManager gameManager;
     public CastleAttackAI origEnemy;
     bool fired;
+    public GameObject explosionFx;
 
 
 
@@ -50,6 +51,8 @@ public class CastleProjectile : MonoBehaviour
         if (other.tag == "Dragon") {
             gameManager.MinusHealth (damage);
             //WE NEED TO INSTANTITE A HIT EXPLOSION HERE.
+            arrowRB.isKinematic = true; 
+            GameObject explosion = Instantiate (explosionFx, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 
