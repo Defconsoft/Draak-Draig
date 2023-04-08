@@ -201,7 +201,8 @@ public class UXManager : MonoBehaviour
             MenuMusic.Play();
             DayTimeMusic.Stop();
             NightTimeMusic.Stop();
-            
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         } 
 
         //customisation scene
@@ -303,7 +304,7 @@ public class UXManager : MonoBehaviour
 
         //Fades out the instruction bar after 5 seconds
         yield return new WaitForSeconds (5f);
-        FadeOutCanvasGrp(InstructionGrp, 5f);
+        //FadeOutCanvasGrp(InstructionGrp, 5f);
     }   
 
     public void FadeVillageAttack() {
@@ -584,7 +585,7 @@ public class UXManager : MonoBehaviour
         PauseMenuGrp.interactable = false;
         PauseMenuGrp.blocksRaycasts = false;
         FadeOutCanvasGrp(PauseMenuGrp, 0.5f);
-        LoadScene(2);
+        Debug.Log (Cursor.lockState);
     }
 
     public void PauseExitGame() {
