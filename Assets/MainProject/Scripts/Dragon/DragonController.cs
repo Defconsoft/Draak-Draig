@@ -115,6 +115,13 @@ public class DragonController : MonoBehaviour
 
     private void Update() {
 
+        bool eagleWasActiveBefore = EagleActive;
+        if (eagleWasActiveBefore && !(controls.Dragon.RightMouse.ReadValue<float>() > 0))
+            {
+                // Turn off time slow
+                Time.timeScale = 1f;
+            }
+
         if (!killing){
             EagleActive = controls.Dragon.RightMouse.ReadValue<float>() > 0;
 
@@ -279,6 +286,7 @@ public class DragonController : MonoBehaviour
                 mainCamBrain.m_DefaultBlend.m_Time = 0.3f;
                 TopDownCam.m_Priority = 0;
                 EagleEyeCam.m_Priority = 10;
+                Time.timeScale = 0.65f;
             } else {
                 TopDownCam.m_Priority = 10;
                 EagleEyeCam.m_Priority = 0;

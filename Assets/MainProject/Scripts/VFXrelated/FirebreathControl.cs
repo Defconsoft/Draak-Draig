@@ -6,7 +6,7 @@ public class FirebreathControl : MonoBehaviour
 {
     public Vector3 target;
     public bool aimAtTarget = true;
-    private float timeEnabled = 0f;
+    // private float timeEnabled = 0f;
 
   
     void Update()
