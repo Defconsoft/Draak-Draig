@@ -6,6 +6,7 @@ public class FirebreathControl : MonoBehaviour
 {
     public Vector3 target;
     public bool aimAtTarget = true;
+    private float timeEnabled = 0f;
 
   
     void Update()
@@ -14,6 +15,12 @@ public class FirebreathControl : MonoBehaviour
         {
             transform.LookAt(target);
         }
+    }
+
+    void OnEnable()
+    {
+        // This is to make sure the firebreath cannot get stuck in an active state
+        StartCoroutine(ShutDownAfterWait());
     }
 
     void OnParticleCollision(GameObject other)
@@ -40,6 +47,12 @@ public class FirebreathControl : MonoBehaviour
             other.GetComponent<BirdTower>().Burn();
         }
         
+    }
+
+    private IEnumerator ShutDownAfterWait()
+    {
+        yield return new WaitForSeconds(2.2f);
+        gameObject.SetActive(false);
     }
 
 
