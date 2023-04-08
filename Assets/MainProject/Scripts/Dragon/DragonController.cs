@@ -5,6 +5,8 @@ using Cinemachine;
 using DG.Tweening;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
+using TMPro;
 
 [RequireComponent(typeof(Rigidbody))]
 public class DragonController : MonoBehaviour
@@ -47,12 +49,15 @@ public class DragonController : MonoBehaviour
     public float stormDelay;
     public Canvas StormWarning;
     public ShootProjectile fireballControl;
+    public Color missColor;
+    public TextMeshProUGUI missText;
 
     [SerializeField] private float dragonSpeed = 2.0f;
     [SerializeField] private float rotateSpeed = 2.0f;
     [SerializeField] private float eagleBlendTime = 0.3f;
     [SerializeField] private float eagleAmount = 1f;
     [SerializeField] private CanvasGroup aimReticle;
+    private Image aimReticleImage;
 
     [Header ("Animation stuff")]
     public Animator anim;
@@ -109,6 +114,8 @@ public class DragonController : MonoBehaviour
 
         // Set anim correctly
         anim.SetFloat("Tilt", tilt);
+
+        aimReticleImage = aimReticle.gameObject.GetComponentInChildren<Image>();
     }
 
 
@@ -175,8 +182,11 @@ public class DragonController : MonoBehaviour
                             }
 
                             
-                        } else {
+                        }
+                        else 
+                        {
                             anim.SetTrigger("Swoop");
+                            StartCoroutine(MissfireFeedback());
                         }
                     }
                 }
@@ -396,8 +406,16 @@ public class DragonController : MonoBehaviour
         takingDamage = false;
     }
 
-
-
-
+    IEnumerator MissfireFeedback()
+    {
+        missText.gameObject.SetActive(true);
+        aimReticleImage.color = missColor;
+        aimReticleImage.transform.DOPunchScale(new Vector3(-0.3f, -0.3f, -0.3f), 0.3f, 1, 0.3f);
+        missText.transform.DOScale(0.7f, 0.5f);
+        yield return new WaitForSeconds(0.25f);
+        aimReticleImage.color = Color.white;
+        yield return new WaitForSeconds(0.25f);
+        missText.gameObject.SetActive(false);
+    }
 
 }
