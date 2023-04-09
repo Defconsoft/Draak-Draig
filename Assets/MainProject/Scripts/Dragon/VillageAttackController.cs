@@ -12,6 +12,7 @@ public class VillageAttackController : MonoBehaviour
     private GameManager gameManager;
     private UXManager uxManager;
     public Camera mainCamera;
+    public AudioSource bgAudio;
 
     [Header("Attack logic")]
     public ShootProjectile fireballControl;
@@ -94,6 +95,8 @@ public class VillageAttackController : MonoBehaviour
     IEnumerator unhideCursor() {
         yield return new WaitForSeconds (4f);
         Cursor.visible = true;
+        yield return new WaitForSeconds(3f);
+        bgAudio.Play();
     }
 
     // Update is called once per frame
