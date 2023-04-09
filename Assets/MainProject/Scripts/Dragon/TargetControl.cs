@@ -31,7 +31,7 @@ public class TargetControl : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         TargetHit();
-        GameObject.Find("GameManager").GetComponent<UXManager>().targetdone = true;
+        
     }
 
     public void TargetHit()

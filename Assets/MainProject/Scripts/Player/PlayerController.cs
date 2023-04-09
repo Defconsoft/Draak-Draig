@@ -255,6 +255,17 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds (cameraTransform.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time);
     }
 
+    public void StopFollowInstant(){
+        stopFollowing = true;
+        cmInput.enabled = false;
+    }
+
+    public void StartFollowInstant(){
+        FirstPersonCam.m_Follow = followObject;
+        stopFollowing = false;
+        cmInput.enabled = true;
+    }
+
     void PlayFootstepSound()
     {
         int _footStepClipIndex = Random.Range(0, footStepClips.Length);

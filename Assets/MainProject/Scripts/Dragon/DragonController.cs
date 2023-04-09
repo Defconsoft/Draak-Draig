@@ -160,7 +160,6 @@ public class DragonController : MonoBehaviour
                             hit.collider.gameObject.transform.parent.gameObject.GetComponent<ForestSwoopAI>().caught = true;
                             hit.collider.gameObject.transform.parent.gameObject.GetComponent<Rigidbody>().isKinematic = true;
 
-                            uXManager.pigdead = true;
 
                             if (hit.collider.gameObject.tag == "forestHit"){
                                 //grab the stuff I need

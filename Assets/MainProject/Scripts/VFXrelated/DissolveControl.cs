@@ -13,6 +13,7 @@ public class DissolveControl : MonoBehaviour
     public float dieDelay = 0.2f;
     public PlayerController player;
     private GameManager gameManager;
+    private UXManager uxManager;
 
     private Material[] dissolveMaterials; 
     public Material dragonMat;
@@ -37,6 +38,7 @@ public class DissolveControl : MonoBehaviour
             // Make sure color of transform effect is same as dragon
             mat.SetFloat("_HueChange", dragonMat.GetFloat("_HueChange"));
         }
+        uxManager = GameObject.Find("GameManager").GetComponent<UXManager>();
 
         StartCoroutine(Dissolve());
 
@@ -99,6 +101,7 @@ public class DissolveControl : MonoBehaviour
         player.Interacting = false;
         StartCoroutine(player.StartFollow());
         gameObject.SetActive(false);
+        uxManager.ShowStartInstructions();
     }
 
     void OnDisable()

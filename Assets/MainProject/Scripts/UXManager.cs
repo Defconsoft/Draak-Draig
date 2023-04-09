@@ -28,7 +28,7 @@ public class UXManager : MonoBehaviour
     [SerializeField] private CanvasGroup DragonGrp;
     [SerializeField] private CanvasGroup VillageAttackGrp;
     [SerializeField] private CanvasGroup PauseMenuGrp;
-    [SerializeField] private CanvasGroup HintMenuGrp;
+    [SerializeField] private CanvasGroup StartInstructions;
     [SerializeField] private CanvasGroup TutorialGrp;
 
     [Header ("Quote Stuff")]
@@ -71,19 +71,9 @@ public class UXManager : MonoBehaviour
     public Image IconHolder;
 
 
-    [Header ("Hint Stuff")]
-    public float hintTime;
-    public float hintFadeTime;
-    public string[] hints;
-    public TMPro.TMP_Text hintTextArea;
-    public float showHintTime = 20f;
-    private float prayHintTime;
-    private float hintTimer;
-    private float prayerTimer;
-    private bool hasPrayed;
-    private bool HintShow, PrayShow;
-    public bool interacted, spoken, birddead, archerdead, pigdead, targetdone;
-    public int spokeTo;
+    [Header ("StartSceneInstructions")]
+    public float alpha;
+    public GameObject[] LevelInstructions;
 
 
     [Header ("Tutorial Stuff")]
@@ -106,7 +96,6 @@ public class UXManager : MonoBehaviour
         WoodCount.text = "Wood: " + gameManager.totalWood;
         HealthBar.fillAmount = gameManager.HealthAmount;
         EnergyBar.fillAmount = gameManager.EnergyAmount;
-        prayHintTime = showHintTime;
 
 
         _targetRotation = Quaternion.Euler(186f, -30f, 0);
@@ -138,7 +127,6 @@ public class UXManager : MonoBehaviour
         DebugMenu.enabled = false;
         currentScene = SceneNo;
         
-        HintMenuGrp.DOFade (0, 0);
         SetQuoteText(SceneNo);
         //Sorts main menu interaction
         if (SceneNo == 1) {
@@ -170,8 +158,12 @@ public class UXManager : MonoBehaviour
         {
             yield return null;
         }
-        hintTimer = 0;
-        HintShow = false;
+
+        if (SceneNo == 4 || SceneNo == 5) {
+            GameObject.Find("Player").GetComponent<PlayerController>().StopFollowInstant();
+        }
+
+
         //wait 3 seconds then fade out the quote
         yield return new WaitForSeconds (3f);
         FadeOutCanvasGrp(QuoteTextGrp, 1f);
@@ -228,6 +220,7 @@ public class UXManager : MonoBehaviour
         if (SceneNo == 4) {
             FadeInCanvasGrp (DayTimerGrp, 1.5f);
             FadeInCanvasGrp (ResourceGrp, 1.5f);
+            StartCoroutine(InstructionHack());
             StartDaytime();
             StartCoroutine(SetInstructions());
             IconHolder.sprite = Human;
@@ -237,6 +230,7 @@ public class UXManager : MonoBehaviour
         if (SceneNo == 5) {
             FadeInCanvasGrp (ResourceGrp, 1.5f);
             FadeOutCanvasGrp (DayTimerGrp, 0.1f);
+            StartCoroutine(InstructionHack());
             StopDaytime();
             StartCoroutine(SetInstructions());
             IconHolder.sprite = Human;
@@ -246,6 +240,7 @@ public class UXManager : MonoBehaviour
         if (SceneNo == 6) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
             FadeInCanvasGrp(DragonGrp, 1f);
+            StartCoroutine(InstructionHack());
             DragonEyeBar.SetActive (false);
             FireBreathBar.SetActive (true);
             StartCoroutine(SetInstructions());
@@ -259,6 +254,7 @@ public class UXManager : MonoBehaviour
         if (SceneNo == 7) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
             FadeInCanvasGrp(DragonGrp, 1f);
+            StartCoroutine(InstructionHack());
             DragonEyeBar.SetActive (false);
             FireBreathBar.SetActive (true);
             StartCoroutine(SetInstructions());
@@ -269,6 +265,7 @@ public class UXManager : MonoBehaviour
         if (SceneNo == 8) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
             FadeInCanvasGrp(DragonGrp, 1f);
+
             DragonEyeBar.SetActive (true);
             FireBreathBar.SetActive (false);
             StartCoroutine(SetInstructions());
@@ -279,15 +276,16 @@ public class UXManager : MonoBehaviour
         if (SceneNo == 9) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
             FadeOutCanvasGrp(TopBarGrp, 0.1f);
+            StartCoroutine(InstructionHack());
             DragonEyeBar.SetActive (false);
             FadeInCanvasGrp(VillageAttackGrp, 1f);
-            // StartCoroutine (TempSceneWait(3)); //REMOVE ME WHEN DONE
             IconHolder.sprite = Dragon;
         }   
 
         //wait for 2 seconds and fade out the BG
         yield return new WaitForSeconds (1f);
         FadeOutCanvasGrp(BGCanvasGrp, 1.5f);
+        
     }
 
     IEnumerator StartGameFade() {
@@ -353,14 +351,7 @@ public class UXManager : MonoBehaviour
             Time.timeScale = 0f;
         }
   
-        if (currentScene >=3) {
-            hintTimer += Time.deltaTime;
-            CheckToDisplayHints();
-        }
 
-        if (spokeTo >= 2){
-            prayerTimer += Time.deltaTime;
-        }
 
    
     }
@@ -593,86 +584,6 @@ public class UXManager : MonoBehaviour
     }
 
 
-    public void ShowHint(int hintNo) {
-        hintTextArea.text = hints[hintNo];
-        StartCoroutine(AnimateHint());
-    }
-
-    IEnumerator AnimateHint() {
-        HintMenuGrp.DOFade (1, hintFadeTime);
-        yield return new WaitForSeconds (hintTime);
-        HintMenuGrp.DOFade (0, hintFadeTime);
-    }
-
-    void CheckToDisplayHints(){
-        //Yes I know this is a very bad bunch of if statements but whatever.
-
-        if (!PrayShow){
-            if (currentScene == 5 && prayerTimer>= prayHintTime) {
-                if (spokeTo >= 2 && !hasPrayed){
-                    hasPrayed = true;
-                    PrayShow = true;
-                    ShowHint (3);
-                }
-            } 
-        }
-
-
-
-
-        if (!HintShow){
-            if (currentScene == 3 && hintTimer >= showHintTime) {
-                HintShow = true;
-                ShowHint (0);
-            } 
-            
-            if (currentScene == 4 && hintTimer >= showHintTime) {
-                if (!interacted){
-                    HintShow = true;
-                    ShowHint (1);
-                }
-            } 
-            
-            if (currentScene == 5 && hintTimer >= showHintTime) {
-                if (!spoken){
-                    HintShow = true;
-                    ShowHint (2);
-                }
-            } 
- 
-                     
-            if (currentScene == 6 && hintTimer >= showHintTime){
-                if (!birddead){
-                    HintShow = true;
-                    ShowHint (4);
-                }
-            } 
-            
-            if (currentScene == 7 && hintTimer >= showHintTime){
-                if (!archerdead){
-                    HintShow = true;
-                    ShowHint (5);
-                }
-            } 
-            
-            if (currentScene == 8 && hintTimer >= showHintTime){
-                if (!pigdead){
-                    HintShow = true;
-                    ShowHint (6);
-                }
-            }
-
-            if (currentScene == 9 && hintTimer >= showHintTime){
-                if (!targetdone){
-                    HintShow = true;
-                    ShowHint (7);
-                }
-            }
-
-        }
-
-    }
-
 
     public void ShowTutorial() {
         TutorialGrp.alpha = 1f;
@@ -693,6 +604,107 @@ public class UXManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
+
+    IEnumerator InstructionHack(){
+        yield return new WaitForSeconds(2f);
+        ShowStartInstructions();
+    }
+    
+
+
+    public void ShowStartInstructions(){
+        StartInstructions.alpha = 1f;
+        StartInstructions.blocksRaycasts = true;
+        Time.timeScale = 0f;
+        isPaused = true;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        if (currentScene == 3) {
+            LevelInstructions[0].SetActive (true);
+        }
+
+        if (currentScene == 4) {
+            LevelInstructions[1].SetActive (true);
+        }
+
+        if (currentScene == 5) {
+            LevelInstructions[2].SetActive (true);
+        }
+
+        if (currentScene == 6) {
+            LevelInstructions[3].SetActive (true);
+        }
+    
+        if (currentScene == 7) {
+            LevelInstructions[4].SetActive (true);
+        }
+
+        if (currentScene == 8) {
+            LevelInstructions[5].SetActive (true);
+        }
+
+        if (currentScene == 9) {
+            LevelInstructions[6].SetActive (true);
+        }
+
+    }
+
+    public void ExitStartInstructions(){
+        StartInstructions.alpha = 0f;
+        StartInstructions.blocksRaycasts = false;
+        Time.timeScale = 1f;
+        isPaused = false;
+
+
+        if (currentScene == 3) {
+            LevelInstructions[0].SetActive (false);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+        if (currentScene == 4) {
+            GameObject.Find("Player").GetComponent<PlayerController>().StartFollowInstant();
+            LevelInstructions[1].SetActive (false);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+        if (currentScene == 5) {
+            GameObject.Find("Player").GetComponent<PlayerController>().StartFollowInstant();
+            LevelInstructions[2].SetActive (false);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+        if (currentScene == 6) {
+            GameObject.Find("FlyingDragon").GetComponent<FlyingController>().canMove = true;
+            LevelInstructions[3].SetActive (false);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        if (currentScene == 7) {
+            LevelInstructions[4].SetActive (false);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+        if (currentScene == 8) {
+            LevelInstructions[5].SetActive (false);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        if (currentScene == 9) {
+            LevelInstructions[6].SetActive (false);
+            GameObject.Find("Dragon").GetComponent<VillageAttackController>().canAim = true;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+    }
+
 
 
 }

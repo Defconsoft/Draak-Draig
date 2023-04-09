@@ -31,6 +31,7 @@ public class VillageAttackController : MonoBehaviour
     private bool canFireBall = true;
     private bool canFireBreath = true;
     private bool canFireBomb = true;
+    public bool canAim;
 
     [Header ("Destruction score handling")]
     public float destructionGoal = 100f;
@@ -116,8 +117,12 @@ public class VillageAttackController : MonoBehaviour
         } 
         
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+
+        
         if (Physics.Raycast(ray, out RaycastHit raycastHit)) {
-            aimControl.position = raycastHit.point;
+            if (canAim){
+                aimControl.position = raycastHit.point;
+            }
         }
         
         if (inputManager.DragonSwitchToFireball())

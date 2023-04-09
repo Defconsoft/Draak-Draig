@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4526699, g: 0.50675213, b: 0.54470044, a: 1}
+  m_IndirectSpecularColor: {r: 0.033611286, g: 0.029431142, b: 0.043458916, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2315,8 +2315,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269035804}
-  m_LocalRotation: {x: -0.19554088, y: 0.0020561218, z: -0.00040572137, w: -0.98069334}
-  m_LocalPosition: {x: 0.04947149, y: 4.9978175, z: -7.3414617}
+  m_LocalRotation: {x: 0.14176667, y: -0.5007689, z: 0.08355566, w: 0.84979475}
+  m_LocalPosition: {x: 586.234, y: 304.03076, z: 146.26118}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26066,22 +26066,22 @@ PrefabInstance:
     - target: {fileID: 4698772237014994050, guid: f8720b51b18602a44b662bbf2ff61f9d,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8826097
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4698772237014994050, guid: f8720b51b18602a44b662bbf2ff61f9d,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4698772237014994050, guid: f8720b51b18602a44b662bbf2ff61f9d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.47010642
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4698772237014994050, guid: f8720b51b18602a44b662bbf2ff61f9d,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4698772237014994050, guid: f8720b51b18602a44b662bbf2ff61f9d,
         type: 3}
@@ -26091,7 +26091,7 @@ PrefabInstance:
     - target: {fileID: 4698772237014994050, guid: f8720b51b18602a44b662bbf2ff61f9d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -56.082
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4698772237014994050, guid: f8720b51b18602a44b662bbf2ff61f9d,
         type: 3}

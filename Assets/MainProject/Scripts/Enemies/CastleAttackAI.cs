@@ -107,7 +107,6 @@ public class CastleAttackAI : MonoBehaviour
     IEnumerator Death() {
         Dead = false;
         audioSource.PlayOneShot(dieSound, 0.4f);
-        GameObject.Find("GameManager").GetComponent<UXManager>().archerdead = true;
         StopCoroutine(ShootArrow());
         canShoot = true;
         enemyManager.hasEnemy = false;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: NaN, g: NaN, b: NaN, a: 1}
+  m_IndirectSpecularColor: {r: 0.9743297, g: 0.6871125, b: 0.63817096, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6681,27 +6681,27 @@ PrefabInstance:
     - target: {fileID: 6987812787601137687, guid: fa9ed71da3965cb45a736862d8147b6b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.084186025
+      value: -0.09257985
       objectReference: {fileID: 0}
     - target: {fileID: 6987812787601137687, guid: fa9ed71da3965cb45a736862d8147b6b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.9622502
+      value: 0.96147895
       objectReference: {fileID: 0}
     - target: {fileID: 6987812787601137687, guid: fa9ed71da3965cb45a736862d8147b6b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.022557573
+      value: 0.024806691
       objectReference: {fileID: 0}
     - target: {fileID: 6987812787601137687, guid: fa9ed71da3965cb45a736862d8147b6b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.25783414
+      value: 0.2576275
       objectReference: {fileID: 0}
     - target: {fileID: 6987812787601137687, guid: fa9ed71da3965cb45a736862d8147b6b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 190
+      value: 191
       objectReference: {fileID: 0}
     - target: {fileID: 6987812787601137687, guid: fa9ed71da3965cb45a736862d8147b6b,
         type: 3}
@@ -6721,12 +6721,12 @@ PrefabInstance:
     - target: {fileID: 6987812788749991719, guid: fa9ed71da3965cb45a736862d8147b6b,
         type: 3}
       propertyPath: m_Intensity
-      value: 0.63428557
+      value: 0.69041955
       objectReference: {fileID: 0}
     - target: {fileID: 6987812788749991719, guid: fa9ed71da3965cb45a736862d8147b6b,
         type: 3}
       propertyPath: m_Shadows.m_Strength
-      value: 0.31714278
+      value: 0.34520978
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa9ed71da3965cb45a736862d8147b6b, type: 3}

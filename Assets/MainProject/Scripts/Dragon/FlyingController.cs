@@ -27,10 +27,11 @@ public class FlyingController : MonoBehaviour
     public Transform target;
     public FirebreathControl fireBreath;
     bool firing;
+    public bool canMove = true;
 
     [SerializeField] private float fireBreathAmount;
     private bool BreathActive;
-    bool canFirebreath = true;
+    bool canFirebreath;
 
 
     private Rigidbody rb;
@@ -47,7 +48,7 @@ public class FlyingController : MonoBehaviour
         controls = new PlayerControls();
         rb = GetComponent<Rigidbody>();
         cam = Camera.main;
-
+        
     }
 
 
@@ -58,6 +59,8 @@ public class FlyingController : MonoBehaviour
     private void OnDisable() {
         controls.Disable();
     }
+
+
 
     private void Start() {
         Cursor.visible = false;
@@ -74,61 +77,62 @@ public class FlyingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        if (canMove){
+            BreathActive = controls.Dragon.RightMouse.ReadValue<float>() > 0;
 
-
-        BreathActive = controls.Dragon.RightMouse.ReadValue<float>() > 0;
-
-            if (BreathActive && fireBreathAmount <= 0.24f) {
-                canFirebreath = false;
+                if (BreathActive && fireBreathAmount <= 0.24f) {
+                    canFirebreath = false;
+                    IncreaseFirebreathAmount();
+                } else if (BreathActive && fireBreathAmount > 0.24f) {
+                    if (!firing){
+                        canFirebreath = true;
+                    }
                 IncreaseFirebreathAmount();
-            } else if (BreathActive && fireBreathAmount > 0.24f) {
-                if (!firing){
-                    canFirebreath = true;
+                } else {
+                    IncreaseFirebreathAmount();
                 }
-            IncreaseFirebreathAmount();
-            } else {
-                IncreaseFirebreathAmount();
+
+                if (fireBreathAmount <= 0.24f) {
+                    uXManager.powerText.SetActive (true);
+                } else {
+                    uXManager.powerText.SetActive (false);
+                }
+
+                uXManager.SetFireBreathAmount(fireBreathAmount);
+
+
+            //Clear out old values
+            pitch = 0f;
+            roll = 0f;
+            yaw = 0f;
+
+            //Update control surfaces
+            if (Input.GetKey(KeyCode.Q)) yaw = -1f;
+            if (Input.GetKey(KeyCode.E)) yaw = 1f;
+
+            if (Input.GetKey(KeyCode.A)) roll = 1f;
+            if (Input.GetKey(KeyCode.D)) roll = -1f;
+
+            if (Input.GetKey(KeyCode.W)) pitch = -1f;
+            if (Input.GetKey(KeyCode.S)) pitch = 1f;
+
+            UpdateThrottle();
+            UpdateCamera();
+            CheckMouseControls();
+
+            crosshairs.position = crosshairPosition;
+
+            // Firebreath
+            if (inputManager.DragonRightClickThisFrame() && canFirebreath)
+            {
+                
+                anim.SetTrigger("Firebreath");
+                fireBreath.target = target.position;
+                canFirebreath = false;
+                DecreaseFirebreathAmount();
+                StartCoroutine (breathDelay());
             }
-
-            if (fireBreathAmount <= 0.24f) {
-                uXManager.powerText.SetActive (true);
-            } else {
-                uXManager.powerText.SetActive (false);
-            }
-
-            uXManager.SetFireBreathAmount(fireBreathAmount);
-
-
-        //Clear out old values
-        pitch = 0f;
-        roll = 0f;
-        yaw = 0f;
-
-        //Update control surfaces
-        if (Input.GetKey(KeyCode.Q)) yaw = -1f;
-        if (Input.GetKey(KeyCode.E)) yaw = 1f;
-
-        if (Input.GetKey(KeyCode.A)) roll = 1f;
-        if (Input.GetKey(KeyCode.D)) roll = -1f;
-
-        if (Input.GetKey(KeyCode.W)) pitch = -1f;
-        if (Input.GetKey(KeyCode.S)) pitch = 1f;
-
-        UpdateThrottle();
-        UpdateCamera();
-        CheckMouseControls();
-
-        crosshairs.position = crosshairPosition;
-
-        // Firebreath
-        if (inputManager.DragonRightClickThisFrame() && canFirebreath)
-        {
-            
-            anim.SetTrigger("Firebreath");
-            fireBreath.target = target.position;
-            canFirebreath = false;
-            DecreaseFirebreathAmount();
-            StartCoroutine (breathDelay());
         }
 
     }
@@ -180,27 +184,27 @@ public class FlyingController : MonoBehaviour
 
     private void FixedUpdate() {
 
+        if (canMove){
+            transform.RotateAround (transform.position, transform.up, yaw * Time.fixedDeltaTime * yawSpeed);  //yaw
+            dragonMesh.transform.RotateAround (dragonMesh.transform.position, dragonMesh.transform.forward, roll * Time.fixedDeltaTime * rollSpeed);  //roll
+            transform.RotateAround (transform.position, transform.right, pitch * Time.fixedDeltaTime * pitchSpeed);  //pitch
 
-        transform.RotateAround (transform.position, transform.up, yaw * Time.fixedDeltaTime * yawSpeed);  //yaw
-        dragonMesh.transform.RotateAround (dragonMesh.transform.position, dragonMesh.transform.forward, roll * Time.fixedDeltaTime * rollSpeed);  //roll
-        transform.RotateAround (transform.position, transform.right, pitch * Time.fixedDeltaTime * pitchSpeed);  //pitch
+            //Auto Level
+            var rotateSpeed = Mathf.Clamp (transform.right.y, -1f, 1) * -1f;
+            if (Mathf.Abs (pitch) > 0.1f) {
+                transform.RotateAround (transform.position, transform.forward, rotateSpeed);  
+            }
 
-        //Auto Level
-        var rotateSpeed = Mathf.Clamp (transform.right.y, -1f, 1) * -1f;
-        if (Mathf.Abs (pitch) > 0.1f) {
-            transform.RotateAround (transform.position, transform.forward, rotateSpeed);  
+
+            var localVelocity = transform.InverseTransformDirection (rb.velocity);
+            var localSpeed = Mathf.Max (0, localVelocity.z);
+
+            var aeroFactor = Vector3.Dot(transform.forward, rb.velocity.normalized);
+            aeroFactor *= aeroFactor;
+            rb.velocity = Vector3.Lerp (rb.velocity, transform.forward * localSpeed, aeroFactor * localSpeed * aeroDynamicEffect * Time.fixedDeltaTime);
+
+            rb.AddForce ((thrust * dragonThrust) * transform.forward);
         }
-
-
-        var localVelocity = transform.InverseTransformDirection (rb.velocity);
-        var localSpeed = Mathf.Max (0, localVelocity.z);
-
-        var aeroFactor = Vector3.Dot(transform.forward, rb.velocity.normalized);
-        aeroFactor *= aeroFactor;
-        rb.velocity = Vector3.Lerp (rb.velocity, transform.forward * localSpeed, aeroFactor * localSpeed * aeroDynamicEffect * Time.fixedDeltaTime);
-
-        rb.AddForce ((thrust * dragonThrust) * transform.forward);
-        
     }
 
     void LateUpdate() {

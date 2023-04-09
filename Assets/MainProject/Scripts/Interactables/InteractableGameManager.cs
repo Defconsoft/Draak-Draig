@@ -124,9 +124,7 @@ public class InteractableGameManager : MonoBehaviour
     }
 
     public void StartTheGame() {
-        uXManager.interacted = true;
-
-
+        
         armsAnim = player.GetComponentInChildren<Animator>();
 
         if (gameType == GameType.rock){

@@ -27,7 +27,6 @@ public class InteractableNPCManager : MonoBehaviour
 
 
     public void StartConversation() {
-        GameObject.Find("GameManager").GetComponent<UXManager>().spoken = true;
         NPCName.text = npcName;
         Outcome.text = outComeText;
         overallCanvas.enabled = true;
@@ -108,7 +107,6 @@ public class InteractableNPCManager : MonoBehaviour
     }
 
     public void ButtonExit(){
-        GameObject.Find("GameManager").GetComponent<UXManager>().spokeTo++;
         narrativeCanvas.DOFade(0,1f);
         GameObject.Find("Player").GetComponent<PlayerController>().Endinteracting();
         overallCanvas.enabled = false;
