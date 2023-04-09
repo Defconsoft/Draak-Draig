@@ -24,6 +24,7 @@ public class InteractableNPCManager : MonoBehaviour
     public string outComeText;
     [TextArea(5,10)]
     public string[] Conversation;
+    public AudioClip greeting;
 
 
     public void StartConversation() {
@@ -34,6 +35,7 @@ public class InteractableNPCManager : MonoBehaviour
         Textbox.text = Conversation[0];
         anim = GetComponentInChildren<Animator>();
         anim.SetTrigger("Talk");
+        GetComponent<AudioSource>().PlayOneShot(greeting, 0.25f);
 
         //check to see if you have resources
         if (RockVendor && GameObject.Find("GameManager").GetComponent<GameManager>().totalRock == 0){
