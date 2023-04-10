@@ -97,16 +97,17 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _CloudAlpha: 2.93
-    - _CloudScale: 13.2
-    - _CloudsPower: 0.7
+    - _CloudAlpha: -39.67
+    - _CloudScale: 100
+    - _CloudsPower: 3.24
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DistortScale: 30
+    - _DistortScale: 45
     - _DstBlend: 0
     - _EnvironmentReflections: 1
+    - _FadeOffset: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -127,7 +128,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _CloudSpeed: {r: 0, g: 0.005, b: 0, a: 0}
-    - _CloudsColor: {r: 0.61877, g: 0.8082522, b: 0.9716981, a: 1}
+    - _CloudsColor: {r: 1.3532083, g: 1.7636075, b: 2.1185474, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DistortSpeed: {r: 0, g: 0.03, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
