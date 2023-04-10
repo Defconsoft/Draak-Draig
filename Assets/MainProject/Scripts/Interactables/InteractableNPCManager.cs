@@ -25,6 +25,7 @@ public class InteractableNPCManager : MonoBehaviour
     [TextArea(5,10)]
     public string[] Conversation;
     public AudioClip greeting;
+    bool rockOnce, fishOnce;
 
 
     public void StartConversation() {
@@ -68,13 +69,21 @@ public class InteractableNPCManager : MonoBehaviour
                 Exitbutton.SetActive (true);
 
                 if (RockVendor) {
-                    GameObject.Find("GameManager").GetComponent<GameManager>().totalRock = 0;
-                    GameObject.Find("GameManager").GetComponent<UXManager>().SetItemAmounts();
+                    if (!rockOnce){
+                        rockOnce = true;
+                        GameObject.Find("GameManager").GetComponent<UXManager>().CheckRock();
+                        GameObject.Find("GameManager").GetComponent<GameManager>().totalRock = 0;
+                        GameObject.Find("GameManager").GetComponent<UXManager>().SetItemAmounts();
+                    }
                 }
 
                 if (FishVendor) {
-                    GameObject.Find("GameManager").GetComponent<GameManager>().totalFish = 0;
-                    GameObject.Find("GameManager").GetComponent<UXManager>().SetItemAmounts();
+                    if (!fishOnce){
+                        fishOnce = true;
+                        GameObject.Find("GameManager").GetComponent<UXManager>().CheckFish();
+                        GameObject.Find("GameManager").GetComponent<GameManager>().totalFish = 0;
+                        GameObject.Find("GameManager").GetComponent<UXManager>().SetItemAmounts();
+                    }
                 }
 
 

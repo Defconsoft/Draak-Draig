@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
-  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
-  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientSkyColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
+  m_AmbientEquatorColor: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
+  m_AmbientGroundColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
   m_AmbientIntensity: 1.21
-  m_AmbientMode: 0
+  m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: af0dc69a1aa3f504c9c9e971a05ab367, type: 2}
   m_HaloStrength: 0.5
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.23977986, g: 0.36817887, b: 0.5304465, a: 1}
+  m_IndirectSpecularColor: {r: 0.9743297, g: 0.6871125, b: 0.63817096, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6656,7 +6656,7 @@ PrefabInstance:
     - target: {fileID: 6987812787601137680, guid: fa9ed71da3965cb45a736862d8147b6b,
         type: 3}
       propertyPath: m_Shadows.m_Strength
-      value: 0.5451416
+      value: 0.9795989
       objectReference: {fileID: 0}
     - target: {fileID: 6987812787601137687, guid: fa9ed71da3965cb45a736862d8147b6b,
         type: 3}
@@ -6717,6 +6717,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SunDirectional
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987812788749991719, guid: fa9ed71da3965cb45a736862d8147b6b,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.67058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987812788749991719, guid: fa9ed71da3965cb45a736862d8147b6b,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.58431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987812788749991719, guid: fa9ed71da3965cb45a736862d8147b6b,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.5882353
       objectReference: {fileID: 0}
     - target: {fileID: 6987812788749991719, guid: fa9ed71da3965cb45a736862d8147b6b,
         type: 3}

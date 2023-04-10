@@ -31,7 +31,8 @@ public class CastleBattleController : MonoBehaviour
     [SerializeField] private float fireBreathAmount;
     private bool BreathActive;
     bool canFirebreath = true;
-    
+    float barrelDelay = 10f;
+
     bool EndGame;
 
     [Header ("Customization related")]
@@ -71,6 +72,7 @@ public class CastleBattleController : MonoBehaviour
         tail.gameObject.SetActive(gameManager.tailSpikeEnabled);
         tail.SetBlendShapeWeight(0, gameManager.tailSqueeze);
         tail.SetBlendShapeWeight(1, gameManager.tailSize);
+        barrelDelay = uxManager.BarrelDelay;
     }
 
     // Update is called once per frame
@@ -128,6 +130,7 @@ public class CastleBattleController : MonoBehaviour
 
             if (gameManager.HealthAmount <= 0.25f && EndGame == false) {
                 EndGame = true;
+                uxManager.BarrelDelay = 10f;
                 foreach (Transform child in Trashcan.transform) {
                     Destroy(child.gameObject);
                 }
@@ -156,7 +159,7 @@ public class CastleBattleController : MonoBehaviour
 
 
     IEnumerator SpawnBarrel() {
-        yield return new WaitForSeconds (10f);
+        yield return new WaitForSeconds (barrelDelay);
         GameObject BarrelPig = Instantiate (BarrelAI, BarrelSpawner.transform.position, Quaternion.identity);
         
     }

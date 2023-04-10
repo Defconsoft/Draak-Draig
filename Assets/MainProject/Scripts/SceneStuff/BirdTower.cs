@@ -15,6 +15,7 @@ public class BirdTower : MonoBehaviour
 
 
     private void Start() {
+        numBirds = GameObject.Find("GameManager").GetComponent<UXManager>().BirdTowerAmount;
         for (int i = 0; i < numBirds; i++)
         {
             GameObject cloneBird = Instantiate (birds[Random.Range (0, birds.Length)], releasePoint.transform.position, Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)));

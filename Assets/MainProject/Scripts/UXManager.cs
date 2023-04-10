@@ -50,6 +50,8 @@ public class UXManager : MonoBehaviour
     public TMPro.TMP_Text FishCount;
     public TMPro.TMP_Text WoodCount; 
     public GameObject MinimapContainer;
+    public int BirdTowerAmount = 10;
+    public float BarrelDelay = 10f;
 
 
     [Header ("Instruction Stuff")]
@@ -452,6 +454,27 @@ public class UXManager : MonoBehaviour
         RockCount.text = "Rock: " + gameManager.totalRock;
         FishCount.text = "Fish: " + gameManager.totalFish;
         WoodCount.text = "Wood: " + gameManager.totalWood;
+    }
+
+    public void CheckRock() {
+        if (gameManager.totalRock <= 100) {
+            BirdTowerAmount = 6;
+        } else if (gameManager.totalRock>= 101 && gameManager.totalRock <= 250) {
+            BirdTowerAmount = 8;
+        } else if (gameManager.totalRock >= 251 ) {
+            BirdTowerAmount = 10;
+        }
+    }
+
+    public void CheckFish() {
+        Debug.Log (gameManager.totalFish);
+        if (gameManager.totalFish <= 100) {
+            BarrelDelay = 20f;
+        } else if (gameManager.totalFish>= 101 && gameManager.totalFish <= 250) {
+            BarrelDelay = 14f;
+        } else if (gameManager.totalFish >= 251 ) {
+            BarrelDelay = 8f;
+        }
     }
 
 
