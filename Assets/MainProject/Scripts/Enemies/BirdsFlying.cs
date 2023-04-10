@@ -170,7 +170,6 @@ public class BirdsFlying : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Dragon") {
-            Debug.Log ("TRIGGER");
             other.GetComponentInChildren<Animator>().SetTrigger("EatAnimal");
             KillBird();
         }
@@ -184,6 +183,8 @@ public class BirdsFlying : MonoBehaviour
             gameManager.PlusEnergy(0.1f);
             GameObject clone = Instantiate (bloodParticle, transform);
             clone.transform.parent = null;
+            originScript.totalBirds--;
+            originScript.SpawnBird();
             Destroy(this.gameObject);
         }
     }

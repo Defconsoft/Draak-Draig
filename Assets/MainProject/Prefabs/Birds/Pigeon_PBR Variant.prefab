@@ -320,36 +320,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.7
   m_Center: {x: 0, y: 0.12, z: 0}
---- !u!114 &2736828952169879730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3748483557861259584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1083c8cce529ce5499904df63e8011ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  idleSpeed: 10
-  turnSpeed: 80
-  switchSeconds: 3
-  idleRatio: 0.3
-  animSpeedMinMax: {x: 0.5, y: 2}
-  moveSpeedMinMax: {x: 10, y: 20}
-  changeAnimEveryFromTo: {x: 2, y: 4}
-  changeTargetEveryFromTo: {x: 3, y: 8}
-  homeTarget: {fileID: 0}
-  flyingTarget: {fileID: 0}
-  radiusMinMax: {x: 30, y: 160}
-  yMinMax: {x: 250, y: 290}
-  returnToBase: 0
-  randomBaseOffset: 0
-  delayStart: 0
-  originScript: {fileID: 0}
-  bloodParticle: {fileID: 524512725243353953, guid: ab591c5b4a92d0648a13e531e7d572e3,
-    type: 3}
 --- !u!135 &5963266547961170440
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -363,3 +333,33 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.35
   m_Center: {x: 0, y: 0.12, z: 0}
+--- !u!114 &2736828952169879730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3748483557861259584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1083c8cce529ce5499904df63e8011ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleSpeed: 7
+  turnSpeed: 80
+  switchSeconds: 3
+  idleRatio: 0.3
+  animSpeedMinMax: {x: 0.5, y: 2}
+  moveSpeedMinMax: {x: 10, y: 20}
+  changeAnimEveryFromTo: {x: 2, y: 4}
+  changeTargetEveryFromTo: {x: 3, y: 8}
+  homeTarget: {fileID: 0}
+  flyingTarget: {fileID: 0}
+  radiusMinMax: {x: 30, y: 160}
+  yMinMax: {x: 270, y: 290}
+  returnToBase: 0
+  randomBaseOffset: 0
+  delayStart: 0
+  originScript: {fileID: 0}
+  bloodParticle: {fileID: 524512725243353953, guid: ab591c5b4a92d0648a13e531e7d572e3,
+    type: 3}

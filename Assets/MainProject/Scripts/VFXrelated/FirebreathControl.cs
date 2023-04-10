@@ -39,6 +39,7 @@ public class FirebreathControl : MonoBehaviour
         }
         else if (otherTag == "bird")
         {
+            Debug.Log ("BURNMEUPBABY");
             other.GetComponent<BirdsFlying>().KillBird();
         }
         else if (other.name.Contains("BirdTower"))
@@ -48,6 +49,7 @@ public class FirebreathControl : MonoBehaviour
         }
         
     }
+
 
     private IEnumerator ShutDownAfterWait()
     {
