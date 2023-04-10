@@ -464,5 +464,5 @@ MonoBehaviour:
   randomBaseOffset: 0
   delayStart: 0
   originScript: {fileID: 0}
-  bloodParticle: {fileID: 524512725243353953, guid: ab591c5b4a92d0648a13e531e7d572e3,
+  bloodParticle: {fileID: 524512725243353953, guid: 32cf0b4b5affc5c4e83d9fae8d117617,
     type: 3}
