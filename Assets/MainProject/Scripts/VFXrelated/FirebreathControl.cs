@@ -25,7 +25,7 @@ public class FirebreathControl : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        Debug.Log("Firebreath collided with: " + other.name);
+        // Debug.Log("Firebreath collided with: " + other.name);
         //Debug.Log("The tag is: " + other.tag);
         string otherTag = other.tag;
         // This gets triggered when the firebreath interacts with the target
@@ -35,16 +35,16 @@ public class FirebreathControl : MonoBehaviour
         }
         else if (otherTag == "CastleEnemy"){
             other.gameObject.GetComponent<CastleAttackAI>().Dead = true;
-            Debug.Log ("FIRE");
+            // Debug.Log ("FIRE");
         }
         else if (otherTag == "bird")
         {
-            Debug.Log ("BURNMEUPBABY");
+            // Debug.Log ("BURNMEUPBABY");
             other.GetComponent<BirdsFlying>().KillBird();
         }
         else if (other.name.Contains("BirdTower"))
         {
-            Debug.Log("Burn tower");
+            // Debug.Log("Burn tower");
             other.GetComponent<BirdTower>().Burn();
         }
         

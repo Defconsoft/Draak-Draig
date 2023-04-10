@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.033611286, g: 0.029431142, b: 0.043458916, a: 1}
+  m_IndirectSpecularColor: {r: 0.4526699, g: 0.50675213, b: 0.54470044, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -23124,6 +23124,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: dragonFlying
       objectReference: {fileID: 0}
+    - target: {fileID: 1895191789140883236, guid: 02c9d4c90d63cff48b53dabeddc728bb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1915859661279817212, guid: 02c9d4c90d63cff48b53dabeddc728bb,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -23497,7 +23502,7 @@ PrefabInstance:
     - target: {fileID: 5418704497542254080, guid: 02c9d4c90d63cff48b53dabeddc728bb,
         type: 3}
       propertyPath: CollisionModule.quality
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5418704497542254080, guid: 02c9d4c90d63cff48b53dabeddc728bb,
         type: 3}
