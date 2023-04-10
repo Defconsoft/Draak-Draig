@@ -259,6 +259,7 @@ public class InteractableGameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         InteractableState = 3;
         fractureContainer.transform.parent = null;
+        fractureContainer.GetComponent<FractureCleanUp>().CleanUp();
         Destroy(this.gameObject.transform.parent.gameObject);
         yield return new WaitForSeconds(1f);
 
@@ -343,6 +344,7 @@ public class InteractableGameManager : MonoBehaviour
         yield return new WaitForSeconds(4f);
         InteractableState = 3;
         fractureContainer.transform.parent = null;
+        fractureContainer.GetComponent<FractureCleanUp>().CleanUp();
         Destroy(this.gameObject.transform.parent.gameObject);
         yield return new WaitForSeconds(1f);
 

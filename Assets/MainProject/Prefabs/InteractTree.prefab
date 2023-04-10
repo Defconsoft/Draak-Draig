@@ -401,6 +401,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3816955891833885250}
+  - component: {fileID: 8015352890667369226}
   m_Layer: 0
   m_Name: Fracture
   m_TagString: Untagged
@@ -423,6 +424,18 @@ Transform:
   m_Father: {fileID: 5738810241794123356}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8015352890667369226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072757356722963577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d151f54c6939fec4b8fbb1cd9203fc82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2097331305249933433
 GameObject:
   m_ObjectHideFlags: 0
@@ -1933,17 +1946,17 @@ PrefabInstance:
     - target: {fileID: 6354182666414601636, guid: 0a2673a72e242f9489357cdf7ef7edbe,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.46
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6354182666414601636, guid: 0a2673a72e242f9489357cdf7ef7edbe,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6354182666414601636, guid: 0a2673a72e242f9489357cdf7ef7edbe,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6354182666414601636, guid: 0a2673a72e242f9489357cdf7ef7edbe,
         type: 3}
@@ -2008,6 +2021,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2752950129423148223}
   m_PrefabAsset: {fileID: 0}
+--- !u!136 &4166250704224394506
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8453597736053738401}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.59
+  m_Height: 9
+  m_Direction: 0
+  m_Center: {x: 0.063222885, y: 0, z: 0}
 --- !u!114 &2044290910012955738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2027,10 +2054,10 @@ MonoBehaviour:
   FractureType: 1
   SlicePlanes:
   - Position: {x: 0, y: 0.16, z: 0}
-    Rotation: {x: -0.23786414, y: 0.7183906, z: -0.2922227, w: -0.58475757}
+    Rotation: {x: -0.21839476, y: 0.72766244, z: -0.26830474, w: -0.59230375}
     Scale: 1
   - Position: {x: 0, y: 0.09, z: 0}
-    Rotation: {x: -0.32992932, y: -0.5882413, z: -0.2849377, w: 0.6811236}
+    Rotation: {x: -0.27183825, y: -0.610001, z: -0.23476833, w: 0.70631903}
     Scale: 1
   NumFracturePieces: 5
   NumIterations: 2
