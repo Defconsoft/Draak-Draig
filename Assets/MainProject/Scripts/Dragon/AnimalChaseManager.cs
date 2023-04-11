@@ -39,14 +39,15 @@ public class AnimalChaseManager : MonoBehaviour
 
 
         if (gameManager.EnergyAmount <= 0.25 && GameEnded == false) {
-            uxManager.BirdTowerAmount = 10;
             GameEnded = true;
-            GameStarted = false;
             uxManager.LoadScene(7);
+            uxManager.BirdTowerAmount = 10;
+            GameStarted = false;
+            Debug.Log("Fired");
+            
         }
-
-
     }
+    
 
 
 }

@@ -267,7 +267,7 @@ public class UXManager : MonoBehaviour
         if (SceneNo == 8) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
             FadeInCanvasGrp(DragonGrp, 1f);
-
+            StartCoroutine(InstructionHack());
             DragonEyeBar.SetActive (true);
             FireBreathBar.SetActive (false);
             StartCoroutine(SetInstructions());
@@ -278,6 +278,7 @@ public class UXManager : MonoBehaviour
         if (SceneNo == 9) {
             FadeOutCanvasGrp (ResourceGrp, 0.1f);
             FadeOutCanvasGrp(TopBarGrp, 0.1f);
+            RemoveInstructions();
             StartCoroutine(InstructionHack());
             DragonEyeBar.SetActive (false);
             FadeInCanvasGrp(VillageAttackGrp, 1f);
@@ -305,7 +306,11 @@ public class UXManager : MonoBehaviour
         //Fades out the instruction bar after 5 seconds
         yield return new WaitForSeconds (5f);
         //FadeOutCanvasGrp(InstructionGrp, 5f);
-    }   
+    }  
+
+    void RemoveInstructions(){
+        FadeOutCanvasGrp(InstructionGrp, 3f);
+    } 
 
     public void FadeVillageAttack() {
         FadeOutCanvasGrp(VillageAttackGrp, 1f);
