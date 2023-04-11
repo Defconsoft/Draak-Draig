@@ -6,6 +6,7 @@ using DG.Tweening;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
+using UnityEngine.AI;
 using TMPro;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -336,13 +337,14 @@ public class DragonController : MonoBehaviour
     IEnumerator KillNonAnimate() {
         killing = true;
         tempPig.GetComponent<ForestSwoopAI>().SetAnim(1);
-        
+        NavMeshAgent temp = tempPig.GetComponent<NavMeshAgent>();
+        temp.enabled = false;
         ///////////////////////////
         //FIRE THE FIREBALL HERE
         ////////////////////////////
         anim.SetTrigger("FireBall");
         fireballControl.target = tempPig.transform.position;
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1.6f);
 
         Destroy(tempPig);
         ManageAttributes();
