@@ -14,6 +14,7 @@ public class UXManager : MonoBehaviour
     public int currentScene;
     public bool isPaused;
     public Button resumeBtn;
+    bool DebugMenuActive;
 
     [Header ("Canvas Stuff")]
     [SerializeField] private Canvas MainMenu;
@@ -324,9 +325,32 @@ public class UXManager : MonoBehaviour
 
         if (kboard.lKey.wasPressedThisFrame) {
             if (DebugMenu.isActiveAndEnabled == true) {
+                DebugMenuActive = false;
                 DebugMenu.enabled = false;
             } else {
+                DebugMenuActive = true;
                 DebugMenu.enabled = true;
+            }
+        }
+
+        if (DebugMenuActive){
+            if (kboard.hKey.wasPressedThisFrame) {
+                gameManager.HealthAmount = 10000;
+            }
+
+            if (kboard.jKey.wasPressedThisFrame) {
+                gameManager.EnergyAmount = 10000;
+            }
+
+            if (kboard.kKey.wasPressedThisFrame) {
+                gameManager.HealthAmount = 0.25f;
+                gameManager.EnergyAmount = 0.25f;
+            }
+
+            if (kboard.gKey.wasPressedThisFrame) {
+                gameManager.totalFish = 300;
+                gameManager.totalWood = 300;
+                gameManager.totalRock = 300;
             }
         }
 
@@ -604,7 +628,6 @@ public class UXManager : MonoBehaviour
         PauseMenuGrp.interactable = false;
         PauseMenuGrp.blocksRaycasts = false;
         FadeOutCanvasGrp(PauseMenuGrp, 0.5f);
-        Debug.Log (Cursor.lockState);
     }
 
     public void PauseExitGame() {
