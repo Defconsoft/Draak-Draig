@@ -17082,7 +17082,7 @@ MonoBehaviour:
   rechargeSpeedFireBall: 6
   rechargeSpeedFireBreath: 2
   rechargeSpeedFireBomb: 1
-  cursorTexture: {fileID: 2800000, guid: 1379cbf7204e20640b3dcd8826319b82, type: 3}
+  cursorTexture: {fileID: 2800000, guid: ce8f9fed01cb6144087cc59f650cce95, type: 3}
   aimControl: {fileID: 310715996}
   canAim: 0
   destructionGoal: 100

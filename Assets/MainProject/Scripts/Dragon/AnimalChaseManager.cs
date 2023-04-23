@@ -46,6 +46,15 @@ public class AnimalChaseManager : MonoBehaviour
             Debug.Log("Fired");
             
         }
+
+        if (gameManager.EnergyAmount <= 0.5  && GameEnded == false) {
+            uxManager.WarningContainer.SetActive (true);
+            uxManager.WarningText.text = "WARNING - ENERGY LOW";
+        } else {
+            uxManager.WarningContainer.SetActive (false);
+        }
+
+
     }
     
 

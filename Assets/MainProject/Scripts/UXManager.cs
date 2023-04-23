@@ -53,6 +53,7 @@ public class UXManager : MonoBehaviour
     public GameObject MinimapContainer;
     public int BirdTowerAmount = 10;
     public float BarrelDelay = 10f;
+    public TMPro.TMP_Text RockBonus, WoodBonus, FishBonus;
 
 
     [Header ("Instruction Stuff")]
@@ -72,6 +73,8 @@ public class UXManager : MonoBehaviour
     public Image EnergyBar;
     public Sprite Human, Dragon;
     public Image IconHolder;
+    public GameObject WarningContainer;
+    public TMPro.TMP_Text WarningText;
 
 
     [Header ("StartSceneInstructions")]
@@ -382,6 +385,33 @@ public class UXManager : MonoBehaviour
             Time.timeScale = 0f;
         }
   
+    /*
+        if (currentScene == 4) {
+            if (gameManager.totalRock <= 100) {
+                RockBonus.text = "BONUS X 1";
+            } else if (gameManager.totalRock>= 101 && gameManager.totalRock <= 250) {
+                RockBonus.text = "BONUS X 2";
+            } else if (gameManager.totalRock >= 251 ) {
+                RockBonus.text = "BONUS X 3";
+            }
+
+            if (gameManager.totalFish <= 100) {
+                FishBonus.text = "BONUS X 1";
+            } else if (gameManager.totalFish>= 101 && gameManager.totalFish <= 250) {
+                FishBonus.text = "BONUS X 2";
+            } else if (gameManager.totalFish >= 251 ) {
+                FishBonus.text = "BONUS X 3";
+            }
+
+            if (gameManager.totalWood <= 100) {
+                WoodBonus.text = "BONUS X 1";
+            } else if (gameManager.totalWood>= 101 && gameManager.totalWood <= 250) {
+                WoodBonus.text = "BONUS X 2";
+            } else if (gameManager.totalWood >= 251 ) {
+                WoodBonus.text = "BONUS X 3";
+            }
+        }
+    */
 
 
    
@@ -496,7 +526,6 @@ public class UXManager : MonoBehaviour
     }
 
     public void CheckFish() {
-        Debug.Log (gameManager.totalFish);
         if (gameManager.totalFish <= 100) {
             BarrelDelay = 20f;
         } else if (gameManager.totalFish>= 101 && gameManager.totalFish <= 250) {

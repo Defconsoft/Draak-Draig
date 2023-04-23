@@ -137,6 +137,13 @@ public class CastleBattleController : MonoBehaviour
                 uxManager.LoadScene(8);
             }
 
+            if (gameManager.HealthAmount <= 0.5  && EndGame == false) {
+                uxManager.WarningContainer.SetActive (true);
+                uxManager.WarningText.text = "WARNING - HEALTH LOW";
+            } else {
+                uxManager.WarningContainer.SetActive (false);
+            }
+
 
             if (!BarrelLive) {
                 BarrelLive = true;

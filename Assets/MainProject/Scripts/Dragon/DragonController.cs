@@ -222,6 +222,8 @@ public class DragonController : MonoBehaviour
 
         if (gameManager.HealthAmount <= 0) {
 
+            DeathUI.interactable = true;
+            DeathUI.blocksRaycasts = true;
             DeathUI.DOFade (1, 0.5f);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -371,12 +373,12 @@ public class DragonController : MonoBehaviour
 
 
     private void DecreaseEagleAmount(){
-            eagleAmount = eagleAmount -= Time.deltaTime;
+            eagleAmount = eagleAmount -= Time.deltaTime * 0.5f;
             eagleAmount = Mathf.Clamp(eagleAmount, 0f, 1f);
     }
 
     private void IncreaseEagleAmount(){
-            eagleAmount = eagleAmount += Time.deltaTime;
+            eagleAmount = eagleAmount += Time.deltaTime * 0.5f;
             eagleAmount = Mathf.Clamp(eagleAmount, 0f, 1f);
     }
 
